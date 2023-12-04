@@ -32,15 +32,17 @@ protected:
     // int unitInjec;
 
 public:
-    Customer(string,string, int, int = 0, int, vector<int>, string, string, string);
-    void setInfo(string,string, int, int = 0, int, vector<int>, string, string, string);
+    Customer(string, string, int, int = 0, int, vector<int>, string, string, string);
+    void setInfo(string, string, int, int = 0, int, vector<int>, string, string, string);
 };
 
 class Customers
 {
 private:
-    Customer *root;
-    int size;
+    Customer *rootCus;
+    int size=0;
+    Customer * insert(Customer *, Customer *);
 public:
-
+    void insertNewCustomer(string, string, int, int = 0, int, vector<int>, string, string, string);
+    Customer * searchCustomer(int);
 };

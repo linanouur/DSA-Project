@@ -45,7 +45,6 @@ Customer *Customers ::insert(Customer *root, Customer *node)
     }
 }
 
-
 Customer *Customers ::searchCustomer(int ID)
 {
     if (r == NULL)
@@ -53,15 +52,33 @@ Customer *Customers ::searchCustomer(int ID)
     else
         return search(ID, root);
 
+    if (ID == r->ElectricityAccountId)
+        return r;
+    Customer *search(int ID, Customer *r)
+    {
+        if (ID < r->ElectricityAccountId)
+            search(ID, r->left);
 
-if (ID == r->ElectricityAccountId)
-    return r;
-Customer *search(int ID, Customer *r)
-{
-    if (ID < r->ElectricityAccountId)
-        search(ID,r->left);
-
-    else search(ID,r->right);
+        else
+            search(ID, r->right);
+    }
 }
 
+void Customer ::displayOneMonthBill(int year, int month)
+{
+    displayPeriodBill(year, year, month, month);
+}
+
+void Customer ::displayOneYearBill(int year)
+{
+    displayPeriodBill(year, year, 1, 12);
+}
+
+void Customer::displayPeriodBill(int yearStart, int yearEnd, int MonthStart, int MonthEnd){
+    for(int i=yearStart,i<=yearEnd;i++){
+        for(int k=MonthStart;k<12;k++){
+(Years->year[hash(i)].yearMonths->months[k] ).monthgetBill();
+}
+    }
+    
 }

@@ -77,7 +77,7 @@ void Customer ::displayOneYearBill(int year)
 void Customer::displayPeriodBill(int yearStart, int yearEnd, int MonthStart, int MonthEnd){
     for(int i=yearStart,i<=yearEnd;i++){
         for(int k=MonthStart;k<12;k++){
-(Years->year[hash(i)].yearMonths->months[k] ).monthgetBill();
+(Years->year[hash(i)].yearMonths->months[k] ).monthgetBill();  //not Completed Yet
 }
     }
     

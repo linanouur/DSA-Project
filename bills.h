@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Customers.cpp"
+#include "customer.cpp"
 
 enum class status
 {

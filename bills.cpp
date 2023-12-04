@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
-#include "Customers.h"
+#include "customer.h"
 #include "bills.h"
 using namespace std;
 
 Bill ::Bill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)
 {
-    CalculateBill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank);
+    CalculateBill( ConsumptionAmount, InjectionAmount, TransferCreditByBank);
 }
 
 int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)

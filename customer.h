@@ -40,6 +40,7 @@ class Customers
 {
 private:
     Customer *root;
-
+    int size;
 public:
+
 };

@@ -69,7 +69,7 @@ struct Year
 
 struct Years
 {
-    Year year[100];
+    Year year[50];
     int hash(int numYear)
     {
         return numYear % 100;

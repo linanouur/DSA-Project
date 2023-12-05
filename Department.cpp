@@ -69,11 +69,11 @@ public:
         root = insertRecursive(root, yearlyconsump);
     }
 
-    void getBest10()
+    void getWorst10()
     {
         vector<double> elements;
         inOrderTraversalRecursive(root, elements);
-        std::cout << "Best 10 elements: ";
+        std::cout << " 10  worst departements: ";
         for (int i = elements.size() - 1; i >= elements.size() - 10; --i)
         {
             std::cout << elements[i] << " ";
@@ -81,11 +81,11 @@ public:
         std::cout << std::endl;
     }
 
-    void getWorst10()
+    void getBest10()
     {
         vector<double> elements;
         inOrderTraversalRecursive(root, elements);
-        std::cout << "Worst 10 elements: ";
+        std::cout << "10 best Departements: ";
         for (int i = 0; i < 10; ++i)
         {
             std::cout << elements[i] << " ";

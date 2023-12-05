@@ -1,6 +1,7 @@
 #include<iostream>  
-#include <fstream> 
-#include <sstream>
+#include<fstream> 
+#include<sstream> 
+#include<string>
 using namespace std ; 
 int main (){     
     int choice =1; 
@@ -22,8 +23,7 @@ int main (){
        switch(choice)
         {
           case 1:  
-          cout<<"\nenter Customer ID "; 
-          cin>>
+          AddCustomer(); 
                   break;
           case 2:
           
@@ -53,7 +53,43 @@ int main (){
           	  
 	  }
         } 
-    }
+    } 
+ void AddCustomer() {  
+   string firstname , lastname, distrcit, city , regioin ;  
+   int electID , bankAccount , numMem ; 
+   vector<int> ages ;  
+        cout<<"\nEnter Customer Electricity Account ID" ;  
+        cin>>electID ; 
+        cout<<"\nEnter customer first Name"; 
+        cin>>fname;  
+        cout<<"\nEnter Customer last name " ; 
+        cin>>lastname;  
+        cout<<"\nEnter Customer District " ;  
+        cin>>district ; 
+        cout<<"\nEnter Customer city" ;  
+        cin>>city ;  
+        cout<<"\nEnter Customer region" ;  
+        cin>>region ;     
+        cout<<"\nEnter Customer Family Members " ;  
+        cin>>numMem;  
+         cout<<"\nEnter Customer family Numbers ages  " ;   
+         int age 
+        for(int i=0;i<numMem; i++)  
+        {  
+             cin>>age ;
+        if (age <0 ) {
+            break;
+        }
+        ages.push_back(age);
+        }
+
+
+
+       
+
+
+        Customer ()
+ }
 
 
 

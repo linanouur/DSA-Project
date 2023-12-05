@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "customer.h"
-
+# include "bills.cpp"
 using namespace std;
 
 Customer ::Customer(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
@@ -27,9 +27,7 @@ void Customers ::insertNewCustomer(string fname, string lname, int ElecId, int b
     Customer *cus = new Customer(fname, lname, ElecId, bankAccount = 0, numMemb, ages, region, city, district);
     root = insert(rootCus, cus);
 }
-bool Customers ::searchCustomer(int)
-{
-}
+
 
 Customer *Customers ::insert(Customer *root, Customer *node)
 {
@@ -45,15 +43,15 @@ Customer *Customers ::insert(Customer *root, Customer *node)
     }
 }
 
-Customer *Customers ::searchCustomer(int ID)
+Customer *Customers ::searchCustomer(int ID , Customer *r)
 {
     if (r == NULL)
         return NULL;
-    else
-        return search(ID, root);
+   
 
-    if (ID == r->ElectricityAccountId)
+    else if (ID == r->ElectricityAccountId)
         return r;
+
     Customer *search(int ID, Customer *r)
     {
         if (ID < r->ElectricityAccountId)
@@ -63,6 +61,13 @@ Customer *Customers ::searchCustomer(int ID)
             search(ID, r->right);
     }
 }
+
+
+Customer * Customers :: searchCustomer(int ID){
+  return searchCustomer(ID, rootCus);
+}
+
+
 
 void Customer ::displayOneMonthBill(int year, int month)
 {
@@ -74,10 +79,13 @@ void Customer ::displayOneYearBill(int year)
     displayPeriodBill(year, year, 1, 12);
 }
 
+
+
 void Customer::displayPeriodBill(int yearStart, int yearEnd, int MonthStart, int MonthEnd){
     for(int i=yearStart,i<=yearEnd;i++){
         for(int k=MonthStart;k<12;k++){
-(Years->year[hash(i)].yearMonths->months[k] ).monthgetBill();  //not Completed Yet
+            int key=i.hash(i);
+(Years->year[key].yearMonths->months[k] ).monthgetBill();
 }
     }
     

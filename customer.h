@@ -39,13 +39,18 @@ public:
     void displayOneYearBill(int  );
 };
 
+
+
+
+
 class Customers
 {
 private:
     Customer *rootCus;
     int size=0;
     Customer * insert(Customer *, Customer *);
+    Customer * searchCustomer(int , Customer *);
 public:
     void insertNewCustomer(string, string, int, int = 0, int, vector<int>, string, string, string);
-    Customer * searchCustomer(int);
+    Customer *searchCustomer(int);
 };

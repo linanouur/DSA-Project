@@ -9,11 +9,10 @@ enum class status
     NotCalculatedYet
 };
 
-
 class Bill : public Customer, public Month, public Year
 {
 protected:
-    int Total=0;
+    int Total = 0;
     int MonthConsumptionAmount;
     int MonthInjectionAmount;
     bool MonthTransferCreditByBank;
@@ -32,7 +31,7 @@ struct Month
     string monthName;
     int numberMonth;
     Bill MonthlyBill();
-    
+
     Month(string name, int num)
     {
         monthName = name;
@@ -59,6 +58,10 @@ struct Months
 
 struct Year
 {
+    int YearlyTotal = 0;
+    int YearlyInjectionAmount;
+    int YearlyCredit = 0;
+    int payment = YearlyTotal - YearlyCredit;
     Months *yearMonths;
     int year;
     Year(int num)

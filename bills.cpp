@@ -6,28 +6,38 @@ using namespace std;
 
 Bill ::Bill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)
 {
-    CalculateBill( ConsumptionAmount, InjectionAmount, TransferCreditByBank);
+    CalculateBill(ConsumptionAmount, InjectionAmount, TransferCreditByBank);
 }
 
-int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)
+int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
 {
 
     MonthConsumptionAmount = ConsumptionAmount;
     MonthInjectionAmount = InjectionAmount;
 
     if (InjectionAmount == 0)
-        Total = 5 * ConsumptionAmount;
-    return Total;
-    else if (TransferCreditByBank == false)
     {
-        Total = 5 * ConsumptionAmount - 3 * InjectionAmount;
+        Total = 5 * ConsumptionAmount;
+        YearlyTotal = YearlyTotal + Total;
         return Total;
+    }
+
+    int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;
+
+    if (difference > 0)
+    {
+        Total = difference;
+        YearlyTotal = YearlyTotal + Total;
+        return Total;
+        MonthTransferCreditByBank = false;
     }
 
     else
     {
-        MonthlyCredit = MonthlyCredit + 3 * InjectionAmount;
-        Total = 5 * ConsumptionAmount;
+        credit = difference * (-1);
+        YearlyCredit = YearlyCredit + credit;
+        MonthTransferCreditByBank = true;
+        Total = 0;
         return Total;
     }
     state = status::calculated;

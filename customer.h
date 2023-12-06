@@ -34,13 +34,13 @@ protected:
 public:
     Customer(string, string, int, int = 0, int, vector<int>, string, string, string);
     void setInfo(string, string, int, int = 0, int, vector<int>, string, string, string);
-    void displayOneMonthBill(int , int );
-    void displayPeriodBill(int , int = 0, int , int);
-    void displayOneYearBill(int  );
+    
 };
 
 
-
+void displayOneMonthBill(int , int , int );
+void displayPeriodBill(int ,int , int = 0, int , int);
+void displayOneYearBill(int ,int  );
 
 
 class Customers

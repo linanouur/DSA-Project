@@ -30,7 +30,7 @@ struct Month
 {
     string monthName;
     int numberMonth;
-    Bill MonthlyBill();
+    Bill MonthlyBill;
 
     Month(string name, int num)
     {
@@ -67,19 +67,24 @@ struct Year
     Year(int num)
     {
         year = num;
+        yearMonths = new Months();
     }
 };
 
 struct Years
 {
-    Year year[50];
+    Year years[50];
     int hash(int numYear)
     {
-        return numYear % 100;
+        return numYear % 50;
     }
 
     void insertYear(int numYear)
     {
         year[hash(numYear)] = Year(numYear);
+    }
+
+    Year& getYear(int year) {
+        return years[hash(year)];
     }
 };

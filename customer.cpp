@@ -6,6 +6,7 @@ using namespace std;
 
 Customer ::Customer(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
 {
+    Years = new Years();
     setInfo(fname, lname, ElecId, bankAccount = 0, numMemb, ages, region, city, district);
 }
 
@@ -69,19 +70,26 @@ Customer * Customers :: searchCustomer(int ID){
 
 
 
-void Customer ::displayOneMonthBill(int year, int month)
+void displayOneMonthBill(int id , int year, int month)
 {
-    displayPeriodBill(year, year, month, month);
+    Customer * cust = searchCustomer(id);
+    int key1=hash(year);
+    year *y = cust -> years[key1] ;
+    month *m =  y->months[month];
+    m->MonthlyBill.displayBill();
 }
 
-void Customer ::displayOneYearBill(int year)
+
+
+
+void displayOneYearBill(int id ,int year)
 {
     displayPeriodBill(year, year, 1, 12);
 }
 
 
 
-void Customer::displayPeriodBill(int yearStart, int yearEnd, int MonthStart, int MonthEnd){
+void displayPeriodBill(int id ,int yearStart, int yearEnd, int MonthStart, int MonthEnd){
     for(int i=yearStart,i<yearEnd;i++){
         for(int k=MonthStart;k<12;k++){
             int key=i.hash(i);

@@ -54,6 +54,6 @@ public:
     static void setInfoNewInjector(int , int);
     static int get maxInjectorID();
     static int get maxAmoutInjected ();
-    bool compare(int );
     
+
 };

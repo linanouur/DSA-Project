@@ -38,10 +38,6 @@ public:
 };
 
 
-void displayOneMonthBill(int , int , int );
-void displayPeriodBill(int ,int , int = 0, int , int);
-void displayOneYearBill(int ,int  );
-
 
 class Customers
 {
@@ -50,7 +46,14 @@ private:
     int size=0;
     Customer * insert(Customer *, Customer *);
     Customer * searchCustomer(int , Customer *);
+    static int maxAmountInjected=0;
+    static int maxInjectorID=0;
 public:
     void insertNewCustomer(string, string, int, int = 0, int, vector<int>, string, string, string);
     Customer *searchCustomer(int);
+    static void setInfoNewInjector(int , int);
+    static int get maxInjectorID();
+    static int get maxAmoutInjected ();
+    bool compare(int );
+    
 };

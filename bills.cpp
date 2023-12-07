@@ -22,6 +22,10 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
         return Total;
     }
 
+    totalInjection = totalInjection + MonthInjectionAmount;
+    if (getMaxAmoutInjected()< totalInjection) setInfoNewInjector(ElectricityAccountId,totalInjection);
+
+
     int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;
 
     if (difference > 0)

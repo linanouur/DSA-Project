@@ -54,6 +54,10 @@ struct Months
             months[i] = Month(monthNames[i], i);
         }
     }
+
+    Month& getMonth(int month) {
+        return months[hash(month)];
+    }
 };
 
 struct Year

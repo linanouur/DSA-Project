@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "customer.h"
-# include "bills.cpp"
+#include "bills.cpp"
 using namespace std;
 
 Customer ::Customer(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
@@ -29,7 +29,6 @@ void Customers ::insertNewCustomer(string fname, string lname, int ElecId, int b
     root = insert(rootCus, cus);
 }
 
-
 Customer *Customers ::insert(Customer *root, Customer *node)
 {
     if (root == NULL)
@@ -44,11 +43,10 @@ Customer *Customers ::insert(Customer *root, Customer *node)
     }
 }
 
-Customer *Customers ::searchCustomer(int ID , Customer *r)
+Customer *Customers ::searchCustomer(int ID, Customer *r)
 {
     if (r == NULL)
         return NULL;
-   
 
     else if (ID == r->ElectricityAccountId)
         return r;
@@ -63,38 +61,49 @@ Customer *Customers ::searchCustomer(int ID , Customer *r)
     }
 }
 
-
-Customer * Customers :: searchCustomer(int ID){
-  return searchCustomer(ID, rootCus);
+Customer *Customers ::searchCustomer(int ID)
+{
+    return searchCustomer(ID, rootCus);
 }
 
-
-
-void displayOneMonthBill(int id , int year, int month)
+void displayOneMonthBill(int id, int year, int month)
 {
-    Customer * cust = searchCustomer(id);
-    int key1=hash(year);
-    year *y = cust -> years[key1] ;
-    month *m =  y->months[month];
+    Customer *cust = searchCustomer(id);
+    int key1 = hash(year);
+    year *y = cust->years[key1];
+    month *m = y->months[month];
     m->MonthlyBill.displayBill();
 }
 
-
-
-
-void displayOneYearBill(int id ,int year)
+void displayOneYearBill(int id, int year)
 {
     displayPeriodBill(year, year, 1, 12);
 }
 
-
-
-void displayPeriodBill(int id ,int yearStart, int yearEnd, int MonthStart, int MonthEnd){
-    for(int i=yearStart,i<yearEnd;i++){
-        for(int k=MonthStart;k<12;k++){
-            int key=i.hash(i);
-(Years->year[key].yearMonths->months[k] ).monthgetBill();
-}
+void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
+{
+    for (int i = yearStart, i < yearEnd; i++)
+    {
+        for (int k = MonthStart; k < 12; k++)
+        {
+            int key = i.hash(i);
+            (Years->year[key].yearMonths->months[k]).monthgetBill();
+        }
     }
-    
+}
+
+static void Customers ::setInfoNewInjector(int ID, int newValue)
+{
+    maxInjectorID = ID;
+    maxAmountInjected = newValue;
+}
+
+static int Customers ::getMaxInjectorID()
+{
+    return maxInjectorID;
+}
+
+static int Customers ::getMaxAmoutInjected()
+{
+    return maxAmountInjected;
 }

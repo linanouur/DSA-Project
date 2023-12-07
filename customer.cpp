@@ -66,32 +66,6 @@ Customer *Customers ::searchCustomer(int ID)
     return searchCustomer(ID, rootCus);
 }
 
-void displayOneMonthBill(int id, int year, int month)
-{
-    Customer *cust = searchCustomer(id);
-    int key1 = hash(year);
-    year *y = cust->years[key1];
-    month *m = y->months[month];
-    m->MonthlyBill.displayBill();
-}
-
-void displayOneYearBill(int id, int year)
-{
-    displayPeriodBill(year, year, 1, 12);
-}
-
-void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
-{
-    for (int i = yearStart, i < yearEnd; i++)
-    {
-        for (int k = MonthStart; k < 12; k++)
-        {
-            int key = i.hash(i);
-            (Years->year[key].yearMonths->months[k]).monthgetBill();
-        }
-    }
-}
-
 static void Customers ::setInfoNewInjector(int ID, int newValue)
 {
     maxInjectorID = ID;
@@ -106,4 +80,29 @@ static int Customers ::getMaxInjectorID()
 static int Customers ::getMaxAmoutInjected()
 {
     return maxAmountInjected;
+}
+
+void displayOneMonthBill(int id, int year, int month)
+{
+    Customer *cust = searchCustomer(id);
+    Year *y = cust->getYear(year);
+    Month *m = y->getMonth(month);
+    m->MonthlyBill.displayBill();
+}
+
+// void displayOneYearBill(int id, int year)
+// {
+//     displayPeriodBill(year, year, 1, 12);
+// }
+
+void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
+{
+    for (int i = yearStart, i < yearEnd; i++)
+    {
+        for (int k = MonthStart; k < 12; k++)
+        {
+            int key = i.hash(i);
+            (Years->year[key].yearMonths->months[k]).monthgetBill();
+        }
+    }
 }

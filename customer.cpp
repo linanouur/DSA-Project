@@ -95,14 +95,7 @@ void displayOneMonthBill(int id, int year, int month)
 //     displayPeriodBill(year, year, 1, 12);
 // }
 
-void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
-{
-    for (int i = yearStart, i < yearEnd; i++)
-    {
-        for (int k = MonthStart; k < 12; k++)
-        {
-            int key = i.hash(i);
-            (Years->year[key].yearMonths->months[k]).monthgetBill();
-        }
-    }
-}
+// void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
+// {
+    
+// }

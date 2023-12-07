@@ -18,10 +18,11 @@ protected:
     bool MonthTransferCreditByBank;
     int MonthlyCredit = 0;
     status state = status ::NotCalculatedYet;
-    int CalculateBill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank);
+    int CalculateBill(int , int );
 
 public:
-    Bill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank);
+    Bill();
+    void setBillInfo(int , int );
     void displayBill();
     int getTotal();
 };

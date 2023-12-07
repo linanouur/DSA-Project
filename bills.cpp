@@ -4,17 +4,21 @@
 #include "bills.h"
 using namespace std;
 
-Bill ::Bill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)
+Bill ::Bill()
 {
-    CalculateBill(ConsumptionAmount, InjectionAmount, TransferCreditByBank);
+    ConsumptionAmount = 0;
+    InjectionAmount = 0;
+    state = status::NotCalculatedYet;
+}
+
+void Bill ::setBillInfo(int ConsumptionAmount, int InjectionAmount)
+{
+    MonthConsumptionAmount = ConsumptionAmount;
+    MonthInjectionAmount = InjectionAmount;
 }
 
 int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
 {
-
-    MonthConsumptionAmount = ConsumptionAmount;
-    MonthInjectionAmount = InjectionAmount;
-
     if (InjectionAmount == 0)
     {
         Total = 5 * ConsumptionAmount;
@@ -23,8 +27,8 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
     }
 
     totalInjection = totalInjection + MonthInjectionAmount;
-    if (getMaxAmoutInjected()< totalInjection) setInfoNewInjector(ElectricityAccountId,totalInjection);
-
+    if (getMaxAmoutInjected() < totalInjection)
+        setInfoNewInjector(ElectricityAccountId, totalInjection);
 
     int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;
 
@@ -49,8 +53,8 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
 
 int Bill::getTotal()
 {
-    if (state == status::empty)
-        return CalculateBill(MonthConsumptionAmount, MonthInjectionAmount, MonthTransferCreditByBank);
+    if (state == status::NotCalculatedYet)
+        return CalculateBill(MonthConsumptionAmount, MonthInjectionAmount);
     else
         return Total;
 }

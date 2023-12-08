@@ -1,59 +1,40 @@
-#include <iostream>
+#ifndef CUSTOMER_H
+#define CUSTOMER_H 
+ #include <iostream>
 #include <string>
-#include <vector>
+#include"calendar.cpp"
+using namespace std;
 
-enum class status
-{
-    calculated,
-    NotCalculatedYet
-};
-
-class Customer
-{
-
-protected:
+struct Customer {
     string firstName;
     string FamilyName;
     int ElectricityAccountId;
     int BankAccount;
-    int Credit = 0;
     int familyMembersNumber;
-    int totalInjection = 0;
-    vector<int> Ages;
-    string Region; // should have a pointer to the city,region,district that he belongs to , not a string
+    Years *Customeryears;
+    string Region;
     string City;
     string District;
-    bool haveInjectedBefore = false;
-    Years *Years;
+    bool haveInjectedBefore;
     Customer *left;
     Customer *right;
-    // string unit;
-    // int unitCons;
-    // int unitInjec;
 
-public:
-    Customer(string, string, int, int = 0, int, vector<int>, string, string, string);
-    void setInfo(string, string, int, int = 0, int, vector<int>, string, string, string);
-    
+    Customer(string, string, int, int, int,  string, string, string);
+    void setInfo(string, string, int, int, int,  string, string, string);
 };
 
-
-
-class Customers
-{
+class Customers {
 private:
     Customer *rootCus;
-    int size=0;
-    Customer * insert(Customer *, Customer *);
-    Customer * searchCustomer(int , Customer *);
-    static int maxAmountInjected=0;
-    static int maxInjectorID=0;
-public:
-    void insertNewCustomer(string, string, int, int = 0, int, vector<int>, string, string, string);
-    Customer *searchCustomer(int);
-    static void setInfoNewInjector(int , int);
-    static int get maxInjectorID();
-    static int get maxAmoutInjected ();
-    
 
+    Customer *insert(Customer *, Customer *);
+    Customer *searchCustomer(int, Customer *);
+    void printInorder(Customer *);
+
+public:
+    void insertNewCustomer(string, string, int, int, int, string, string, string);
+    Customer *searchCustomer(int);
+    void print();
 };
+
+#endif

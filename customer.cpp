@@ -1,101 +1,125 @@
 #include <iostream>
 #include <string>
+#include "calendar.cpp"
 #include "customer.h"
-#include "bills.cpp"
 using namespace std;
 
-Customer ::Customer(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
+Customer::Customer(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
 {
-    Years = new Years();
-    setInfo(fname, lname, ElecId, bankAccount = 0, numMemb, ages, region, city, district);
+
+    setInfo(fname, lname, ElecId, bankAccount, numMemb, region, city, district);
 }
 
-void Customer ::setInfo(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;
     ElectricityAccountId = ElecId;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    Ages = ages;
     Region = region;
     City = city;
     District = district;
+
+    haveInjectedBefore = false;
+    left = nullptr;
+    right = nullptr;
 }
 
-void Customers ::insertNewCustomer(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
+void Customers::insertNewCustomer(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
 {
-    Customer *cus = new Customer(fname, lname, ElecId, bankAccount = 0, numMemb, ages, region, city, district);
-    root = insert(rootCus, cus);
+    Customer *cus = new Customer(fname, lname, ElecId, bankAccount, numMemb, region, city, district);
+    rootCus = insert(rootCus, cus);
 }
 
-Customer *Customers ::insert(Customer *root, Customer *node)
+Customer *Customers::insert(Customer *root, Customer *node)
 {
-    if (root == NULL)
+    if (root == nullptr)
     {
         return node;
     }
     else if (node->ElectricityAccountId <= root->ElectricityAccountId)
     {
-        insert(root->left, node);
-
-        else insert(root->right, node);
+        root->left = insert(root->left, node);
     }
-}
-
-Customer *Customers ::searchCustomer(int ID, Customer *r)
-{
-    if (r == NULL)
-        return NULL;
-
-    else if (ID == r->ElectricityAccountId)
-        return r;
-
-    Customer *search(int ID, Customer *r)
+    else
     {
-        if (ID < r->ElectricityAccountId)
-            search(ID, r->left);
+        root->right = insert(root->right, node);
+    }
+    return root;
+}
 
-        else
-            search(ID, r->right);
+Customer *Customers::searchCustomer(int ID, Customer *r)
+{
+    if (r == nullptr)
+    {
+        return nullptr;
+    }
+    else if (ID == r->ElectricityAccountId)
+    {
+        return r;
+    }
+    else if (ID < r->ElectricityAccountId)
+    {
+        return searchCustomer(ID, r->left);
+    }
+    else
+    {
+        return searchCustomer(ID, r->right);
     }
 }
 
-Customer *Customers ::searchCustomer(int ID)
+Customer *Customers::searchCustomer(int ID)
 {
     return searchCustomer(ID, rootCus);
 }
 
-static void Customers ::setInfoNewInjector(int ID, int newValue)
+void Customers::printInorder(Customer *ptr)
 {
-    maxInjectorID = ID;
-    maxAmountInjected = newValue;
+    if (ptr == NULL)
+        return;
+
+    printInorder(ptr->left);
+
+   cout.width(10);
+   cout << ptr->firstName;
+   cout.width(20);
+    cout<<ptr->FamilyName;
+    cout.width(10);
+    cout<<ptr->ElectricityAccountId << endl;
+
+    printInorder(ptr->right);
 }
 
-static int Customers ::getMaxInjectorID()
+void Customers::print()
 {
-    return maxInjectorID;
+    printInorder(rootCus);
 }
 
-static int Customers ::getMaxAmoutInjected()
+int main()
 {
-    return maxAmountInjected;
+    Customers BST;
+    BST.insertNewCustomer("John", "Doe", 12345, 54321, 3, "North", "Mahelma", "Bouira");
+    BST.insertNewCustomer("Jane", "Doe", 67890, 21345, 1, "South", "Algiers", "Bab El Oued");
+    BST.insertNewCustomer("Michael", "Smith", 45678, 87654, 4, "East", "Constantine", "Salah Bey");
+    BST.insertNewCustomer("Emma", "Brown", 23456, 12345, 2, "West", "Oran", "Es Senia");
+    BST.insertNewCustomer("David", "Miller", 89012, 98765, 5, "North", "Skikda", "El Harrouch");
+    BST.insertNewCustomer("Aisha", "Boudjemaa", 76543, 89012, 2, "South", "Tlemcen", "Nedroma");
+    BST.insertNewCustomer("Karim", "Belkacem", 34567, 56789, 4, "East", "Batna", "Merouana");
+    BST.insertNewCustomer("Fatima", "Zohra", 12345, 34567, 1, "West", "Annaba", "El Bouni");
+    BST.print(); // Outputs the ElectricityAccountId values of the customers
+
+    Customer *cust = BST.searchCustomer(67890);
+    if (cust != nullptr)
+    {
+        cust->Customeryears->insertYear(1950);
+        Year &y = cust->Customeryears->getYear(1950);
+        Month &m = y.yearMonths->getMonth(3);
+        cout << "Month number: " << m.numberMonth << endl;
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }  
+    return 0;
 }
-
-void displayOneMonthBill(int id, int year, int month)
-{
-    Customer *cust = searchCustomer(id);
-    Year *y = cust->getYear(year);
-    Month *m = y->getMonth(month);
-    m->MonthlyBill.displayBill();
-}
-
-// void displayOneYearBill(int id, int year)
-// {
-//     displayPeriodBill(year, year, 1, 12);
-// }
-
-// void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
-// {
-    
-// }

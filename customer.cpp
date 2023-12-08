@@ -81,15 +81,15 @@ int main() {
     BST.insertNewCustomer("Karim", "Belkacem", 34567, 56789, 4, "East", "Batna", "Merouana");
     BST.insertNewCustomer("Fatima", "Zohra", 12345, 34567, 1,  "West", "Annaba", "El Bouni");
     BST.print(); // Outputs the ElectricityAccountId values of the customers
-    cout<<endl;
+    
      Customer *cust = BST.searchCustomer(67890);
-     /*if (cust != nullptr) {
+     if (cust != nullptr) {
         cust->Customeryears->insertYear(1950);
         Year& y = cust->Customeryears->getYear(1950);
         Month& m = y.yearMonths->getMonth(3);
         cout << "Month number: " << m.numberMonth << endl;
     } else {
         cout << "Customer not found." << endl;
-    } */ 
+    }  
     return 0;
 }

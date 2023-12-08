@@ -1,9 +1,9 @@
 #ifndef DISTRICT_H
 #define DISTRICT_H
 
-#include "City.h"
-#include <iostream>
-#include <string>
+#include"City.h"
+#include<iostream>
+#include<string>
 
 const int num_dis = 100;
 class City;

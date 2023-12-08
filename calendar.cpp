@@ -1,8 +1,7 @@
-#include <iostream>
-#include <string>
-#include"customer.cpp"
-#include"customer.h"
-using namespace std;
+#ifndef CALENDAR_H 
+#define CALENDAR_H
+ #include<iostream>
+#include<string>
 
 struct Month {
     string monthName;
@@ -62,3 +61,5 @@ struct Years {
         return years[hash(year)];
     }
 };
+
+#endif

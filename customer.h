@@ -35,11 +35,6 @@ public:
     void insertNewCustomer(string, string, int, int, int, string, string, string);
     Customer *searchCustomer(int);
     void print();
-<<<<<<< HEAD
 };
 
 #endif
-=======
-}; 
-#endif
->>>>>>> 89e6cb082b8338e03ce6dc4c69a700893b36485e

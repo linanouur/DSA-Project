@@ -1,17 +1,21 @@
-#include <iostream>
-#include <string>
-#include"customer.cpp"
-#include"customer.h"
+#ifndef CALENDAR_H 
+#define CALENDAR_H
+ #include<iostream>
+#include<string>
+
 using namespace std;
 
 struct Month {
     string monthName;
     int numberMonth;
 
-    // Constructor
-    Month() {}
+    // Default Constructor
+    Month() : monthName(""), numberMonth(0) {}
 
-    void setMonth(string name, int num) {
+   
+    
+
+    void setMonth(const string& name, int num) {
         monthName = name;
         numberMonth = num;
     }
@@ -61,4 +65,5 @@ struct Years {
     Year& getYear(int year) {
         return years[hash(year)];
     }
-};
+}; 
+#endif

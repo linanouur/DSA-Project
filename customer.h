@@ -24,7 +24,7 @@ protected:
     string City;
     string District;
     bool haveInjectedBefore = false;
-    Years *Years;
+    Years *Customeryears;
     Customer *left;
     Customer *right;
     // string unit;
@@ -46,14 +46,14 @@ private:
     int size=0;
     Customer * insert(Customer *, Customer *);
     Customer * searchCustomer(int , Customer *);
-    static int maxAmountInjected=0;
-    static int maxInjectorID=0;
+    static int maxAmountInjected;
+    static int maxInjectorID;
 public:
     void insertNewCustomer(string, string, int, int = 0, int, vector<int>, string, string, string);
     Customer *searchCustomer(int);
     static void setInfoNewInjector(int , int);
-    static int get maxInjectorID();
-    static int get maxAmoutInjected ();
+    static int getmaxInjectorID();
+    static int getmaxAmoutInjected ();
     
 
 };

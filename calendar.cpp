@@ -2,7 +2,6 @@
 #define CALENDAR_H
  #include<iostream>
 #include<string>
-
 using namespace std;
 
 struct Month {
@@ -65,5 +64,6 @@ struct Years {
     Year& getYear(int year) {
         return years[hash(year)];
     }
-}; 
+};
+
 #endif

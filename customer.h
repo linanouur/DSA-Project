@@ -3,9 +3,7 @@
  #include <iostream>
 #include <string>
 #include"calendar.cpp"
-
 using namespace std;
-
 
 struct Customer {
     string firstName;
@@ -37,5 +35,6 @@ public:
     void insertNewCustomer(string, string, int, int, int, string, string, string);
     Customer *searchCustomer(int);
     void print();
-}; 
+};
+
 #endif

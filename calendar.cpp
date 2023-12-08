@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include "customer.cpp"
+#include"customer.cpp"
+#include"customer.h"
+using namespace std;
 
 struct Month {
     string monthName;

@@ -3,12 +3,7 @@
  #include <iostream>
 #include <string>
 #include"calendar.cpp"
-<<<<<<< HEAD
-=======
-
 using namespace std;
->>>>>>> 89e6cb082b8338e03ce6dc4c69a700893b36485e
-
 
 struct Customer {
     string firstName;

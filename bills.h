@@ -9,20 +9,20 @@ enum class status
     NotCalculatedYet
 };
 
-
 class Bill : public Customer, public Month, public Year
 {
 protected:
-    int Total=0;
+    int Total = 0;
     int MonthConsumptionAmount;
     int MonthInjectionAmount;
     bool MonthTransferCreditByBank;
     int MonthlyCredit = 0;
     status state = status ::NotCalculatedYet;
-    int CalculateBill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank);
+    int CalculateBill(int , int );
 
 public:
-    Bill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank);
+    Bill();
+    void setBillInfo(int , int );
     void displayBill();
     int getTotal();
 };
@@ -31,8 +31,8 @@ struct Month
 {
     string monthName;
     int numberMonth;
-    Bill MonthlyBill();
-    
+    Bill MonthlyBill;
+
     Month(string name, int num)
     {
         monthName = name;
@@ -55,28 +55,41 @@ struct Months
             months[i] = Month(monthNames[i], i);
         }
     }
+
+    Month& getMonth(int month) {
+        return months[hash(month)];
+    }
 };
 
 struct Year
 {
+    int YearlyTotal = 0;
+    int YearlyInjectionAmount;
+    int YearlyCredit = 0;
+    int payment = YearlyTotal - YearlyCredit;
     Months *yearMonths;
     int year;
     Year(int num)
     {
         year = num;
+        yearMonths = new Months();
     }
 };
 
 struct Years
 {
-    Year year[50];
+    Year years[50];
     int hash(int numYear)
     {
-        return numYear % 100;
+        return numYear % 50;
     }
 
     void insertYear(int numYear)
     {
         year[hash(numYear)] = Year(numYear);
+    }
+
+    Year& getYear(int year) {
+        return years[hash(year)];
     }
 };

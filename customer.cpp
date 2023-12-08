@@ -1,11 +1,12 @@
 #include <iostream>
 #include <string>
 #include "customer.h"
-# include "bills.cpp"
+#include "bills.cpp"
 using namespace std;
 
 Customer ::Customer(string fname, string lname, int ElecId, int bankAccount = 0, int numMemb, vector<int> ages, string region, string city, string district)
 {
+    Years = new Years();
     setInfo(fname, lname, ElecId, bankAccount = 0, numMemb, ages, region, city, district);
 }
 
@@ -28,7 +29,6 @@ void Customers ::insertNewCustomer(string fname, string lname, int ElecId, int b
     root = insert(rootCus, cus);
 }
 
-
 Customer *Customers ::insert(Customer *root, Customer *node)
 {
     if (root == NULL)
@@ -43,11 +43,10 @@ Customer *Customers ::insert(Customer *root, Customer *node)
     }
 }
 
-Customer *Customers ::searchCustomer(int ID , Customer *r)
+Customer *Customers ::searchCustomer(int ID, Customer *r)
 {
     if (r == NULL)
         return NULL;
-   
 
     else if (ID == r->ElectricityAccountId)
         return r;
@@ -62,31 +61,41 @@ Customer *Customers ::searchCustomer(int ID , Customer *r)
     }
 }
 
-
-Customer * Customers :: searchCustomer(int ID){
-  return searchCustomer(ID, rootCus);
-}
-
-
-
-void Customer ::displayOneMonthBill(int year, int month)
+Customer *Customers ::searchCustomer(int ID)
 {
-    displayPeriodBill(year, year, month, month);
+    return searchCustomer(ID, rootCus);
 }
 
-void Customer ::displayOneYearBill(int year)
+static void Customers ::setInfoNewInjector(int ID, int newValue)
 {
-    displayPeriodBill(year, year, 1, 12);
+    maxInjectorID = ID;
+    maxAmountInjected = newValue;
 }
 
-
-
-void Customer::displayPeriodBill(int yearStart, int yearEnd, int MonthStart, int MonthEnd){
-    for(int i=yearStart,i<=yearEnd;i++){
-        for(int k=MonthStart;k<12;k++){
-            int key=i.hash(i);
-(Years->year[key].yearMonths->months[k] ).monthgetBill();
+static int Customers ::getMaxInjectorID()
+{
+    return maxInjectorID;
 }
-    }
+
+static int Customers ::getMaxAmoutInjected()
+{
+    return maxAmountInjected;
+}
+
+void displayOneMonthBill(int id, int year, int month)
+{
+    Customer *cust = searchCustomer(id);
+    Year *y = cust->getYear(year);
+    Month *m = y->getMonth(month);
+    m->MonthlyBill.displayBill();
+}
+
+// void displayOneYearBill(int id, int year)
+// {
+//     displayPeriodBill(year, year, 1, 12);
+// }
+
+// void displayPeriodBill(int id, int yearStart, int yearEnd, int MonthStart, int MonthEnd)
+// {
     
-}
+// }

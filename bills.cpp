@@ -4,30 +4,48 @@
 #include "bills.h"
 using namespace std;
 
-Bill ::Bill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)
+Bill ::Bill()
 {
-    CalculateBill( ConsumptionAmount, InjectionAmount, TransferCreditByBank);
+    ConsumptionAmount = 0;
+    InjectionAmount = 0;
+    state = status::NotCalculatedYet;
 }
 
-int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount, bool TransferCreditByBank)
+void Bill ::setBillInfo(int ConsumptionAmount, int InjectionAmount)
 {
-
     MonthConsumptionAmount = ConsumptionAmount;
     MonthInjectionAmount = InjectionAmount;
+}
 
+int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
+{
     if (InjectionAmount == 0)
-        Total = 5 * ConsumptionAmount;
-    return Total;
-    else if (TransferCreditByBank == false)
     {
-        Total = 5 * ConsumptionAmount - 3 * InjectionAmount;
+        Total = 5 * ConsumptionAmount;
+        YearlyTotal = YearlyTotal + Total;
         return Total;
+    }
+
+    totalInjection = totalInjection + MonthInjectionAmount;
+    if (getMaxAmoutInjected() < totalInjection)
+        setInfoNewInjector(ElectricityAccountId, totalInjection);
+
+    int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;
+
+    if (difference > 0)
+    {
+        Total = difference;
+        YearlyTotal = YearlyTotal + Total;
+        return Total;
+        MonthTransferCreditByBank = false;
     }
 
     else
     {
-        MonthlyCredit = MonthlyCredit + 3 * InjectionAmount;
-        Total = 5 * ConsumptionAmount;
+        credit = difference * (-1);
+        YearlyCredit = YearlyCredit + credit;
+        MonthTransferCreditByBank = true;
+        Total = 0;
         return Total;
     }
     state = status::calculated;
@@ -35,8 +53,8 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount, bool Transf
 
 int Bill::getTotal()
 {
-    if (state == status::empty)
-        return CalculateBill(MonthConsumptionAmount, MonthInjectionAmount, MonthTransferCreditByBank);
+    if (state == status::NotCalculatedYet)
+        return CalculateBill(MonthConsumptionAmount, MonthInjectionAmount);
     else
         return Total;
 }

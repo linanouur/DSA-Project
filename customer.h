@@ -24,7 +24,7 @@ protected:
     string City;
     string District;
     bool haveInjectedBefore = false;
-    Years *Years;
+    Years *Customeryears;
     Customer *left;
     Customer *right;
     // string unit;

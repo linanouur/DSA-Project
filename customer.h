@@ -3,12 +3,12 @@
  #include <iostream>
 #include <string>
 #include"calendar.cpp"
+<<<<<<< HEAD
+=======
 
-enum class status
-{
-    calculated,
-    NotCalculatedYet
-};
+using namespace std;
+>>>>>>> 89e6cb082b8338e03ce6dc4c69a700893b36485e
+
 
 struct Customer {
     string firstName;
@@ -40,6 +40,11 @@ public:
     void insertNewCustomer(string, string, int, int, int, string, string, string);
     Customer *searchCustomer(int);
     void print();
+<<<<<<< HEAD
 };
 
 #endif
+=======
+}; 
+#endif
+>>>>>>> 89e6cb082b8338e03ce6dc4c69a700893b36485e

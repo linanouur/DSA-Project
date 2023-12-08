@@ -83,13 +83,13 @@ int main() {
     BST.print(); // Outputs the ElectricityAccountId values of the customers
     cout<<endl;
      Customer *cust = BST.searchCustomer(67890);
-    if (cust != nullptr) {
+     /*if (cust != nullptr) {
         cust->Customeryears->insertYear(1950);
         Year& y = cust->Customeryears->getYear(1950);
         Month& m = y.yearMonths->getMonth(3);
         cout << "Month number: " << m.numberMonth << endl;
     } else {
         cout << "Customer not found." << endl;
-    }
+    } */ 
     return 0;
 }

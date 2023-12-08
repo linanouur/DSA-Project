@@ -7,10 +7,13 @@ struct Month {
     string monthName;
     int numberMonth;
 
-    // Constructor
-    Month() {}
+    // Default Constructor
+    Month() : monthName(""), numberMonth(0) {}
 
-    void setMonth(string name, int num) {
+   
+    
+
+    void setMonth(const string& name, int num) {
         monthName = name;
         numberMonth = num;
     }

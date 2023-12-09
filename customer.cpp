@@ -196,3 +196,9 @@ int main()
     }  
     return 0;
 }
+
+
+int getPrize(Customers *BST){
+    cout<<"The winner ID: ";
+    return BST->getmaxInjectorID();
+}

@@ -25,7 +25,7 @@ class Bill
     int CalculateBill(int, int);
     
     // Constructor
-    Bill(){};
+    Bill();
 
     void setMonth(string name, int num)
     {

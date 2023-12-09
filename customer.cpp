@@ -1,8 +1,59 @@
 #include <iostream>
 #include <string>
+#include "Customer.h"
 #include "calendar.cpp"
-#include "customer.h"
+#include "bills.cpp"
 using namespace std;
+
+void setInfoOneMonth(Customers * BST, int ID, int month, int year, int Mconsumption, int Minjection)
+{
+    Customer *cust = BST->searchCustomer(ID);
+    cust->setTotalInjection(Minjection);
+    if(cust->totalInjection > BST->getmaxAmoutInjected())  BST->setInfoNewInjector(ID,Minjection);
+    if (cust != nullptr)
+    {
+        Year &y = cust->Customeryears->getYear(year);
+        y.setYearlyTotal(Mconsumption*5);
+        y.setYearlyCredit(Minjection*3);
+        Bill &m = y.yearMonths->getbill(month);
+        m.setBillInfo(Mconsumption,Minjection);
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
+void getOneMonthBill(Customers * BST, int ID, int month, int year){
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << month
+         << " / " << year << " : " << endl;
+    Customer *cust = BST->searchCustomer(ID);
+    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
+    if (cust != nullptr)
+    {
+        Year &y = cust->Customeryears->getYear(year);
+        Bill &m = y.yearMonths->getbill(month);
+        m.displayBill();
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
+
+void Customer ::setTotalInjection(int value)
+{
+    totalInjection = totalInjection + value;
+}
+
+int Customer ::getCustomerId()
+{
+    return ElectricityAccountId;
+}
 
 Customer::Customer(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
 {
@@ -74,7 +125,8 @@ Customer *Customers::searchCustomer(int ID)
     return searchCustomer(ID, rootCus);
 }
 
-void Customers::printInorder(Customer *ptr)
+
+    void Customers::printInorder(Customer *ptr)
 {
     if (ptr == NULL)
         return;
@@ -91,10 +143,31 @@ void Customers::printInorder(Customer *ptr)
     printInorder(ptr->right);
 }
 
+
 void Customers::print()
 {
     printInorder(rootCus);
 }
+
+
+void Customers ::setInfoNewInjector(int ID, int newValue)
+{
+    maxInjectorID = ID;
+    maxAmountInjected = newValue;
+}
+
+int Customers ::getmaxInjectorID()
+{
+    return maxInjectorID;
+}
+
+ int Customers ::getmaxAmoutInjected()
+{
+    return maxAmountInjected;
+}
+
+
+
 
 int main()
 {
@@ -108,13 +181,13 @@ int main()
     BST.insertNewCustomer("Karim", "Belkacem", 34567, 56789, 4, "East", "Batna", "Merouana");
     BST.insertNewCustomer("Fatima", "Zohra", 12345, 34567, 1, "West", "Annaba", "El Bouni");
     BST.print(); // Outputs the ElectricityAccountId values of the customers
-
-    Customer *cust = BST.searchCustomer(67890);
+    cout << endl;
+   Customer *cust = BST.searchCustomer(67890);
     if (cust != nullptr)
     {
         cust->Customeryears->insertYear(1950);
         Year &y = cust->Customeryears->getYear(1950);
-        Month &m = y.yearMonths->getMonth(3);
+        Bill &m = y.yearMonths->getbill(3);
         cout << "Month number: " << m.numberMonth << endl;
     }
     else

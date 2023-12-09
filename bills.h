@@ -1,7 +1,9 @@
+#ifndef BILLS_H
+#define BILLS_H
 #include <iostream>
 #include <string>
-#include <vector>
-#include "customer.cpp"
+using namespace std;
+
 
 enum class status
 {
@@ -9,21 +11,31 @@ enum class status
     NotCalculatedYet
 };
 
-class Bill : public Customer, public Month, public Year
+class Bill
 {
-protected:
+    public:
+    string monthName;
+    int numberMonth;
     int Total = 0;
     int MonthConsumptionAmount;
     int MonthInjectionAmount;
     bool MonthTransferCreditByBank;
     int MonthlyCredit = 0;
     status state = status ::NotCalculatedYet;
-    int CalculateBill(int , int );
+    int CalculateBill(int, int);
+    
+    // Constructor
+    Bill(){};
 
-public:
-    Bill();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-    void setBillInfo(int , int );
+    void setMonth(string name, int num)
+    {
+        monthName = name;
+        numberMonth = num;
+    }
+
+    void setBillInfo(int, int );
     void displayBill();
     int getTotal();
 };
 
+#endif

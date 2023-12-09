@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
-#include "customer.h"
 #include "bills.h"
 using namespace std;
 
 Bill ::Bill()
 {
-    ConsumptionAmount = 0;
-    InjectionAmount = 0;
+    MonthConsumptionAmount = 0;
+    MonthInjectionAmount = 0;
     state = status::NotCalculatedYet;
 }
 
@@ -22,33 +21,26 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
     if (InjectionAmount == 0)
     {
         Total = 5 * ConsumptionAmount;
-        YearlyTotal = YearlyTotal + Total;
+        state = status::calculated;
         return Total;
     }
 
-    totalInjection = totalInjection + MonthInjectionAmount;
-    if (getMaxAmoutInjected() < totalInjection)
-        setInfoNewInjector(ElectricityAccountId, totalInjection);
-
     int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;
-
+    state = status::calculated;
     if (difference > 0)
     {
         Total = difference;
-        YearlyTotal = YearlyTotal + Total;
-        return Total;
         MonthTransferCreditByBank = false;
+        return Total;
     }
 
     else
     {
-        credit = difference * (-1);
-        YearlyCredit = YearlyCredit + credit;
+        MonthlyCredit = difference * (-1);
         MonthTransferCreditByBank = true;
         Total = 0;
         return Total;
     }
-    state = status::calculated;
 }
 
 int Bill::getTotal()
@@ -61,12 +53,8 @@ int Bill::getTotal()
 
 void Bill ::displayBill()
 {
-    cout << "Bill of " << numberMonth
-         << " / " << year << " : " << endl;
-    cout << "Customer: " << name << " , Electricity Account ID: " << ElectricityAccountId << endl;
-    cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
     cout << "Monthly Amount Consumption: " << MonthConsumptionAmount << " Killowatt Hours " << endl;
     cout << "Monthly Amount Injection: " << MonthInjectionAmount << " Killowatt Hours " << endl;
-    cout << "Monthly Credit: " << MonthlyCredit << " " << unit << endl;
-    cout << " Total to Be Paid: " << getTotal() << " " << unit << endl;
+    cout << "Monthly Credit: " << MonthlyCredit << " "  << endl;
+    cout << " Total to Be Paid: " << getTotal() << " " << endl;
 }

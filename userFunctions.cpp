@@ -1,6 +1,9 @@
+#ifndef USERFUNCTIONS_CPP
+#define USERFUNCTIONS_CPP
+
 #include <iostream>
 #include <string>
-#include "Customer.cpp"
+
 using namespace std;
 
 
@@ -129,3 +132,5 @@ void getPeriodBill(Customers *BST, int ID, int monthStart, int monthEnd, int yea
         cout << "Customer not found." << endl;
     }
 }
+
+#endif

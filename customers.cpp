@@ -1,8 +1,14 @@
+#ifndef CUSTOMERS_CPP
+#define CUSTOMERS_CPP
+
 #include <iostream>
 #include <string>
-#include "Customer.h"
+#include "customer.h"
 #include "calendar.cpp"
 #include "bills.cpp"
+#include "userFunctions.cpp"
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 
@@ -102,3 +108,43 @@ void Customers ::displayWinner()
     cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
     cout << "with an injection Amount : " << maxAmountInjected << endl;
 }
+
+
+int main()
+{
+    Customers BST;
+    BST.insertNewCustomer("John", "Doe", 54321, 3, "North", "Mahelma", "Bouira");
+    BST.insertNewCustomer("Jane", "Doe",  21345, 1, "South", "Algiers", "Bab El Oued");
+    BST.insertNewCustomer("Michael", "Smith",  87654, 4, "East", "Constantine", "Salah Bey");
+    BST.insertNewCustomer("Emma", "Brown",  12345, 2, "West", "Oran", "Es Senia");
+    BST.insertNewCustomer("David", "Miller",  98765, 5, "North", "Skikda", "El Harrouch");
+    BST.insertNewCustomer("Aisha", "Boudjemaa", 89012, 2, "South", "Tlemcen", "Nedroma");
+    BST.insertNewCustomer("Karim", "Belkacem", 56789, 4, "East", "Batna", "Merouana");
+    BST.insertNewCustomer("Fatima", "Zohra",  34567, 1, "West", "Annaba", "El Bouni");
+    BST.print(); // Outputs the ElectricityAccountId values of the customers
+    cout << endl;
+
+    cout << "enter customer id" << endl;
+    int id;
+    cin >> id;
+    cout << getRegionId(id) << endl;
+    cout << getCityId(id) << endl;
+    cout << getDistrictId(id) << endl;
+    cout << getCustomerID(id) << endl;
+
+    Customer *cust = BST.searchCustomer(67890);
+    if (cust != nullptr)
+    {
+        cust->Customeryears->insertYear(1950);
+        Year &y = cust->Customeryears->getYear(1950);
+        Bill &m = y.yearMonths->getbill(3);
+        cout << "Month number: " << m.numberMonth << endl;
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+    return 0;
+}
+
+#endif

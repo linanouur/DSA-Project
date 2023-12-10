@@ -1,3 +1,6 @@
+#ifndef BILLS_CPP
+#define BILLS_CPP
+
 #include <iostream>
 #include <string>
 #include "bills.h"
@@ -51,6 +54,7 @@ int Bill::getTotal()
         return Total;
 }
 
+
 void Bill ::displayBill()
 {
     cout << "Monthly Amount Consumption: " << MonthConsumptionAmount << " Killowatt Hours " << endl;
@@ -58,3 +62,7 @@ void Bill ::displayBill()
     cout << "Monthly Credit: " << MonthlyCredit << " "  << endl;
     cout << " Total to Be Paid: " << getTotal() << " " << endl;
 }
+
+
+#endif
+

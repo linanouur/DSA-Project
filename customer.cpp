@@ -5,18 +5,44 @@
 #include "bills.cpp"
 using namespace std;
 
-void setInfoOneMonth(Customers * BST, int ID, int month, int year, int Mconsumption, int Minjection)
+int getRegionId(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID);
+    string regionID = CustomerIDString.substr(0, 2);
+    return stoi(regionID);
+}
+int getCityId(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID);
+    string cityID = CustomerIDString.substr(2, 2);
+    return stoi(cityID);
+}
+int getDistrictId(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID);
+    string districtID = CustomerIDString.substr(4, 2);
+    return stoi(districtID);
+}
+int getCustomerID(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID);
+    string customerID = CustomerIDString.substr(6, CustomerIDString.length() - 6);
+    return stoi(customerID);
+}
+
+void setInfoOneMonth(Customers *BST, int ID, int month, int year, int Mconsumption, int Minjection)
 {
     Customer *cust = BST->searchCustomer(ID);
-    cust->setTotalInjection(Minjection);
-    if(cust->totalInjection > BST->getmaxAmoutInjected())  BST->setInfoNewInjector(ID,Minjection);
+    cust->settotalInjection(Minjection);
+    if (cust->totalInjection > BST->getmaxAmoutInjected())
+        BST->setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
     if (cust != nullptr)
     {
         Year &y = cust->Customeryears->getYear(year);
-        y.setYearlyTotal(Mconsumption*5);
-        y.setYearlyCredit(Minjection*3);
+        y.setYearlyTotal(Mconsumption * 5);
+        y.setYearlyCredit(Minjection * 3);
         Bill &m = y.yearMonths->getbill(month);
-        m.setBillInfo(Mconsumption,Minjection);
+        m.setBillInfo(Mconsumption, Minjection);
     }
     else
     {
@@ -24,8 +50,8 @@ void setInfoOneMonth(Customers * BST, int ID, int month, int year, int Mconsumpt
     }
 }
 
-
-void getOneMonthBill(Customers * BST, int ID, int month, int year){
+void getOneMonthBill(Customers *BST, int ID, int month, int year)
+{
     // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
     cout << "Bill of " << month
          << " / " << year << " : " << endl;
@@ -43,9 +69,69 @@ void getOneMonthBill(Customers * BST, int ID, int month, int year){
     }
 }
 
+void getOneYearBill(Customers *BST, int ID, int year)
+{
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << year << " : " << endl;
+    Customer *cust = BST->searchCustomer(ID);
+    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
+    if (cust != nullptr)
+    {
+        Year &y = cust->Customeryears->getYear(year);
+        for (int month = 1; month < 13; month++)
+        {
+            Bill &m = y.yearMonths->getbill(month);
+            cout << "Month " << month << endl;
+            m.displayBill();
+        }
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
 
+void getPeriodBill(Customers *BST, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << monthStart << " / " << yearStart << " : "
+         << "/t"
+         << "To: " << monthEnd << " / " << yearEnd;
+    Customer *cust = BST->searchCustomer(ID);
+    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
+    if (cust != nullptr)
+    {
+        if (yearStart == yearEnd)
+        {
+            Year &y = cust->Customeryears->getYear(yearStart);
+            for (int month = monthStart; month < monthEnd; month++)
+            {
+                Bill &m = y.yearMonths->getbill(month);
+                cout << "Month " << month << endl;
+                m.displayBill();
+            }
+            return;
+        }
 
-void Customer ::setTotalInjection(int value)
+        for (int year = yearStart; year <= yearEnd; year++)
+        {
+            Year &y = cust->Customeryears->getYear(year);
+            for (int month = 1; month < 13; month++)
+            {
+                if (year = yearEnd && month > monthEnd)
+                    break;
+                Bill &m = y.yearMonths->getbill(month);
+                m.displayBill();
+            }
+        }
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+void Customer ::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
 }
@@ -55,17 +141,18 @@ int Customer ::getCustomerId()
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
+Customer::Customer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
 
-    setInfo(fname, lname, ElecId, bankAccount, numMemb, region, city, district);
+    setInfo(fname, lname, bankAccount, numMemb, region, city, district);
+    ElectricityAccountId = generateCustomerID();
 }
 
-void Customer::setInfo(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;
-    ElectricityAccountId = ElecId;
+
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
     Region = region;
@@ -75,99 +162,60 @@ void Customer::setInfo(string fname, string lname, int ElecId, int bankAccount, 
     haveInjectedBefore = false;
     left = nullptr;
     right = nullptr;
+    vector<string> IDs = getIDs(Region, City, District);
 }
-
-void Customers::insertNewCustomer(string fname, string lname, int ElecId, int bankAccount, int numMemb, string region, string city, string district)
+vector<string> Customer ::getIDs(string region, string city, string district)
 {
-    Customer *cus = new Customer(fname, lname, ElecId, bankAccount, numMemb, region, city, district);
-    rootCus = insert(rootCus, cus);
-}
+    ifstream file("RegionCityDistrict.csv");
+    string line;
+    string IDorName;
+    vector<string> IDSorNames;
 
-Customer *Customers::insert(Customer *root, Customer *node)
-{
-    if (root == nullptr)
+    if (!file.is_open())
     {
-        return node;
+        cerr << "Unable to open file" << endl;
+        return vector<string>(3, "");
     }
-    else if (node->ElectricityAccountId <= root->ElectricityAccountId)
+
+    while (getline(file, line))
     {
-        root->left = insert(root->left, node);
+        istringstream lineStream(line);
+        IDSorNames.clear();
+
+        while (getline(lineStream, IDorName, ','))
+        {
+            IDSorNames.push_back(IDorName);
+        }
+
+        if (IDSorNames.size() >= 6 &&
+            IDSorNames[1] == region &&
+            IDSorNames[3] == city &&
+            IDSorNames[5] == district)
+        {
+            return vector<string>{IDSorNames[0], IDSorNames[2], IDSorNames[4]};
+        }
     }
-    else
-    {
-        root->right = insert(root->right, node);
-    }
-    return root;
-}
 
-Customer *Customers::searchCustomer(int ID, Customer *r)
+    return vector<string>(3, "");
+}
+string Customer ::getConcatenatedIDs(string region, string city, string district)
 {
-    if (r == nullptr)
-    {
-        return nullptr;
-    }
-    else if (ID == r->ElectricityAccountId)
-    {
-        return r;
-    }
-    else if (ID < r->ElectricityAccountId)
-    {
-        return searchCustomer(ID, r->left);
-    }
-    else
-    {
-        return searchCustomer(ID, r->right);
-    }
-}
+    vector<string> IDs = getIDs(region, city, district);
+    string concatenatedIDs = "";
 
-Customer *Customers::searchCustomer(int ID)
+    concatenatedIDs = IDs[0] + IDs[1] + IDs[2];
+
+    return concatenatedIDs;
+}
+int Customer ::generateCustomerID()
 {
-    return searchCustomer(ID, rootCus);
+    static int CustomerIDS = 1;
+    string concatenatedIDs = getConcatenatedIDs(Region, City, District);
+    string CustomerID = concatenatedIDs + to_string(CustomerIDS);
+    CustomerIDS++;
+
+    return stoi(CustomerID);
 }
-
-
-    void Customers::printInorder(Customer *ptr)
-{
-    if (ptr == NULL)
-        return;
-
-    printInorder(ptr->left);
-
-   cout.width(10);
-   cout << ptr->firstName;
-   cout.width(20);
-    cout<<ptr->FamilyName;
-    cout.width(10);
-    cout<<ptr->ElectricityAccountId << endl;
-
-    printInorder(ptr->right);
-}
-
-
-void Customers::print()
-{
-    printInorder(rootCus);
-}
-
-
-void Customers ::setInfoNewInjector(int ID, int newValue)
-{
-    maxInjectorID = ID;
-    maxAmountInjected = newValue;
-}
-
-int Customers ::getmaxInjectorID()
-{
-    return maxInjectorID;
-}
-
- int Customers ::getmaxAmoutInjected()
-{
-    return maxAmountInjected;
-}
-
-
-
 
 int main()
 {
@@ -182,7 +230,16 @@ int main()
     BST.insertNewCustomer("Fatima", "Zohra", 12345, 34567, 1, "West", "Annaba", "El Bouni");
     BST.print(); // Outputs the ElectricityAccountId values of the customers
     cout << endl;
-   Customer *cust = BST.searchCustomer(67890);
+
+    cout << "enter customer id" << endl;
+    int id;
+    cin >> id;
+    cout << getRegionId(id) << endl;
+    cout << getCityId(id) << endl;
+    cout << getDistrictId(id) << endl;
+    cout << getCustomerID(id) << endl;
+
+    Customer *cust = BST.searchCustomer(67890);
     if (cust != nullptr)
     {
         cust->Customeryears->insertYear(1950);
@@ -193,12 +250,12 @@ int main()
     else
     {
         cout << "Customer not found." << endl;
-    }  
+    }
     return 0;
 }
 
-
-int getPrize(Customers *BST){
-    cout<<"The winner ID: ";
+int getPrize(Customers *BST)
+{
+    cout << "The winner ID: ";
     return BST->getmaxInjectorID();
 }

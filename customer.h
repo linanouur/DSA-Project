@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include"calendar.cpp"
 using namespace std;
 
@@ -23,9 +24,12 @@ struct Customer
     Customer *left;
     Customer *right;
 
-    Customer(string, string, int, int, int, string, string, string);
-    void setInfo(string, string, int, int, int, string, string, string);
-    void setTotalInjection(int);
+    Customer(string, string, int, int,  string, string, string);
+    void setInfo(string, string, int, int,  string, string, string); 
+    vector<string> getIDs( string , string, string); 
+    string getConcatenatedIDs(string, string, string); 
+    int  generateCustomerID();
+    void settotalInjection(int);
     int getCustomerId();
     
 };
@@ -41,14 +45,19 @@ private:
     void printInorder(Customer *);
     static int maxAmountInjected;
     static int maxInjectorID;
+    static string cityWinner;
+    static string regionWinner;
+    static string districtWinner;
+
 
 public:
-    void insertNewCustomer(string, string, int, int, int, string, string, string);
+    void insertNewCustomer(string, string, int, int, string, string, string );
     Customer *searchCustomer(int);
     void print();
-    static void setInfoNewInjector(int , int);
+    static void setInfoNewInjector(int , int , string , string , string );
     static int getmaxInjectorID();
     static int getmaxAmoutInjected ();
+    void displayWinner();
 };
 
 #endif

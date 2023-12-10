@@ -33,7 +33,7 @@ int getCustomerID(int CustomerID)
 void setInfoOneMonth(Customers *BST, int ID, int month, int year, int Mconsumption, int Minjection)
 {
     Customer *cust = BST->searchCustomer(ID);
-    cust->setTotalInjection(Minjection);
+    cust->settotalInjection(Minjection);
     if (cust->totalInjection > BST->getmaxAmoutInjected())
         BST->setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
     if (cust != nullptr)

@@ -109,6 +109,7 @@ int Customers ::getmaxAmoutInjected()
     return maxAmountInjected;
 }
 
+
 void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;
@@ -155,3 +156,4 @@ int main()
 }
 
 
+#endif

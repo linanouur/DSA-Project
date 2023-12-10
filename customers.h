@@ -28,6 +28,6 @@ public:
     static void setInfoNewInjector(int , int , string , string , string );
     static int getmaxInjectorID();
     static int getmaxAmoutInjected ();
-    void displayWinner();
+    static void displayWinner();
 }; 
 #endif

@@ -2,8 +2,15 @@
 #define USERFUNCTIONS_CPP
 
 #include <iostream>
-#include <string>
-
+#include<string>
+#include "customer.cpp"
+#include "customers.cpp"
+#include "calendar.cpp"
+#include "bills.cpp" 
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include"userFunctions.cpp"
 using namespace std;
 
 
@@ -31,6 +38,7 @@ int getCustomerID(int CustomerID)
     string customerID = CustomerIDString.substr(6, CustomerIDString.length() - 6);
     return stoi(customerID);
 }
+
 
 void setInfoOneMonth(Customers *BST, int ID, int month, int year, int Mconsumption, int Minjection)
 {

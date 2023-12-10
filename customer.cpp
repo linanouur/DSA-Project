@@ -15,6 +15,9 @@ using namespace std;
 
 
 
+
+
+
 void Customer ::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
@@ -103,11 +106,6 @@ int Customer ::generateCustomerID()
 
 
 
-int getPrize(Customers *BST)
-{
-    cout << "The winner ID: ";
-    return BST->getmaxInjectorID();
-}
 
 
 

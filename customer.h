@@ -29,7 +29,7 @@ struct Customer
     vector<string> getIDs( string , string, string); 
     string getConcatenatedIDs(string, string, string); 
     int  generateCustomerID();
-    void setTotalInjection(int);
+    void settotalInjection(int);
     int getCustomerId();
     
 };

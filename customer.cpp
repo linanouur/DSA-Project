@@ -14,6 +14,7 @@
 using namespace std;
 
 
+
 void Customer ::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
@@ -47,7 +48,6 @@ void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb,
     right = nullptr;
     vector<string> IDs = getIDs(Region, City, District);
 }
-
 vector<string> Customer ::getIDs(string region, string city, string district)
 {
     ifstream file("RegionCityDistrict.csv");
@@ -82,8 +82,6 @@ vector<string> Customer ::getIDs(string region, string city, string district)
 
     return vector<string>(3, "");
 }
-
-
 string Customer ::getConcatenatedIDs(string region, string city, string district)
 {
     vector<string> IDs = getIDs(region, city, district);

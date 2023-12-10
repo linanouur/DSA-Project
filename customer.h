@@ -1,10 +1,10 @@
-#ifndef CUSTOMERS_H
-#define CUSTOMERS_H
+#ifndef CUSTOMER_H
+#define CUSTOMER_H
 
 #include <iostream>
 #include <string>
 #include <vector>
-#include"calendar.cpp"
+#include"calendar.cpp" 
 using namespace std;
 
 
@@ -32,32 +32,5 @@ struct Customer
     void settotalInjection(int);
     int getCustomerId();
     
-};
-
-
-class Customers
-{
-private:
-    Customer *rootCus;
-
-    Customer *insert(Customer *, Customer *);
-    Customer *searchCustomer(int, Customer *);
-    void printInorder(Customer *);
-    static int maxAmountInjected;
-    static int maxInjectorID;
-    static string cityWinner;
-    static string regionWinner;
-    static string districtWinner;
-
-
-public:
-    void insertNewCustomer(string, string, int, int, string, string, string );
-    Customer *searchCustomer(int);
-    void print();
-    static void setInfoNewInjector(int , int , string , string , string );
-    static int getmaxInjectorID();
-    static int getmaxAmoutInjected ();
-    void displayWinner();
-};
-
+}; 
 #endif

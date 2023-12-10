@@ -113,28 +113,28 @@ void getPeriodBill(Customers *BST, int ID, int monthStart, int monthEnd, int yea
             return;
         }
 
-        // int differenceYears = yearEnd - yearStart;
-//         for (int year=yearStart;year<=yearEnd;year++){
-//             for(int month=1;month<113;month++){
-
-//             } 
-//             &y = cust->Customeryears->getYear(year);
-//         Bill &m = y.yearMonths->getbill(month);
-//         m.displayBill();
-//         }
-//     }
-
-//     else
-//     {
-//         cout << "Customer not found." << endl;
-//     }
-// }
+        for (int year = yearStart; year <= yearEnd; year++)
+        {
+            Year &y = cust->Customeryears->getYear(year);
+            for (int month = 1; month < 13; month++)
+            {
+                if (year = yearEnd && month > monthEnd)
+                    break;
+                Bill &m = y.yearMonths->getbill(month);
+                m.displayBill();
+            }
+        }
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
 
 void Customer ::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
 }
-
 
 int Customer ::getCustomerId()
 {

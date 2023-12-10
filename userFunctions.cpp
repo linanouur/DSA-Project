@@ -5,6 +5,7 @@
 #include<string>
 #include "customer.cpp"
 #include "customers.cpp"
+#include "customers.h"
 #include "calendar.cpp"
 #include "bills.cpp" 
 #include <fstream>

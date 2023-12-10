@@ -3,24 +3,32 @@
 
 #include <iostream>
 #include <string>
-#include "customer.h" 
+#include "customer.h"
+#include "customer.cpp"
 #include "customers.h"
 #include "calendar.cpp"
-#include "bills.cpp"  
-#include"userFunctions.cpp"
+#include "bills.cpp"
+#include "bills.h"
+#include "userFunctions.cpp"
 #include <fstream>
 #include <sstream>
 #include <vector>
 
 using namespace std;
 
+int Customers ::maxInjectorID = 0;
+int Customers ::maxAmountInjected = 0;
+string Customers ::regionWinner = "";
+string Customers ::cityWinner = "";
+string Customers ::districtWinner = "";
+
 int getPrize(Customers *BST)
 {
     cout << "The winner ID: ";
-    return BST->getmaxInjectorID();
+    return BST->Customers ::getmaxInjectorID();
 }
 
-void Customers :: insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
+void Customers ::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);
     rootCus = insert(rootCus, cus);
@@ -92,31 +100,30 @@ void Customers::print()
 
 void Customers ::setInfoNewInjector(int ID, int newValue, string RW, string CW, string DW)
 {
-    maxInjectorID = ID;
-    maxAmountInjected = newValue;
-    regionWinner = RW;
-    cityWinner = CW;
-    districtWinner = DW;
+    Customers ::maxInjectorID = ID;
+    Customers ::maxAmountInjected = newValue;
+    Customers ::regionWinner = RW;
+    Customers ::cityWinner = CW;
+    Customers ::districtWinner = DW;
 }
 
 int Customers ::getmaxInjectorID()
 {
-    return maxInjectorID;
+    return Customers ::maxInjectorID;
 }
 
 int Customers ::getmaxAmoutInjected()
 {
-    return maxAmountInjected;
+    return Customers ::maxAmountInjected;
 }
-
 
 void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;
-    cout << "ID Winner: " << maxInjectorID << endl;
-    cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
-    cout << "with an injection Amount : " << maxAmountInjected << endl;
-} 
+    cout << "ID Winner: " << Customers ::maxInjectorID << endl;
+    // cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
+    cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
+}
 
 int main()
 {
@@ -128,7 +135,7 @@ int main()
     BST.insertNewCustomer("David", "Miller", 89012, 5, "North", "Skikda", "El Harrouch");
     BST.insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "South", "Tlemcen", "Nedroma");
     BST.insertNewCustomer("Karim", "Belkacem", 34567, 4, "East", "Batna", "Merouana");
-    BST.insertNewCustomer("Fatima", "Zohra", 12345,  1, "West", "Annaba", "El Bouni");
+    BST.insertNewCustomer("Fatima", "Zohra", 12345, 1, "West", "Annaba", "El Bouni");
     BST.print(); // Outputs the ElectricityAccountId values of the customers
     cout << endl;
 
@@ -154,6 +161,5 @@ int main()
     }
     return 0;
 }
-
 
 #endif

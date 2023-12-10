@@ -1,8 +1,11 @@
 #include <iostream>
-#include <string>
+#include<string>
 #include "Customer.h"
 #include "calendar.cpp"
-#include "bills.cpp"
+#include "bills.cpp" 
+#include <fstream>
+#include <sstream>
+#include <vector>
 using namespace std;
 
 

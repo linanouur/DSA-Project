@@ -1,27 +1,29 @@
-#include<iostream> 
-#include<queue>
-#include<string>
-#include<vector>
+#include <iostream>
+#include <queue>
+#include <string>
+#include <vector>
+#include <chrono>
+
 using namespace std;
+
 // Department node
 class Department
 {
 public:
-    
     double YearlyConsumption;
     Department *left;
     Department *right;
 
-    Department(double =0);
+    Department(double yearlyConsumption = 0);
 };
 
-Department ::Department( double yearlyConsumption)
+Department::Department(double yearlyConsumption)
 {
-    YearlyConsumption=yearlyConsumption>0 ?yearlyConsumption :0 ; 
-   // Budget = budget > 0 ? budget : 0;
+    YearlyConsumption = yearlyConsumption > 0 ? yearlyConsumption : 0;
     left = nullptr;
     right = nullptr;
 }
+
 // Department BST
 class DepartmentBst
 {
@@ -60,7 +62,6 @@ private:
 public:
     DepartmentBst()
     {
-
         root = nullptr;
     }
 
@@ -73,7 +74,7 @@ public:
     {
         vector<double> elements;
         inOrderTraversalRecursive(root, elements);
-        std::cout << " 10  worst departements: ";
+        std::cout << "10 worst departments: ";
         for (int i = elements.size() - 1; i >= elements.size() - 10; --i)
         {
             std::cout << elements[i] << " ";
@@ -85,17 +86,34 @@ public:
     {
         vector<double> elements;
         inOrderTraversalRecursive(root, elements);
-        std::cout << "10 best Departements: ";
+        std::cout << "10 best departments: ";
         for (int i = 0; i < 10; ++i)
         {
             std::cout << elements[i] << " ";
         }
         std::cout << std::endl;
     }
-}; 
-int main(){ 
-    DepartmentBst D; 
 
+    // Function to measure the running time of getBest10() and getWorst10()
+    void measureRunningTime()
+    {
+        auto start = std::chrono::high_resolution_clock::now();
+        
+        getBest10();
+        getWorst10();
+
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = end - start;
+
+        std::cout << "Running time of getBest10() and getWorst10(): " << duration.count() << " seconds" << std::endl;
+    }
+};
+
+int main()
+{
+    DepartmentBst D;
+
+    // Insertion of departments
     D.insert(50.3);
     D.insert(30.1);
     D.insert(20.6);
@@ -110,8 +128,9 @@ int main(){
     D.insert(23.5);
     D.insert(12.4);
     D.insert(8.5);
-    D.getBest10();
-    D.getWorst10();
+
+    // Measure the running time of getBest10() and getWorst10()
+    D.measureRunningTime();
 
     return 0;
 }

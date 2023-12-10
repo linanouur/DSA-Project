@@ -5,6 +5,7 @@
 #include "bills.cpp"
 using namespace std;
 
+
 void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);

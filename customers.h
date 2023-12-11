@@ -6,7 +6,7 @@
 #include"calendar.cpp" 
 #include"customer.h"
 using namespace std;
- class Customers
+class Customers
 {
 private:
     Customer *rootCus;
@@ -22,7 +22,7 @@ private:
 
 
 public:
-    void insertNewCustomer(string, string, int, int, string, string, string );
+    void insertNewCustomer(string, string, int, int, vector<int> , string, string, string);
     Customer *searchCustomer(int);
     void print();
     static void setInfoNewInjector(int , int , string , string , string );

@@ -8,13 +8,15 @@
 using namespace std;
 
 
-struct Customer
+class Customer
 {
+    public:
     string firstName;
     string FamilyName;
     int ElectricityAccountId;
     int BankAccount;
     int familyMembersNumber;
+    vector<int> familyAges;
     int totalInjection = 0;
     Years *Customeryears;
     string Region;
@@ -24,8 +26,8 @@ struct Customer
     Customer *left;
     Customer *right;
 
-    Customer(string, string, int, int,  string, string, string);
-    void setInfo(string, string, int, int,  string, string, string); 
+    Customer(string, string, int, int, vector<int>,  string, string, string);
+    void setInfo(string, string, int, int, vector<int> , string, string, string); 
     vector<string> getIDs( string , string, string); 
     string getConcatenatedIDs(string, string, string); 
     int  generateCustomerID();

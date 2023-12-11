@@ -28,11 +28,12 @@ int getPrize(Customers *BST)
     return BST->Customers ::getmaxInjectorID();
 }
 
-void Customers ::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
-{
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);
+
+void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, vector<int> Ages, string region, string city, string district) {
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, Ages, region, city, district);
     rootCus = insert(rootCus, cus);
 }
+
 
 Customer *Customers::insert(Customer *root, Customer *node)
 {

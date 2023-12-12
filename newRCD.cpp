@@ -143,6 +143,10 @@ public:
         regionMap[regionID].displayCustomersInCity(cityID);
     } 
     
+     CustomerBST* accessCustomerBST(int regionID, int cityID, int districtID) {
+        return &regionMap[regionID].cityMap[cityID].districtMap[districtID];
+        
+    }
       
 };
 

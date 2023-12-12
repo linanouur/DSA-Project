@@ -12,6 +12,7 @@
 #include <sstream>
 #include <vector>
 #include"userFunctions.cpp"
+#include "newRCD.cpp"
 using namespace std;
 
 
@@ -140,6 +141,16 @@ void getPeriodBill(Customers *BST, int ID, int monthStart, int monthEnd, int yea
     {
         cout << "Customer not found." << endl;
     }
+}
+
+
+void setInfoOneMonthGlobal(int ID , int month , int year , int Mconsumption , int Minjection){
+    int region = getRegionId(ID);
+    int city = getCityId(ID);
+    int district = getDistrictId(ID);
+
+    Customers *BST = accessCustomerBST(region, city, district);
+    setInfoOneMonth(BST, ID, month, year, Mconsumption, Minjection);
 }
 
 #endif

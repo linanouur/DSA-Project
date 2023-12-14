@@ -1,5 +1,5 @@
-#ifndef CUSTOMER_CPP
-#define CUSTOMER_CPP
+// #ifndef CUSTOMER_CPP
+// #define CUSTOMER_CPP
 
 
 #include <iostream>
@@ -104,4 +104,4 @@ int Customer ::generateCustomerID()
 
 
 
-#endif
+// #endif

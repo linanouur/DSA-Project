@@ -1,7 +1,8 @@
 {
   "files.associations": {
     "*.embeddedhtml": "html",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "iostream": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

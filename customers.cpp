@@ -15,6 +15,7 @@
 #include <vector> 
 #include <iomanip> 
 
+
 using namespace std;
 
 int Customers ::maxInjectorID = 0;
@@ -29,11 +30,12 @@ int getPrize(Customers *BST)
     return BST->Customers ::getmaxInjectorID();
 }
 
-void Customers ::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
-{
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);
+
+void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, vector<int> Ages, string region, string city, string district) {
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, Ages, region, city, district);
     rootCus = insert(rootCus, cus);
 }
+
 
 Customer *Customers::insert(Customer *root, Customer *node)
 {
@@ -129,9 +131,8 @@ void Customers ::displayWinner()
 int main()
 {
     Customers BST;
-    BST.insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar");
-    BST.insertNewCustomer("Jane", "Doe", 67890, 1, "Adrar", "Adrar", "Ouled Ahmed Timmi");  
-    
+    BST.insertNewCustomer("John", "Doe", 12345, 3, "North", "Mahelma", "Bouira");
+    BST.insertNewCustomer("Jane", "Doe", 67890, 1, "South", "Algiers", "Bab El Oued");
     BST.insertNewCustomer("Michael", "Smith", 45678, 4, "East", "Constantine", "Salah Bey");
     BST.insertNewCustomer("Emma", "Brown", 23456, 2, "West", "Oran", "Es Senia");
     BST.insertNewCustomer("David", "Miller", 89012, 5, "North", "Skikda", "El Harrouch");
@@ -139,7 +140,7 @@ int main()
     BST.insertNewCustomer("Karim", "Belkacem", 34567, 4, "East", "Batna", "Merouana");
     BST.insertNewCustomer("Fatima", "Zohra", 12345, 1, "West", "Annaba", "El Bouni");
     BST.print(); // Outputs the ElectricityAccountId values of the customers
-    
+    cout << endl;
 
     cout << "enter customer id" << endl;
     int id;
@@ -154,18 +155,19 @@ int main()
    
 
 
-    Customer *cust = BST.searchCustomer(67890);
-    if (cust != nullptr)
-    {
-        cust->Customeryears->insertYear(1950);
-        Year &y = cust->Customeryears->getYear(1950);
-        Bill &m = y.yearMonths->getbill(3);
-        cout << "Month number: " << m.numberMonth << endl;
-    }
-    else
-    {
-        cout << "Customer not found." << endl;
-    }
+    // Customer *cust = BST.searchCustomer(67890);
+    // if (cust != nullptr)
+    // {
+    //     cust->Customeryears->insertYear(1950);
+    //     Year &y = cust->Customeryears->getYear(1950);
+    //     Bill &m = y.yearMonths->getbill(3);
+    //     cout << "Month number: " << m.numberMonth << endl;
+    // }
+    // else
+    // {
+    //     cout << "Customer not found." << endl;
+    // }
+    cout<<"hello world";
     return 0;
 }
 

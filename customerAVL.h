@@ -1,5 +1,5 @@
-#ifndef CUSTOMERSAVL_H
-#define CUSTOMERSAVL_H
+#ifndef CUSTOMERAVL_H
+#define CUSTOMERAVL_H
 
 #include <iostream>
 #include <string>
@@ -29,31 +29,6 @@ struct Customer
     void setTotalInjection(int);
     int getCustomerId();
     
-};
-
-
-class Customers
-{
-private:
-    Customer *rootCus;
-
-    Customer *insert(Customer *, Customer *);
-    Customer *searchCustomer(int, Customer *);
-    void printInorder(Customer *);
-    int height(Customer*);
-    int getBalance(Customer*);
-    Customer* rRotate(Customer*);
-    Customer* lRotate(Customer*);
-    static int maxAmountInjected;
-    static int maxInjectorID;
-
-public:
-    void insertNewCustomer(string, string, int, int, int, string, string, string);
-    Customer *searchCustomer(int);
-    void print();
-    static void setInfoNewInjector(int , int);
-    static int getmaxInjectorID();
-    static int getmaxAmoutInjected ();
 };
 
 #endif

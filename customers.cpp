@@ -126,7 +126,7 @@ void Customers ::displayWinner()
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
 
-int main()
+/*int main()
 {
     Customers BST;
     // BST.insertNewCustomer("John", "Doe", 12345, 3, "North", "Mahelma", "Bouira");
@@ -167,6 +167,6 @@ int main()
     // }
     cout<<"hello world";
     return 0;
-}
+}*/
 
 #endif

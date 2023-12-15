@@ -22,7 +22,6 @@ public:
  
 // CustomerBST class implementing a Binary Search Tree for customers within each district
 class CustomerBST {
-private:
     Customer1* root;
     int NumCustomers ; 
     Customer1* insertCustomer(Customer1* node, int IDname) {
@@ -117,9 +116,6 @@ public:
 
 // RegionHashTable class storing a hash table for each region containing a CityHashTable
 class RegionHashTable {
-
-   
-
 public:  
     unordered_map<int, CityHashTable> regionMap;
     void addRegion(int regionID) {
@@ -152,7 +148,7 @@ public:
       
 };
 
-int main() {
+/*int main() {
     RegionHashTable hashTable;
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
@@ -175,18 +171,14 @@ int main() {
             hashTable.addRegion(RegionID);
             hashTable.addCity(RegionID, CityID);
             hashTable.addDistrictToCity(RegionID, CityID, DistrictID); 
-        
-            
-       
-
         }  
-
         file.close(); 
       
     } else {
         cout << "Unable to open file." << endl;
     }
+
  int number=12222; 
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}
+}*/

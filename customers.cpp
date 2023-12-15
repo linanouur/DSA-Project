@@ -12,9 +12,8 @@
 #include <sstream>
 #include <vector> 
 #include <iomanip> 
-
-
 using namespace std;
+
 
 int Customers ::maxInjectorID = 0;
 int Customers ::maxAmountInjected = 0;
@@ -141,7 +140,7 @@ void Customers ::displayWinner()
     BST.insertNewCustomer("Aisha", "Boudjemaa", 76543, 2,Ages, "South", "Tlemcen", "Nedroma");
     BST.insertNewCustomer("Karim", "Belkacem", 34567, 4,Ages ,"East", "Batna", "Merouana");
     BST.insertNewCustomer("Fatima", "Zohra", 12345, 1,Ages, "West", "Annaba", "El Bouni");
-    BST.print(); // Outputs the ElectricityAccountId values of the customers */
+    BST.print(); // Outputs the ElectricityAccountId values of the customers 
     
 
     cout << "enter customer id" << endl;

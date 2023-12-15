@@ -27,8 +27,8 @@ int getPrize(Customers *BST)
 }
 
 
-void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district) {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);
+void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     rootCus = insert(rootCus, cus);
 }
 
@@ -127,9 +127,12 @@ void Customers ::displayWinner()
 int main()
 {
    Customers *BST = new Customers(); 
-    BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar");  
-    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Chlef", "Tenes", "Tenes"); 
-    
+    BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
+    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
+    BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);
+    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
+    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Chlef", "Tenes", "Tenes",23);  
+
     BST->print();
     
     cout<< "enter customer id" << endl;

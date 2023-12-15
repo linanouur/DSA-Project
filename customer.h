@@ -7,8 +7,8 @@
 #include"calendar.cpp" 
 using namespace std;
 
-struct Customer
-{
+class Customer
+{ public : 
     string firstName;
     string FamilyName;
      long int ElectricityAccountId;

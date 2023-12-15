@@ -90,6 +90,16 @@ Customer *CustomersAVL::insert2(Customer *root, Customer *node)
 
 int main()
 {
+    Customers *BST = new Customers(); 
+    BST->insertNewCustomer("John", "Doe", 12345,3,"Adrar", "Adrar", "Adrar"); 
+    BST->insertNewCustomer("Jane", "Doe", 67890, 1,"Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Michael", "Smith", 45678, 4, "Chlef", "Tenes", "Tenes");
+    BST->insertNewCustomer("Emma", "Brown", 23456, 2,"Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("David", "Miller", 89012, 5, "Chlef", "Tenes", "Tenes");
+    BST->insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4 ,"Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Fatima", "Zohra", 12345, 1, "Chlef", "Tenes", "Tenes");
+    BST->printLevelOrder(); // Outputs the ElectricityAccountId values of the customers 
 
     std::cout << "enter customer id" << endl;
     int id;

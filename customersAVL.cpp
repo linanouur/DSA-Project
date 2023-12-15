@@ -52,7 +52,7 @@ Customer *CustomersAVL::lRotate(Customer *x)
     y->height = max(height(y->left), height(y->right)) + 1;
 
     return y;
-}
+} 
 
 Customer *CustomersAVL::insert2(Customer *root, Customer *node)
 {
@@ -85,6 +85,10 @@ Customer *CustomersAVL::insert2(Customer *root, Customer *node)
         return lRotate(root);
     }
     return root;
+}
+void CustomersAVL::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
+    rootCus = insert2(rootCus, cus);
 }
 
 

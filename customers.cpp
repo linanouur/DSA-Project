@@ -132,15 +132,15 @@ int main()
     vector<int> Ages = { 20, 30, 40 };   
 
 
-    BST.insertNewCustomer("John", "Doe", 12345, 3,Ages,"Adrar", "Adrar", "Adrar");
-     /*BST.insertNewCustomer("Jane", "Doe", 67890, 1,Ages,"South", "Algiers", "Bab El Oued");
+     /*BST.insertNewCustomer("John", "Doe", 12345, 3,Ages,"Adrar", "Adrar", "Adrar");
+    BST.insertNewCustomer("Jane", "Doe", 67890, 1,Ages,"South", "Algiers", "Bab El Oued");
     BST.insertNewCustomer("Michael", "Smith", 45678, 4,Ages, "East", "Constantine", "Salah Bey");
     BST.insertNewCustomer("Emma", "Brown", 23456, 2,Ages,"West", "Oran", "Es Senia");
     BST.insertNewCustomer("David", "Miller", 89012, 5,Ages, "North", "Skikda", "El Harrouch");
     BST.insertNewCustomer("Aisha", "Boudjemaa", 76543, 2,Ages, "South", "Tlemcen", "Nedroma");
     BST.insertNewCustomer("Karim", "Belkacem", 34567, 4,Ages ,"East", "Batna", "Merouana");
-    BST.insertNewCustomer("Fatima", "Zohra", 12345, 1,Ages, "West", "Annaba", "El Bouni");*/ 
-    BST.print(); // Outputs the ElectricityAccountId values of the customers
+    BST.insertNewCustomer("Fatima", "Zohra", 12345, 1,Ages, "West", "Annaba", "El Bouni");
+    BST.print(); // Outputs the ElectricityAccountId values of the customers */
     
 
     cout << "enter customer id" << endl;

@@ -45,6 +45,13 @@ private:
             std::cout << node->IDname << " ";
             displayCustomer(node->right);
         }
+    } 
+    void searchCustomer(Customer1* node) {
+        if (node != nullptr) {
+            searchCustomer(node->left);
+            std::cout << node->IDname << " ";
+            searchCustomer(node->right);
+        }
     }
 
 public:
@@ -54,10 +61,14 @@ public:
         root = insertCustomer(root, IDname);
     }
 
-     CustomerBST &displayCustomers() {
+     Customers &displayCustomers() {
         displayCustomer(root);
        
         return *this;
+    } 
+    Customers& searchCustomers() {
+        
+       return *this;
     }
 };
 
@@ -79,7 +90,10 @@ public:
     void displayCustomers(int districtID) {
         std::cout << "Customers in District " << districtID << ": ";
         districtMap[districtID].displayCustomers();
-    } 
+    }  
+    void searchCustomerinDistrict(int districtID) {
+        districtMap[districtID].searchCustomers();
+    }
 
 };
 
@@ -104,7 +118,10 @@ public:
 
     void displayCustomersInDistrict(int cityID, int districtID) {
         cityMap[cityID].displayCustomers(districtID);
-    }   
+    }    
+    void searchCustomerinCity(int cityID, int districtID) {
+        cityMap[cityID].searchCustomerinDistrict(districtID);
+    }
     void displayCustomersInCity(int cityID) {
     cout << "Customers in City " << cityID << ":" << endl;
     for (auto& [districtID, district] : cityMap[cityID].districtMap) {
@@ -143,12 +160,11 @@ public:
     }  
     void displayCustomersInCity(int regionID, int cityID) {
         regionMap[regionID].displayCustomersInCity(cityID);
-    } 
+    }  
+    void searchCustomerInRegion(int regionID, int cityID, int districtID) {
+        regionMap[regionID].searchCustomerinCity(cityID, districtID); }
     
-     CustomerBST* accessCustomerBST(int regionID, int cityID, int districtID) {
-        return &regionMap[regionID].cityMap[cityID].districtMap[districtID];
-        
-    }
+     
       
 };
 /*

@@ -74,7 +74,7 @@ Customer *Customers::searchCustomer(int ID, Customer *r)
 
 Customer *Customers::searchCustomer(int ID)
 {
-    return searchCustomer(ID, rootCus);
+    return searchCustomer(ID, rootCus  /*searchCustomer->rootCus*/);
 }
 
 void Customers::printInorder(Customer *ptr)

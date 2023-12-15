@@ -1,6 +1,5 @@
 #ifndef CUSTOMERS_CPP
 #define CUSTOMERS_CPP
-
 #include <iostream>
 #include <string>
 #include "customer.h"

@@ -1,5 +1,6 @@
 #ifndef CUSTOMERS_CPP
 #define CUSTOMERS_CPP
+#include <queue>
 #include <iostream>
 #include <string>
 #include "customer.h"
@@ -8,6 +9,12 @@
 #include "bills.cpp"
 #include "bills.h"
 #include "userFunctions.cpp"
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <iomanip>
+using namespace std;
+
 #include <vector> 
 #include <iomanip> 
 
@@ -26,12 +33,10 @@ int getPrize(Customers *BST)
     return BST->Customers ::getmaxInjectorID();
 }
 
-
 void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     rootCus = insert(rootCus, cus);
 }
-
 
 Customer *Customers::insert(Customer *root, Customer *node)
 {
@@ -91,10 +96,38 @@ void Customers::printInorder(Customer *ptr)
 
     printInorder(ptr->right);
 }
-
 void Customers::print()
 {
     printInorder(rootCus);
+}
+
+void Customers::printLevelOrder()
+{
+    if (rootCus == nullptr)
+        return;
+
+    std::queue<Customer *> q;
+    q.push(rootCus);
+
+    while (!q.empty())
+    {
+        Customer *current = q.front();
+        q.pop();
+
+        // Print the customer information
+        std::cout.width(10);
+        std::cout << current->firstName;
+        std::cout.width(20);
+        std::cout << current->FamilyName;
+        std::cout.width(10);
+        std::cout << current->ElectricityAccountId << std::endl;
+
+        // Enqueue left and right children if they exist
+        if (current->left != nullptr)
+            q.push(current->left);
+        if (current->right != nullptr)
+            q.push(current->right);
+    }
 }
 
 void Customers ::setInfoNewInjector(int ID, int newValue, string RW, string CW, string DW)
@@ -126,6 +159,7 @@ void Customers ::displayWinner()
 
 int main()
 {
+<<<<<<< HEAD
    Customers *BST = new Customers(); 
     BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
     BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
@@ -137,14 +171,42 @@ int main()
     BST->print();
     
     cout<< "enter customer id" << endl;
-    int id;
-    cin >> id;  
-   
-   cout<<getRegionId(id)<<endl; 
-    cout<<getCityId(id)<<endl;
-    cout<<getDistrictId(id)<<endl;
-    cout<<getCustomerID(id)<<endl;
+=======
+    Customers *BST = new Customers();
+    BST->insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Jane", "Doe", 67890, 1, "Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Michael", "Smith", 45678, 4, "Chlef", "Tenes", "Tenes");
+    BST->insertNewCustomer("Emma", "Brown", 23456, 2, "Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("David", "Miller", 89012, 5, "Chlef", "Tenes", "Tenes");
+    BST->insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar");
+    BST->insertNewCustomer("Fatima", "Zohra", 12345, 1, "Chlef", "Tenes", "Tenes");
+    BST->printLevelOrder();
 
+    cout << "enter customer id" << endl;
+>>>>>>> c15161dc6c96b7131118c37b862a41adb4136135
+    int id;
+    cin >> id;
+
+    cout << getCustomerID(id) << endl;
+
+    cout << getDistrictId(id) << endl;
+    cout << getCityId(id) << endl;
+    cout << getRegionId(id) << endl;
+
+    // Customer *cust = BST.searchCustomer(67890);
+    // if (cust != nullptr)
+    // {
+    //     cust->Customeryears->insertYear(1950);
+    //     Year &y = cust->Customeryears->getYear(1950);
+    //     Bill &m = y.yearMonths->getbill(3);
+    //     cout << "Month number: " << m.numberMonth << endl;
+    // }
+    // else
+    // {
+    //     cout << "Customer not found." << endl;
+    // }
+    cout << "hello world";
     return 0;
 }
 

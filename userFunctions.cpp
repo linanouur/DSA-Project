@@ -16,27 +16,27 @@ using namespace std;
 
 
 int getRegionId(int CustomerID)
-{
+{  
     string CustomerIDString = to_string(CustomerID);
-    string regionID = CustomerIDString.substr(0, 2);
+    string regionID = CustomerIDString.substr(0,2);
     return stoi(regionID);
 }
 int getCityId(int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
-    string cityID = CustomerIDString.substr(2, 2);
+    string cityID = CustomerIDString.substr(2,2);
     return stoi(cityID);
 }
 int getDistrictId(int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
-    string districtID = CustomerIDString.substr(4, 2);
+    string districtID = CustomerIDString.substr(4,2);
     return stoi(districtID);
 }
 int getCustomerID(int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
-    string customerID = CustomerIDString.substr(6, CustomerIDString.length() - 6);
+    string customerID = CustomerIDString.substr( CustomerIDString.length()-4);
     return stoi(customerID);
 }
 

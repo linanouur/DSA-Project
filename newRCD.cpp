@@ -11,7 +11,7 @@ using namespace std ;
 class Customer1 {
 public:
      
-//     int IDname ; 
+    int IDname ; 
      
 
     Customer1* left;
@@ -30,14 +30,14 @@ private:
             return new Customer1(IDname );
         }
 
-//         if (IDname < node->IDname) {
-//             node->left = insertCustomer(root->left, IDname);
-//         } else if (IDname > node->IDname) {
-//             node->right = insertCustomer(node->right,IDname);
-//         }
+        if (IDname < node->IDname) {
+            node->left = insertCustomer(root->left, IDname);
+        } else if (IDname > node->IDname) {
+            node->right = insertCustomer(node->right,IDname);
+        }
 
-//         return node;
-//     }
+        return node;
+    }
 
     void displayCustomer(Customer1* node) {
         if (node != nullptr) {
@@ -47,19 +47,19 @@ private:
         }
     }
 
-// public:
-//     CustomerBST() : root(nullptr) {}
+public:
+    CustomerBST() : root(nullptr) {}
 
-//     void addCustomer(const  int & IDname) {
-//         root = insertCustomer(root, IDname);
-//     }
+    void addCustomer(const  int & IDname) {
+        root = insertCustomer(root, IDname);
+    }
 
-//      CustomerBST &displayCustomers() {
-//         displayCustomer(root);
+     CustomerBST &displayCustomers() {
+        displayCustomer(root);
        
-//         return *this;
-//     }
-// };
+        return *this;
+    }
+};
 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 class DistrictHashTable {

@@ -149,8 +149,8 @@ void setInfoOneMonthGlobal(int ID , int month , int year , int Mconsumption , in
     int city = getCityId(ID);
     int district = getDistrictId(ID);
 
-    Customers *BST = accessCustomerBST(region, city, district);
-    setInfoOneMonth(BST, ID, month, year, Mconsumption, Minjection);
+    // Customers *BST = accessCustomerBST(region, city, district);
+    // setInfoOneMonth(BST, ID, month, year, Mconsumption, Minjection);
 }
 
 #endif

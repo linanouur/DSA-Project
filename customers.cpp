@@ -1,10 +1,8 @@
 #ifndef CUSTOMERS_CPP
 #define CUSTOMERS_CPP
-
 #include <iostream>
 #include <string>
 #include "customer.h"
-#include "customer.cpp"
 #include "customers.h"
 #include "calendar.cpp"
 #include "bills.cpp"

@@ -1,21 +1,20 @@
 #ifndef CUSTOMER_CPP
 #define CUSTOMER_CPP
-
-
-#include <iostream>
+#include<iostream>
 #include<string>
-#include "customer.h"
-#include "calendar.cpp"
+#include"customer.h"
+#include"calendar.cpp"
 #include "bills.cpp" 
 #include <fstream>
 #include <sstream>
 #include <vector> 
-#include <iomanip>
+#include <iomanip> 
+
 #include"userFunctions.cpp"
 using namespace std;
 
 
-void Customer ::settotalInjection(int value)
+void Customer::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
 }

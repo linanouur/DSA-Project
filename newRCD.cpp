@@ -1,32 +1,31 @@
 #include<iostream>
 #include<fstream> 
 #include<sstream>
-#include<iostream> 
 #include<string>
 #include<unordered_map> 
 #include <iomanip>
 using namespace std ; 
 // Customer class representing nodes in the BST
-class Customer {
+class Customer1 {
 public:
      
     int IDname ; 
      
 
-    Customer* left;
-    Customer* right;
+    Customer1* left;
+    Customer1* right;
 
-    Customer(int idname ) :IDname(idname), left(nullptr), right(nullptr) {}
+    Customer1(int idname ) :IDname(idname), left(nullptr), right(nullptr) {}
 };
  
 // CustomerBST class implementing a Binary Search Tree for customers within each district
 class CustomerBST {
 private:
-    Customer* root;
+    Customer1* root;
     int NumCustomers ; 
-    Customer* insertCustomer(Customer* node, int IDname) {
+    Customer1* insertCustomer(Customer1* node, int IDname) {
         if (node == nullptr) {
-            return new Customer(IDname );
+            return new Customer1(IDname );
         }
 
         if (IDname < node->IDname) {
@@ -38,7 +37,7 @@ private:
         return node;
     }
 
-    void displayCustomer(Customer* node) {
+    void displayCustomer(Customer1* node) {
         if (node != nullptr) {
             displayCustomer(node->left);
             std::cout << node->IDname << " ";

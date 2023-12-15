@@ -5,60 +5,62 @@
 #include<string>
 #include<unordered_map> 
 #include <iomanip>
-using namespace std ; 
+using namespace std ;
+
+
 // Customer class representing nodes in the BST
-class Customer {
-public:
+// class Customer {
+// public:
      
-    int IDname ; 
+//     int IDname ; 
      
 
-    Customer* left;
-    Customer* right;
+//     Customer* left;
+//     Customer* right;
 
-    Customer(int idname ) :IDname(idname), left(nullptr), right(nullptr) {}
-};
+//     Customer(int idname ) :IDname(idname), left(nullptr), right(nullptr) {}
+// };
  
-// CustomerBST class implementing a Binary Search Tree for customers within each district
-class CustomerBST {
-private:
-    Customer* root;
-    int NumCustomers ; 
-    Customer* insertCustomer(Customer* node, int IDname) {
-        if (node == nullptr) {
-            return new Customer(IDname );
-        }
+// // CustomerBST class implementing a Binary Search Tree for customers within each district
+// class CustomerBST {
+// private:
+//     Customer* root;
+//     int NumCustomers ; 
+//     Customer* insertCustomer(Customer* node, int IDname) {
+//         if (node == nullptr) {
+//             return new Customer(IDname );
+//         }
 
-        if (IDname < node->IDname) {
-            node->left = insertCustomer(root->left, IDname);
-        } else if (IDname > node->IDname) {
-            node->right = insertCustomer(node->right,IDname);
-        }
+//         if (IDname < node->IDname) {
+//             node->left = insertCustomer(root->left, IDname);
+//         } else if (IDname > node->IDname) {
+//             node->right = insertCustomer(node->right,IDname);
+//         }
 
-        return node;
-    }
+//         return node;
+//     }
 
-    void displayCustomer(Customer* node) {
-        if (node != nullptr) {
-            displayCustomer(node->left);
-            std::cout << node->IDname << " ";
-            displayCustomer(node->right);
-        }
-    }
+//     void displayCustomer(Customer* node) {
+//         if (node != nullptr) {
+//             displayCustomer(node->left);
+//             std::cout << node->IDname << " ";
+//             displayCustomer(node->right);
+//         }
+//     }
 
-public:
-    CustomerBST() : root(nullptr) {}
+// public:
+//     CustomerBST() : root(nullptr) {}
 
-    void addCustomer(const  int & IDname) {
-        root = insertCustomer(root, IDname);
-    }
+//     void addCustomer(const  int & IDname) {
+//         root = insertCustomer(root, IDname);
+//     }
 
-     CustomerBST &displayCustomers() {
-        displayCustomer(root);
+//      CustomerBST &displayCustomers() {
+//         displayCustomer(root);
        
-        return *this;
-    }
-};
+//         return *this;
+//     }
+// };
 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 class DistrictHashTable {

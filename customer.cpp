@@ -1,5 +1,5 @@
-// #ifndef CUSTOMER_CPP
-// #define CUSTOMER_CPP
+#ifndef CUSTOMER_CPP
+#define CUSTOMER_CPP
 
 
 #include <iostream>
@@ -28,8 +28,8 @@ void Customer ::settotalInjection(int value)
 Customer::Customer(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
 {
 
-    setInfo(fname, lname, bankAccount, numMemb, region, city, district);
-    ElectricityAccountId = generateCustomerID();
+    setInfo(fname, lname, bankAccount, numMemb,Ages, region, city, district);
+    ElectricityAccountId = generateCustomerID(region,city,district);
 }
 
 void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
@@ -110,4 +110,4 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 
 
 
-// #endif
+#endif

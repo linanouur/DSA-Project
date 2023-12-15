@@ -8,8 +8,6 @@
 #include "bills.cpp"
 #include "bills.h"
 #include "userFunctions.cpp"
-#include <fstream>
-#include <sstream>
 #include <vector> 
 #include <iomanip> 
 
@@ -128,48 +126,20 @@ void Customers ::displayWinner()
 
 int main()
 {
-    Customers BST; 
-     
-
-
-     BST.insertNewCustomer("John", "Doe", 12345,3,"Adrar", "Adrar", "Adrar"); 
-     /*
-    BST.insertNewCustomer("Jane", "Doe", 67890, 1,Ages,"South", "Algiers", "Bab El Oued");
-    BST.insertNewCustomer("Michael", "Smith", 45678, 4,Ages, "East", "Constantine", "Salah Bey");
-    BST.insertNewCustomer("Emma", "Brown", 23456, 2,Ages,"West", "Oran", "Es Senia");
-    BST.insertNewCustomer("David", "Miller", 89012, 5,Ages, "North", "Skikda", "El Harrouch");
-    BST.insertNewCustomer("Aisha", "Boudjemaa", 76543, 2,Ages, "South", "Tlemcen", "Nedroma");
-    BST.insertNewCustomer("Karim", "Belkacem", 34567, 4,Ages ,"East", "Batna", "Merouana");
-    BST.insertNewCustomer("Fatima", "Zohra", 12345, 1,Ages, "West", "Annaba", "El Bouni");
-    BST.print(); // Outputs the ElectricityAccountId values of the customers */
+   Customers *BST = new Customers(); 
+    BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar");  
+    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Chlef", "Tenes", "Tenes");
+    BST->print();
     
-
-    cout << "enter customer id" << endl;
+    cout<< "enter customer id" << endl;
     int id;
     cin >> id;  
    
-   
-    cout<<getCustomerID(id)<<endl;  
-
-    cout<<getDistrictId(id)<<endl;
+   cout<<getRegionId(id)<<endl; 
     cout<<getCityId(id)<<endl;
-    cout<<getRegionId(id)<<endl;
-   
+    cout<<getDistrictId(id)<<endl;
+    cout<<getCustomerID(id)<<endl;
 
-
-    // Customer *cust = BST.searchCustomer(67890);
-    // if (cust != nullptr)
-    // {
-    //     cust->Customeryears->insertYear(1950);
-    //     Year &y = cust->Customeryears->getYear(1950);
-    //     Bill &m = y.yearMonths->getbill(3);
-    //     cout << "Month number: " << m.numberMonth << endl;
-    // }
-    // else
-    // {
-    //     cout << "Customer not found." << endl;
-    // }
-    cout<<"hello world";
     return 0;
 }
 

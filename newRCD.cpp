@@ -3,7 +3,8 @@
 #include<sstream>
 #include<string>
 #include<unordered_map> 
-#include <iomanip>
+#include <iomanip> 
+
 using namespace std ;
 
 
@@ -11,13 +12,13 @@ using namespace std ;
 class Customer1 {
 public:
      
-    int IDname ; 
+    int ElectricityAccountId ; 
      
 
     Customer1* left;
     Customer1* right;
 
-    Customer1(int idname ) :IDname(idname), left(nullptr), right(nullptr) {}
+    Customer1(int idname ) :ElectricityAccountId(idname), left(nullptr), right(nullptr) {}
 };
  
 // CustomerBST class implementing a Binary Search Tree for customers within each district
@@ -25,15 +26,15 @@ class CustomerBST {
 private:
     Customer1* root;
     int NumCustomers ; 
-    Customer1* insertCustomer(Customer1* node, int IDname) {
+    Customer1* insertCustomer(Customer1* node, int ElectricityAccountId) {
         if (node == nullptr) {
-            return new Customer1(IDname );
+            return new Customer1(ElectricityAccountId );
         }
 
-        if (IDname < node->IDname) {
-            node->left = insertCustomer(root->left, IDname);
-        } else if (IDname > node->IDname) {
-            node->right = insertCustomer(node->right,IDname);
+        if (ElectricityAccountId < node->ElectricityAccountId) {
+            node->left = insertCustomer(root->left, ElectricityAccountId);
+        } else if (ElectricityAccountId > node->ElectricityAccountId) {
+            node->right = insertCustomer(node->right,ElectricityAccountId);
         }
 
         return node;
@@ -42,34 +43,51 @@ private:
     void displayCustomer(Customer1* node) {
         if (node != nullptr) {
             displayCustomer(node->left);
-            std::cout << node->IDname << " ";
+            std::cout << node->ElectricityAccountId << " ";
             displayCustomer(node->right);
         }
-    } 
-    void searchCustomer(Customer1* node) {
-        if (node != nullptr) {
-            searchCustomer(node->left);
-            std::cout << node->IDname << " ";
-            searchCustomer(node->right);
-        }
+    }  
+    Customer1 *CustomerBST::searchCustomer(int ID, Customer1 *r)
+{
+    if (r == nullptr)
+    {
+        return nullptr;
     }
+    else if (ID == r->ElectricityAccountId)
+    {
+        return r;
+    }
+    else if (ID < r->ElectricityAccountId)
+    {
+        return searchCustomer(ID, r->left);
+    }
+    else
+    {
+        return searchCustomer(ID, r->right);
+    }
+}
 
+    
 public:
     CustomerBST() : root(nullptr) {}
 
-    void addCustomer(const  int & IDname) {
-        root = insertCustomer(root, IDname);
+    void addCustomer(const  int & ElectricityAccountId) {
+        root = insertCustomer(root, ElectricityAccountId);
     }
 
-     Customers &displayCustomers() {
+     CustomerBST &displayCustomers() {
         displayCustomer(root);
        
         return *this;
     } 
-    Customers& searchCustomers() {
+    CustomerBST & searchCustomers() {
         
-       return *this;
-    }
+       return *this ;
+    } 
+    Customer1 *CustomerBST::searchCustomer(int ID)
+{
+    return searchCustomer(ID, );
+}
 };
 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
@@ -83,8 +101,8 @@ public:
         districtMap[districtID] = CustomerBST();
     }
 
-    void addCustomer(int districtID, const int & IDname) {
-        districtMap[districtID].addCustomer(IDname);
+    void addCustomer(int districtID, const int & ElectricityAccountId) {
+        districtMap[districtID].addCustomer(ElectricityAccountId);
     }
 
     void displayCustomers(int districtID) {
@@ -112,8 +130,8 @@ public:
         cityMap[cityID].addDistrict(districtID);
     }
 
-    void addCustomerToDistrict(int cityID, int districtID, const int & IDname) {
-        cityMap[cityID].addCustomer(districtID, IDname );
+    void addCustomerToDistrict(int cityID, int districtID, const int & ElectricityAccountId) {
+        cityMap[cityID].addCustomer(districtID, ElectricityAccountId );
     }
 
     void displayCustomersInDistrict(int cityID, int districtID) {
@@ -151,8 +169,8 @@ public:
         regionMap[regionID].addDistrict(cityID, districtID);
     }
 
-    void addCustomerToDistrict(int regionID, int cityID, int districtID, const int & IDname) {
-        regionMap[regionID].addCustomerToDistrict(cityID, districtID, IDname);
+    void addCustomerToDistrict(int regionID, int cityID, int districtID, const int & ElectricityAccountId) {
+        regionMap[regionID].addCustomerToDistrict(cityID, districtID, ElectricityAccountId);
     }
 
     void displayCustomersInDistrict(int regionID, int cityID, int districtID) {

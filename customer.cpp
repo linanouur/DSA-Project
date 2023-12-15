@@ -24,20 +24,20 @@ void Customer::settotalInjection(int value)
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
+Customer::Customer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
 
-    setInfo(fname, lname, bankAccount, numMemb,Ages,region, city, district);
+    setInfo(fname, lname, bankAccount, numMemb,region, city, district);
     ElectricityAccountId = generateCustomerID(region, city , district);
 }
 
-void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    familyAges = Ages;
+   
     Region = region;
     City = city;
     District = district;

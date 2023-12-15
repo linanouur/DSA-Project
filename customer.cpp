@@ -24,20 +24,20 @@ void Customer::settotalInjection(int value)
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
+Customer::Customer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district, int id )
 {
 
-    setInfo(fname, lname, bankAccount, numMemb,Ages, region, city, district);
-    ElectricityAccountId = generateCustomerID(region,city,district);
+    setInfo(fname, lname, bankAccount, numMemb,region, city, district);
+    ElectricityAccountId = generateCustomerID(region, city , district,id);
 }
 
-void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    familyAges = Ages;
+   
     Region = region;
     City = city;
     District = district;
@@ -84,26 +84,25 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 {
     vector<string> IDs = getIDs(region, city, district);
     string concatenatedIDs = ""; 
-    if (IDs[0].length() == 1) {
-    string idd= IDs[0];
-     string  IDRegionstring =string(2 - IDs[0].length(), '0') + idd ; 
-    IDs[0]=IDRegionstring;
-     } 
+   
     concatenatedIDs = IDs[0] + IDs[1] + IDs[2];
 
     return concatenatedIDs;
 }
- long int Customer ::generateCustomerID(string region, string city, string district)
+ long int Customer ::generateCustomerID(string region, string city, string district, int CustomerID)
 {
-    static int CustomerIDS = 1; 
-    
+   if(CustomerID>0 && CustomerID<10000) { 
     string concatenatedIDs = getConcatenatedIDs(region, city, district);  
-     string CustomerIDstring = to_string(CustomerIDS);
+     string CustomerIDstring = to_string(CustomerID);
      string  IDstring =string(4 - CustomerIDstring.length(), '0') + CustomerIDstring ;
     string CustomerID = concatenatedIDs + IDstring;
-    CustomerIDS++;
-
     return stoi(CustomerID);
+   } 
+   else { 
+    cout<<"Invalid Customer ID"<<endl; 
+    return -1; 
+   } 
+
 }
 
 

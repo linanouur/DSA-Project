@@ -22,7 +22,6 @@ public:
  
 // CustomerBST class implementing a Binary Search Tree for customers within each district
 class CustomerBST {
-private:
     Customer1* root;
     int NumCustomers ; 
     Customer1* insertCustomer(Customer1* node, int IDname) {
@@ -148,9 +147,9 @@ public:
       
 };
 
-// int main() {
-//     RegionHashTable hashTable;
-//     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
+/*int main() {
+    RegionHashTable hashTable;
+    ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
 //     if (file.is_open()) {
 //         string line;
@@ -158,31 +157,27 @@ public:
 //             stringstream ss(line);
 //             string regionID, regionName, cityID, cityName, districtID, districtName;
 
-//             getline(ss, regionID, ',');
-//             getline(ss, regionName, ',');
-//             getline(ss, cityID, ',');
-//             getline(ss, cityName, ',');
-//             getline(ss, districtID, ',');
-//             getline(ss, districtName, ',');
-//             int RegionID, CityID, DistrictID;
-//             RegionID=stoi(regionID); 
-//             CityID=stoi(cityID);
-//             DistrictID=stoi(districtID); 
-//             hashTable.addRegion(RegionID);
-//             hashTable.addCity(RegionID, CityID);
-//             hashTable.addDistrictToCity(RegionID, CityID, DistrictID); 
-        
-            
-       
-
-//         }  
-
-//         file.close(); 
+            getline(ss, regionID, ',');
+            getline(ss, regionName, ',');
+            getline(ss, cityID, ',');
+            getline(ss, cityName, ',');
+            getline(ss, districtID, ',');
+            getline(ss, districtName, ',');
+            int RegionID, CityID, DistrictID;
+            RegionID=stoi(regionID); 
+            CityID=stoi(cityID);
+            DistrictID=stoi(districtID); 
+            hashTable.addRegion(RegionID);
+            hashTable.addCity(RegionID, CityID);
+            hashTable.addDistrictToCity(RegionID, CityID, DistrictID); 
+        }  
+        file.close(); 
       
-//     } else {
-//         cout << "Unable to open file." << endl;
-//     }
-//  int number=12222; 
-//     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
-//     return 0;
-// }
+    } else {
+        cout << "Unable to open file." << endl;
+    }
+
+ int number=12222; 
+    std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
+    return 0;
+}*/

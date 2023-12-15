@@ -23,12 +23,13 @@ private:
 
 
 public:
-    void insertNewCustomer(string, string, int, int, vector<int> , string, string, string);
+    void insertNewCustomer(string, string, int, int , string, string, string ,int);
     Customer *searchCustomer(int);
     void print();
     static void setInfoNewInjector(int , int , string , string , string );
     static int getmaxInjectorID();
     static int getmaxAmoutInjected ();
     static void displayWinner();
+     void printLevelOrder();
 }; 
 #endif

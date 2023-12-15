@@ -27,8 +27,8 @@ void Customer::settotalInjection(int value)
 Customer::Customer(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
 {
 
-    setInfo(fname, lname, bankAccount, numMemb,Ages, region, city, district);
-    ElectricityAccountId = generateCustomerID(region,city,district);
+    setInfo(fname, lname, bankAccount, numMemb,Ages,region, city, district);
+    ElectricityAccountId = generateCustomerID(region, city , district);
 }
 
 void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)

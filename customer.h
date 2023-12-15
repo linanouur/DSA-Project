@@ -24,12 +24,12 @@ class Customer
     Customer *left;
     Customer *right;
     int height;
-
-    Customer(string, string, int, int,  string, string, string);
-    void setInfo(string, string, int, int,  string, string, string); 
+    int id;
+    Customer(string, string, int, int, string, string, string ,int );
+    void setInfo(string, string, int, int, string, string, string); 
     vector<string> getIDs( string , string, string); 
     string getConcatenatedIDs(string, string, string); 
-    long int  generateCustomerID(string,string,string);
+    long int  generateCustomerID(string,string,string,int);
      void settotalInjection(int);
      long int getCustomerId();
     

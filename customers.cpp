@@ -15,6 +15,12 @@
 #include <iomanip>
 using namespace std;
 
+#include <vector> 
+#include <iomanip> 
+
+
+using namespace std;
+
 int Customers ::maxInjectorID = 0;
 int Customers ::maxAmountInjected = 0;
 string Customers ::regionWinner = "";
@@ -27,9 +33,8 @@ int getPrize(Customers *BST)
     return BST->Customers ::getmaxInjectorID();
 }
 
-void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
-{
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);
+void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     rootCus = insert(rootCus, cus);
 }
 
@@ -152,7 +157,7 @@ void Customers ::displayWinner()
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
 
-/*int main()
+int main()
 {
     Customers *BST = new Customers();
     BST->insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar");
@@ -189,6 +194,6 @@ void Customers ::displayWinner()
     // }
     cout << "hello world";
     return 0;
-}*/
+}
 
 #endif

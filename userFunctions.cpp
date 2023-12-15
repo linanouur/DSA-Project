@@ -18,26 +18,56 @@ using namespace std;
 
 int getRegionId(int CustomerID)
 {  
-    string CustomerIDString = to_string(CustomerID);
-    string regionID = CustomerIDString.substr(0,2);
+    string CustomerIDString = to_string(CustomerID);  
+    string regionID; 
+    if(CustomerIDString.length() == 10) { 
+        
+     regionID = CustomerIDString.substr(0,1);  
+    }  
+    else 
+    {
+    regionID = CustomerIDString.substr(0,2);
+    } 
     return stoi(regionID);
 }
 int getCityId(int CustomerID)
 {
-    string CustomerIDString = to_string(CustomerID);
-    string cityID = CustomerIDString.substr(2,2);
+    string CustomerIDString = to_string(CustomerID); 
+    string cityID;  
+    if(CustomerIDString.length() == 10) { 
+        cityID = CustomerIDString.substr(1,2);  
+    }  
+    else 
+    {
+    cityID = CustomerIDString.substr(2,2); 
+    }
     return stoi(cityID);
 }
 int getDistrictId(int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
-    string districtID = CustomerIDString.substr(4,2);
+    string districtID ;   
+    if(CustomerIDString.length() == 10) { 
+        districtID = CustomerIDString.substr(3,3);  
+    }  
+    else 
+    { 
+    districtID = CustomerIDString.substr(4,3);
+     }
+  
     return stoi(districtID);
 }
 int getCustomerID(int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
-    string customerID = CustomerIDString.substr( CustomerIDString.length()-4);
+    string customerID ;  
+
+    if(CustomerIDString.length() == 10) { 
+        customerID = CustomerIDString.substr(6,4);  
+    }  
+    else 
+    { customerID = CustomerIDString.substr(7,4); } 
+
     return stoi(customerID);
 }
 

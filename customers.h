@@ -22,7 +22,7 @@ private:
 
 
 public:
-    void insertNewCustomer(string, string, int, int , string, string, string);
+    void insertNewCustomer(string, string, int, int , string, string, string ,int);
     Customer *searchCustomer(int);
     void print();
     static void setInfoNewInjector(int , int , string , string , string );

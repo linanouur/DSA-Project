@@ -23,6 +23,7 @@ class Customer
     bool haveInjectedBefore;
     Customer *left;
     Customer *right;
+    int height;
 
     Customer(string, string, int, int, string, string, string);
     void setInfo(string, string, int, int, string, string, string); 

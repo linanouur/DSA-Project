@@ -128,7 +128,8 @@ int main()
 {
    Customers *BST = new Customers(); 
     BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar");  
-    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Chlef", "Tenes", "Tenes");
+    BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Chlef", "Tenes", "Tenes"); 
+    
     BST->print();
     
     cout<< "enter customer id" << endl;

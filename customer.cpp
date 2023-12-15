@@ -9,7 +9,8 @@
 #include "bills.cpp" 
 #include <fstream>
 #include <sstream>
-#include <vector>
+#include <vector> 
+#include <iomanip>
 #include"userFunctions.cpp"
 using namespace std;
 
@@ -19,7 +20,7 @@ void Customer ::settotalInjection(int value)
     totalInjection = totalInjection + value;
 }
 
-int Customer ::getCustomerId()
+ long int Customer ::getCustomerId()
 {
     return ElectricityAccountId;
 }
@@ -27,7 +28,7 @@ int Customer ::getCustomerId()
 Customer::Customer(string fname, string lname, int bankAccount, int numMemb,vector<int> Ages, string region, string city, string district)
 {
 
-    setInfo(fname, lname, bankAccount, numMemb, Ages, region, city, district);
+    setInfo(fname, lname, bankAccount, numMemb, region, city, district);
     ElectricityAccountId = generateCustomerID();
 }
 
@@ -83,23 +84,28 @@ vector<string> Customer ::getIDs(string region, string city, string district)
 string Customer ::getConcatenatedIDs(string region, string city, string district)
 {
     vector<string> IDs = getIDs(region, city, district);
-    string concatenatedIDs = "";
-
+    string concatenatedIDs = ""; 
+    if (IDs[0].length() == 1) {
+    string idd= IDs[0];
+     string  IDRegionstring =string(2 - IDs[0].length(), '0') + idd ; 
+    IDs[0]=IDRegionstring;
+     } 
     concatenatedIDs = IDs[0] + IDs[1] + IDs[2];
 
     return concatenatedIDs;
 }
-int Customer ::generateCustomerID()
+ long int Customer ::generateCustomerID(string region, string city, string district)
 {
-    static int CustomerIDS = 1;
-    string concatenatedIDs = getConcatenatedIDs(Region, City, District);
-    string CustomerID = concatenatedIDs + to_string(CustomerIDS);
+    static int CustomerIDS = 1; 
+    
+    string concatenatedIDs = getConcatenatedIDs(region, city, district);  
+     string CustomerIDstring = to_string(CustomerIDS);
+     string  IDstring =string(4 - CustomerIDstring.length(), '0') + CustomerIDstring ;
+    string CustomerID = concatenatedIDs + IDstring;
     CustomerIDS++;
 
     return stoi(CustomerID);
 }
-
-
 
 
 

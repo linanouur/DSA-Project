@@ -1,9 +1,10 @@
 #include<iostream>
-#include<fstream>
+#include<fstream> 
+#include<sstream>
 #include<iostream> 
 #include<string>
 #include<unordered_map> 
-
+#include <iomanip>
 using namespace std ; 
 // Customer class representing nodes in the BST
 class Customer {
@@ -152,26 +153,39 @@ public:
 
 int main() {
     RegionHashTable hashTable;
+    ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
-    hashTable.addRegion(1); 
-    hashTable.addRegion(2); 
-    hashTable.addCity(1, 101); 
-    hashTable.addCity(2,1);
-    hashTable.addDistrictToCity(1,101,1001); 
-    hashTable.addDistrictToCity(2,1,12);  
-     hashTable.addDistrictToCity(2,1,13); 
-    hashTable.addCustomerToDistrict(1, 101, 1001, 11011001); 
-    hashTable.addCustomerToDistrict(2, 1, 12, 10000); 
-    hashTable.addCustomerToDistrict(2, 1, 13, 1101131); 
-    hashTable.addCustomerToDistrict(2, 1, 13, 1101132);
-    hashTable.displayCustomersInDistrict(1, 101, 1001);   
-    hashTable.displayCustomersInDistrict(2, 1, 12);  
-    hashTable.displayCustomersInDistrict(2, 1, 13);   
-    hashTable.displayCustomersInCity(2,1);  
-   
-    
-   
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string regionID, regionName, cityID, cityName, districtID, districtName;
 
+            getline(ss, regionID, ',');
+            getline(ss, regionName, ',');
+            getline(ss, cityID, ',');
+            getline(ss, cityName, ',');
+            getline(ss, districtID, ',');
+            getline(ss, districtName, ',');
+            int RegionID, CityID, DistrictID;
+            RegionID=stoi(regionID); 
+            CityID=stoi(cityID);
+            DistrictID=stoi(districtID); 
+            hashTable.addRegion(RegionID);
+            hashTable.addCity(RegionID, CityID);
+            hashTable.addDistrictToCity(RegionID, CityID, DistrictID); 
+        
+            
+       
+
+        }  
+
+        file.close(); 
+      
+    } else {
+        cout << "Unable to open file." << endl;
+    }
+ int number=12222; 
+    std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}  
-
+}

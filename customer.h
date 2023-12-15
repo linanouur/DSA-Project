@@ -11,7 +11,7 @@ struct Customer
 {
     string firstName;
     string FamilyName;
-    int ElectricityAccountId;
+     long int ElectricityAccountId;
     int BankAccount;
     int familyMembersNumber;
     vector<int> familyAges;
@@ -28,9 +28,9 @@ struct Customer
     void setInfo(string, string, int, int, vector<int> , string, string, string); 
     vector<string> getIDs( string , string, string); 
     string getConcatenatedIDs(string, string, string); 
-    int  generateCustomerID();
+   long int  generateCustomerID(string,string,string);
     void settotalInjection(int);
-    int getCustomerId();
+     long int getCustomerId();
     
 }; 
 #endif

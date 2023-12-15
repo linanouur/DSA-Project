@@ -29,8 +29,8 @@ int getPrize(Customers *BST)
 }
 
 
-void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, vector<int> Ages, string region, string city, string district) {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, Ages, region, city, district);
+void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district) {
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district);
     rootCus = insert(rootCus, cus);
 }
 
@@ -129,10 +129,11 @@ void Customers ::displayWinner()
 /*int main()
 {
     Customers BST; 
-    vector<int> Ages = { 20, 30, 40 };   
+     
 
 
-     /*BST.insertNewCustomer("John", "Doe", 12345, 3,Ages,"Adrar", "Adrar", "Adrar");
+     BST.insertNewCustomer("John", "Doe", 12345,3,"Adrar", "Adrar", "Adrar"); 
+     /*
     BST.insertNewCustomer("Jane", "Doe", 67890, 1,Ages,"South", "Algiers", "Bab El Oued");
     BST.insertNewCustomer("Michael", "Smith", 45678, 4,Ages, "East", "Constantine", "Salah Bey");
     BST.insertNewCustomer("Emma", "Brown", 23456, 2,Ages,"West", "Oran", "Es Senia");

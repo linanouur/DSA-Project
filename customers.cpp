@@ -33,10 +33,13 @@ int getPrize(Customers *BST)
     return BST->Customers ::getmaxInjectorID();
 }
 
-void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
-    rootCus = insert(rootCus, cus);
+
+
+void Customers::insertNewCustomer(Customer *ptr) {
+    rootCus = insert(rootCus, ptr);
 }
+
+
 
 Customer *Customers::insert(Customer *root, Customer *node)
 {
@@ -149,6 +152,47 @@ int Customers ::getmaxAmoutInjected()
     return Customers ::maxAmountInjected;
 }
 
+
+void Customers :: setInfoCustomerOneMonth( int ID, int month, int year, Bill &other)
+{
+    Customer *cust = searchCustomer(ID);
+    cust->settotalInjection(other.MonthInjectionAmount);
+    if (cust->totalInjection > getmaxAmoutInjected())
+        setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
+    if (cust != nullptr)
+    {
+        Year &y = cust->Customeryears->getYear(year);
+        y.setYearlyTotal(other.MonthConsumptionAmount * 5);
+        y.setYearlyCredit(other.MonthInjectionAmount * 3);
+        Bill &m = y.yearMonths->getbill(month);
+       m = other;
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
+void Customers :: getOneMonthBill( int ID, int month, int year)
+{
+   
+    cout << "Bill of " << month
+         << " / " << year << " : " << endl;
+    Customer *cust = searchCustomer(ID);
+    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
+    if (cust != nullptr)
+    {
+        Year &y = cust->Customeryears->getYear(year);
+        Bill &m = y.yearMonths->getbill(month);
+        m.displayBill();
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
 void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;
@@ -156,6 +200,8 @@ void Customers ::displayWinner()
     // cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
+
+
 
 /*int main()
 {

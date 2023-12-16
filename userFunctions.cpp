@@ -16,6 +16,9 @@
 using namespace std;
 
 
+RegionHashTable Alg;
+
+
 int getRegionId(int CustomerID)
 {  
     string CustomerIDString = to_string(CustomerID);  
@@ -72,44 +75,6 @@ int getCustomerID(int CustomerID)
 }
 
 
-void setInfoOneMonth(Customers *BST, int ID, int month, int year, int Mconsumption, int Minjection)
-{
-    Customer *cust = BST->searchCustomer(ID);
-    cust->settotalInjection(Minjection);
-    if (cust->totalInjection > BST->getmaxAmoutInjected())
-        BST->setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
-    if (cust != nullptr)
-    {
-        Year &y = cust->Customeryears->getYear(year);
-        y.setYearlyTotal(Mconsumption * 5);
-        y.setYearlyCredit(Minjection * 3);
-        Bill &m = y.yearMonths->getbill(month);
-        m.setBillInfo(Mconsumption, Minjection);
-    }
-    else
-    {
-        cout << "Customer not found." << endl;
-    }
-}
-
-void getOneMonthBill(Customers *BST, int ID, int month, int year)
-{
-    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
-    cout << "Bill of " << month
-         << " / " << year << " : " << endl;
-    Customer *cust = BST->searchCustomer(ID);
-    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
-    if (cust != nullptr)
-    {
-        Year &y = cust->Customeryears->getYear(year);
-        Bill &m = y.yearMonths->getbill(month);
-        m.displayBill();
-    }
-    else
-    {
-        cout << "Customer not found." << endl;
-    }
-}
 
 void getOneYearBill(Customers *BST, int ID, int year)
 {
@@ -174,13 +139,34 @@ void getPeriodBill(Customers *BST, int ID, int monthStart, int monthEnd, int yea
 }
 
 
-void setInfoOneMonthGlobal(int ID , int month , int year , int Mconsumption , int Minjection){
-    int region = getRegionId(ID);
-    int city = getCityId(ID);
-    int district = getDistrictId(ID);
 
-    // Customers *BST = accessCustomerBST(region, city, district);
-    // setInfoOneMonth(BST, ID, month, year, Mconsumption, Minjection);
+
+void insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
+    long int NewID = cus->generateCustomerID(region,city,district,id);
+    int R = getRegionId(NewID);
+    int C = getCityId(NewID);
+    int D = getDistrictId(NewID);
+    Alg.addCustomerToDistrict(R,C,D,cus);
 }
+
+
+
+void setInfoOneMonth(int ID , int month , int year , int Mconsumption , int Minjection){
+    Bill bill;
+    bill.setBillInfo(Mconsumption,Minjection);
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Alg.setInfoMonthCustomerRegion(R , C , D, ID, month, year, bill);
+}
+
+void getOnemonthBill(int ID, int month, int year){
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Alg.getOnemonthBillR(R , C , D, ID, month, year);
+}
+
 
 #endif

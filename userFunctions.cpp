@@ -76,27 +76,7 @@ int getCustomerID(int CustomerID)
 
 
 
-void getOneYearBill(Customers *BST, int ID, int year)
-{
-    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
-    cout << "Bill of " << year << " : " << endl;
-    Customer *cust = BST->searchCustomer(ID);
-    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
-    if (cust != nullptr)
-    {
-        Year &y = cust->Customeryears->getYear(year);
-        for (int month = 1; month < 13; month++)
-        {
-            Bill &m = y.yearMonths->getbill(month);
-            cout << "Month " << month << endl;
-            m.displayBill();
-        }
-    }
-    else
-    {
-        cout << "Customer not found." << endl;
-    }
-}
+
 
 void getPeriodBill(Customers *BST, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {

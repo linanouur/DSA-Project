@@ -107,7 +107,24 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 
 }
 
+void Customer :: getOneMonthBillCustomer(int month, int year){
+cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
+ Year &y = Customeryears->getYear(year);
+        Bill &m = y.yearMonths->getbill(month);
+        m.displayBill();
+}
 
+
+void Customer :: getOneYearBillCustomer(int year){
+    cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
+    Year &y = Customeryears->getYear(year);
+        for (int month = 1; month < 13; month++)
+        {
+            Bill &m = y.yearMonths->getbill(month);
+            cout << "Month " << month << endl;
+            m.displayBill();
+        }
+}
 
 
 #endif

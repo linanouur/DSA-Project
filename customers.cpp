@@ -133,6 +133,7 @@ void Customers::printLevelOrder()
     }
 }
 
+
 void Customers ::setInfoNewInjector(int ID, int newValue, string RW, string CW, string DW)
 {
     Customers ::maxInjectorID = ID;
@@ -176,22 +177,35 @@ void Customers :: setInfoCustomerOneMonth( int ID, int month, int year, Bill &ot
 
 void Customers :: getOneMonthBill( int ID, int month, int year)
 {
-   
     cout << "Bill of " << month
          << " / " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
-    cout << "Customer: " << cust->firstName << " " << cust->FamilyName << " , Electricity Account ID: " << cust->ElectricityAccountId << endl;
     if (cust != nullptr)
     {
-        Year &y = cust->Customeryears->getYear(year);
-        Bill &m = y.yearMonths->getbill(month);
-        m.displayBill();
+       cust->getOneMonthBillCustomer(month,year);
     }
     else
     {
         cout << "Customer not found." << endl;
     }
 }
+
+
+void Customers :: getOneYearBill(int ID, int year)
+{
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << year << " : " << endl;
+    Customer *cust = searchCustomer(ID);
+     if (cust != nullptr)
+    {
+       cust->getOneYearBillCustomer(year);
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
 
 void Customers ::displayWinner()
 {

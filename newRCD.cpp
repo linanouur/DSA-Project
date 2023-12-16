@@ -94,6 +94,7 @@ class RegionHashTable
 {
 public:
     unordered_map<int, CityHashTable> regionMap;
+    
     void addRegion(int regionID)
     {
         regionMap[regionID] = CityHashTable();

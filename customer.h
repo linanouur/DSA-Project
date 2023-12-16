@@ -11,10 +11,9 @@ class Customer
 { public : 
     string firstName;
     string FamilyName;
-     long int ElectricityAccountId;
+    long int ElectricityAccountId;
     int BankAccount;
     int familyMembersNumber;
-   
     int totalInjection = 0;
     Years *Customeryears;
     string Region;
@@ -25,13 +24,16 @@ class Customer
     Customer *right;
     int height;
     int id;
+
+
     Customer(string, string, int, int, string, string, string ,int );
     void setInfo(string, string, int, int, string, string, string); 
     vector<string> getIDs( string , string, string); 
     string getConcatenatedIDs(string, string, string); 
     long int  generateCustomerID(string,string,string,int);
-     void settotalInjection(int);
-     long int getCustomerId();
-    
+    void settotalInjection(int);
+    long int getCustomerId();
+    void getOneMonthBillCustomer(int , int);
+    void getOneYearBillCustomer(int);
 }; 
 #endif

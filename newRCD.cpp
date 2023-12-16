@@ -129,7 +129,7 @@ public:
     }
 
     void getOnemonthBillR(int regionID, int cityID, int districtID, int ID, int month, int year){
-        regionMap[regionID].getOnemonthBillC(regionID, cityID, districtID, ID, month, year);
+        regionMap[regionID].getOnemonthBillC(cityID, districtID, ID, month, year);
     }
 };
 

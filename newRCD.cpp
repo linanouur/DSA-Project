@@ -142,11 +142,16 @@ public:
     void displayCustomersInCity(int regionID, int cityID) {
         regionMap[regionID].displayCustomersInCity(cityID);
     } 
-    
-   
-      
+
+    CustomerBST &FindSpeBSTinReg(int regionID, int cityID, int districtID){
+       return regionMap[regionID].FindSpeBSTinCity(cityID,districtID);
+    }
 };
 
+
+CustomerBST & FindSpeBST(int regionID, int cityID, int districtID){
+  return FindSpeBSTinReg(regionID,cityID, districtID);
+}
 /*int main() {
     RegionHashTable hashTable;
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly

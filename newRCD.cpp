@@ -8,8 +8,6 @@
 #include "customers.cpp"
 using namespace std;
 
-
-
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
 class DistrictHashTable
@@ -33,15 +31,25 @@ public:
         districtMap[districtID].printLevelOrder();
     }
 
-    void setInfoMonthCustomerDistrict(int districtID, int ID, int month, int year, Bill &other){
+    void setInfoMonthCustomerDistrict(int districtID, int ID, int month, int year, Bill &other)
+    {
         districtMap[districtID].setInfoCustomerOneMonth(ID, month, year, other);
     }
 
-    void getOnemonthBillD(int districtID, int ID, int month, int year){
-           districtMap[districtID].getOneMonthBill(ID , month , year);
+    void getOnemonthBillD(int districtID, int ID, int month, int year)
+    {
+        districtMap[districtID].getOneMonthBill(ID, month, year);
     }
 
+    void getOneYearBillD(int districtID, int ID, int year)
+    {
+        districtMap[districtID].getOneYearBill(ID, year);
+    }
 
+    void getOnePeriodBillD(int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+    {
+        districtMap[districtID].getPeriodBill(ID, monthStart, monthEnd, yearStart, yearEnd);
+    }
 };
 
 // CityHashTable class storing a hash table for each city containing a DistrictHashTable
@@ -80,11 +88,22 @@ public:
 
     void setInfoMonthCustomerCity(int cityID, int districtID, int ID, int month, int year, Bill &other)
     {
-        cityMap[cityID].setInfoMonthCustomerDistrict(districtID, ID, month,year,other);
+        cityMap[cityID].setInfoMonthCustomerDistrict(districtID, ID, month, year, other);
     }
 
-    void getOnemonthBillC( int cityID, int districtID, int ID, int month, int year){
-        cityMap[cityID].getOnemonthBillD(districtID, ID, month,year);
+    void getOnemonthBillC(int cityID, int districtID, int ID, int month, int year)
+    {
+        cityMap[cityID].getOnemonthBillD(districtID, ID, month, year);
+    }
+
+    void getOneYearBillC(int cityID, int districtID, int ID, int year)
+    {
+        cityMap[cityID].getOneYearBillD(districtID, ID, year);
+    }
+
+    void getOnePeriodBillC(int cityID, int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+    {
+        cityMap[cityID].getOnePeriodBillD(districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
     }
 };
 
@@ -94,7 +113,7 @@ class RegionHashTable
 {
 public:
     unordered_map<int, CityHashTable> regionMap;
-    
+
     void addRegion(int regionID)
     {
         regionMap[regionID] = CityHashTable();
@@ -129,16 +148,21 @@ public:
         regionMap[regionID].setInfoMonthCustomerCity(cityID, districtID, ID, month, year, other);
     }
 
-    void getOnemonthBillR(int regionID, int cityID, int districtID, int ID, int month, int year){
+    void getOnemonthBillR(int regionID, int cityID, int districtID, int ID, int month, int year)
+    {
         regionMap[regionID].getOnemonthBillC(cityID, districtID, ID, month, year);
     }
+
+    void getOneYearBillR(int regionID, int cityID, int districtID, int ID, int year)
+    {
+        regionMap[regionID].getOneYearBillC(cityID, districtID, ID, year);
+    }
+
+    void getOnePeriodBillR(int regionID, int cityID, int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+    {
+        regionMap[cityID].getOnePeriodBillC(cityID, districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
+    }
 };
-
-
-
-
-
-
 
 /*int main() {
     RegionHashTable hashTable;

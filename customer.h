@@ -35,5 +35,6 @@ class Customer
     long int getCustomerId();
     void getOneMonthBillCustomer(int , int);
     void getOneYearBillCustomer(int);
+    void getPeriodBillCustomer( int , int , int , int );
 }; 
 #endif

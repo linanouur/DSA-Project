@@ -127,4 +127,31 @@ void Customer :: getOneYearBillCustomer(int year){
 }
 
 
+void Customer :: getPeriodBillCustomer( int monthStart, int monthEnd, int yearStart, int yearEnd){
+    cout << "Customer: " << firstName << " " <<FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
+if (yearStart == yearEnd)
+        {
+            Year &y = Customeryears->getYear(yearStart);
+            for (int month = monthStart; month < monthEnd; month++)
+            {
+                Bill &m = y.yearMonths->getbill(month);
+                cout << "Month " << month << endl;
+                m.displayBill();
+            }
+            return;
+        }
+
+        for (int year = yearStart; year <= yearEnd; year++)
+        {
+            Year &y = Customeryears->getYear(year);
+            for (int month = 1; month < 13; month++)
+            {
+                if (year = yearEnd && month > monthEnd)
+                    break;
+                Bill &m = y.yearMonths->getbill(month);
+                m.displayBill();
+            }
+        }
+}
+
 #endif

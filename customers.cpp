@@ -207,6 +207,25 @@ void Customers :: getOneYearBill(int ID, int year)
 }
 
 
+void Customers :: getPeriodBill(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << monthStart << " / " << yearStart << " : "
+         << "/t"
+         << "To: " << monthEnd << " / " << yearEnd;
+    Customer *cust = searchCustomer(ID);
+    
+    if (cust != nullptr)
+    {
+        cust->getPeriodBillCustomer(monthStart, monthEnd, yearStart, yearEnd);
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
 void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;

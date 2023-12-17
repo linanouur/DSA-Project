@@ -1,6 +1,9 @@
 #ifndef REGION_H
 #define REGION_H
+
 #include"City.h"
+#include"District.h"
+#include"customers.h"
 #include<iostream>
 #include<string>
 using namespace std;

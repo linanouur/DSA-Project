@@ -1,7 +1,8 @@
 #ifndef CITY_H
 #define CITY_H
-#include "Regions.h"
-#include "District.h"
+#include"District.h"
+#include"customers.h"
+#include"customers.cpp"
 
 #include <iostream>
 #include <string>

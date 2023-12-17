@@ -8,7 +8,7 @@
 #include "calendar.cpp"
 #include "bills.cpp"
 #include "bills.h"
-#include "userFunctions.cpp"
+
 #include <fstream>
 #include <sstream>
 #include <vector>

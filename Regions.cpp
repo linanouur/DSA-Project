@@ -1,9 +1,16 @@
 #include <iostream>
 using namespace std;
 #include <string>
-#include "Regions.h"
-#include "City.h"
-
+#include"Regions.h"
+#include"City.h"
+#include"City.cpp"
+#include"District.h"
+#include"District.cpp"
+#include"customers.h"
+#include"customers.cpp"
+#include"customer.h"
+#include"calendar.cpp"
+#include"bills.h"
 Region::Region() : RegionID(0), RegionName("") { 
     Cities = new htCities;
 }
@@ -45,6 +52,7 @@ void htRegions:: displaycities(int RegionID){
         region->Cities->displaycities();
     }
 }
+
 
 
 

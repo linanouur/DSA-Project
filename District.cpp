@@ -1,9 +1,13 @@
-#include "District.h"
-#include "City.h"
-#include "Regions.h"
+
 #include <iostream>
+
+#include"District.h"
+#include"customers.h"
+#include"customers.cpp"
 using namespace std;
 #include <string>
+
+
 District::District() : DistrictID(0), DistrictName("")
 {
     BST = new Customers();

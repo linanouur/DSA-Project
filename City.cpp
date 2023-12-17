@@ -1,7 +1,8 @@
-#include "City.h"
-#include "Regions.h"
-#include "District.h"
 #include <iostream>
+
+#include"City.h"
+#include"District.h"
+#include"customers.h"
 using namespace std;
 #include <string>
 City::City() :CityID (0), CityName("") { 

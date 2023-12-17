@@ -82,6 +82,8 @@ vector<string> Customer ::getIDs(string region, string city, string district)
 
     return vector<string>(3, "");
 }
+
+
 string Customer ::getConcatenatedIDs(string region, string city, string district)
 {
     vector<string> IDs = getIDs(region, city, district);

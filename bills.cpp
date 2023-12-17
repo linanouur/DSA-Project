@@ -62,7 +62,7 @@ void Bill ::displayBill()
     cout << " Total to Be Paid: " << getTotal() << " " << endl;
 }
 
-Bill Bill ::operator=(const Bill &other)
+void Bill ::operator=(const Bill &other)
 {
     this->MonthConsumptionAmount = other.MonthConsumptionAmount;
     this->MonthInjectionAmount =  other.MonthInjectionAmount ;

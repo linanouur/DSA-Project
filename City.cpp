@@ -1,7 +1,9 @@
 #include "City.h"
 #include "Regions.h"
 #include "District.h"
-
+#include <iostream>
+using namespace std;
+#include <string>
 City::City() :CityID (0), CityName("") { 
     Districts = new htDistricts;
 }

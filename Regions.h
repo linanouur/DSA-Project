@@ -6,8 +6,8 @@
 using namespace std;
 const int num_reg = 100;
 
-class City;
-class htCities;
+// class City;
+// class htCities;
 
 class Region {
 public:

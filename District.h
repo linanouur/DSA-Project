@@ -21,7 +21,8 @@ public:
         DistrictID = district.DistrictID;
         DistrictName = district.DistrictName;
         return *this;
-    }
+    } 
+    Customers *CustomerBST; 
 };
 
 class htDistricts
@@ -29,10 +30,12 @@ class htDistricts
 public:
     District districts[num_dis];
     int hashFunctionDistrict(int key);
-    void insertDistrict(const District &district);
-    District *getDistrict(int districtId);
-   
-  
+    void insertDistrict(const District& district);
+    City* getCity (int cityId);
+    District* getDistrict(int districtId);
+    void insertDistrict(int cityId, const District& district);  
+    
+
 };
 
 #endif

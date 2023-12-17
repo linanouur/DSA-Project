@@ -1,14 +1,16 @@
 #ifndef REGION_H
-#define REGION_H
-#include"City.h"
+#define REGION_H 
 #include<iostream>
 #include<string>
+#include"City.h" 
+#include"District.h"
+
 using namespace std;
 const int num_reg = 100;
 
 // class City;
-// class htCities;
-
+ class htCities;
+class htcities; 
 class Region {
 public:
     int RegionID;
@@ -17,22 +19,14 @@ public:
     Region();
     Region(int id, const string& name);  
     
-    Region& operator = (const Region& region) {
-        RegionID = region.RegionID;
-        RegionName = region.RegionName;
-        Cities = region.Cities;
-        return *this;
-    }
-    
+   
 };
 
 class htRegions {
 public:
     Region regions[num_reg];
     int hashFunctionRegion(int key);
-    void insertRegion(const Region& region);
-    void insertCity(int RegionID, const City& city);   
-    void insertDistrict(int RegionID, int CityID , const District & district);   
+    void insertRegion(const Region& region);   
     Region* getRegion(int RegionID);
     void displaycities(int RegionID);
    

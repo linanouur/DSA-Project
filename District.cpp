@@ -2,7 +2,9 @@
 #include "City.h" 
 #include "Regions.h"
 
-District::District() : DistrictID(0), DistrictName("") {}
+District::District() : DistrictID(0), DistrictName("") { 
+    CustomerBST = new Customers();
+}
 District::District(int id, const std::string& name) : DistrictID(id), DistrictName(name) {}
 
 int htDistricts::hashFunctionDistrict(int key) {

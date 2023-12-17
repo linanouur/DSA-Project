@@ -29,7 +29,9 @@ public:
     void insertDistrict(const District& district);
     City* getCity (int cityId);
     District* getDistrict(int districtId);
-    void insertDistrict(int cityId, const District& district); 
+    void insertDistrict(int cityId, const District& district);  
+    Customers *CustomerBST; 
+
 };
 
 #endif 

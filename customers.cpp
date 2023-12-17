@@ -249,15 +249,15 @@ void Customers ::displayWinner()
     
     
     
-    cout<< "enter customer id" << endl;
-    int id;
-    cin >> id;
+//     cout<< "enter customer id" << endl;
+//     int id;
+//     cin >> id;
 
-    cout << getCustomerID(id) << endl;
+//     cout << getCustomerID(id) << endl;
 
-    cout << getDistrictId(id) << endl;
-    cout << getCityId(id) << endl;
-    cout << getRegionId(id) << endl;
+//     cout << getDistrictId(id) << endl;
+//     cout << getCityId(id) << endl;
+//     cout << getRegionId(id) << endl;
 
     // Customer *cust = BST.searchCustomer(67890);
     // if (cust != nullptr)

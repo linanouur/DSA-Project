@@ -16,7 +16,7 @@
 using namespace std;
 
 
-RegionHashTable Alg;
+
 
 
 int getRegionId(int CustomerID)
@@ -74,7 +74,7 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
+void insertNewCustomer(RegionHashTable Alg , string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     long int NewID = cus->generateCustomerID(region,city,district,id);
     int R = getRegionId(NewID);
@@ -85,7 +85,7 @@ void insertNewCustomer(string fname, string lname, int bankAccount, int numMemb,
 
 
 
-void setInfoOneMonth(int ID , int month , int year , int Mconsumption , int Minjection){
+void setInfoOneMonth(RegionHashTable Alg ,int ID , int month , int year , int Mconsumption , int Minjection){
     Bill bill;
     bill.setBillInfo(Mconsumption,Minjection);
     int R = getRegionId(ID);
@@ -94,21 +94,21 @@ void setInfoOneMonth(int ID , int month , int year , int Mconsumption , int Minj
     Alg.setInfoMonthCustomerRegion(R , C , D, ID, month, year, bill);
 }
 
-void getOnemonthBill(int ID, int month, int year){
+void getOnemonthBill(RegionHashTable Alg ,int ID, int month, int year){
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Alg.getOnemonthBillR(R , C , D, ID, month, year);
 }
 
-void getOneYearBill(int ID , int year){
+void getOneYearBill(RegionHashTable Alg , int ID , int year){
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Alg.getOneYearBillR(R , C , D, ID, year);
 }
 
-void getPeriodBill( int ID , int monthStart, int monthEnd, int yearStart, int yearEnd){
+void getPeriodBill( RegionHashTable Alg , int ID , int monthStart, int monthEnd, int yearStart, int yearEnd){
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);

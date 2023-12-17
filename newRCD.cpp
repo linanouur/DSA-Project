@@ -15,6 +15,7 @@ using namespace std;
 RegionHashTable Alg; 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
+RegionHashTable Alg;
 class DistrictHashTable
 {
 
@@ -170,8 +171,8 @@ public:
     }
 };
 
-/*int main() {
-    RegionHashTable hashTable;
+int main() {
+    
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
    if (file.is_open()) {
@@ -190,10 +191,9 @@ public:
             RegionID=stoi(regionID);
             CityID=stoi(cityID);
             DistrictID=stoi(districtID);
-            hashTable.addRegion(RegionID);
-            hashTable.addCity(RegionID, CityID);
-            hashTable.addDistrictToCity(RegionID, CityID, DistrictID); 
-            hashTable.displaycities(1); 
+            Alg.addRegion(RegionID);
+            Alg.addCity(RegionID, CityID);
+            Alg.addDistrictToCity(RegionID, CityID, DistrictID);
         }
         file.close();
 

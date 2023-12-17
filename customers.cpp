@@ -236,28 +236,28 @@ void Customers ::displayWinner()
 
 
 
-int main()
-{
-   Customers *BST = new Customers(); 
-    // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
-    // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
-    // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123); 
-    // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 23); 
-    // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 63);
-    // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
-    // BST->printLevelOrder();
+// int main()
+// {
+//    Customers *BST = new Customers(); 
+//     // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
+//     // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
+//     // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123); 
+//     // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 23); 
+//     // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 63);
+//     // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
+//     // BST->printLevelOrder();
     
     
     
-    cout<< "enter customer id" << endl;
-    int id;
-    cin >> id;
+//     cout<< "enter customer id" << endl;
+//     int id;
+//     cin >> id;
 
-    cout << getCustomerID(id) << endl;
+//     cout << getCustomerID(id) << endl;
 
-    cout << getDistrictId(id) << endl;
-    cout << getCityId(id) << endl;
-    cout << getRegionId(id) << endl;
+//     cout << getDistrictId(id) << endl;
+//     cout << getCityId(id) << endl;
+//     cout << getRegionId(id) << endl;
 
     // Customer *cust = BST.searchCustomer(67890);
     // if (cust != nullptr)
@@ -271,7 +271,9 @@ int main()
     // {
     //     cout << "Customer not found." << endl;
     // }
-    cout << "hello world";
-    return 0;
-}
+//     cout << "hello world";
+//     return 0;
+// }
+
+
 #endif 

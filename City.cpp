@@ -21,12 +21,12 @@ void htCities::insertCity(const City& city) {
     int index = hashFunctionCity(city.CityID);
     cities[index] = city;
 
-}
+} 
+
 
 City* htCities::getCity(int cityId) {
     int index = hashFunctionCity(cityId);
-    return &cities[index];
-}
+    return &cities[index]; } 
 
 
   void htCities::displaycities(){ 
@@ -35,4 +35,4 @@ City* htCities::getCity(int cityId) {
             cout << cities[i].CityName <<cities[i].CityID << endl ;
         }
     }
- }
+ } 

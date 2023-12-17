@@ -10,32 +10,30 @@
 using namespace std;
 
 const int num_dis = 100;
-// class City;
+// class City; 
+
 class District
 {
 public:
     int DistrictID;
     string DistrictName;
-   Customers *BST;
+    Customers *BST;
     District();
     District(int id, const std::string &name);
-    District operator=(const District &district)
-    {
-        DistrictID = district.DistrictID;
-        DistrictName = district.DistrictName;
-        return *this;
-    }
+   
+    Customers *CustomerBST; 
 };
 
-class htDistricts
-{
+class htDistricts  {
 public:
     District districts[num_dis];
     int hashFunctionDistrict(int key);
-    void insertDistrict(const District &district);
-    District *getDistrict(int districtId);
-   
-  
+    void insertDistrict(const District& district); 
+    void insertDistrictinCity(int cityId, const District& district);  
+    District* getDistrict(int districtId);
+    void insertDistrict(int cityId, const District& district);  
+    
+
 };
 
 #endif

@@ -32,18 +32,8 @@ Region* htRegions::getRegion(int regionId) {
     return &regions[index];
 }
 
-void htRegions::insertCity(int regionId, const City& city) {
-    Region* region = getRegion(regionId);
-    if (region != nullptr) {
-        region->Cities->insertCity(city);
-    }
-} 
 
-void htRegions::insertDistrict(int RegionID, int CityID , const District & district){
- Region* region = getRegion(RegionID);
- City *city = region->Cities->getCity(CityID);
- city->Districts->insertDistrict(district);
-}
+
 
 
 void htRegions:: displaycities(int RegionID){

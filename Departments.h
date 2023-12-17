@@ -12,6 +12,10 @@ public:
     double budget;
     double totalAmountPaid;
     Department(int id = 0, double budg = 100000.00, double amountPaid = 0.0) : city_id(id), budget(budg), totalAmountPaid(amountPaid) {}
+    void setBudget(double);
+    double getBudget() const;
+    void setTotalAmountPaid(double);
+    double getTotalAmountPaid() const;
 };
 
 class DepartmentHeap
@@ -29,10 +33,11 @@ private:
 public:
     void insert(int);
     void insertDepartment(const Department &department);
-
     void updateBudget();
     void printHeap(const vector<int> &heap) const;
     void printBestDepartments();
     void printWorstDepartments();
+    void getBest10() const;
+    void getWorst10() const;
 };
 #endif

@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <string>
-
+using namespace std ; 
 const int num_cit = 100;
 
 class htDistricts;
@@ -13,12 +13,12 @@ class Region;
 
 class City {
 public:
-    int city_id;
-    std::string city_name;
-    htDistricts* city_disricts;  
+    int CityID;
+    string CityName;
+    htDistricts* Districts;  
 
     City();
-    City(int id, const std::string& name);
+    City(int id, const string& name);
 };
 
 class htCities {
@@ -27,9 +27,10 @@ public:
     Region* region;  
     int hashFunctionCity(int key);
     void insertCity(const City& city);
-    void insertCity(const City& city, int regionId);
-    City* getCity(int cityId);
-    Region* getRegion(int regionId);
+    void insertCity(const City& city, int RegionID);
+    City* getCity(int CityID);
+    Region* getRegion(int RegionID); 
+   void displaycities();
 };
 
 #endif 

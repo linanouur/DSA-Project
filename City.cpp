@@ -2,8 +2,12 @@
 #include "Regions.h"
 #include "District.h"
 
-City::City() : city_id(0), city_name(""), city_disricts(nullptr) {}
-City::City(int id, const std::string& name) : city_id(id), city_name(name), city_disricts(nullptr) {}
+City::City() :CityID (0), CityName("") { 
+    Districts = new htDistricts;
+}
+City::City(int id, const std::string& name) : CityID(id), CityName(name){ 
+    Districts = new htDistricts;
+}
 
 int htCities::hashFunctionCity(int key) {
     return key % num_cit;
@@ -11,17 +15,17 @@ int htCities::hashFunctionCity(int key) {
 
 void htCities::insertCity(const City& city)
 {
-    int index = hashFunctionCity(city.city_id);
+    int index = hashFunctionCity(city.CityID);
     cities[index] = city;
 
 }
 void htCities::insertCity(const City& city, int regionId) {
-    int index = hashFunctionCity(city.city_id);
+    int index = hashFunctionCity(city.CityID);
     cities[index] = city;
 
     region = getRegion(regionId); 
     if (region != nullptr) {
-        region->region_cities->insertCity(city);
+        region->Cities->insertCity(city);
     }
 }
 
@@ -34,4 +38,11 @@ Region* htCities::getRegion(int regionId) {
     htRegions regionhashtable; 
     Region* region = regionhashtable.getRegion(regionId); 
     return region;
-}
+} 
+  void htCities::displaycities(){ 
+    for ( int i = 0 ; i < num_cit ; i++){
+        if (cities[i].CityID != 0){
+            cout << cities[i].CityName <<cities[i].CityID << endl ;
+        }
+    }
+ }

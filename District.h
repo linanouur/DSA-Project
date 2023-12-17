@@ -4,16 +4,21 @@
 #include"City.h"
 #include<iostream>
 #include<string>
-
+using namespace std ; 
 const int num_dis = 100;
 class City;
 class District {
 public:
-    int district_id;
-    std::string district_name;
+    int DistrictID;
+    string DistrictName;
 
     District();
-    District(int id, const std::string& name);
+    District(int id, const std::string& name); 
+    District operator = (const District& district) {
+        DistrictID = district.DistrictID;
+        DistrictName = district.DistrictName;
+        return *this;
+    }
 };
 
 class htDistricts {

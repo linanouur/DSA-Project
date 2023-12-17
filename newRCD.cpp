@@ -10,6 +10,7 @@ using namespace std;
 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
+RegionHashTable Alg;
 class DistrictHashTable
 {
 
@@ -164,15 +165,15 @@ public:
     }
 };
 
-/*int main() {
-    RegionHashTable hashTable;
+int main() {
+    
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
-//     if (file.is_open()) {
-//         string line;
-//         while (getline(file, line)) {
-//             stringstream ss(line);
-//             string regionID, regionName, cityID, cityName, districtID, districtName;
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string regionID, regionName, cityID, cityName, districtID, districtName;
 
             getline(ss, regionID, ',');
             getline(ss, regionName, ',');
@@ -184,9 +185,9 @@ public:
             RegionID=stoi(regionID);
             CityID=stoi(cityID);
             DistrictID=stoi(districtID);
-            hashTable.addRegion(RegionID);
-            hashTable.addCity(RegionID, CityID);
-            hashTable.addDistrictToCity(RegionID, CityID, DistrictID);
+            Alg.addRegion(RegionID);
+            Alg.addCity(RegionID, CityID);
+            Alg.addDistrictToCity(RegionID, CityID, DistrictID);
         }
         file.close();
 
@@ -197,4 +198,4 @@ public:
  int number=12222;
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}*/
+}

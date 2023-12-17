@@ -1,51 +1,62 @@
 #include <iostream>
 using namespace std;
 #include <string>
-#include"Regions.h"
-#include"City.h"
-#include"City.cpp"
-#include"District.h"
-#include"District.cpp"
-#include"customers.h"
-#include"customers.cpp"
-#include"customer.h"
-#include"calendar.cpp"
-#include"bills.h"
-Region::Region() : RegionID(0), RegionName("") { 
+#include "Regions.h"
+#include "City.h"
+#include "City.cpp"
+#include "District.h"
+#include "District.cpp"
+#include "customers.h"
+#include "customers.cpp"
+#include "customer.h"
+#include "calendar.cpp"
+#include "bills.h"
+Region::Region() : RegionID(0), RegionName("")
+{
     Cities = new htCities;
 }
-Region::Region(int id, const std::string& name) : RegionID(id), RegionName(name) { 
+Region::Region(int id, const std::string &name) : RegionID(id), RegionName(name)
+{
     Cities = new htCities;
 }
 
-int htRegions::hashFunctionRegion(int key) {
+int htRegions::hashFunctionRegion(int key)
+{
     return key % num_reg;
 }
 
-void htRegions::insertRegion(const Region& region) {
+void htRegions::insertRegion(const Region &region)
+{
     int index = hashFunctionRegion(region.RegionID);
     regions[index] = region;
 }
 
-Region* htRegions::getRegion(int regionId) {
+Region *htRegions::getRegion(int regionId)
+{
     int index = hashFunctionRegion(regionId);
     return &regions[index];
 }
 
-
-
-
-
-void htRegions:: displaycities(int RegionID){
-    Region* region = getRegion(RegionID);
-    if (region != nullptr) {
+void htRegions::displaycities(int RegionID)
+{
+    Region *region = getRegion(RegionID);
+    if (region != nullptr)
+    {
         region->Cities->displaycities();
     }
 }
 
-
-
-
+void htRegions::insertCity(int regionID, const City &city)
+{
+    Region *region = getRegion(regionID);
+    region->Cities->insertCity(city);
+}
+void htRegions::insertDistrict(int regionID, int cityID, const District &district)
+{
+    Region *region = getRegion(regionID);
+    City *city = region->Cities->getCity(cityID);
+    city->Districts->insertDistrict(district);
+}
 
 int main()
 {
@@ -62,12 +73,12 @@ int main()
     htCities cityHashTable;
     City city1(1, "City1");
     City city2(2, "City2");
-    regionHashTable.insertCity(1 , city1);
-    regionHashTable.insertCity(2 , city2);
-    regionHashTable.insertDistrict(1 , 1 , district1);
+    regionHashTable.insertCity(1, city1);
+    regionHashTable.insertCity(2, city2);
+    regionHashTable.insertDistrict(1, 1, district1);
     regionHashTable.insertDistrict(1, 1, district2);
-    regionHashTable.insertDistrict(2,1, district3);
-    regionHashTable.insertDistrict(2,2, district4);
+    regionHashTable.insertDistrict(2, 1, district3);
+    regionHashTable.insertDistrict(2, 2, district4);
     regionHashTable.displaycities(1);
 
     return 0;

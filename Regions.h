@@ -31,6 +31,8 @@ public:
     Region regions[num_reg];
     int hashFunctionRegion(int key);
     void insertRegion(const Region& region);   
+    void insertCity(int regionID , const City &city);
+    void insertDistrict(int regionID , int cityID , const District &district);
     Region* getRegion(int RegionID);
     void displaycities(int RegionID);
    

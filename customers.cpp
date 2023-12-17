@@ -33,10 +33,13 @@ int getPrize(Customers *BST)
     return BST->Customers ::getmaxInjectorID();
 }
 
-void Customers::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
-    rootCus = insert(rootCus, cus);
+
+
+void Customers::insertNewCustomer(Customer *ptr) {
+    rootCus = insert(rootCus, ptr);
 }
+
+
 
 Customer *Customers::insert(Customer *root, Customer *node)
 {
@@ -77,7 +80,7 @@ Customer *Customers::searchCustomer(int ID, Customer *r)
 
 Customer *Customers::searchCustomer(int ID)
 {
-    return searchCustomer(ID, rootCus);
+    return searchCustomer(ID, rootCus  /*searchCustomer->rootCus*/);
 }
 
 void Customers::printInorder(Customer *ptr)
@@ -130,6 +133,7 @@ void Customers::printLevelOrder()
     }
 }
 
+
 void Customers ::setInfoNewInjector(int ID, int newValue, string RW, string CW, string DW)
 {
     Customers ::maxInjectorID = ID;
@@ -149,6 +153,79 @@ int Customers ::getmaxAmoutInjected()
     return Customers ::maxAmountInjected;
 }
 
+
+void Customers :: setInfoCustomerOneMonth( int ID, int month, int year, Bill &other)
+{
+    Customer *cust = searchCustomer(ID);
+    cust->settotalInjection(other.MonthInjectionAmount);
+    if (cust->totalInjection > getmaxAmoutInjected())
+        setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
+    if (cust != nullptr)
+    {
+        Year &y = cust->Customeryears->getYear(year);
+        y.setYearlyTotal(other.MonthConsumptionAmount * 5);
+        y.setYearlyCredit(other.MonthInjectionAmount * 3);
+        Bill &m = y.yearMonths->getbill(month);
+       m = other;
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
+void Customers :: getOneMonthBill( int ID, int month, int year)
+{
+    cout << "Bill of " << month
+         << " / " << year << " : " << endl;
+    Customer *cust = searchCustomer(ID);
+    if (cust != nullptr)
+    {
+       cust->getOneMonthBillCustomer(month,year);
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
+void Customers :: getOneYearBill(int ID, int year)
+{
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << year << " : " << endl;
+    Customer *cust = searchCustomer(ID);
+     if (cust != nullptr)
+    {
+       cust->getOneYearBillCustomer(year);
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
+void Customers :: getPeriodBill(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
+    cout << "Bill of " << monthStart << " / " << yearStart << " : "
+         << "/t"
+         << "To: " << monthEnd << " / " << yearEnd;
+    Customer *cust = searchCustomer(ID);
+    
+    if (cust != nullptr)
+    {
+        cust->getPeriodBillCustomer(monthStart, monthEnd, yearStart, yearEnd);
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
+
 void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;
@@ -156,19 +233,23 @@ void Customers ::displayWinner()
     // cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
-/*
+
+
+
 int main()
 {
-    Customers *BST = new Customers();
-    BST->insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar", 53);
-    BST->insertNewCustomer("Jane", "Doe", 67890, 1, "Adrar", "Adrar", "Adrar", 43);
-    BST->insertNewCustomer("Emma", "Brown", 23456, 2, "Adrar", "Adrar", "Adrar", 123);
-    BST->insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "Adrar", "Adrar", "Adrar", 23);
-    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar", 63);
-    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar", 80);
-    BST->printLevelOrder();
-
-    cout << "enter customer id" << endl;
+   Customers *BST = new Customers(); 
+    // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
+    // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
+    // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123); 
+    // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 23); 
+    // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 63);
+    // BST->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
+    // BST->printLevelOrder();
+    
+    
+    
+    cout<< "enter customer id" << endl;
     int id;
     cin >> id;
 
@@ -192,6 +273,5 @@ int main()
     // }
     cout << "hello world";
     return 0;
-}*/
-
-#endif
+}
+#endif 

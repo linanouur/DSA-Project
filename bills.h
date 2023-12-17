@@ -22,6 +22,7 @@ class Bill
     bool MonthTransferCreditByBank;
     int MonthlyCredit = 0;
     status state = status ::NotCalculatedYet;
+
     int CalculateBill(int, int);
     
     // Constructor
@@ -36,6 +37,7 @@ class Bill
     void setBillInfo(int, int );
     void displayBill();
     int getTotal();
+    void operator = (const Bill &other);
 };
 
 #endif

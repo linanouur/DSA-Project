@@ -24,13 +24,18 @@ public:
     int getBalance(Customer *);
     Customer *rRotate(Customer *);
     Customer *lRotate(Customer *);
+    void insertNewCustomer(string, string, int, int, string, string, string, int); 
+public:
     void insert2(string, string, int, int, int, string, string, string);
     Customer *searchCustomer(int);
     void print();
     static void setInfoNewInjector(int, int, string, string, string);
     static int getmaxInjectorID();
-    static int getmaxAmoutInjected();
-    static void displayWinner();
-    void insertNewCustomer(string , string, int , int , string , string , string ,int );
-};
+    static int getmaxAmoutInjected(); 
+    static void displayWinner(); 
+    void printLevelOrder(); 
+    void printInorderAVL(Customer *);  
+    void printAVL(); 
+
+}; 
 #endif

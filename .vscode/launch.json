@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/TRETEC/OneDrive/Documents/GitHub/DSA-Project",
-      "program": "c:/Users/TRETEC/OneDrive/Documents/GitHub/DSA-Project/build/Debug/outDebug",
+      "cwd": "c:/Users/DELL/Documents/GitHub/DSA-Project",
+      "program": "c:/Users/DELL/Documents/GitHub/DSA-Project/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

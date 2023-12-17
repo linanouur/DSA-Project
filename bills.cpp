@@ -54,15 +54,18 @@ int Bill::getTotal()
         return Total;
 }
 
-
 void Bill ::displayBill()
 {
     cout << "Monthly Amount Consumption: " << MonthConsumptionAmount << " Killowatt Hours " << endl;
     cout << "Monthly Amount Injection: " << MonthInjectionAmount << " Killowatt Hours " << endl;
-    cout << "Monthly Credit: " << MonthlyCredit << " "  << endl;
+    cout << "Monthly Credit: " << MonthlyCredit << " " << endl;
     cout << " Total to Be Paid: " << getTotal() << " " << endl;
 }
 
+void Bill ::operator=(const Bill &other)
+{
+    this->MonthConsumptionAmount = other.MonthConsumptionAmount;
+    this->MonthInjectionAmount =  other.MonthInjectionAmount ;
+}
 
 #endif
-

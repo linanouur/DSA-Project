@@ -52,7 +52,7 @@ Customer *CustomersAVL::lRotate(Customer *x)
     y->height = max(height(y->left), height(y->right)) + 1;
 
     return y;
-}
+} 
 
 Customer *CustomersAVL::insert2(Customer *root, Customer *node)
 {
@@ -90,18 +90,68 @@ void CustomersAVL::insertNewCustomer(string fname, string lname, int bankAccount
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     rootCus = insert2(rootCus, cus);
 }
+ 
+ void CustomersAVL::printLevelOrder()
+{
+    if (rootCus == nullptr)
+        return;
+
+    std::queue<Customer *> q;
+    q.push(rootCus);
+
+    while (!q.empty())
+    {
+        Customer *current = q.front();
+        q.pop();
+
+        // Print the customer information
+        std::cout.width(10);
+        std::cout << current->firstName;
+        std::cout.width(20);
+        std::cout << current->FamilyName;
+        std::cout.width(10);
+        std::cout << current->ElectricityAccountId << std::endl;
+
+        // Enqueue left and right children if they exist
+        if (current->left != nullptr)
+            q.push(current->left);
+        if (current->right != nullptr)
+            q.push(current->right);
+    }
+} 
+void CustomersAVL::printInorderAVL(Customer *ptr)
+{
+    if (ptr == NULL)
+        return;
+
+    printInorderAVL(ptr->left);
+
+    cout.width(10);
+    cout << ptr->firstName;
+    cout.width(20);
+    cout << ptr->FamilyName;
+    cout.width(10);
+    cout << ptr->ElectricityAccountId << endl;
+
+    printInorderAVL(ptr->right);
+}
+void CustomersAVL::printAVL()
+{
+    printInorderAVL(rootCus);
+}
 
 
 int main()
 {
-    Customers *BST = new Customers(); 
-    BST->insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar", 53);
-    BST->insertNewCustomer("Jane", "Doe", 67890, 1, "Adrar", "Adrar", "Adrar", 43);
-    BST->insertNewCustomer("Emma", "Brown", 23456, 2, "Adrar", "Adrar", "Adrar", 123);
-    BST->insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "Adrar", "Adrar", "Adrar", 23);
-    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar", 63);
-    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar", 80);
-    BST->printLevelOrder(); // Outputs the ElectricityAccountId values of the customers 
+  CustomersAVL *AVL= new CustomersAVL(); 
+  
+    AVL->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
+    AVL->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
+    AVL->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123); 
+    AVL->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 23); 
+    AVL->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 63);
+    AVL->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
+    AVL->printAVL();// Outputs the ElectricityAccountId values of the customers 
 
     std::cout << "enter customer id" << endl;
     int id;
@@ -112,5 +162,6 @@ int main()
     std::cout << getCustomerID(id) << endl;
 
     return 0;
-}
+} 
+
 #endif

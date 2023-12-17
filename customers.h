@@ -3,9 +3,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include"calendar.cpp" 
-#include"customer.h"
+#include "calendar.cpp"
+#include "customer.h"
 using namespace std;
+
 class Customers
 {
 private:
@@ -20,15 +21,19 @@ private:
     static string regionWinner;
     static string districtWinner;
 
-
 public:
-    void insertNewCustomer(string, string, int, int , string, string, string ,int);
+    Customers() : rootCus(nullptr){}
+    void insertNewCustomer(Customer *);
+    void setInfoCustomerOneMonth( int , int , int, Bill &);
+    void getOneMonthBill( int , int , int );
+    void getOneYearBill( int , int );
+    void getPeriodBill( int , int , int , int , int);
     Customer *searchCustomer(int);
     void print();
-    static void setInfoNewInjector(int , int , string , string , string );
+    static void setInfoNewInjector(int, int, string, string, string);
     static int getmaxInjectorID();
-    static int getmaxAmoutInjected ();
+    static int getmaxAmoutInjected();
     static void displayWinner();
-     void printLevelOrder();
-}; 
+    void printLevelOrder();
+};
 #endif

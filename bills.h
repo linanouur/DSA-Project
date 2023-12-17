@@ -37,7 +37,7 @@ class Bill
     void setBillInfo(int, int );
     void displayBill();
     int getTotal();
-    Bill operator = (const Bill &other);
+    void operator = (const Bill &other);
 };
 
 #endif

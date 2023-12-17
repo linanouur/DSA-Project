@@ -26,6 +26,8 @@ public:
     void insertNewCustomer(Customer *);
     void setInfoCustomerOneMonth( int , int , int, Bill &);
     void getOneMonthBill( int , int , int );
+    void getOneYearBill( int , int );
+    void getPeriodBill( int , int , int , int , int);
     Customer *searchCustomer(int);
     void print();
     static void setInfoNewInjector(int, int, string, string, string);

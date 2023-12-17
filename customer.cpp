@@ -82,6 +82,8 @@ vector<string> Customer ::getIDs(string region, string city, string district)
 
     return vector<string>(3, "");
 }
+
+
 string Customer ::getConcatenatedIDs(string region, string city, string district)
 {
     vector<string> IDs = getIDs(region, city, district);
@@ -107,7 +109,51 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 
 }
 
+void Customer :: getOneMonthBillCustomer(int month, int year){
+cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
+ Year &y = Customeryears->getYear(year);
+        Bill &m = y.yearMonths->getbill(month);
+        m.displayBill();
+}
 
 
+void Customer :: getOneYearBillCustomer(int year){
+    cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
+    Year &y = Customeryears->getYear(year);
+        for (int month = 1; month < 13; month++)
+        {
+            Bill &m = y.yearMonths->getbill(month);
+            cout << "Month " << month << endl;
+            m.displayBill();
+        }
+}
+
+
+void Customer :: getPeriodBillCustomer( int monthStart, int monthEnd, int yearStart, int yearEnd){
+    cout << "Customer: " << firstName << " " <<FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
+if (yearStart == yearEnd)
+        {
+            Year &y = Customeryears->getYear(yearStart);
+            for (int month = monthStart; month < monthEnd; month++)
+            {
+                Bill &m = y.yearMonths->getbill(month);
+                cout << "Month " << month << endl;
+                m.displayBill();
+            }
+            return;
+        }
+
+        for (int year = yearStart; year <= yearEnd; year++)
+        {
+            Year &y = Customeryears->getYear(year);
+            for (int month = 1; month < 13; month++)
+            {
+                if (year = yearEnd && month > monthEnd)
+                    break;
+                Bill &m = y.yearMonths->getbill(month);
+                m.displayBill();
+            }
+        }
+}
 
 #endif

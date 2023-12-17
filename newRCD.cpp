@@ -1,4 +1,7 @@
-#include <iostream>
+#ifndef NEWRCD_CPP 
+#define NEWRCD_CPP
+ 
+ #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -9,7 +12,7 @@
 using namespace std;
 
 
-
+RegionHashTable Alg; 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
 class DistrictHashTable
@@ -74,7 +77,7 @@ public:
         cout << "Customers in City " << cityID << ":" << endl;
         for (auto &[districtID, district] : cityMap[cityID].districtMap)
         {
-            district.printLevelOrder(); // Assuming CustomerBST has a displayCustomers() method
+            district.printLevelOrder(); 
         }
     }
 
@@ -91,7 +94,8 @@ public:
 // RegionHashTable class storing a hash table for each region containing a CityHashTable
 
 class RegionHashTable
-{
+{ 
+    
 public:
     unordered_map<int, CityHashTable> regionMap;
     void addRegion(int regionID)
@@ -129,7 +133,14 @@ public:
     }
 
     void getOnemonthBillR(int regionID, int cityID, int districtID, int ID, int month, int year){
-        regionMap[regionID].getOnemonthBillC(regionID, cityID, districtID, ID, month, year);
+        regionMap[regionID].getOnemonthBillC( cityID, districtID, ID, month, year);
+    } 
+    void displaycities(int regionID){
+        cout << "Cities in Region " << regionID << ":" << endl;
+        for (auto &[cityID, city] : regionMap[regionID].cityMap)
+        {
+            cout << cityID << endl;
+        }
     }
 };
 
@@ -139,15 +150,15 @@ public:
 
 
 
-/*int main() {
+int main() {
     RegionHashTable hashTable;
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
-//     if (file.is_open()) {
-//         string line;
-//         while (getline(file, line)) {
-//             stringstream ss(line);
-//             string regionID, regionName, cityID, cityName, districtID, districtName;
+   if (file.is_open()) {
+       string line;
+       while (getline(file, line)) {
+           stringstream ss(line);
+            string regionID, regionName, cityID, cityName, districtID, districtName;
 
             getline(ss, regionID, ',');
             getline(ss, regionName, ',');
@@ -161,7 +172,8 @@ public:
             DistrictID=stoi(districtID);
             hashTable.addRegion(RegionID);
             hashTable.addCity(RegionID, CityID);
-            hashTable.addDistrictToCity(RegionID, CityID, DistrictID);
+            hashTable.addDistrictToCity(RegionID, CityID, DistrictID); 
+            hashTable.displaycities(1); 
         }
         file.close();
 
@@ -172,4 +184,5 @@ public:
  int number=12222;
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}*/
+}  
+#endif

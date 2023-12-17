@@ -9,13 +9,15 @@
 #include <iomanip>
 #include "customer.cpp"
 #include "customers.cpp"
+#include "Departments.h"
+#include "Departments.cpp"
 using namespace std;
 
 
-
+RegionHashTable Alg; 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
-
+RegionHashTable Alg;
 class DistrictHashTable
 {
 
@@ -67,6 +69,7 @@ public:
     void addCity(int cityID)
     {
         cityMap[cityID] = DistrictHashTable();
+        
     }
 
     void addDistrict(int cityID, int districtID)
@@ -177,12 +180,11 @@ public:
     {
         regionMap[cityID].getOnePeriodBillC(cityID, districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
     } 
-    void displaycities(int regionID) { 
-        cout<<"cities in region"<<regionID<<endl; 
-        for(auto &[cityID,City]: regionMap[regionID].cityMap) 
-        { 
-            cout<<cityID; 
-            // cityMap[].displayDistricts(cityID);
+    void displaycities(int regionID){
+        cout<<"Cities in Region "<<regionID<<":"<<endl;
+        for (auto &[cityID, city] : regionMap[regionID].cityMap)
+        {
+            cout<<cityID<<endl;
         }
     }
 };
@@ -287,7 +289,7 @@ void getPeriodBill( RegionHashTable &Alg , int ID , int monthStart, int monthEnd
 
 
 int main() {
-    RegionHashTable Alg;
+   
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
    if (file.is_open()) {

@@ -1,22 +1,7 @@
-#ifndef USERFUNCTIONS_CPP
-#define USERFUNCTIONS_CPP
-
 #include <iostream>
-#include<string>
-#include "customer.cpp"
-#include "customers.cpp"
-#include "customers.h"
-#include "calendar.cpp"
-#include "bills.cpp" 
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include"userFunctions.cpp"
-#include "newRCD.cpp"
+#include <string>
+#include "Regions.h"
 using namespace std;
-
-
-
 
 
 int getRegionId(int CustomerID)
@@ -74,44 +59,47 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(RegionHashTable Alg , string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
+
+void insertNewCustomer(htRegions alg , string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     long int NewID = cus->generateCustomerID(region,city,district,id);
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
     int D = getDistrictId(NewID);
-    Alg.addCustomerToDistrict(R,C,D,cus);
+    Region *Rptr=alg.getRegion(R);
+    City *Cptr = Rptr->region_cities->getCity(C);
+    District *Dptr = Cptr->city_disricts->getDistrict(D);
+    Dptr->BST->insertNewCustomerBST(cus);
 }
 
 
 
-void setInfoOneMonth(RegionHashTable Alg ,int ID , int month , int year , int Mconsumption , int Minjection){
+void setInfoOneMonth(htRegions Alg ,int ID , int month , int year , int Mconsumption , int Minjection){
     Bill bill;
     bill.setBillInfo(Mconsumption,Minjection);
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
-    Alg.setInfoMonthCustomerRegion(R , C , D, ID, month, year, bill);
+    
 }
 
-void getOnemonthBill(RegionHashTable Alg ,int ID, int month, int year){
+void getOnemonthBill(htRegions Alg ,int ID, int month, int year){
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
-    Alg.getOnemonthBillR(R , C , D, ID, month, year);
+   
 }
 
-void getOneYearBill(RegionHashTable Alg , int ID , int year){
+void getOneYearBill(htRegions Alg , int ID , int year){
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
-    Alg.getOneYearBillR(R , C , D, ID, year);
+   
 }
 
-void getPeriodBill( RegionHashTable Alg , int ID , int monthStart, int monthEnd, int yearStart, int yearEnd){
+void getPeriodBill( htRegions &Alg , int ID , int monthStart, int monthEnd, int yearStart, int yearEnd){
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
-    Alg.getOnePeriodBillR(R , C , D, ID, monthStart, monthEnd , yearStart , yearEnd);
+    
 }
-#endif

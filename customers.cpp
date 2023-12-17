@@ -35,7 +35,7 @@ int getPrize(Customers *BST)
 
 
 
-void Customers::insertNewCustomer(Customer *ptr) {
+void Customers::insertNewCustomerBST(Customer *ptr) {
     rootCus = insert(rootCus, ptr);
 }
 
@@ -154,7 +154,7 @@ int Customers ::getmaxAmoutInjected()
 }
 
 
-void Customers :: setInfoCustomerOneMonth( int ID, int month, int year, Bill &other)
+void Customers :: setInfoCustomerOneMonthBST( int ID, int month, int year, Bill &other)
 {
     Customer *cust = searchCustomer(ID);
     cust->settotalInjection(other.MonthInjectionAmount);
@@ -175,7 +175,7 @@ void Customers :: setInfoCustomerOneMonth( int ID, int month, int year, Bill &ot
 }
 
 
-void Customers :: getOneMonthBill( int ID, int month, int year)
+void Customers :: getOneMonthBillBST( int ID, int month, int year)
 {
     cout << "Bill of " << month
          << " / " << year << " : " << endl;
@@ -191,7 +191,7 @@ void Customers :: getOneMonthBill( int ID, int month, int year)
 }
 
 
-void Customers :: getOneYearBill(int ID, int year)
+void Customers :: getOneYearBillBST(int ID, int year)
 {
     // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
     cout << "Bill of " << year << " : " << endl;
@@ -207,7 +207,7 @@ void Customers :: getOneYearBill(int ID, int year)
 }
 
 
-void Customers :: getPeriodBill(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void Customers :: getPeriodBillBST(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
     cout << "Bill of " << monthStart << " / " << yearStart << " : "

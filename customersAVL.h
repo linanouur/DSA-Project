@@ -25,6 +25,11 @@ public:
     int getBalance(Customer *);
     Customer *rRotate(Customer *);
     Customer *lRotate(Customer *);
+    void insertNewCustomerAVL(string, string, int, int, string, string, string, int); 
+public:
+    void insert2(string, string, int, int, int, string, string, string);
+    Customer *searchCustomer(int);
+    void print();
     static void setInfoNewInjector(int, int, string, string, string);
     static int getmaxInjectorID();
     static int getmaxAmoutInjected();

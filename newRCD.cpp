@@ -30,7 +30,7 @@ public:
 
     void addCustomer(int districtID, Customer *ptr)
     {
-        districtMap[districtID].insertNewCustomer(ptr);
+        districtMap[districtID].insertNewCustomerBST(ptr);
     }
 
     void displayCustomers(int districtID)
@@ -41,22 +41,22 @@ public:
 
     void setInfoMonthCustomerDistrict(int districtID, int ID, int month, int year, Bill &other)
     {
-        districtMap[districtID].setInfoCustomerOneMonth(ID, month, year, other);
+        districtMap[districtID].setInfoCustomerOneMonthBST(ID, month, year, other);
     }
 
     void getOnemonthBillD(int districtID, int ID, int month, int year)
     {
-        districtMap[districtID].getOneMonthBill(ID, month, year);
+        districtMap[districtID].getOneMonthBillBST(ID, month, year);
     }
 
     void getOneYearBillD(int districtID, int ID, int year)
     {
-        districtMap[districtID].getOneYearBill(ID, year);
+        districtMap[districtID].getOneYearBillBST(ID, year);
     }
 
     void getOnePeriodBillD(int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
     {
-        districtMap[districtID].getPeriodBill(ID, monthStart, monthEnd, yearStart, yearEnd);
+        districtMap[districtID].getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
     }
 };
 
@@ -77,7 +77,7 @@ public:
         cityMap[cityID].addDistrict(districtID);
     }
 
-    void addCustomerToDistrict(int cityID, int districtID, Customer *ptr)
+    void addCustomerToCity(int cityID, int districtID, Customer *ptr)
     {
         cityMap[cityID].addCustomer(districtID, ptr);
     }
@@ -114,6 +114,14 @@ public:
     {
         cityMap[cityID].getOnePeriodBillD(districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
     }
+
+     void displayDistricts(int cityID) { 
+        cout<<"Districts in region"<<cityID<<endl; 
+        for(auto &[districtID,district] : cityMap[cityID].districtMap) 
+        { 
+            cout<<districtID; 
+        }
+    }
 };
 
 // RegionHashTable class storing a hash table for each region containing a CityHashTable
@@ -139,9 +147,9 @@ public:
         regionMap[regionID].addDistrict(cityID, districtID);
     }
 
-    void addCustomerToDistrict(int regionID, int cityID, int districtID, Customer *ptr)
+    void addCustomerToRegion(int regionID, int cityID, int districtID, Customer *ptr)
     {
-        regionMap[regionID].addCustomerToDistrict(cityID, districtID, ptr);
+        regionMap[regionID].addCustomerToCity(cityID, districtID, ptr);
     }
 
     void displayCustomersInDistrict(int regionID, int cityID, int districtID)
@@ -204,6 +212,7 @@ int main() {
             Alg.addRegion(RegionID);
             Alg.addCity(RegionID, CityID);
             Alg.addDistrictToCity(RegionID, CityID, DistrictID);
+            Alg.displaycities(2);
         }
         file.close();
 

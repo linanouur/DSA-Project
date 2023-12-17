@@ -5,6 +5,7 @@
 #include<iostream>
 #include<string>
 using namespace std ; 
+#include "customers.h"
 const int num_dis = 100;
 class City;
 class District {

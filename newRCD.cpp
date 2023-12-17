@@ -223,6 +223,6 @@ int main() {
  int number=12222;
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}  
+} */ 
 #endif 
-*/
+

@@ -147,6 +147,39 @@ void DepartmentHeap::printWorstDepartments()
 {
     printHeap(minHeap);
 }
+void DepartmentHeap:: getBest10() const
+{
+    cout << "Best 10 Departments of this year: " << endl;
+    for (int i=0; i<10; i++)
+    {
+        cout << i+1 << ". " <<departments[maxHeap[i]].city_id << endl;
+    }
+}
+void DepartmentHeap:: getWorst10() const
+{
+    cout << "Worst 10 Departments of this year: " << endl;
+    for (int i=0; i<10; i++)
+    {
+        cout << i+1 << ". " <<departments[minHeap[i]].city_id << endl;
+    }
+}
+
+void Department:: setBudget(double budg)
+{
+    this->budget = budg;
+}
+void Department:: setTotalAmountPaid(double tap)
+{
+    this->totalAmountPaid = tap;
+}
+double Department:: getBudget() const
+{
+    return this->budget;
+}
+double Department:: getTotalAmountPaid() const
+{
+    return this->totalAmountPaid;
+}
 
 int main()
 {
@@ -212,6 +245,9 @@ int main()
     dh.printBestDepartments();
     cout << "-----------------  WORST -----------------------" << endl;
     dh.printWorstDepartments();
+
+    dh.getBest10();
+    dh.getWorst10();
     return 0;
 }
 #endif

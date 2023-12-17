@@ -8,8 +8,8 @@
 using namespace std ; 
 const int num_cit = 100;
 
-class htDistricts;
-class Region;
+// class htDistricts;
+// class Region;
 
 class City {
 public:
@@ -24,13 +24,10 @@ public:
 class htCities {
 public:
     City cities[num_cit];
-    Region* region;  
     int hashFunctionCity(int key);
     void insertCity(const City& city);
-    void insertCity(const City& city, int RegionID);
     City* getCity(int CityID);
-    Region* getRegion(int RegionID); 
-   void displaycities();
+    void displaycities();
 };
 
 #endif 

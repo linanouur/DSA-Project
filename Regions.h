@@ -6,8 +6,8 @@
 using namespace std;
 const int num_reg = 100;
 
-class City;
-class htCities;
+// class City;
+// class htCities;
 
 class Region {
 public:
@@ -31,8 +31,9 @@ public:
     Region regions[num_reg];
     int hashFunctionRegion(int key);
     void insertRegion(const Region& region);
-    Region* getRegion(int RegionID);
     void insertCity(int RegionID, const City& city);   
+    void insertDistrict(int RegionID, int CityID , const District & district);   
+    Region* getRegion(int RegionID);
     void displaycities(int RegionID);
    
 

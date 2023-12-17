@@ -156,18 +156,16 @@ void Customers ::displayWinner()
     // cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
-
+/*
 int main()
 {
     Customers *BST = new Customers();
-    BST->insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar");
-    BST->insertNewCustomer("Jane", "Doe", 67890, 1, "Adrar", "Adrar", "Adrar");
-    BST->insertNewCustomer("Michael", "Smith", 45678, 4, "Chlef", "Tenes", "Tenes");
-    BST->insertNewCustomer("Emma", "Brown", 23456, 2, "Adrar", "Adrar", "Adrar");
-    BST->insertNewCustomer("David", "Miller", 89012, 5, "Chlef", "Tenes", "Tenes");
-    BST->insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "Adrar", "Adrar", "Adrar");
-    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar");
-    BST->insertNewCustomer("Fatima", "Zohra", 12345, 1, "Chlef", "Tenes", "Tenes");
+    BST->insertNewCustomer("John", "Doe", 12345, 3, "Adrar", "Adrar", "Adrar", 53);
+    BST->insertNewCustomer("Jane", "Doe", 67890, 1, "Adrar", "Adrar", "Adrar", 43);
+    BST->insertNewCustomer("Emma", "Brown", 23456, 2, "Adrar", "Adrar", "Adrar", 123);
+    BST->insertNewCustomer("Aisha", "Boudjemaa", 76543, 2, "Adrar", "Adrar", "Adrar", 23);
+    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar", 63);
+    BST->insertNewCustomer("Karim", "Belkacem", 34567, 4, "Adrar", "Adrar", "Adrar", 80);
     BST->printLevelOrder();
 
     cout << "enter customer id" << endl;
@@ -194,6 +192,6 @@ int main()
     // }
     cout << "hello world";
     return 0;
-}
+}*/
 
 #endif

@@ -12,10 +12,10 @@
 using namespace std;
 
 
-RegionHashTable Alg; 
+
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
-RegionHashTable Alg;
+
 class DistrictHashTable
 {
 
@@ -172,7 +172,7 @@ public:
 };
 
 int main() {
-    
+    RegionHashTable Alg;
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
    if (file.is_open()) {

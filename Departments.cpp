@@ -134,7 +134,7 @@ void DepartmentHeap::printHeap(const vector<int> &heap) const
     for (const auto &departmentIndex : heap)
     {
         const auto &department = departments[departmentIndex];
-        cout << department.cityName << "\t\t" << department.budget << " dzd\t" << department.totalAmountPaid << " dzd\n";
+        cout << department.city_id << "\t\t" << department.budget << " dzd\t" << department.totalAmountPaid << " dzd\n";
     }
 }
 
@@ -151,31 +151,30 @@ void DepartmentHeap::printWorstDepartments()
 int main()
 {
     DepartmentHeap dh;
-
-    Department d1("Alger", 100000.00, 111);
-    Department d2("Setif", 100000.00, 222);
-    Department d3("Oran", 100000.00, 333);
-    Department d4("Batna", 100000.00, 444);
-    Department d5("Const", 100000.00, 555);
-    Department d6("Tipaza", 100000.00, 666);
-    Department d7("Medea", 100000.00, 777);
-    Department d8("Mascara", 100000.00, 888);
-    Department d9("Mosta", 100000.00, 999);
-    Department d10("Jijel", 100000.00, 1111);
-    Department d11("Tizi", 100000.00, 2222);
-    Department d12("Annaba", 100000.00, 3333);
-    Department d13("Blida", 100000.00, 4444);
-    Department d14("Bordj", 100000.00, 5555);
-    Department d15("Bejaia", 100000.00, 6666);
-    Department d16("Ilizi", 100000.00, 7777);
-    Department d17("Skikda", 100000.00, 8888);
-    Department d18("Djelfa", 100000.00, 9999);
-    Department d19("Taref", 100000.00, 11111);
-    Department d20("Boumerd", 100000.00, 22222);
-    Department d21("Oued", 100000.00, 33333);
-    Department d22("Bayd", 100000.00, 44444);
-    Department d23("Defla", 100000.00, 55555);
-    Department d24("Tbessa", 100000.00, 66666);
+    Department d1(1, 100000.00, 111);
+    Department d2(2, 100000.00, 222);
+    Department d3(3, 100000.00, 333);
+    Department d4(4, 100000.00, 444);
+    Department d5(5, 100000.00, 555);
+    Department d6(6, 100000.00, 666);
+    Department d7(7, 100000.00, 777);
+    Department d8(8, 100000.00, 888);
+    Department d9(9, 100000.00, 999);
+    Department d10(10, 100000.00, 1111);
+    Department d11(11, 100000.00, 2222);
+    Department d12(12, 100000.00, 3333);
+    Department d13(13, 100000.00, 4444);
+    Department d14(14, 100000.00, 5555);
+    Department d15(15, 100000.00, 6666);
+    Department d16(16, 100000.00, 7777);
+    Department d17(17, 100000.00, 8888);
+    Department d18(18, 100000.00, 9999);
+    Department d19(19, 100000.00, 11111);
+    Department d20(20, 100000.00, 22222);
+    Department d21(21, 100000.00, 33333);
+    Department d22(22, 100000.00, 44444);
+    Department d23(23, 100000.00, 55555);
+    Department d24(24, 100000.00, 66666);
 
     dh.insertDepartment(d1);
     dh.insertDepartment(d2);

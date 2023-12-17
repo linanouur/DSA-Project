@@ -8,10 +8,10 @@ using namespace std;
 class Department
 {
 public:
-    string cityName;
+    int city_id;
     double budget;
     double totalAmountPaid;
-    Department(const string &name = "", double budg = 100000.00, double amountPaid = 0.0) : cityName(name), budget(budg), totalAmountPaid(amountPaid) {}
+    Department(int id = 0, double budg = 100000.00, double amountPaid = 0.0) : city_id(id), budget(budg), totalAmountPaid(amountPaid) {}
 };
 
 class DepartmentHeap
@@ -27,7 +27,9 @@ private:
     void minHeapifyDown(int index);
 
 public:
+    void insert(int);
     void insertDepartment(const Department &department);
+
     void updateBudget();
     void printHeap(const vector<int> &heap) const;
     void printBestDepartments();

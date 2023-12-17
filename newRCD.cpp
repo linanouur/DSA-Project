@@ -9,6 +9,8 @@
 #include <iomanip>
 #include "customer.cpp"
 #include "customers.cpp"
+#include "Departments.h"
+#include "Departments.cpp"
 using namespace std;
 
 
@@ -67,6 +69,7 @@ public:
     void addCity(int cityID)
     {
         cityMap[cityID] = DistrictHashTable();
+        
     }
 
     void addDistrict(int cityID, int districtID)
@@ -171,7 +174,7 @@ public:
     }
 };
 
-int main() {
+/*int main() {
     RegionHashTable Alg;
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
@@ -204,5 +207,5 @@ int main() {
  int number=12222;
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}  
+}  */
 #endif

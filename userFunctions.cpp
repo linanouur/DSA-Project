@@ -60,6 +60,7 @@ int getCustomerID(int CustomerID)
 }
 
 
+
 void insertNewCustomer(htRegions alg , string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     long int NewID = cus->generateCustomerID(region,city,district,id);

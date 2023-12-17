@@ -14,10 +14,10 @@
 using namespace std;
 
 
-
+RegionHashTable Alg; 
 // DistrictHashTable class storing a hash table for each district containing a CustomerBST
 
-
+RegionHashTable Alg;
 class DistrictHashTable
 {
 
@@ -171,11 +171,18 @@ public:
     void getOnePeriodBillR(int regionID, int cityID, int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
     {
         regionMap[cityID].getOnePeriodBillC(cityID, districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
+    } 
+    void displaycities(int regionID){
+        cout<<"Cities in Region "<<regionID<<":"<<endl;
+        for (auto &[cityID, city] : regionMap[regionID].cityMap)
+        {
+            cout<<cityID<<endl;
+        }
     }
 };
 
-/*int main() {
-    RegionHashTable Alg;
+int main() {
+   
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
    if (file.is_open()) {
@@ -207,5 +214,5 @@ public:
  int number=12222;
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-}  */
+}  
 #endif

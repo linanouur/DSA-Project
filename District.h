@@ -31,7 +31,7 @@ public:
     int hashFunctionDistrict(int key);
     void insertDistrict(const District &district);
     District *getDistrict(int districtId);
-    void insertDistrict(int cityId, const District &district);
+   
   
 };
 

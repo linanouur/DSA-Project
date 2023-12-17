@@ -24,10 +24,8 @@ public:
 class htCities {
 public:
     City cities[num_cit];
-    Region* region;  
     int hashFunctionCity(int key);
     void insertCity(const City& city);
-    void insertCity(const City& city, int RegionID);
     City* getCity(int CityID);
     void displaycities();
 };

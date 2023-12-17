@@ -27,19 +27,7 @@ District *htDistricts::getDistrict(int districtId)
     return &districts[index];
 }
 
-void htDistricts::insertDistrict(int cityId, const District &district)
-{
-    City *city = getCity(cityId);
-    if (city != nullptr)
-    {
-        city->Districts->insertDistrict(district);
-    }
-}
-City *htDistricts::getCity(int cityId)
-{
-    htCities cityHashTable;
-    City *city = cityHashTable.getCity(cityId);
-    return city;
-}
+
+
 
 

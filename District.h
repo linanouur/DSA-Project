@@ -19,7 +19,8 @@ public:
         DistrictID = district.DistrictID;
         DistrictName = district.DistrictName;
         return *this;
-    }
+    } 
+    Customers *CustomerBST; 
 };
 
 class htDistricts {
@@ -30,7 +31,7 @@ public:
     City* getCity (int cityId);
     District* getDistrict(int districtId);
     void insertDistrict(int cityId, const District& district);  
-    Customers *CustomerBST; 
+    
 
 };
 

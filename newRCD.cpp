@@ -28,7 +28,7 @@ public:
 
     void addCustomer(int districtID, Customer *ptr)
     {
-        districtMap[districtID].insertNewCustomer(ptr);
+        districtMap[districtID].insertNewCustomerBST(ptr);
     }
 
     void displayCustomers(int districtID)
@@ -39,22 +39,22 @@ public:
 
     void setInfoMonthCustomerDistrict(int districtID, int ID, int month, int year, Bill &other)
     {
-        districtMap[districtID].setInfoCustomerOneMonth(ID, month, year, other);
+        districtMap[districtID].setInfoCustomerOneMonthBST(ID, month, year, other);
     }
 
     void getOnemonthBillD(int districtID, int ID, int month, int year)
     {
-        districtMap[districtID].getOneMonthBill(ID, month, year);
+        districtMap[districtID].getOneMonthBillBST(ID, month, year);
     }
 
     void getOneYearBillD(int districtID, int ID, int year)
     {
-        districtMap[districtID].getOneYearBill(ID, year);
+        districtMap[districtID].getOneYearBillBST(ID, year);
     }
 
     void getOnePeriodBillD(int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
     {
-        districtMap[districtID].getPeriodBill(ID, monthStart, monthEnd, yearStart, yearEnd);
+        districtMap[districtID].getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
     }
 };
 
@@ -74,7 +74,7 @@ public:
         cityMap[cityID].addDistrict(districtID);
     }
 
-    void addCustomerToDistrict(int cityID, int districtID, Customer *ptr)
+    void addCustomerToCity(int cityID, int districtID, Customer *ptr)
     {
         cityMap[cityID].addCustomer(districtID, ptr);
     }
@@ -111,6 +111,14 @@ public:
     {
         cityMap[cityID].getOnePeriodBillD(districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
     }
+
+     void displayDistricts(int cityID) { 
+        cout<<"Districts in region"<<cityID<<endl; 
+        for(auto &[districtID,district] : cityMap[cityID].districtMap) 
+        { 
+            cout<<districtID; 
+        }
+    }
 };
 
 // RegionHashTable class storing a hash table for each region containing a CityHashTable
@@ -136,9 +144,9 @@ public:
         regionMap[regionID].addDistrict(cityID, districtID);
     }
 
-    void addCustomerToDistrict(int regionID, int cityID, int districtID, Customer *ptr)
+    void addCustomerToRegion(int regionID, int cityID, int districtID, Customer *ptr)
     {
-        regionMap[regionID].addCustomerToDistrict(cityID, districtID, ptr);
+        regionMap[regionID].addCustomerToCity(cityID, districtID, ptr);
     }
 
     void displayCustomersInDistrict(int regionID, int cityID, int districtID)
@@ -168,8 +176,115 @@ public:
     void getOnePeriodBillR(int regionID, int cityID, int districtID, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
     {
         regionMap[cityID].getOnePeriodBillC(cityID, districtID, ID, monthStart, monthEnd, yearStart, yearEnd);
+    } 
+    void displaycities(int regionID) { 
+        cout<<"cities in region"<<regionID<<endl; 
+        for(auto &[cityID,City]: regionMap[regionID].cityMap) 
+        { 
+            cout<<cityID; 
+            // cityMap[].displayDistricts(cityID);
+        }
     }
 };
+
+
+int getRegionId(int CustomerID)
+{  
+    string CustomerIDString = to_string(CustomerID);  
+    string regionID; 
+    if(CustomerIDString.length() == 10) { 
+        
+     regionID = CustomerIDString.substr(0,1);  
+    }  
+    else 
+    {
+    regionID = CustomerIDString.substr(0,2);
+    } 
+    return stoi(regionID);
+}
+int getCityId(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID); 
+    string cityID;  
+    if(CustomerIDString.length() == 10) { 
+        cityID = CustomerIDString.substr(1,2);  
+    }  
+    else 
+    {
+    cityID = CustomerIDString.substr(2,2); 
+    }
+    return stoi(cityID);
+}
+int getDistrictId(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID);
+    string districtID ;   
+    if(CustomerIDString.length() == 10) { 
+        districtID = CustomerIDString.substr(3,3);  
+    }  
+    else 
+    { 
+    districtID = CustomerIDString.substr(4,3);
+     }
+  
+    return stoi(districtID);
+}
+int getCustomerID(int CustomerID)
+{
+    string CustomerIDString = to_string(CustomerID);
+    string customerID ;  
+
+    if(CustomerIDString.length() == 10) { 
+        customerID = CustomerIDString.substr(6,4);  
+    }  
+    else 
+    { customerID = CustomerIDString.substr(7,4); } 
+
+    return stoi(customerID);
+}
+
+
+void insertNewCustomer(RegionHashTable alg , string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id){
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
+    long int NewID = cus->generateCustomerID(region,city,district,id);
+    int R = getRegionId(NewID);
+    int C = getCityId(NewID);
+    int D = getDistrictId(NewID);
+    alg.addCustomerToRegion(R,C,D,cus);
+}
+
+
+
+void setInfoOneMonth(RegionHashTable Alg ,int ID , int month , int year , int Mconsumption , int Minjection){
+    Bill bill;
+    bill.setBillInfo(Mconsumption,Minjection);
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Alg.setInfoMonthCustomerRegion(R , C , D, ID, month, year, bill);
+}
+
+void getOnemonthBill(RegionHashTable Alg ,int ID, int month, int year){
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Alg.getOnemonthBillR(R , C , D, ID, month, year);
+}
+
+void getOneYearBill(RegionHashTable Alg , int ID , int year){
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Alg.getOneYearBillR(R , C , D, ID, year);
+}
+
+void getPeriodBill( RegionHashTable &Alg , int ID , int monthStart, int monthEnd, int yearStart, int yearEnd){
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Alg.getOnePeriodBillR(R , C , D, ID, monthStart, monthEnd , yearStart , yearEnd);
+}
+
 
 int main() {
     RegionHashTable Alg;
@@ -194,6 +309,7 @@ int main() {
             Alg.addRegion(RegionID);
             Alg.addCity(RegionID, CityID);
             Alg.addDistrictToCity(RegionID, CityID, DistrictID);
+            Alg.displaycities(2);
         }
         file.close();
 

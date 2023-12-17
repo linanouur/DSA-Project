@@ -86,7 +86,7 @@ Customer *CustomersAVL::insert2(Customer *root, Customer *node)
     }
     return root;
 }
-void CustomersAVL::insertNewCustomer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
+void CustomersAVL::insertNewCustomerAVL(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district ,int id ) {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
     rootCus = insert2(rootCus, cus);
 }
@@ -145,12 +145,12 @@ int main()
 {
   CustomersAVL *AVL= new CustomersAVL(); 
   
-    AVL->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
-    AVL->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
-    AVL->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123); 
-    AVL->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 23); 
-    AVL->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 63);
-    AVL->insertNewCustomer("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
+    AVL->insertNewCustomerAVL("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
+    AVL->insertNewCustomerAVL("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 43);
+    AVL->insertNewCustomerAVL("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123); 
+    AVL->insertNewCustomerAVL("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 23); 
+    AVL->insertNewCustomerAVL("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 63);
+    AVL->insertNewCustomerAVL("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 80);
     AVL->printAVL();// Outputs the ElectricityAccountId values of the customers 
 
     std::cout << "enter customer id" << endl;

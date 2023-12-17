@@ -23,11 +23,11 @@ private:
 
 public:
     Customers() : rootCus(nullptr){}
-    void insertNewCustomer(Customer *);
-    void setInfoCustomerOneMonth( int , int , int, Bill &);
-    void getOneMonthBill( int , int , int );
-    void getOneYearBill( int , int );
-    void getPeriodBill( int , int , int , int , int);
+    void insertNewCustomerBST(Customer *);
+    void setInfoCustomerOneMonthBST( int , int , int, Bill &);
+    void getOneMonthBillBST( int , int , int );
+    void getOneYearBillBST( int , int );
+    void getPeriodBillBST( int , int , int , int , int);
     Customer *searchCustomer(int);
     void print();
     static void setInfoNewInjector(int, int, string, string, string);

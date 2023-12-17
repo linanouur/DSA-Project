@@ -24,7 +24,7 @@ public:
     int getBalance(Customer *);
     Customer *rRotate(Customer *);
     Customer *lRotate(Customer *);
-    void insertNewCustomer(string, string, int, int, string, string, string, int); 
+    void insertNewCustomerAVL(string, string, int, int, string, string, string, int); 
 public:
     void insert2(string, string, int, int, int, string, string, string);
     Customer *searchCustomer(int);

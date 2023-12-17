@@ -179,11 +179,7 @@ public:
 };
 
 int main() {
-<<<<<<< HEAD
    
-=======
-    
->>>>>>> 6a58e01d9a8c5ef0d62f70694ae3af9f38752a4b
     ifstream file("RegionCityDistrict.csv"); // Update the file path accordingly
 
    if (file.is_open()) {

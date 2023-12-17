@@ -236,7 +236,7 @@ void Customers ::displayWinner()
 
 
 
-int main()
+ /*int main()
 {
    Customers *BST = new Customers(); 
     // BST->insertNewCustomer("Ahmed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar" , 53);   
@@ -273,7 +273,7 @@ int main()
     // }
     cout << "hello world";
     return 0;
-}
+} */ 
 
 
 #endif 

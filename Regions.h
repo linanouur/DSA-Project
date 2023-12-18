@@ -6,13 +6,12 @@
 #include"customers.h"
 #include<iostream>
 #include<string>
-#include"City.h" 
-#include"District.h"
+
 
 using namespace std;
 const int num_reg = 100;
 
-// class City;
+class City;
  class htCities;
 class htcities; 
 class Region {
@@ -21,9 +20,7 @@ public:
     string RegionName;
     htCities* Cities;  
     Region();
-    Region(int id, const string& name);  
-    
-   
+    Region(int id, const string& name);    
 };
 
 class htRegions {
@@ -35,9 +32,6 @@ public:
     void insertDistrict(int regionID , int cityID , const District &district);
     Region* getRegion(int RegionID);
     void displaycities(int RegionID);
-   
-
-
 };
 
 #endif 

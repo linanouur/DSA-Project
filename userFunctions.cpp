@@ -1,6 +1,18 @@
 #include <iostream>
 #include <string>
 #include "Regions.h"
+#include "Regions.cpp"
+#include "City.h"
+#include "City.cpp"
+#include "District.h"
+#include "District.cpp"
+#include "customers.h"
+#include "customers.cpp"
+#include "customer.h"
+#include"customer.cpp"
+#include "calendar.cpp"
+#include "bills.h"
+#include "bills.cpp"
 using namespace std;
 
 int getRegionId(int CustomerID)
@@ -121,4 +133,38 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
     City *Cptr = Rptr->Cities->getCity(C);
     District *Dptr = Cptr->Districts->getDistrict(D);
     Dptr->BST->getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
+}
+
+
+
+int main()
+{
+    htRegions regionHashTable;
+
+    Region region1(1, "Region1");
+    Region region2(2, "Region2");
+    regionHashTable.insertRegion(region1);
+    htDistricts districtHashTable;
+    District district1(1, "District1");
+    District district2(2, "District2");
+    District district3(3, "District3");
+    District district4(4, "District4");
+    htCities cityHashTable;
+    City city1(1, "City1");
+    City city2(2, "City2");
+    City city3( 3,"city3");
+    City city4( 3,"city4");
+    City city5( 3,"city5");
+    regionHashTable.insertCity(1, city1);
+    regionHashTable.insertCity(1, city3);
+    regionHashTable.insertCity(1, city4);
+    regionHashTable.insertCity(2, city5);
+    regionHashTable.insertCity(2, city2);
+    regionHashTable.insertDistrict(1, 1, district1);
+    regionHashTable.insertDistrict(1, 1, district2);
+    regionHashTable.insertDistrict(2, 1, district3);
+    regionHashTable.insertDistrict(2, 2, district4);
+    regionHashTable.displaycities(1);
+
+    return 0;
 }

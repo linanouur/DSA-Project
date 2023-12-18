@@ -1,3 +1,6 @@
+#ifndef CITY_CPP
+#define CITY_CPP
+
 #include <iostream>
 
 #include"City.h"
@@ -36,3 +39,6 @@ City* htCities::getCity(int cityId) {
         }
     }
  } 
+
+
+#endif

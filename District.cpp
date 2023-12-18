@@ -1,3 +1,6 @@
+#ifndef DISTRICT_CPP
+#define DISTRICT_CPP
+
 #include "District.h"
 #include <iostream>
 
@@ -62,3 +65,4 @@ District *htDistricts::getDistrict(int districtId)
 // }
 
 
+#endif

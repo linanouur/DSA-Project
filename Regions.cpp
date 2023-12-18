@@ -1,3 +1,6 @@
+#ifndef REGIONS_CPP
+#define REGIONS_CPP
+
 #include <iostream>
 using namespace std;
 #include <string>
@@ -59,3 +62,4 @@ void htRegions::insertDistrict(int regionID, int cityID, const District &distric
     city->Districts->insertDistrict(district);
 }
 
+#endif

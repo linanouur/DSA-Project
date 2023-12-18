@@ -1,18 +1,21 @@
+#ifndef USERFUNCTIONS_CPP
+#define USERFUNCTIONS_CPP
+
 #include <iostream>
 #include <string>
 #include "Regions.h"
-#include "Regions.cpp"
+#include"Regions.cpp"
 #include "City.h"
-#include "City.cpp"
+#include"City.cpp"
 #include "District.h"
-#include "District.cpp"
+#include"District.cpp"
 #include "customers.h"
 #include "customers.cpp"
 #include "customer.h"
-#include"customer.cpp"
+#include "customer.cpp"
 #include "calendar.cpp"
 #include "bills.h"
-#include "bills.cpp"
+#include"bills.cpp"
 using namespace std;
 
 int getRegionId(int CustomerID)
@@ -153,8 +156,8 @@ int main()
     City city1(1, "City1");
     City city2(2, "City2");
     City city3( 3,"city3");
-    City city4( 3,"city4");
-    City city5( 3,"city5");
+    City city4( 4,"city4");
+    City city5( 5,"city5");
     regionHashTable.insertCity(1, city1);
     regionHashTable.insertCity(1, city3);
     regionHashTable.insertCity(1, city4);
@@ -168,3 +171,5 @@ int main()
 
     return 0;
 }
+
+#endif

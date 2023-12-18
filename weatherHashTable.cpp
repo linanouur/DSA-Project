@@ -25,3 +25,5 @@ void weatherHashTable::insertWeather(int year, int month, int day, const weather
         years[yearIndex].getMonth(month).getDay(day).w = weather;
         cout << "Weather inserted for " << year << "/" << month << "/" << day << endl;
     }
+
+    

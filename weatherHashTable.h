@@ -1,4 +1,4 @@
-#include"year.h"
+#include"w_year.h"
 using namespace std;
 
 
@@ -15,6 +15,6 @@ public:
     weather& getWeather(int year, int month, int day);
 
     void insertWeather(int year, int month, int day, const weather& weather) ;
-    
+
     int getsize(){return years.size();}
 };

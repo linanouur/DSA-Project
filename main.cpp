@@ -1,8 +1,9 @@
 #include"City.h"
-#include"District.h"
-#include"Regions.h"
+#include "District.h"
+#include "Regions.h"
 
-int main() {
+ /*int main()
+{
     // Create hash tables
     htRegions regionsTable;
     htCities citiesTable;
@@ -22,36 +23,47 @@ int main() {
     City cityB(102, "City B");
     City cityC(103, "City C");
 
-    citiesTable.insertCity(cityA, region1.region_id);
-    citiesTable.insertCity(cityB, region2.region_id);
-    citiesTable.insertCity(cityC, region3.region_id);
+    citiesTable.insertCity(cityA);
+    citiesTable.insertCity(cityB);
+    citiesTable.insertCity(cityC);
+
+    regionsTable.insertCity(1, cityA);
+    regionsTable.insertCity(2, cityB);
+    regionsTable.insertCity(3, cityC);
 
     // Create and insert districts
     District districtX(1001, "District X");
     District districtY(1002, "District Y");
     District districtZ(1003, "District Z");
 
-    districtsTable.insertDistrict(cityA.city_id, districtX);
-    districtsTable.insertDistrict(cityB.city_id, districtY);
-    districtsTable.insertDistrict(cityC.city_id, districtZ);
+    districtsTable.insertDistrict(cityA.CityID, districtX);
+    districtsTable.insertDistrict(cityB.CityID, districtY);
+    districtsTable.insertDistrict(cityC.CityID, districtZ);
 
     // Accessing data
-    Region* foundRegion = regionsTable.getRegion(1);
-    if (foundRegion != nullptr) {
-        City* foundCity = citiesTable.getCity(101);
-        if (foundCity != nullptr) {
-            District* foundDistrict = districtsTable.getDistrict(1001);
+    Region *foundRegion = regionsTable.getRegion(1);
+    if (foundRegion != nullptr)
+    {
+        City *foundCity = citiesTable.getCity(101);
+        if (foundCity != nullptr)
+        {
+            District *foundDistrict = districtsTable.getDistrict(1001);
 
             // Displaying information
-            std::cout << "Region: " << foundRegion->region_name << std::endl;
-            std::cout << "City: " << foundCity->city_name << std::endl;
-            std::cout << "District: " << foundDistrict->district_name << std::endl;
-        } else {
+            std::cout << "Region: " << foundRegion->RegionName << std::endl;
+            std::cout << "City: " << foundCity->CityName << std::endl;
+            std::cout << "District: " << foundDistrict->DistrictName << std::endl;
+        }
+        else
+        {
             std::cout << "City not found." << std::endl;
         }
-    } else {
+    }
+    else
+    {
         std::cout << "Region not found." << std::endl;
     }
 
     return 0;
-}
+} 
+*/

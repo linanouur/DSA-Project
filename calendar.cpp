@@ -1,69 +1,89 @@
 #ifndef CALENDAR_H 
 #define CALENDAR_H
- #include<iostream>
-#include<string>
+ #include <iostream>
+#include <string>
+#include "bills.cpp"
 using namespace std;
 
-struct Month {
-    string monthName;
-    int numberMonth;
-
-    // Default Constructor
-    Month() : monthName(""), numberMonth(0) {}
-
-   
-    
-
-    void setMonth(const string& name, int num) {
-        monthName = name;
-        numberMonth = num;
-    }
-};
-
-struct Months {
-    Month months[13];
-
-    Months() {
+class Months
+{
+public:
+    Bill months[13];
+    Months()
+    {
         const string monthNames[] = {
             "January", "February", "March", "April",
             "May", "June", "July", "August",
-            "September", "October", "November", "December"
-        };
+            "September", "October", "November", "December"};
 
-        for (int i = 1; i <= 12; ++i) {
+        for (int i = 1; i <= 12; ++i)
+        {
             months[i].setMonth(monthNames[i - 1], i);
         }
     }
 
-    Month& getMonth(int month) {
+    Bill &getbill(int month)
+    {
         return months[month];
     }
 };
 
-struct Year {
-    Months* yearMonths;
-    int year;
 
-    Year(int num) {
+class Year
+{ public: 
+     Year() { }
+    Months *yearMonths;
+    int year;
+    int YearlyTotal = 0;
+    int YearlyCredit = 0;
+    int payment = YearlyTotal - YearlyCredit;
+    Year(int num)
+    {
         year = num;
         yearMonths = new Months();
     }
+
+    void setYearlyTotal(int value)
+    {
+        YearlyTotal = YearlyTotal + value;
+    }
+
+    void setYearlyCredit(int value)
+    {
+        YearlyCredit = YearlyCredit + value;
+    }
+
+    int getYearlyCredit()
+    {
+        return YearlyCredit;
+    }
+    int getYearlyTotal()
+    {
+        return YearlyTotal;
+    }
 };
 
-struct Years {
-    Year years[50];
-
-    int hash(int numYear) {
+class Years
+{ 
+       public:   
+   
+      Years() { }
+  
+     Year years[50];
+    int hash(int numYear)
+    {
         return numYear % 50;
     }
 
-    void insertYear(int numYear) {
+    void insertYear(int numYear)
+    {
         years[hash(numYear)] = Year(numYear);
     }
 
-    Year& getYear(int year) {
+    Year &getYear(int year)
+    {
         return years[hash(year)];
     }
-};
+}; 
 
 #endif

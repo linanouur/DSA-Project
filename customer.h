@@ -1,16 +1,20 @@
 #ifndef CUSTOMER_H
-#define CUSTOMER_H 
- #include <iostream>
+#define CUSTOMER_H
+
+#include <iostream>
 #include <string>
-#include"calendar.cpp"
+#include <vector>
+#include"calendar.cpp" 
 using namespace std;
 
-struct Customer {
+class Customer
+{ public : 
     string firstName;
     string FamilyName;
-    int ElectricityAccountId;
+    long int ElectricityAccountId;
     int BankAccount;
     int familyMembersNumber;
+    int totalInjection = 0;
     Years *Customeryears;
     string Region;
     string City;
@@ -18,23 +22,19 @@ struct Customer {
     bool haveInjectedBefore;
     Customer *left;
     Customer *right;
+    int height;
+    int id;
 
-    Customer(string, string, int, int, int,  string, string, string);
-    void setInfo(string, string, int, int, int,  string, string, string);
-};
 
-class Customers {
-private:
-    Customer *rootCus;
-
-    Customer *insert(Customer *, Customer *);
-    Customer *searchCustomer(int, Customer *);
-    void printInorder(Customer *);
-
-public:
-    void insertNewCustomer(string, string, int, int, int, string, string, string);
-    Customer *searchCustomer(int);
-    void print();
-};
-
+    Customer(string, string, int, int, string, string, string ,int );
+    void setInfo(string, string, int, int, string, string, string); 
+    vector<string> getIDs( string , string, string); 
+    string getConcatenatedIDs(string, string, string); 
+    long int  generateCustomerID(string,string,string,int);
+    void settotalInjection(int);
+    long int getCustomerId();
+    void getOneMonthBillCustomer(int , int);
+    void getOneYearBillCustomer(int);
+    void getPeriodBillCustomer( int , int , int , int );
+}; 
 #endif

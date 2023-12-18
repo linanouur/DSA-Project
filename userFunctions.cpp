@@ -2,7 +2,7 @@
 #define USERFUNCTIONS_CPP
 
 #include <iostream>
-#include <string>
+#include<string>
 #include "Regions.h"
 #include"Regions.cpp"
 #include "City.h"
@@ -143,31 +143,48 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
 int main()
 {
     htRegions regionHashTable;
+ ifstream file("RegionCityDistrict.csv"); 
 
-    Region region1(1, "Region1");
-    Region region2(2, "Region2");
-    regionHashTable.insertRegion(region1);
-    htDistricts districtHashTable;
-    District district1(1, "District1");
-    District district2(2, "District2");
-    District district3(3, "District3");
-    District district4(4, "District4");
-    htCities cityHashTable;
-    City city1(1, "City1");
-    City city2(2, "City2");
-    City city3( 3,"city3");
-    City city4( 4,"city4");
-    City city5( 5,"city5");
-    regionHashTable.insertCity(1, city1);
-    regionHashTable.insertCity(1, city3);
-    regionHashTable.insertCity(1, city4);
-    regionHashTable.insertCity(2, city5);
-    regionHashTable.insertCity(2, city2);
-    regionHashTable.insertDistrict(1, 1, district1);
-    regionHashTable.insertDistrict(1, 1, district2);
-    regionHashTable.insertDistrict(2, 1, district3);
-    regionHashTable.insertDistrict(2, 2, district4);
-    regionHashTable.displaycities(1);
+   if (file.is_open()) {
+       string line;
+       while (getline(file, line)) {
+           stringstream ss(line);
+            string regionID, regionName, cityID, cityName, districtID, districtName;
+
+            getline(ss, regionID, ',');
+            getline(ss, regionName, ',');
+            getline(ss, cityID, ',');
+            getline(ss, cityName, ',');
+            getline(ss, districtID, ',');
+            getline(ss, districtName, ',');
+            int RegionID, CityID, DistrictID;
+            RegionID=stoi(regionID);
+            CityID=stoi(cityID);
+            DistrictID=stoi(districtID);
+           regionHashTable.insertRegion(Region(RegionID, regionName));
+            regionHashTable.insertCity(RegionID, City(CityID, cityName));
+            regionHashTable.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
+
+        }
+        file.close();
+
+    } else {
+        cout << "Unable to open file." << endl;
+    }
+
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);
+     /*insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 2); 
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5, "Adrar", "Adrar", "Adrar", 3);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 4); */
+    //setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100);  
+    //getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
+    cout<<getCustomerID(1010010123)<<endl;
+
+   
+    
+  
+
+   
 
     return 0;
 }

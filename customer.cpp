@@ -9,7 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector> 
-#include <iomanip> 
+#include <iomanip>  
 
 #include"userFunctions.cpp"
 using namespace std;
@@ -28,7 +28,8 @@ void Customer::settotalInjection(int value)
 Customer::Customer(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district, int id )
 {
 
-    setInfo(fname, lname, bankAccount, numMemb,region, city, district);
+    setInfo(fname, lname, bankAccount, numMemb,region, city, district); 
+    cout<<"Customer ID: "<<generateCustomerID(region, city , district,id)<<endl; 
     ElectricityAccountId = generateCustomerID(region, city , district,id);
 }
 

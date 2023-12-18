@@ -1,9 +1,9 @@
 #ifndef BILLS_H
 #define BILLS_H
+
 #include <iostream>
 #include <string>
 using namespace std;
-
 
 enum class status
 {

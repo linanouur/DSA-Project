@@ -140,7 +140,8 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
 
 
 
-int main()
+ 
+ /* int main()
 {
     htRegions regionHashTable;
  ifstream file("RegionCityDistrict.csv"); 
@@ -173,11 +174,11 @@ int main()
     }
 
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);
-     /*insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 2); 
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 2); 
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5, "Adrar", "Adrar", "Adrar", 3);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 4); */
-    //setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100);  
-    //getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 4); 
+    setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100);  
+    getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
     cout<<getCustomerID(1010010123)<<endl;
 
    
@@ -187,6 +188,6 @@ int main()
    
 
     return 0;
-}
+} */
 
 #endif

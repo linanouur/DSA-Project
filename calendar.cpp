@@ -29,8 +29,9 @@ public:
 };
 
 
-struct Year
-{
+class Year
+{ public: 
+     Year() { }
     Months *yearMonths;
     int year;
     int YearlyTotal = 0;
@@ -62,10 +63,13 @@ struct Year
     }
 };
 
-struct Years
-{
-    Year years[50];
-
+class Years
+{ 
+       public:   
+   
+      Years() { }
+  
+     Year years[50];
     int hash(int numYear)
     {
         return numYear % 50;
@@ -80,6 +84,6 @@ struct Years
     {
         return years[hash(year)];
     }
-};
+}; 
 
 #endif

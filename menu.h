@@ -1,23 +1,24 @@
-#include <iostream>
-#include"menu.h"
-
+#include<iostream>
+#include <iomanip>
+#include <string>
 using namespace std;
+class menu
+{
+private:
+    /* data */
+public:
+    menu(/* args */);
+    void HomePage();
+    void display();
+    ~menu();
+};
 
-int main (){
-     menu m;
-     m.display();
-     m.HomePage();
+menu::menu(/* args */)
+{
 }
 
-
-
-
-
-
-/*
-int main()
+void menu::display()
 {
-    bool conn=false;
     const int width = 60; // Total width for the message box
     const string welcomeLine1 = "WELCOME TO OUR";
     const string welcomeLine2 = "Electricity Network Management System";
@@ -49,8 +50,26 @@ int main()
     std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
 
     std::cout << "\n\n\n";
+    
+    cout << "\t\t\t---------------------------------------------    " << endl;
+    //(350);
+    cout << "\t\t\t            Moving to Online Services            \n";
+    //(350);
+    cout << "\t\t\t---------------------------------------------    \n\n" << endl;
+    //(1500);
+}
 
+
+
+void menu::HomePage()
+{
+    bool conn;
+    const int width=60;
+    int n;
+    string password;
+    do{
     // Role selection section
+    
     std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
     std::cout << "\t\t"
          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
@@ -63,17 +82,19 @@ int main()
     std::cout << "\t\t"
          << "^" << setfill(' ') << setw(15) << "2_ Customer" << setw(44) << "^" << endl;
     std::cout << "\t\t"
+         << "^" << setfill(' ') << setw(15) << "3_ Quit...." << setw(44) << "^" << endl;
+    std::cout << "\t\t"
          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-    int n;
-    std::cout << "\t\t\t\t\t";
+         
+    std::cout << "\t\t\t";
     std::cin >> n;
     std::cout << "\t\t"
          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
     std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;   // Bottom border
     std::cout<< "\n\n\n";
 
-    string password;
     
+    string password;
     switch (n)
     {
     case 1:
@@ -81,9 +102,9 @@ int main()
         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
         std::cout << "\t\t"
              << "^" << setfill(' ') << setw(width - 10) << "Welcome admin please enter the password" << setw(9) << "^" << endl;
-        std::cout << "\t\t\t\t\t";
+        std::cout << "\t\t\t";
         std::cin >> password;
-        if (password == "hello"){conn=true;}
+        if (password == "hello"){conn=true;} else{conn=false; cout<<"incorrect password!"<<endl;}
         while(conn){   
             std::cout << "\t\t"
                  << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
@@ -102,9 +123,9 @@ int main()
             std::cout << "\t\t"
                  << "^" << setfill(' ') << setw(31) << "5_ listing of departements" << setw(28) << "^" << endl;
             std::cout << "\t\t"
-                 << "^" << setfill(' ') << setw(18) << "6_ Disconnect" << setw(41) << "^" << endl;
+                 << "^" << setfill(' ') << setw(18) << "6_ Log out..." << setw(41) << "^" << endl;
             int i;
-            std::cout << "\t\t\t\t\t";
+            std::cout << "\t\t\t";
             std::cin >> i;
             std::cout << "\t\t"
                  << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
@@ -232,19 +253,19 @@ int main()
                 switch (x)
                 {
                 case 1:
-                    // function to display by id
+                    /* function to display by id */
                     break;
                 case 2:
-                    // function to display by region
+                    /* function to display by region */
                     break;
                 case 3:
-                    // function to display by city
+                    /* function to display by city */
                     break;
                 case 4:
-                    // function to display by district 
+                    /* function to display by district */
                     break;
                 case 5:
-                    // function to display by country 
+                    /* function to display by country */
                     break;
 
                 default:
@@ -327,7 +348,7 @@ int main()
 
 
 
-        //**********************************customer*****************************************
+        /**********************************customer******************************************/
 
     case 2:
         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
@@ -372,9 +393,18 @@ int main()
         }
         break;
 
+     case 3:
+     exit(0);
+     
+
     default:
         std::cout << "\t\t\t\t Invalid role selected." << endl;
         break;
     }
-    return 0;
-}*/
+}while (n != '1' && n != '2' );
+}
+
+
+menu::~menu()
+{
+}

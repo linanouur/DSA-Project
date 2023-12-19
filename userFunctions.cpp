@@ -139,6 +139,9 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
     Dptr->BST->getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
 }
 
+
+
+/*
 int main()
 {
     
@@ -196,5 +199,5 @@ int main()
     BST.displayWinner();
 
     return 0;
-}
+}*/
 #endif

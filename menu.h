@@ -1,6 +1,9 @@
 #include<iostream>
 #include <iomanip>
 #include <string>
+#include <fstream>
+#include"userFunctions.cpp"
+#include"Regions.h"
 using namespace std;
 class menu
 {
@@ -58,11 +61,23 @@ void menu::display()
     cout << "\t\t\t---------------------------------------------    \n\n" << endl;
     //(1500);
 }
+// Function to read a single sentence from a CSV file
+std::string getSentenceFromCSV(const std::string& filePath) {
+    std::ifstream file(filePath);
+    std::string sentence;
+
+    if (file.is_open() && std::getline(file, sentence)) {
+        return sentence;
+    }
+
+    return ""; // Return empty string if file can't be read
+}
 
 
 
 void menu::HomePage()
 {
+    htRegions Algeria;
     bool conn;
     const int width=60;
     int n;
@@ -104,7 +119,7 @@ void menu::HomePage()
              << "^" << setfill(' ') << setw(width - 10) << "Welcome admin please enter the password" << setw(9) << "^" << endl;
         std::cout << "\t\t\t";
         std::cin >> password;
-        if (password == "hello"){conn=true;} else{conn=false; cout<<"incorrect password!"<<endl;}
+        if (password == getSentenceFromCSV("password.csv")){conn=true;} else{conn=false; cout<<"incorrect password!"<<endl;}
         while(conn){   
             std::cout << "\t\t"
                  << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
@@ -134,7 +149,7 @@ void menu::HomePage()
             std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;   // Bottom border
             std::cout << "\n\n\n";
 
-            string reg, city, dist,fname,lname;
+            std::string reg, city, dist,fname,lname;
             int bnum,fnum,id_num,id_bill,m_bill,y_bill,mconsumption,minjection;
             
             switch (i)
@@ -179,8 +194,9 @@ void menu::HomePage()
                      << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
                 std::cout << "\t\t\t\t";
                 std::cin >> id_num;
-
-                ///////////////insertNewCustomer(Algeria,fname,lname,bnum,fnum,reg,city,dist,id_num,);
+                 
+                
+                insertNewCustomer(Algeria,fname,lname,bnum,fnum,reg,city,dist,id_num);
                 std::cout << endl;
                 std::cout << "\t\t"
                      << "^" << setfill(' ') << setw(width - 20) << "Custumer added successfully" << setw(19) << "^" << endl;

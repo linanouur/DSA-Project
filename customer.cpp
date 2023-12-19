@@ -1,11 +1,11 @@
 #ifndef CUSTOMER_CPP
 #define CUSTOMER_CPP
-#include<iostream>
+#include <iostream>
 #include<string>
 #include"customer.h"
 #include"calendar.cpp"
-#include "bills.cpp" 
-#include "bills.h"
+#include"bills.cpp"
+#include"bills.h"
 #include <fstream>
 #include <sstream>
 #include <vector> 

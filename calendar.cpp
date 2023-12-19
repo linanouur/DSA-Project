@@ -2,8 +2,10 @@
 #define CALENDAR_H
  #include <iostream>
 #include <string>
-#include "bills.cpp"
+#include"bills.cpp"
+
 using namespace std;
+
 
 class Months
 {
@@ -30,13 +32,16 @@ public:
 
 
 class Year
-{ public: 
-     Year() { }
+{ 
+    public: 
+     
     Months *yearMonths;
     int year;
     int YearlyTotal = 0;
     int YearlyCredit = 0;
     int payment = YearlyTotal - YearlyCredit;
+
+    Year() { }
     Year(int num)
     {
         year = num;
@@ -80,7 +85,7 @@ class Years
         years[hash(numYear)] = Year(numYear);
     }
 
-    Year &getYear(int year)
+    Year & getYear(int year)
     {
         return years[hash(year)];
     }

@@ -1,14 +1,19 @@
 #ifndef REGION_H
 #define REGION_H
 
+#include<iostream>
+#include<string>
+#include<string>
 #include"City.h"
 #include"District.h"
 #include"customers.h"
-#include<iostream>
-#include<string>
 
+#include"customer.cpp"
 
+#include"bills.cpp"
 using namespace std;
+
+
 const int num_reg = 100;
 
 class City;

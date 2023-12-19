@@ -1,13 +1,17 @@
 #ifndef CITY_H
 #define CITY_H
+
+#include <iostream>
+#include <string>
+
 #include"District.h"
 #include"customers.h"
 #include"customers.cpp"
 
-#include <iostream>
-#include <string>
-#include"Regions.h"
-#include"District.h"
+#include"customer.cpp"
+
+#include"bills.cpp"
+
 using namespace std ; 
 const int num_cit = 100;
 

@@ -4,17 +4,21 @@
 #include <iostream>
 using namespace std;
 #include <string>
-#include "Regions.h"
-#include "City.h"
+#include <iostream>
+#include<string>
+#include"Regions.h"
+#include"City.h"
 #include "City.cpp"
-#include "District.h"
-#include "District.cpp"
-#include "customers.h"
-#include "customers.cpp"
-#include "customer.h"
+#include"District.h"
+#include"District.cpp"
+#include"customers.h"
+#include"customers.cpp"
+
 #include"customer.cpp"
-#include "calendar.cpp"
-#include "bills.h"
+#include"calendar.cpp"
+
+#include"bills.cpp"
+
 Region::Region() : RegionID(0), RegionName("")
 {
     Cities = new htCities;

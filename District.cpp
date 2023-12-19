@@ -1,12 +1,15 @@
 #ifndef DISTRICT_CPP
 #define DISTRICT_CPP
 
-#include "District.h"
-#include <iostream>
 
+#include <iostream>
 #include"District.h"
 #include"customers.h"
 #include"customers.cpp"
+
+#include"customer.cpp"
+
+#include"bills.cpp"
 using namespace std;
 #include <string>
 

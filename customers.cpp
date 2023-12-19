@@ -1,19 +1,19 @@
 #ifndef CUSTOMERS_CPP
 #define CUSTOMERS_CPP
 #include <queue>
+
 #include <iostream>
-#include <string>
-#include "customer.h" 
-#include "customers.h"
-#include "calendar.cpp"
-#include "bills.cpp"
-#include "bills.h"
-#include"userFunctions.cpp"
+#include<string>
+#include"customers.h"
+
+#include"customer.cpp"
+
+#include"bills.cpp"
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <iomanip> 
 
+#include <iomanip> 
+#include <vector>
 using namespace std ; 
 
 #include <vector> 
@@ -159,12 +159,16 @@ int Customers ::getmaxAmoutInjected()
 void Customers :: setInfoCustomerOneMonthBST( int ID, int month, int year, Bill &other)
 {
     Customer *cust = searchCustomer(ID);
+    
     cust->settotalInjection(other.MonthInjectionAmount);
     if (cust->totalInjection > getmaxAmoutInjected())
         setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
     if (cust != nullptr)
     {
-        Year &y = cust->Customeryears->getYear(year);
+        Year y = cust->Customeryears->getYear(year);
+        cout<<y.YearlyCredit;
+         cout<<y.getYearlyTotal()<<endl;
+         cout<<y.getYearlyTotal()<<endl;
         y.setYearlyTotal(other.MonthConsumptionAmount * 5);
         y.setYearlyCredit(other.MonthInjectionAmount * 3);
         Bill &m = y.yearMonths->getbill(month);

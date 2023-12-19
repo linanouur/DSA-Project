@@ -3,19 +3,19 @@
 
 #include <iostream>
 #include<string>
-#include "Regions.h"
+#include"Regions.h"
 #include"Regions.cpp"
-#include "City.h"
-#include"City.cpp"
-#include "District.h"
+#include"City.h"
+#include "City.cpp"
+#include"District.h"
 #include"District.cpp"
-#include "customers.h"
-#include "customers.cpp"
-#include "customer.h"
-#include "customer.cpp"
-#include "calendar.cpp"
-#include "bills.h"
+#include"customers.h"
+#include"customers.cpp"
+#include"customer.cpp"
+#include"calendar.cpp"
+
 #include"bills.cpp"
+
 using namespace std;
 
 int getRegionId(int CustomerID)
@@ -141,7 +141,7 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
 
 
  
- /* int main()
+ int main()
 {
     htRegions regionHashTable;
  ifstream file("RegionCityDistrict.csv"); 
@@ -177,17 +177,17 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 2); 
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5, "Adrar", "Adrar", "Adrar", 3);
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 4); 
-    setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100);  
-    getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
+    //  setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100); 
+    //getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
     cout<<getCustomerID(1010010123)<<endl;
+    cout<<getCustomerID(1010010002)<<endl;
+    cout<<getCustomerID(1010010003)<<endl;
+    cout<<getCustomerID(1010010004)<<endl;
 
    
     
-  
 
-   
 
     return 0;
-} */
-
+} 
 #endif

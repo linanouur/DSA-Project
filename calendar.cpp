@@ -2,8 +2,44 @@
 #define CALENDAR_H
  #include <iostream>
 #include <string>
-#include "bills.cpp"
+
+
 using namespace std;
+
+enum class status
+{
+    calculated,
+    NotCalculatedYet
+};
+
+class Bill
+{
+    public:
+    string monthName;
+    int numberMonth;
+    int Total = 0;
+    int MonthConsumptionAmount;
+    int MonthInjectionAmount;
+    bool MonthTransferCreditByBank;
+    int MonthlyCredit = 0;
+    status state = status ::NotCalculatedYet;
+
+    int CalculateBill(int, int);
+    
+    // Constructor
+    Bill();
+
+    void setMonth(string name, int num)
+    {
+        monthName = name;
+        numberMonth = num;
+    }
+
+    void setBillInfo(int, int );
+    void displayBill();
+    int getTotal();
+    void operator = (const Bill &other);
+};
 
 class Months
 {
@@ -30,13 +66,16 @@ public:
 
 
 class Year
-{ public: 
-     Year() { }
+{ 
+    public: 
+     
     Months *yearMonths;
     int year;
     int YearlyTotal = 0;
     int YearlyCredit = 0;
     int payment = YearlyTotal - YearlyCredit;
+
+    Year() { }
     Year(int num)
     {
         year = num;
@@ -80,7 +119,7 @@ class Years
         years[hash(numYear)] = Year(numYear);
     }
 
-    Year &getYear(int year)
+    Year & getYear(int year)
     {
         return years[hash(year)];
     }

@@ -8,9 +8,6 @@
 #include"District.h"
 #include"customers.h"
 
-#include"customer.cpp"
-
-#include"bills.cpp"
 using namespace std;
 
 

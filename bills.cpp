@@ -5,7 +5,6 @@
 #include <string>
 #include"bills.h"
 
-#include"customer.cpp"
 using namespace std;
 
 Bill ::Bill()

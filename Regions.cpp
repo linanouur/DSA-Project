@@ -13,11 +13,10 @@ using namespace std;
 #include"District.cpp"
 #include"customers.h"
 #include"customers.cpp"
-
+#include"customer.h"
 #include"customer.cpp"
 #include"calendar.cpp"
-
-#include"bills.cpp"
+#include"bills.h"
 
 Region::Region() : RegionID(0), RegionName("")
 {

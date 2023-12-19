@@ -4,21 +4,16 @@
 
 #include <iostream>
 #include<string>
-#include"customers.h"
-
-#include"customer.cpp"
-
-#include"bills.cpp"
 #include <fstream>
 #include <sstream>
-
-#include <iomanip> 
-#include <vector>
-using namespace std ; 
-
 #include <vector> 
 #include <iomanip> 
-
+#include"customer.h"
+#include"customers.h"
+#include"calendar.cpp"
+#include"bills.cpp"
+#include"bills.h"
+#include"userFunctions.cpp"
 
 using namespace std; 
  // Declaration
@@ -166,7 +161,6 @@ void Customers :: setInfoCustomerOneMonthBST( int ID, int month, int year, Bill 
     if (cust != nullptr)
     {
         Year y = cust->Customeryears->getYear(year);
-        cout<<y.YearlyCredit;
          cout<<y.getYearlyTotal()<<endl;
          cout<<y.getYearlyTotal()<<endl;
         y.setYearlyTotal(other.MonthConsumptionAmount * 5);

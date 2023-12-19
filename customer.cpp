@@ -2,12 +2,10 @@
 #define CUSTOMER_CPP
 #include <iostream>
 #include<string>
-
-#include"customers.h"
+#include"customer.h"
 #include"calendar.cpp"
 #include"bills.cpp"
-// #include"bills.h"
-// #include"bills.cpp"
+#include"bills.h"
 #include <fstream>
 #include <sstream>
 #include <vector> 

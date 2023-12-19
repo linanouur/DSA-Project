@@ -11,9 +11,10 @@
 #include"District.cpp"
 #include"customers.h"
 #include"customers.cpp"
+#include"customer.h"
 #include"customer.cpp"
 #include"calendar.cpp"
-
+#include"bills.h"
 #include"bills.cpp"
 
 using namespace std;
@@ -177,8 +178,8 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 2); 
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5, "Adrar", "Adrar", "Adrar", 3);
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 4); 
-    //  setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100); 
-    //getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
+     setInfoOneMonth(regionHashTable, 1010010123, 1, 2020, 100, 100); 
+    getOnemonthBill(regionHashTable, 1010010123, 1, 2020);  
     cout<<getCustomerID(1010010123)<<endl;
     cout<<getCustomerID(1010010002)<<endl;
     cout<<getCustomerID(1010010003)<<endl;

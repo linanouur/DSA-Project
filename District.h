@@ -4,12 +4,8 @@
 
 #include <iostream>
 #include <string>
-
-#include"customer.cpp"
 #include"customers.h"
 #include"customers.cpp"
-
-#include"bills.cpp"
 using namespace std;
 
 const int num_dis = 100;

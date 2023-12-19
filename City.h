@@ -7,10 +7,8 @@
 #include"District.h"
 #include"customers.h"
 #include"customers.cpp"
-
-#include"customer.cpp"
-
-#include"bills.cpp"
+#include"Regions.h"
+#include"District.h"
 
 using namespace std ; 
 const int num_cit = 100;

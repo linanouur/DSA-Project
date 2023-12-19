@@ -7,9 +7,6 @@
 #include"customers.h"
 #include"customers.cpp"
 
-#include"customer.cpp"
-
-#include"bills.cpp"
 using namespace std;
 #include <string>
 

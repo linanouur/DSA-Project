@@ -1,2 +1,1 @@
-#include"bills.h"
-#include"bills.cpp"
+insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);

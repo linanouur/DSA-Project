@@ -230,7 +230,7 @@ void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;
     cout << "ID Winner: " << Customers ::maxInjectorID << endl;
-    // cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
+    cout << "From: " << Customers::regionWinner << "  " << Customers::cityWinner << "  " << Customers::districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
 

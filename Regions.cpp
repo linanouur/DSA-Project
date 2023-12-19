@@ -35,7 +35,9 @@ int htRegions::hashFunctionRegion(int key)
 void htRegions::insertRegion(const Region &region)
 {
     int index = hashFunctionRegion(region.RegionID);
+    if(regions[index].RegionID==0){
     regions[index] = region;
+    }
 }
 
 Region *htRegions::getRegion(int regionId)
@@ -53,11 +55,13 @@ void htRegions::displaycities(int RegionID)
     }
 }
 
+
 void htRegions::insertCity(int regionID, const City &city)
 {
     Region *region = getRegion(regionID);
     region->Cities->insertCity(city);
 }
+
 void htRegions::insertDistrict(int regionID, int cityID, const District &district)
 {
     Region *region = getRegion(regionID);

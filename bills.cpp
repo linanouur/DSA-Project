@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <string>
-#include "bills.h"
+#include"bills.h"
+
 using namespace std;
 
 Bill ::Bill()

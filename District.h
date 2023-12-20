@@ -3,10 +3,9 @@
 
 
 #include <iostream>
-
+#include <string>
 #include"customers.h"
 #include"customers.cpp"
-#include <string>
 using namespace std;
 
 const int num_dis = 100;
@@ -21,7 +20,6 @@ public:
     District();
     District(int id, const std::string &name);
    
-
 };
 
 class htDistricts  {

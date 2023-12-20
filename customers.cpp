@@ -1,24 +1,19 @@
 #ifndef CUSTOMERS_CPP
 #define CUSTOMERS_CPP
 #include <queue>
+
 #include <iostream>
-#include <string>
-#include "customer.h" 
-#include "customers.h"
-#include "calendar.cpp"
-#include "bills.cpp"
-#include "bills.h"
-#include"userFunctions.cpp"
+#include<string>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <iomanip> 
-
-using namespace std ; 
-
 #include <vector> 
 #include <iomanip> 
-
+#include"customer.h"
+#include"customers.h"
+#include"calendar.cpp"
+#include"bills.cpp"
+#include"bills.h"
+#include"userFunctions.cpp"
 
 using namespace std; 
  // Declaration
@@ -40,7 +35,6 @@ int getPrize(Customers *BST)
 void Customers::insertNewCustomerBST(Customer *ptr) {
     rootCus = insert(rootCus, ptr);
 }
-
 
 
 Customer *Customers::insert(Customer *root, Customer *node)
@@ -159,12 +153,15 @@ int Customers ::getmaxAmoutInjected()
 void Customers :: setInfoCustomerOneMonthBST( int ID, int month, int year, Bill &other)
 {
     Customer *cust = searchCustomer(ID);
+    
     cust->settotalInjection(other.MonthInjectionAmount);
     if (cust->totalInjection > getmaxAmoutInjected())
         setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
     if (cust != nullptr)
     {
-        Year &y = cust->Customeryears->getYear(year);
+        Year y = cust->Customeryears->getYear(year);
+         cout<<y.getYearlyTotal()<<endl;
+         cout<<y.getYearlyTotal()<<endl;
         y.setYearlyTotal(other.MonthConsumptionAmount * 5);
         y.setYearlyCredit(other.MonthInjectionAmount * 3);
         Bill &m = y.yearMonths->getbill(month);
@@ -232,7 +229,7 @@ void Customers ::displayWinner()
 {
     cout << "The winner of this month is: " << endl;
     cout << "ID Winner: " << Customers ::maxInjectorID << endl;
-    // cout << "From: " << regionWinner << "  " << cityWinner << "  " << districtWinner << endl;
+    cout << "From: " << Customers::regionWinner << "  " << Customers::cityWinner << "  " << Customers::districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
 

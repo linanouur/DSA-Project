@@ -1,11 +1,16 @@
 #ifndef CUSTOMERS_H
 #define CUSTOMERS_H
 #include <iostream>
-#include <string>
-#include <vector>
-#include "calendar.cpp"
-#include "customer.h"
+#include<string>
+
+#include"bills.cpp"
+#include"customer.h"
+
 using namespace std;
+
+
+
+
 
 class Customers
 {

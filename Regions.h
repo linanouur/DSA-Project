@@ -2,7 +2,6 @@
 #define REGION_H
 
 #include"City.h" 
-#include"City.cpp"
 #include"District.h"
 #include"customers.h"
 #include<iostream>
@@ -12,6 +11,14 @@
 using namespace std;
 const int num_reg = 60;
 
+enum class value
+{
+    empty,
+    inserted
+};
+
+const int num_reg = 100;
+
 class City;
  class htCities;
 class htcities; 
@@ -20,6 +27,8 @@ public:
     int RegionID;
     string RegionName;
     htCities* Cities;  
+    value cas = value::empty;
+
     Region();
     Region(int id, const string& name);    
 };
@@ -36,6 +45,8 @@ public:
     void displayregions();  
 
    
+    void displaycities(int RegionID);
+
 };
 
 #endif 

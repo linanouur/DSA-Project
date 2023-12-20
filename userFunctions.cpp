@@ -16,6 +16,8 @@
 #include "calendar.cpp"
 #include "bills.h"
 #include "bills.cpp"
+#include "Departments.h"
+#include "Departments.cpp"
 
 using namespace std;
 
@@ -141,11 +143,11 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
 
 
 
-/*
+
 int main()
 {
     
-    htRegions regionHashTable;
+    /*htRegions regionHashTable;
     ifstream file("RegionCityDistrict.csv");  
 
     if (file.is_open())
@@ -196,8 +198,17 @@ int main()
     cout << getCustomerID(1010010004) << endl;
 
     Customers BST;
-    BST.displayWinner();
+    BST.displayWinner();*/
+
+    htCities htc;
+    City c1(1,"Adrar");
+
+    htc.insertCity(c1);
+
+    Department d1 = c1.department;
+    double budget= d1.getBudget();
+    cout << "Budget of d1: " << budget << endl;
 
     return 0;
-}*/
+}
 #endif

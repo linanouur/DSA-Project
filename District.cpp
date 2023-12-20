@@ -2,14 +2,15 @@
 #define DISTRICT_CPP
 
 
-#include <iostream>
+#include <iostream>  
+#include <string>
 #include"District.h"
 #include"customers.h"
 #include"customers.cpp"
 
-using namespace std;
-#include <string>
 
+
+using namespace std;
 
 District::District() : DistrictID(0), DistrictName("")
 {
@@ -37,7 +38,15 @@ District *htDistricts::getDistrict(int districtId)
     return &districts[index];
 }
 
-
+void htDistricts::getOnemonthBillDistrict (int districtID, int month, int year)
+{
+    District *district = getDistrict(districtID);
+    if (district != nullptr)
+    { 
+        district->BST->getOneMonthBillBST(districtID, month, year);
+      
+      }
+    }
 
 
 #endif

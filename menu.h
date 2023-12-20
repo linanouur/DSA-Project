@@ -1,13 +1,17 @@
+#ifndef MENU_H
+#define MENU_H
+
 #include<iostream>
-#include <iomanip>
-#include <string>
-#include <fstream>
+#include<iomanip>
+#include<string>
+#include<fstream>
 #include"userFunctions.cpp"
 #include"Regions.h"
 using namespace std;
 class menu
 {
 private:
+
     /* data */
 public:
     menu(/* args */);
@@ -23,8 +27,8 @@ menu::menu(/* args */)
 void menu::display()
 {
     const int width = 60; // Total width for the message box
-    const string welcomeLine1 = "WELCOME TO OUR";
-    const string welcomeLine2 = "Electricity Network Management System";
+    conststd::string welcomeLine1 = "WELCOME TO OUR";
+    conststd::string welcomeLine2 = "Electricity Network Management System";
 
     std::cout << "\n\n\n\n";
 
@@ -70,18 +74,20 @@ std::string getSentenceFromCSV(const std::string& filePath) {
         return sentence;
     }
 
-    return ""; // Return empty string if file can't be read
+    return ""; // Return emptystd::string if file can't be read
 }
 
 
 
 void menu::HomePage()
 {
+     
+    
     htRegions Algeria;
     bool conn;
     const int width=60;
     int n;
-    string password;
+   std::string password;
     do{
     // Role selection section
     
@@ -109,7 +115,7 @@ void menu::HomePage()
     std::cout<< "\n\n\n";
 
     
-    string password;
+   std::string password;
     switch (n)
     {
     case 1:
@@ -193,9 +199,16 @@ void menu::HomePage()
                 std::cout << "\t\t"
                      << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
                 std::cout << "\t\t\t\t";
+
+
                 std::cin >> id_num;
-                 
+                std::cout << "\t\t"
+                     << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
+                std::cout << "\t\t"
+                     << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                 
+                 
+                cout<<"\t\t\t\t";
                 insertNewCustomer(Algeria,fname,lname,bnum,fnum,reg,city,dist,id_num);
                 std::cout << endl;
                 std::cout << "\t\t"
@@ -236,7 +249,7 @@ void menu::HomePage()
                 std::cin >> minjection;
                 
 
-                ///////////////setInfoOneMonth(Algeria,id_bill,m_bill,y_bill,mconsumption,minjection);
+                setInfoOneMonth(Algeria,id_bill,m_bill,y_bill,mconsumption,minjection);
 
                 std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
                 break;
@@ -247,46 +260,153 @@ void menu::HomePage()
                 std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                 std::cout << "\t\t\t\t   displaying bills" << endl;
 
+                
+std::cout << "\t\t"
+          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
+std::cout << "\t\t"
+          << "^" << setfill(' ') << setw(width - 15) << "You want to display the bill for:" << setw(14) << "^" << endl;
+std::cout << "\t\t"
+          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
+std::cout << "\t\t"
+          << "^" << setfill(' ') << setw(20) << "1_ single customer" << setw(39) << "^" << endl;
+std::cout << "\t\t"
+          << "^" << setfill(' ') << setw(24) << "2_ many customers" << setw(35) << "^" << endl;
+int y;
+std::cout << "\t\t\t\t   ";
+std::cin >> y;
+switch (y)
+{
+    int S_id;
+case 1:
+    std::cout << "\t\t\t enter the customer ID please:";
+    std::cin >> S_id;
+    std::cout << "\t\t\t you want the customer's bill in: "<<endl;
+    std::cout << "\t\t"
+              << "^" << setfill(' ') << setw(20) << "1_ month" << setw(39) << "^" << endl;
+    std::cout << "\t\t"
+              << "^" << setfill(' ') << setw(24) << "2_ year" << setw(35) << "^" << endl;
+    std::cout << "\t\t"
+              << "^" << setfill(' ') << setw(20) << "3_ periode of time" << setw(39) << "^" << endl;
+    int t;
+    std::cout << "\t\t\t";
+    std::cin >> t;
+    switch (t)
+    {
+    case 1:
+        std::cout << "\t\t\t enter the month" << endl;
+        int tm;
+        std::cout << "\t\t\t";
+        std::cin >> tm;
+        std::cout << "\t\t\t enter the year" << endl;
+        int ty;
+        std::cout << "\t\t\t";
+        std::cin >> ty;
+        // getOnemonthBill(Algeria, S_id, tm, ty);
+        break;
+    case 2:
+        std::cout << "\t\t\t enter the year" << endl;
+        int ty2;
+        std::cout << "\t\t\t";
+        std::cin >> ty2;
+        // getOneYearBill(Algeria, S_id, ty); 
+        break;
+
+    case 3:
+        std::cout << "\t\t\t enter the start month" << endl;
+        int sm;
+        std::cout << "\t\t\t";
+        std::cin >> sm;
+        std::cout << "\t\t\t enter the start year" << endl;
+        int sy;
+        std::cout << "\t\t\t";
+        std::cin >> sy;
+        std::cout << "\t\t\t enter the end month" << endl;
+        int em;
+        std::cout << "\t\t\t";
+        std::cin >> em;
+        std::cout << "\t\t\t enter the end year" << endl;
+        int ey;
+        std::cout << "\t\t\t";
+        std::cin >> ey;
+        // getPeriodBill(Algeria,S_id, sm, em, sy, ey);
+        break;
+
+    default:
+        break;
+    }
+
+    break;
+
+
+
+
+case 2:
+
                 std::cout << "\t\t"
                      << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                 std::cout << "\t\t"
-                     << "^" << setfill(' ') << setw(width - 15) << "Choose how you want to display the bill" << setw(14) << "^" << endl;
+                     << "^" << setfill(' ') << setw(width - 15) << "you want customers' bills of: " << setw(14) << "^" << endl;
                 std::cout << "\t\t"
                      << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                 std::cout << "\t\t"
-                     << "^" << setfill(' ') << setw(20) << "1_ By ID" << setw(39) << "^" << endl;
+                     << "^" << setfill(' ') << setw(24) << "1_ Region" << setw(35) << "^" << endl;
                 std::cout << "\t\t"
-                     << "^" << setfill(' ') << setw(24) << "2_ By Region" << setw(35) << "^" << endl;
+                     << "^" << setfill(' ') << setw(22) << "2_ City" << setw(37) << "^" << endl;
                 std::cout << "\t\t"
-                     << "^" << setfill(' ') << setw(22) << "3_ By City" << setw(37) << "^" << endl;
+                     << "^" << setfill(' ') << setw(26) << "3_ District" << setw(33) << "^" << endl;
                 std::cout << "\t\t"
-                     << "^" << setfill(' ') << setw(26) << "4_ By District" << setw(33) << "^" << endl;
-                std::cout << "\t\t"
-                     << "^" << setfill(' ') << setw(25) << "5_ By Country" << setw(34) << "^" << endl;
+                     << "^" << setfill(' ') << setw(25) << "4_ Country" << setw(34) << "^" << endl;
                 int x;
                 std::cout << "\t\t\t\t   ";
                 std::cin >> x;
                 switch (x)
                 {
                 case 1:
-                    /* function to display by id */
+                    
+        std::cout << "\t\t\t enter district" << endl;
+       std::string dist1;
+        std::cout << "\t\t\t";
+        std::cin >> dist1;
+        std::cout << "\t\t\t enter city" << endl;
+       std::string ct1;
+        std::cout << "\t\t\t";
+        std::cin >> ct1;
+        std::cout << "\t\t\t enter region" << endl;
+        int rg1;
+        std::cout << "\t\t\t";
+        std::cin >>rg1;
+        // displayByDistrict(Algeria,rg, ct, dist);
                     break;
                 case 2:
-                    /* function to display by region */
+                    std::cout << "\t\t\t enter city" << endl;
+       std::string ct2;
+        std::cout << "\t\t\t";
+        std::cin >> ct2;
+        std::cout << "\t\t\t enter region" << endl;
+        int rg2;
+        std::cout << "\t\t\t";
+        std::cin >>rg2;
+        // displayByCity(Algeria,rg, ct);
                     break;
                 case 3:
-                    /* function to display by city */
+                    std::cout << "\t\t\t enter region" << endl;
+        int rg3;
+        std::cout << "\t\t\t";
+        std::cin >>rg3;
+        // displayByRegion(Algeria,rg);
                     break;
                 case 4:
-                    /* function to display by district */
+                    // displayByRegion(Algeria);
                     break;
-                case 5:
-                    /* function to display by country */
-                    break;
+                
 
                 default:
                     break;
                 }
+
+break;
+}
+
 
                 std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
                 break;
@@ -424,3 +544,4 @@ void menu::HomePage()
 menu::~menu()
 {
 }
+#endif

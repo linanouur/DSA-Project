@@ -12,16 +12,13 @@ using namespace chrono;
 
 void DepartmentHeap::maxHeapifyUp(int index)
 {
-    while (index > 0)
-    {
-        int parentIndex = (index - 1) / 2;
-        if (departments[maxHeap[index]].totalAmountPaid > departments[maxHeap[parentIndex]].totalAmountPaid)
-        {
+    while (index>0) {
+        int parentIndex = (index-1)/2;
+        if (departments[maxHeap[index]].totalAmountPaid > departments[maxHeap[parentIndex]].totalAmountPaid) {
             swap(maxHeap[index], maxHeap[parentIndex]);
             index = parentIndex;
         }
-        else
-        {
+        else {
             break;
         }
     }
@@ -29,8 +26,8 @@ void DepartmentHeap::maxHeapifyUp(int index)
 
 void DepartmentHeap::maxHeapifyDown(int index)
 {
-    int leftChild = 2 * index + 1;
-    int rightChild = 2 * index + 2;
+    int leftChild = 2*index +1;
+    int rightChild = 2*index +2;
     int largest = index;
 
     if (leftChild < maxHeap.size() && departments[maxHeap[leftChild]].totalAmountPaid > departments[maxHeap[largest]].totalAmountPaid)
@@ -52,9 +49,9 @@ void DepartmentHeap::maxHeapifyDown(int index)
 
 void DepartmentHeap::minHeapifyUp(int index)
 {
-    while (index > 0)
+    while (index>0)
     {
-        int parentIndex = (index - 1) / 2;
+        int parentIndex = (index-1)/2;
         if (departments[minHeap[index]].totalAmountPaid < departments[minHeap[parentIndex]].totalAmountPaid)
         {
             swap(minHeap[index], minHeap[parentIndex]);
@@ -69,8 +66,8 @@ void DepartmentHeap::minHeapifyUp(int index)
 
 void DepartmentHeap::minHeapifyDown(int index)
 {
-    int leftChild = 2 * index + 1;
-    int rightChild = 2 * index + 2;
+    int leftChild = 2*index + 1;
+    int rightChild = 2*index + 2;
     int smallest = index;
 
     if (leftChild < minHeap.size() && departments[minHeap[leftChild]].totalAmountPaid < departments[minHeap[smallest]].totalAmountPaid)
@@ -93,47 +90,47 @@ void DepartmentHeap::minHeapifyDown(int index)
 void DepartmentHeap::insertDepartment(const Department &department)
 {
     departments.push_back(department);
-    maxHeap.push_back(departments.size() - 1);
-    minHeap.push_back(departments.size() - 1);
-    maxHeapifyUp(maxHeap.size() - 1);
-    minHeapifyUp(minHeap.size() - 1);
-    maxHeapifyDown(maxHeap.size() - 1);
-    minHeapifyDown(minHeap.size() - 1);
+    maxHeap.push_back(departments.size()-1);
+    minHeap.push_back(departments.size()-1);
+    maxHeapifyUp(maxHeap.size()-1);
+    minHeapifyUp(minHeap.size()-1);
+    maxHeapifyDown(maxHeap.size()-1);
+    minHeapifyDown(minHeap.size()-1);
 }
 
 void DepartmentHeap::updateBudget()
 {
     auto start = high_resolution_clock::now();
 
-    departments[maxHeap[0]].budget *= 1.15;
-    for (int i = 1; i < 10; ++i)
+    departments[maxHeap[0]].budget *=1.15;
+    for (int i=1; i<10; i++)
     {
-        departments[maxHeap[i]].budget *= 1.10;
+        departments[maxHeap[i]].budget *=1.10;
     }
 
     departments[minHeap[0]].budget *= 0.85;
-    for (int i = 1; i < 10; ++i)
+    for (int i=1; i<10; i++)
     {
-        departments[minHeap[i]].budget *= 0.90;
+        departments[minHeap[i]].budget *=0.90;
     }
 
     make_heap(maxHeap.begin(), maxHeap.end(), [&](const int &a, const int &b)
-              { return departments[a].totalAmountPaid < departments[b].totalAmountPaid; });
+        { return departments[a].totalAmountPaid < departments[b].totalAmountPaid; });
 
     make_heap(minHeap.begin(), minHeap.end(), [&](const int &a, const int &b)
-              { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
+        { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
 
     auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
+    auto duration = duration_cast<microseconds>(stop-start);
     cout << "\n\tTime taken by function: " << duration.count() << " microseconds" << endl;
 }
 
-void DepartmentHeap::printHeap(const vector<int> &heap) const
+void DepartmentHeap::printHeap(const vector<int>&heap) const
 {
     cout << "Department\t"
          << "Budget\t"
          << "Profit" << endl;
-    for (const auto &departmentIndex : heap)
+    for (const auto &departmentIndex: heap)
     {
         const auto &department = departments[departmentIndex];
         cout << department.city_id << "\t\t" << department.budget << " dzd\t" << department.totalAmountPaid << " dzd\n";

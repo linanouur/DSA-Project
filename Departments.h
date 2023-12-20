@@ -31,7 +31,6 @@ private:
     void minHeapifyDown(int index);
 
 public:
-    void insert(int);
     void insertDepartment(const Department &department);
     void updateBudget();
     void printHeap(const vector<int> &heap) const;

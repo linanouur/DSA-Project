@@ -14,7 +14,7 @@ enum class status
 class Bill
 {
     public:
-    string monthName;
+    std::string monthName;
     int numberMonth;
     int Total = 0;
     int MonthConsumptionAmount;

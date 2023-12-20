@@ -1,6 +1,9 @@
 #include"weatherHashTable.h"
 
-
+weatherHashTable::weatherHashTable(){
+    startYear=2022;
+    addYear(2022+1);
+}
 weatherHashTable::weatherHashTable(int sy,int ny){
     startYear=sy;
     addYear(sy+ny);//resizing the table according to number of years

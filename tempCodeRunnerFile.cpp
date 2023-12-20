@@ -1,4 +1,4 @@
-  ifstream file("RegionCityDistrict.csv");  
+ /* ifstream file("RegionCityDistrict.csv");  
 
     if (file.is_open())
     {
@@ -28,4 +28,5 @@
     else
     {
         cout << "Unable to open file." << endl;
-    }
+    } 
+    */

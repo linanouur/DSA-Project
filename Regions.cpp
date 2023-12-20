@@ -2,22 +2,20 @@
 #define REGIONS_CPP
 
  #include <iostream>
-using namespace std;
+
 #include <string>
-#include <iostream>
-#include<string>
 #include"Regions.h"
-#include"City.h"
-// #include "City.cpp"
+#include"City.h" 
+#include "City.cpp"
 #include"District.h"
-// #include"District.cpp"
+#include"District.cpp"
 #include"customers.h"
-// #include"customers.cpp"
+#include"customers.cpp"
 #include"customer.h"
-// #include"customer.cpp"
+#include"customer.cpp"
 #include"calendar.cpp"
 #include"bills.h"
-
+using namespace std;
  
 
 Region::Region() : RegionID(0), RegionName("")
@@ -81,9 +79,18 @@ void htRegions::insertDistrict(int regionID, int cityID, const District &distric
 { 
     for ( int i = 0 ; i < num_reg ; i++){
         if(regions[i].RegionID != 0){
-            cout <<"name of region " <<regions[i].RegionName <<endl; }  } 
+            cout<<"name of region " <<regions[i].RegionName <<endl; }  } 
 }  
-
+void htRegions::getOnemonthBillRegion(int regionID, int month, int year)
+{
+    Region *region = getRegion(regionID); 
+    for ( int i=1; i< num_cit ; i++){
+        if(region->Cities->cities[i].CityID != 0){
+            region->Cities->getOnemonthBillCity(region->Cities->cities[i].CityID, month, year);
+        }
+    }
+ 
+}
  
 
 #endif

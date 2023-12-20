@@ -37,7 +37,6 @@ void Customers::insertNewCustomerBST(Customer *ptr) {
 }
 
 
-
 Customer *Customers::insert(Customer *root, Customer *node)
 {
     if (root == nullptr)

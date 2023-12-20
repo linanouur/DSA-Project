@@ -6,12 +6,18 @@
 
 #include"District.h"
 #include"customers.h"
-#include"customers.cpp"
-#include"Regions.h"
+// #include"customers.cpp"
 #include"District.h"
 
 using namespace std ; 
 const int num_cit = 100;
+
+
+enum class valueC
+{
+    empty,
+    inserted
+};
 
 class htDistricts;
 // class Region;
@@ -21,6 +27,7 @@ public:
     int CityID;
     string CityName; 
     htDistricts *Districts;  
+    valueC cas = valueC::empty;
     City();
     City(int id, const string& name); 
  

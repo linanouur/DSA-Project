@@ -27,10 +27,12 @@ int htCities::hashFunctionCity(int key)
 void htCities::insertCity(const City &city)
 {
     int index = hashFunctionCity(city.CityID);
-    if(cities[index].CityID==0){
+    if(cities[index].cas==valueC::empty){
     cities[index].CityID = city.CityID;
     cities[index].CityName = city.CityName;
+    cities[index].cas==valueC::inserted;
     }
+    else return;
 }
 
 

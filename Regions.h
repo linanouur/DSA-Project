@@ -3,24 +3,28 @@
 
 #include<iostream>
 #include<string>
-#include<string>
 #include"City.h"
 #include"District.h"
 #include"customers.h"
 
 using namespace std;
 
+enum class value
+{
+    empty,
+    inserted
+};
 
 const int num_reg = 100;
 
-class City;
- class htCities;
-class htcities; 
+
 class Region {
 public:
     int RegionID;
     string RegionName;
     htCities* Cities;  
+    value cas = value::empty;
+
     Region();
     Region(int id, const string& name);    
 };

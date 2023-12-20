@@ -8,15 +8,17 @@ using namespace std;
 #include<string>
 #include"Regions.h"
 #include"City.h"
-#include "City.cpp"
+// #include "City.cpp"
 #include"District.h"
-#include"District.cpp"
+// #include"District.cpp"
 #include"customers.h"
-#include"customers.cpp"
+// #include"customers.cpp"
 #include"customer.h"
-#include"customer.cpp"
+// #include"customer.cpp"
 #include"calendar.cpp"
 #include"bills.h"
+
+ 
 
 Region::Region() : RegionID(0), RegionName("")
 {
@@ -35,9 +37,11 @@ int htRegions::hashFunctionRegion(int key)
 void htRegions::insertRegion(const Region &region)
 {
     int index = hashFunctionRegion(region.RegionID);
-    if(regions[index].RegionID==0){
+    if( regions[index].cas == value::empty){
     regions[index] = region;
+    regions[index].cas = value ::inserted;
     }
+    else return;
 }
 
 Region *htRegions::getRegion(int regionId)

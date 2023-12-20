@@ -1,7 +1,8 @@
 #ifndef REGION_H
 #define REGION_H
 
-#include"City.h"
+#include"City.h" 
+#include"City.cpp"
 #include"District.h"
 #include"customers.h"
 #include<iostream>
@@ -9,7 +10,7 @@
 
 
 using namespace std;
-const int num_reg = 100;
+const int num_reg = 60;
 
 class City;
  class htCities;
@@ -31,7 +32,10 @@ public:
     void insertCity(int regionID , const City &city);
     void insertDistrict(int regionID , int cityID , const District &district);
     Region* getRegion(int RegionID);
-    void displaycities(int RegionID);
+    void displaycities(int RegionID); 
+    void displayregions();  
+
+   
 };
 
 #endif 

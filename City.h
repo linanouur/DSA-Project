@@ -1,36 +1,42 @@
 #ifndef CITY_H
 #define CITY_H
-#include"District.h"
+
 #include"customers.h"
 #include"customers.cpp"
 
 #include <iostream>
 #include <string>
 #include"Regions.h"
-#include"District.h"
-using namespace std ; 
-const int num_cit = 100;
+#include"District.h" 
 
-class htDistricts;
-// class Region;
+using namespace std ; 
+const int num_cit = 600;
+
+class htDistricts; 
+//class Region;
 
 class City {
-public:
-    int CityID;
-    string CityName; 
-    htDistricts *Districts;  
+public: 
     City();
     City(int id, const string& name); 
+    int CityID;
+    string CityName; 
+    htDistricts *Districts;   
+   
+    
  
 };
 
 class htCities {
-public:
+public: 
+
     City cities[num_cit];
     int hashFunctionCity(int key); 
     void insertCity(const City& city);
    City * getCity(int cityId);
-    void displaycities();
+    void displaycities();  
+    
+   
 };
 
 #endif 

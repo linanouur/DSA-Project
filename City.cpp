@@ -21,8 +21,11 @@ int htCities::hashFunctionCity(int key) {
 
 
 void htCities::insertCity(const City& city) {
-    int index = hashFunctionCity(city.CityID);
-    cities[index] = city;
+    int index = hashFunctionCity(city.CityID); 
+    if(cities[index].CityID == 0) 
+    {
+    cities[index] = city; 
+    }
 
 } 
 
@@ -34,11 +37,17 @@ City* htCities::getCity(int cityId) {
 
   void htCities::displaycities(){ 
     for ( int i = 0 ; i < num_cit ; i++){
-        if (cities[i].CityID != 0){
-            cout << cities[i].CityName <<cities[i].CityID << endl ;
+        if(cities[i].CityID != 0){
+            cout <<"name of city " <<cities[i].CityName <<endl;
+            cout<<"id of city is "<<cities[i].CityID <<endl;  
         }
+        
     }
- } 
+ }   
+ 
+    // other city data...
+
+
 
 
 #endif

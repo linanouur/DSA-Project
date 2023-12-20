@@ -21,7 +21,7 @@ public:
     District();
     District(int id, const std::string &name);
    
-    Customers *CustomerBST; 
+
 };
 
 class htDistricts  {

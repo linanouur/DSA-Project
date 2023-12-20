@@ -1,7 +1,7 @@
 #ifndef REGIONS_CPP
 #define REGIONS_CPP
 
-#include <iostream>
+ #include <iostream>
 using namespace std;
 #include <string>
 #include "Regions.h"
@@ -31,8 +31,12 @@ int htRegions::hashFunctionRegion(int key)
 
 void htRegions::insertRegion(const Region &region)
 {
-    int index = hashFunctionRegion(region.RegionID);
+    int index = hashFunctionRegion(region.RegionID); 
+    if(regions[index].RegionID == 0) 
+    { 
     regions[index] = region;
+    }
+   
 }
 
 Region *htRegions::getRegion(int regionId)
@@ -43,7 +47,8 @@ Region *htRegions::getRegion(int regionId)
 
 void htRegions::displaycities(int RegionID)
 {
-    Region *region = getRegion(RegionID);
+    Region *region = getRegion(RegionID); 
+    cout<<"name of region is "<<region->RegionName <<endl;
     if (region != nullptr)
     {
         region->Cities->displaycities();
@@ -53,7 +58,9 @@ void htRegions::displaycities(int RegionID)
 void htRegions::insertCity(int regionID, const City &city)
 {
     Region *region = getRegion(regionID);
-    region->Cities->insertCity(city);
+    region->Cities->insertCity(city);  
+   
+   
 }
 void htRegions::insertDistrict(int regionID, int cityID, const District &district)
 {
@@ -61,5 +68,15 @@ void htRegions::insertDistrict(int regionID, int cityID, const District &distric
     City *city = region->Cities->getCity(cityID);
     city->Districts->insertDistrict(district);
 }
+   
+
+ void htRegions :: displayregions()  
+{ 
+    for ( int i = 0 ; i < num_reg ; i++){
+        if(regions[i].RegionID != 0){
+            cout <<"name of region " <<regions[i].RegionName <<endl; }  } 
+}  
+
+ 
 
 #endif

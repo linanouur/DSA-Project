@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 #include "Departments.h"
+#include "City.h"
+#include "City.cpp"
 #include <chrono>
 using namespace std;
 using namespace chrono;
@@ -181,9 +183,9 @@ double Department:: getTotalAmountPaid() const
     return this->totalAmountPaid;
 }
 
-int main()
+/*int main()
 {
-    DepartmentHeap dh;
+    /*DepartmentHeap dh;
     Department d1(1, 100000.00, 111);
     Department d2(2, 100000.00, 222);
     Department d3(3, 100000.00, 333);
@@ -249,5 +251,5 @@ int main()
     dh.getBest10();
     dh.getWorst10();
     return 0;
-}
+}*/
 #endif

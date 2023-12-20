@@ -1,4 +1,4 @@
-#ifndef NEWRCD_CPP 
+ /*#ifndef NEWRCD_CPP 
 #define NEWRCD_CPP
  
  #include <iostream>
@@ -223,6 +223,7 @@ int main() {
  int number=12222;
     std::cout << "Number with leading zero: " <<setw(5)<< setfill('0') << number << std::endl;
     return 0;
-} */ 
-#endif 
+} 
+#endif  
+*/
 

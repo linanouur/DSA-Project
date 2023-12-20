@@ -1,15 +1,21 @@
 #ifndef REGION_H
 #define REGION_H
 
-#include<iostream>
-#include<string>
-#include<string>
-#include"City.h"
+#include"City.h" 
 #include"District.h"
 #include"customers.h"
+#include<iostream>
+#include<string>
+
 
 using namespace std;
+const int num_reg = 60;
 
+enum class value
+{
+    empty,
+    inserted
+};
 
 const int num_reg = 100;
 
@@ -21,6 +27,8 @@ public:
     int RegionID;
     string RegionName;
     htCities* Cities;  
+    value cas = value::empty;
+
     Region();
     Region(int id, const string& name);    
 };
@@ -33,6 +41,10 @@ public:
     void insertCity(int regionID , const City &city);
     void insertDistrict(int regionID , int cityID , const District &district);
     Region* getRegion(int RegionID);
+    void displaycities(int RegionID); 
+    void displayregions();  
+
+   
     void displaycities(int RegionID);
 
 };

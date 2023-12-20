@@ -10,14 +10,6 @@
 using namespace std;
 
 #include <string>
-City::City() : CityID(0), CityName("")
-{
-    Districts = new htDistricts;
-}
-City::City(int id, const std::string &name) : CityID(id), CityName(name)
-{
-    Districts = new htDistricts;
-}
 
 int htCities::hashFunctionCity(int key)
 {
@@ -27,10 +19,13 @@ int htCities::hashFunctionCity(int key)
 void htCities::insertCity(const City &city)
 {
     int index = hashFunctionCity(city.CityID);
-    if(cities[index].CityID==0){
+    if(cities[index].cas==valueC::empty){
     cities[index].CityID = city.CityID;
     cities[index].CityName = city.CityName;
+    cities[index].cas==valueC::inserted;
+    dh.insertDepartment(city.department);
     }
+    else return;
 }
 
 

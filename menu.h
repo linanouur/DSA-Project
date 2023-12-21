@@ -5,8 +5,9 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "userFunctions.cpp"
-#include "Regions.h"
+#include "weatherHashTable.h"
+// #include "userFunctions.cpp"
+// #include "Regions.h"
 using namespace std;
 class menu
 {
@@ -82,7 +83,8 @@ std::string getSentenceFromCSV(const std::string &filePath)
 void menu::HomePage()
 {
 
-     htRegions Algeria;
+     // htRegions Algeria;
+     weatherHashTable wht;
      bool conn;
      const int width = 60;
      int n;
@@ -91,6 +93,7 @@ void menu::HomePage()
      {
           // Role selection section
 
+          std::cout << "\n";
           std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
           std::cout << "\t\t"
                     << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
@@ -122,7 +125,7 @@ void menu::HomePage()
                std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 10) << "Welcome admin please enter the password" << setw(9) << "^" << endl;
-               std::cout << "\t\t\t";
+               std::cout << "\t\t\t\t";
                std::cin >> password;
                if (password == getSentenceFromCSV("password.csv"))
                {
@@ -131,7 +134,10 @@ void menu::HomePage()
                else
                {
                     conn = false;
-                    cout << "incorrect password!" << endl;
+                    cout << "\t\t\t\t incorrect password!\n"
+                         << endl;
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    cout << "\n\n";
                }
                while (conn)
                {
@@ -164,7 +170,8 @@ void menu::HomePage()
                     std::cout << "\n\n\n";
 
                     std::string reg, city, dist, fname, lname;
-                    int bnum, fnum, id_num, id_bill, m_bill, y_bill, mconsumption, minjection;
+                    int bnum, fnum, id_num, m_bill, y_bill, mconsumption, minjection;
+                    long int id_bill;
 
                     switch (i)
                     {
@@ -199,22 +206,40 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 22) << "Enter Bankaccount number" << setw(21) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> bnum;
+                         if (bnum < 0)
+                         {
+                              std::cout << "\t\t\t Invalid bank account number entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 16) << "Enter number of family members" << setw(15) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> fnum;
+                         if (fnum < 0)
+                         {
+                              std::cout << "\t\t\t Invalid family members number entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
                          std::cout << "\t\t\t\t";
 
                          std::cin >> id_num;
+                         if (id_num > 9999 || id_num < 0)
+                         {
+                              std::cout << "\t\t\t Invalid ID entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
 
                          cout << "\t\t\t\t";
-                         insertNewCustomer(Algeria, fname, lname, bnum, fnum, reg, city, dist, id_num);
+                         // insertNewCustomer(Algeria, fname, lname, bnum, fnum, reg, city, dist, id_num);
                          std::cout << endl;
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 20) << "Custumer added successfully" << setw(19) << "^" << endl;
@@ -234,24 +259,56 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 20) << "Enter the ID of the customer" << setw(19) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> id_bill;
+                         if (id_bill > 99999999999 || id_bill < 0)
+                         {
+                              std::cout << "\t\t\t Invalid ID entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
+
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 37) << "Enter month" << setw(36) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> m_bill;
+                         if (m_bill < 0 || m_bill > 12)
+                         {
+                              std::cout << "\t\t\t Invalid month entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 38) << "Enter year" << setw(37) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> y_bill;
+                         if (y_bill > 2072 || y_bill < 2022)
+                         {
+                              std::cout << "\t\t\t Invalid year entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
+
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 31) << "Enter consumption" << setw(30) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> mconsumption;
+                         if (mconsumption < 0)
+                         {
+                              std::cout << "\t\t\t Invalid consumption entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 33) << "Enter injection" << setw(32) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> minjection;
+                         if (minjection < 0)
+                         {
+                              std::cout << "\t\t\t Invalid injection entered!!\n\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
 
-                         setInfoOneMonth(Algeria, id_bill, m_bill, y_bill, mconsumption, minjection);
+                         // setInfoOneMonth(Algeria, id_bill, m_bill, y_bill, mconsumption, minjection);
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
                          break;
@@ -267,7 +324,7 @@ void menu::HomePage()
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          std::cout << "\t\t"
-                                   << "^" << setfill(' ') << setw(20) << "1_ single customer" << setw(39) << "^" << endl;
+                                   << "^" << setfill(' ') << setw(25) << "1_ single customer" << setw(34) << "^" << endl;
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(24) << "2_ many customers" << setw(35) << "^" << endl;
                          int y;
@@ -275,58 +332,112 @@ void menu::HomePage()
                          std::cin >> y;
                          switch (y)
                          {
-                              int S_id;
+                              long int S_id;
                          case 1:
-                              std::cout << "\t\t\t enter the customer ID please:";
+                              std::cout << "\t\t\t enter the customer ID please:\n";
+                              std::cout << "\t\t\t\t   ";
                               std::cin >> S_id;
-                              std::cout << "\t\t\t you want the customer's bill in: " << endl;
+                              if (S_id > 99999999999 || id_bill < 0)
+                              {
+                                   std::cout << "\t\t\t Invalid ID entered!!\n\n";
+                                   std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                   break;
+                              }
+
+                              std::cout << "\n\n";
+                              std::cout << "\t\t\t you want the customer's bill in: \n"
+                                        << endl;
                               std::cout << "\t\t"
                                         << "^" << setfill(' ') << setw(20) << "1_ month" << setw(39) << "^" << endl;
                               std::cout << "\t\t"
-                                        << "^" << setfill(' ') << setw(24) << "2_ year" << setw(35) << "^" << endl;
+                                        << "^" << setfill(' ') << setw(19) << "2_ year" << setw(40) << "^" << endl;
                               std::cout << "\t\t"
-                                        << "^" << setfill(' ') << setw(20) << "3_ periode of time" << setw(39) << "^" << endl;
+                                        << "^" << setfill(' ') << setw(30) << "3_ periode of time" << setw(29) << "^" << endl;
                               int t;
-                              std::cout << "\t\t\t";
+                              std::cout << "\t\t\t\t";
                               std::cin >> t;
                               switch (t)
                               {
                               case 1:
                                    std::cout << "\t\t\t enter the month" << endl;
                                    int tm;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> tm;
+                                   if (tm > 12 || tm < 0)
+                                   {
+                                        std::cout << "\t\t\t Invalid month entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
                                    std::cout << "\t\t\t enter the year" << endl;
                                    int ty;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> ty;
+                                   if (ty > 2072 || ty < 2022)
+                                   {
+                                        std::cout << "\t\t\t Invalid year entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
                                    // getOnemonthBill(Algeria, S_id, tm, ty);
                                    break;
                               case 2:
                                    std::cout << "\t\t\t enter the year" << endl;
                                    int ty2;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> ty2;
+                                   if (ty2 > 2072 || ty2 < 2022)
+                                   {
+                                        std::cout << "\t\t\t Invalid year entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
                                    // getOneYearBill(Algeria, S_id, ty);
                                    break;
 
                               case 3:
                                    std::cout << "\t\t\t enter the start month" << endl;
                                    int sm;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> sm;
+                                   if (sm < 0 || sm > 12)
+                                   {
+                                        std::cout << "\t\t\t Invalid month entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
+
                                    std::cout << "\t\t\t enter the start year" << endl;
                                    int sy;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> sy;
+                                   if (sy > 2052 || sy < 2022)
+                                   {
+                                        std::cout << "\t\t\t Invalid year entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
+
                                    std::cout << "\t\t\t enter the end month" << endl;
                                    int em;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> em;
+                                   if (em < 0 || em > 12)
+                                   {
+                                        std::cout << "\t\t\t Invalid month entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
                                    std::cout << "\t\t\t enter the end year" << endl;
                                    int ey;
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> ey;
+                                   if (ey > 2052 || ey < 2022)
+                                   {
+                                        std::cout << "\t\t\t Invalid year entered!!\n\n";
+                                        std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                        break;
+                                   }
                                    // getPeriodBill(Algeria,S_id, sm, em, sy, ey);
                                    break;
 
@@ -341,7 +452,7 @@ void menu::HomePage()
                               std::cout << "\t\t"
                                         << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                               std::cout << "\t\t"
-                                        << "^" << setfill(' ') << setw(width - 15) << "you want customers' bills of: " << setw(14) << "^" << endl;
+                                        << "^" << setfill(' ') << setw(width - 15) << "Display bills according to: " << setw(14) << "^" << endl;
                               std::cout << "\t\t"
                                         << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                               std::cout << "\t\t"
@@ -356,40 +467,40 @@ void menu::HomePage()
                               std::cout << "\t\t\t\t   ";
                               std::cin >> x;
 
-                              std::string dist1, ct1, rg1,rg2,ct2,rg3;
+                              std::string dist1, ct1, rg1, rg2, ct2, rg3;
                               switch (x)
                               {
                               case 1:
 
                                    std::cout << "\t\t\t enter district" << endl;
 
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> dist1;
                                    std::cout << "\t\t\t enter city" << endl;
 
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> ct1;
                                    std::cout << "\t\t\t enter region" << endl;
 
-                                   std::cout << "\t\t\t";
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> rg1;
                                    // displayByDistrict(Algeria,rg, ct, dist);
                                    break;
                               case 2:
                                    std::cout << "\t\t\t enter city" << endl;
-                                   
-                                   std::cout << "\t\t\t";
+
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> ct2;
                                    std::cout << "\t\t\t enter region" << endl;
-                                   
-                                   std::cout << "\t\t\t";
+
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> rg2;
                                    // displayByCity(Algeria,rg, ct);
                                    break;
                               case 3:
                                    std::cout << "\t\t\t enter region" << endl;
-                                   
-                                   std::cout << "\t\t\t";
+
+                                   std::cout << "\t\t\t\t";
                                    std::cin >> rg3;
                                    // displayByRegion(Algeria,rg);
                                    break;
@@ -420,18 +531,37 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 43) << "day" << setw(42) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> dw;
+                         if (dw < 0 || dw > 31)
+                         {
+                              std::cout << "\t\t\t Invalid day entered!!\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
+
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 41) << "month" << setw(40) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> mw;
+                         if (mw > 12 || mw < 0)
+                         {
+                              std::cout << "\t\t\t Invalid month entered!!\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
+
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 42) << "year" << setw(41) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> yw;
-                         // std::cout << "\t\t"
-                         // << "^" << setfill(' ') << setw(width - 20) << printWeather(dw,mw,yw) << setw(39) << "^" << endl;
-
+                         if (yw > 2052 || yw < 2022)
+                         {
+                              std::cout << "\t\t\t Invalid year entered!!\n";
+                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                              break;
+                         }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
+
+                         wht.printWeatherInfo(yw, mw, dw);
 
                          break;
 
@@ -442,7 +572,8 @@ void menu::HomePage()
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         // listingOfDepartements();
+                         // printBestDepartments();
+                         cout << "\t\t\t printBestDepartments();" << endl;
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
@@ -465,21 +596,29 @@ void menu::HomePage()
                std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 10) << "Welcome customer please enter your ID" << setw(9) << "^" << endl;
-               int ID;
+               long int ID;
                std::cout << "\t\t\t\t\t";
                std::cin >> ID;
+               if (ID > 99999999999 || ID < 0)
+               {
+                    std::cout << "\t\t\t Invalid ID entered!!\n";
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    break;
+               }
+
                // if id exists
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                std::cout << "\t\t"
-                         << "^" << setfill(' ') << setw(width - 15) << "Choose the operation you want to do" << setw(14) << "^" << endl;
+                         << "^" << setfill(' ') << setw(width - 15) << "How would you like to display the bill?" << setw(14) << "^" << endl;
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                std::cout << "\t\t"
-                         << "^" << setfill(' ') << setw(20) << "1_ See bill by month" << setw(39) << "^" << endl;
+                         << "^" << setfill(' ') << setw(39) << "1. For a specific month in a year" << setw(20) << "^" << endl;
                std::cout << "\t\t"
-                         << "^" << setfill(' ') << setw(20) << "1_ See bill by year" << setw(39) << "^" << endl;
-
+                         << "^" << setfill(' ') << setw(28) << "2. For a specific year" << setw(31) << "^" << endl;
+               std::cout << "\t\t"
+                         << "^" << setfill(' ') << setw(29) << "3. For a period of time" << setw(30) << "^" << endl;
                int c;
                std::cout << "\t\t\t\t\t";
                std::cin >> c;
@@ -491,10 +630,115 @@ void menu::HomePage()
                switch (c)
                {
                case 1:
-                    std::cout << "\t\t\t\t Seeing bills" << endl;
+
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 30) << "Enter the month:" << setw(29) << "^" << endl;
+                    int cm;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> cm;
+                    if (cm < 0 || cm > 12)
+                    {
+                         std::cout << "\t\t\t Invalid month entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 31) << "Enter the year:" << setw(30) << "^" << endl;
+                    int cy;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> cy;
+                    if (cy < 2022 || cy > 2072)
+                    {
+                         std::cout << "\t\t\t Invalid year entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 1) << "^" << endl;
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    std::cout << "\n\n";
+                    // getOnemonthBill(Algeria, ID, cm, cy)
                     break;
                case 2:
-                    std::cout << "\t\t\t\t Others" << endl;
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 30) << "Enter the year:" << setw(29) << "^" << endl;
+                    int cy2;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> cy2;
+                    if (cy2 < 2022 || cy2 > 2072)
+                    {
+                         std::cout << "\t\t\t Invalid year entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 1) << "^" << endl;
+                    // getOneYearBill(Algeria, ID, cy2)
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    std::cout << "\n\n";
+                    break;
+               case 3:
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 20) << "Enter the start month:" << setw(19) << "^" << endl;
+                    int sm2;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> sm2;
+                    if (sm2 < 0 || sm2 > 12)
+                    {
+                         std::cout << "\t\t\t Invalid month entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 21) << "Enter the start year:" << setw(20) << "^" << endl;
+                    int sy2;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> sy2;
+                    if (sy2 < 2022 || sy2 > 2072)
+                    {
+                         std::cout << "\t\t\t Invalid year entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 22) << "Enter the end month:" << setw(21) << "^" << endl;
+                    int em2;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> em2;
+                    if (em2 < 0 || em2 > 12)
+                    {
+                         std::cout << "\t\t\t Invalid month entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 23) << "Enter the end year:" << setw(22) << "^" << endl;
+                    int ey2;
+                    std::cout << "\t\t\t\t\t";
+                    std::cin >> ey2;
+                    if (ey2 < 2022 || ey2 > 2072)
+                    {
+                         std::cout << "\t\t\t Invalid year entered!!\n";
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                         break;
+                    }
+                    std::cout << "\t\t"
+                              << "^" << setfill(' ') << setw(width - 1) << "^" << endl;
+                    // getPeriodBill(Algeria, ID, sm2, em2, sy2, ey2);
+                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                    std::cout << "\n\n";
                     break;
                default:
                     std::cout << "\t\t\t\t Invalid operation selected." << endl;
@@ -507,6 +751,8 @@ void menu::HomePage()
 
           default:
                std::cout << "\t\t\t\t Invalid role selected." << endl;
+               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+               std::cout << "\n\n";
                break;
           }
      } while (n != '1' && n != '2');

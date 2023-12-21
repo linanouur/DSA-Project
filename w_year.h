@@ -18,11 +18,5 @@ public:
         return *this;
     }
 
-    month& getMonth(int monthIndex) {
-        if (monthIndex >= 0 && monthIndex < MONTHS_IN_YEAR) {
-            return months[monthIndex];
-        } else {
-            throw std::out_of_range("Invalid month index");
-        }
-    }
+    
 };

@@ -28,7 +28,7 @@ class Bill
     // Constructor
     Bill();
 
-    void setMonth(string name, int num)
+    void setMonth(std::string name, int num)
     {
         monthName = name;
         numberMonth = num;

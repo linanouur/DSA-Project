@@ -142,12 +142,12 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
 }
 
 
-
+/*
 
 int main()
 {
     
-    /*htRegions regionHashTable;
+    htRegions regionHashTable;
     ifstream file("RegionCityDistrict.csv");  
 
     if (file.is_open())
@@ -198,7 +198,7 @@ int main()
     cout << getCustomerID(1010010004) << endl;
 
     Customers BST;
-    BST.displayWinner();*/
+    BST.displayWinner();
 
     htCities htc;
     City c1(1,"Adrar");
@@ -210,5 +210,5 @@ int main()
     cout << "Budget of d1: " << budget << endl;
 
     return 0;
-}
+}*/
 #endif

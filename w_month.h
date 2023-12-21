@@ -19,13 +19,7 @@ public:
         return *this;
     }
 
-    day& getDay(int dayIndex) {
-        if (dayIndex >= 0 && dayIndex < DAYS_IN_MONTH) {
-            return days[dayIndex];
-        } else {
-            throw std::out_of_range("Invalid day index");
-        }
-    }
+    
     ~month();
 };
 

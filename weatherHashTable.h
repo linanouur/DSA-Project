@@ -34,12 +34,13 @@ public:
         
 
                     //  date[0] = day, date[1] = month, date[2] = year
-                    std::cout<< "Date: " << w.getDate()[2] << "-" << w.getDate()[1] << "-" << w.getDate()[0] << std::endl;
-                    std::cout<< "Max Temp: " << w.getMaxTemperature() << "°C, ";
-                    std::cout<< "Min Temp: " << w.getMinTemperature() << "°C, ";
-                    std::cout<< "Sunny Hours: " << w.getSunnyHours() << " hours, ";
-                    std::cout<< "Condition: " << w.getCondition() << std::endl;
-                    std::cout<< "----------------------------------------" << std::endl;
+                    std::cout<< "\t\t\t ----------------------------------------" << std::endl;
+                    std::cout<< "\t\t\t\t Date: " << w.getDate()[2] << "-" << w.getDate()[1] << "-" << w.getDate()[0] << std::endl;
+                    std::cout<< "\t\t\t\t Max Temp: " << w.getMaxTemperature() << "°C, "<<endl;
+                    std::cout<< "\t\t\t\t Min Temp: " << w.getMinTemperature() << "°C, "<<endl;
+                    std::cout<< "\t\t\t\t Sunny Hours: " << w.getSunnyHours() << " hours, "<<endl;
+                    std::cout<< "\t\t\t\t Condition: " << w.getCondition() << std::endl;
+                    std::cout<< "\t\t\t ----------------------------------------" << std::endl;
                 
             
       }  

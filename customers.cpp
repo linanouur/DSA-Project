@@ -59,7 +59,6 @@ Customer *Customers::searchCustomer(int ID, Customer *r)
     }
     else if (r->ElectricityAccountId == ID)
     {
-        cout << r->FamilyName << endl;
         return r;
     }
     else if (ID < r->ElectricityAccountId)

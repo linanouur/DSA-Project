@@ -82,9 +82,9 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb,vector<int>ages, string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, vector<int> ages, string region, string city, string district, int id)
 {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb,ages, region, city, district, id);
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
@@ -262,19 +262,61 @@ int main()
     }
     else
     {
-        cout << "Unable to open file." << endl;
+       std:: cout << "Unable to open file." << endl;
     }
 
-    vector<int> A = {1, 2, 3, 4};
+    // ifstream fileTwo("CustomerInfo.csv");
     
+    // if (fileTwo.is_open())
+    // {
+    //     int id=1;
+    //     string line;
+    //     while (getline(fileTwo, line))
+    //     {
+    //         stringstream ss(line);
+    //         string fname, lname, bankAccount, numMemb, ages, region, city, district;
+    //         vector<int> A;
+    //         getline(ss, fname, ',');
+    //         getline(ss, lname, ',');
+    //         getline(ss, region, ',');
+    //         getline(ss, city, ',');
+    //         getline(ss, district, ',');
+    //         getline(ss, numMemb, ',');
+            
+    //         int num = stoi(numMemb);
+    //         for (int i = 0; i < num; i++)
+    //         {
+    //             string age;
+    //             getline(ss, age, ',');
+    //             A[i] = stoi(age);
+    //         }
+            
+    //         getline(ss, bankAccount, ',');
+    //         int Account = stoi(bankAccount);
+    //         // getline(ss, id, ',');
+    //         // int ID = stoi(id);
+
+    //         insertNewCustomer(regionHashTable, fname, lname, Account, num, A, region, city, district, id);
+    //         id=id+1;
+    //     }
+
+    //     fileTwo.close();
+    // }
+    // else
+    // {
+    //     std::cout << "Unable to open file." << endl;
+    // }
+
+    vector<int> A = {1, 2, 3, 4};
+
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, A, "Adrar", "Adrar", "Adrar", 123);
     insertNewCustomer(regionHashTable, "Moh", "Ali", 1236, 5, A, "Adrar", "Adrar", "Adrar", 2);
-    insertNewCustomer(regionHashTable, "Mo", "Ali", 13456, 5,A, "Adrar", "Adrar", "Adrar", 3);
-    insertNewCustomer(regionHashTable, "Ahmed", "Ali", 1256, 5,A, "Adrar", "Adrar", "Adrar", 4);
-    insertNewCustomer(regionHashTable, "Moha", "Ali", 123456, 5, A,"Adrar", "Adrar", "Adrar", 150);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5,A, "Adrar", "Adrar", "Adrar", 1);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5,A, "Adrar", "Adrar", "Adrar", 90);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, A,"Adrar", "Adrar", "Adrar", 180);
+    insertNewCustomer(regionHashTable, "Mo", "Ali", 13456, 5, A, "Adrar", "Adrar", "Adrar", 3);
+    insertNewCustomer(regionHashTable, "Ahmed", "Ali", 1256, 5, A, "Adrar", "Adrar", "Adrar", 4);
+    insertNewCustomer(regionHashTable, "Moha", "Ali", 123456, 5, A, "Adrar", "Adrar", "Adrar", 150);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, A, "Adrar", "Adrar", "Adrar", 1);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5, A, "Adrar", "Adrar", "Adrar", 90);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, A, "Adrar", "Adrar", "Adrar", 180);
 
     Region *Rptr = regionHashTable.getRegion(1);
     Rptr->Cities->displaycities();
@@ -282,27 +324,27 @@ int main()
     Cptr->Districts->displayAllDistricts();
 
     // cout << D.DistrictName << endl;
-    District Dis = Cptr->Districts->getDistrict(1);
-    Dis.BST.print();
-    cout << "mmmmmm" << endl;
+    // District Dis = Cptr->Districts->getDistrict(1);
+    // Dis.BST.print();
+    // std::cout << "mmmmmm" << endl;
     // Customer *nas = D.searchinDistrict(1010010002);
     // if(nas==nullptr) cout<<"null"<<endl;
     // else cout << nas->FamilyName << endl;
 
-    Customers *B = Cptr->Districts->getBST(1);
-    Customer *nas = B->searchCustomer(1010010002);
-    if (nas == nullptr)
-        cout << "null" << endl;
-    else
-        cout << nas->FamilyName << endl;
-    setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
-    // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
-    //   getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
-    //   getOneYearBill(regionHashTable,1010010002,2023);
-    setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
-    setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
-    setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
+    // Customers *B = Cptr->Districts->getBST(1);
+    // Customer *nas = B->searchCustomer(1010010002);
+    // if (nas == nullptr)
+    //     std::cout << "null" << endl;
+    // else
+    //    std:: cout << nas->FamilyName << endl;
+    // setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
+    // // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
+    // //   getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
+    // //   getOneYearBill(regionHashTable,1010010002,2023);
+    // setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
+    // setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
+    // setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
+    // getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;

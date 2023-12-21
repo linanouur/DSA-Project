@@ -2,17 +2,17 @@
 #include<vector>
 using namespace std;
 
-class month
+class w_month
 {
 private:
    
-   vector<day> days;
+   vector<w_day> days;
 public:
     static const int DAYS_IN_MONTH = 31;
-    month() : days(DAYS_IN_MONTH) {}
-    day& getDay(int day);
+    w_month() : days(DAYS_IN_MONTH) {}
+    w_day& getDay(int day);
 
-    month& operator=(const month& other) {
+    w_month& operator=(const w_month& other) {
         if (this != &other) {
             days = other.days;  // Deep copy, provided day has operator= implemented
         }
@@ -20,7 +20,7 @@ public:
     }
 
     
-    ~month();
+    ~w_month();
 };
 
 

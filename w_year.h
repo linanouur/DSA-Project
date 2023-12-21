@@ -1,17 +1,17 @@
 #include"w_month.h"
 
-class year
+class w_year
 {
 private:
     
-    vector<month> months;
+    vector<w_month> months;
 public:
     static const int MONTHS_IN_YEAR = 12;
-    year() : months(MONTHS_IN_YEAR) {}
+    w_year() : months(MONTHS_IN_YEAR) {}
 
-    month& getMonth(int month);
+    w_month& getMonth(int month);
 
-    year& operator=(const year& other) {
+    w_year& operator=(const w_year& other) {
         if (this != &other) {
             months = other.months;  // Deep copy, provided month has operator= implemented
         }

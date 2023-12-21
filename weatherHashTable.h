@@ -4,7 +4,7 @@ using namespace std;
 
 class weatherHashTable {
 private:
-    std::vector<year> years;
+    std::vector<w_year> years;
     int startYear; 
 
 public:

@@ -171,7 +171,7 @@ void menu::HomePage()
 
                     std::string reg, city, dist, fname, lname;
                     int bnum, fnum, id_num, m_bill, y_bill, mconsumption, minjection;
-                    long int id_bill;
+                    long long int id_bill;
 
                     switch (i)
                     {
@@ -332,7 +332,7 @@ void menu::HomePage()
                          std::cin >> y;
                          switch (y)
                          {
-                              long int S_id;
+                              long long int S_id;
                          case 1:
                               std::cout << "\t\t\t enter the customer ID please:\n";
                               std::cout << "\t\t\t\t   ";
@@ -596,7 +596,7 @@ void menu::HomePage()
                std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 10) << "Welcome customer please enter your ID" << setw(9) << "^" << endl;
-               long int ID;
+               long long int ID;
                std::cout << "\t\t\t\t\t";
                std::cin >> ID;
                if (ID > 99999999999 || ID < 0)

@@ -158,6 +158,7 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
             if (year == yearEnd && month > monthEnd)
                 break;
             Bill &m = y->yearMonths->getbill(month);
+            cout<<m.monthName<<" / "<<y->year<<endl;
             m.displayBill();
         }
     }

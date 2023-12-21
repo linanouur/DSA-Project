@@ -1,6 +1,8 @@
 #include"w_year.h"
-#include <fstream>
-#include <sstream>
+#include<string>
+#include<fstream>
+#include<sstream>
+
 using namespace std;
 
 
@@ -50,7 +52,7 @@ public:
 
 
        void readWeatherFromFile(const std::string& filename) {
-        std::ifstream file(filename);
+        std::ifstream file(filename.c_str());
         std::string line;
 
         // Skip the header line
@@ -94,6 +96,8 @@ public:
             insertWeather(year, month, day, w);
         }
     }
+
+
 };
 
    

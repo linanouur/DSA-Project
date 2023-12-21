@@ -8,7 +8,6 @@ using namespace std;
 #include <vector>
 #include "customer.h"
 
-
 void Customer::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
@@ -25,12 +24,12 @@ Customer::Customer(string fname, string lname, int bankAccount, int numMemb, str
     setInfo(fname, lname, bankAccount, numMemb, region, city, district);
     cout << "Customer ID: " << generateCustomerID(region, city, district, id) << endl;
     ElectricityAccountId = generateCustomerID(region, city, district, id);
-    Customeryears =new Years();
-    for(int i=2023;i<2023+50;i++){
+    Customeryears = new Years();
+    for (int i = 2023; i < 2023 + 50; i++)
+    {
         Customeryears->insertYear(i);
     }
 }
-
 
 void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, string region, string city, string district)
 {
@@ -114,7 +113,7 @@ void Customer ::getOneMonthBillCustomer(int month, int year)
     cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
 
     Year *y = Customeryears->getYear(year);
-    cout<< y->year;
+    cout << y->year;
     // cout << "hey" << endl;
     Bill &m = y->yearMonths->getbill(month);
     cout << m.monthName << endl;
@@ -125,11 +124,11 @@ void Customer ::getOneYearBillCustomer(int year)
 {
     cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
     Year *y = Customeryears->getYear(year);
-     cout<< y->year<<endl;
+    cout << y->year << endl;
     for (int month = 1; month < 13; month++)
     {
         Bill &m = y->yearMonths->getbill(month);
-         cout << m.monthName << endl;
+        cout << m.monthName << endl;
         m.displayBill();
     }
 }
@@ -143,7 +142,7 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
         for (int month = monthStart; month < monthEnd; month++)
         {
             Bill &m = y->yearMonths->getbill(month);
-             cout << m.monthName <<" / " << y->year<<endl;
+            cout << m.monthName << " / " << y->year << endl;
             m.displayBill();
         }
         return;
@@ -152,18 +151,19 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
     for (int year = yearStart; year <= yearEnd; year++)
     {
         Year *y = Customeryears->getYear(year);
-        cout<<y->year<<endl;
+        cout << y->year << endl;
         for (int month = 1; month < 13; month++)
         {
+            if (year == yearStart && month < monthStart)
+                break;
             if (year == yearEnd && month > monthEnd)
                 break;
             Bill &m = y->yearMonths->getbill(month);
-            cout<<m.monthName<<" / "<<y->year<<endl;
+            cout << m.monthName << " / " << y->year << endl;
             m.displayBill();
         }
     }
 }
-
 
 /*int main()
 {
@@ -176,6 +176,5 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
     cust.getOneMonthBillCustomer(10, 1960);
     return 0;
 }*/
-
 
 #endif

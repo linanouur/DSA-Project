@@ -17,6 +17,27 @@ string Customers ::districtWinner = "";
 //   rootCus=new Customer("Lina", "Slama", 123456, 5, "Adrar", "Adrar", "Ouled Ahmed Timmi", 1320);
 // }
 
+void Customers::setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &other)
+{
+
+    Customer *cust = searchCustomer(ID);
+    if (cust != nullptr)
+    {
+        cust->settotalInjection(other.MonthInjectionAmount);
+        if (cust->totalInjection > getmaxAmoutInjected())
+            setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
+        Year *y = cust->Customeryears->getYear(year);
+        y->setYearlyTotal(other.MonthConsumptionAmount * 5);
+        y->setYearlyCredit(other.MonthInjectionAmount * 3);
+        Bill &m = y->yearMonths->getbill(month);
+        m = other;
+    }
+    else
+    {
+        cout << "Customer not found." << endl;
+    }
+}
+
 int getPrize(Customers *BST)
 {
     cout << "The winner ID: ";
@@ -57,8 +78,7 @@ Customer *Customers::searchCustomer(int ID, Customer *r)
     {
         return r;
     }
-   
-    
+
     else if (ID < r->ElectricityAccountId)
     {
         return searchCustomer(ID, r->left);
@@ -237,7 +257,8 @@ void Customers ::getOneYearBillBST(int ID, int year)
 void Customers ::getPeriodBillBST(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
 
-    cout << "Bill of " << monthStart << " / " << yearStart << " : "<< "/t"<< " To: " << monthEnd << " / " << yearEnd;
+    cout << "Bill of " << monthStart << " / " << yearStart << " : "
+         << " To: " << monthEnd << " / " << yearEnd << endl;
     Customer *cust = searchCustomer(ID);
 
     if (cust != nullptr)

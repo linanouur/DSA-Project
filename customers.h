@@ -27,29 +27,7 @@ private:
 public:
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
-    void setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &other)
-    {
-
-        Customer *cust = searchCustomer(ID);
-        cout << cust->firstName << endl;
-        if (cust != nullptr)
-        {
-            cust->settotalInjection(other.MonthInjectionAmount);
-            if (cust->totalInjection > getmaxAmoutInjected())
-                setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
-            Year *y = cust->Customeryears->getYear(year);
-            cout << y->getYearlyCredit() << endl;
-            cout << y->getYearlyTotal() << endl;
-            y->setYearlyTotal(other.MonthConsumptionAmount * 5);
-            y->setYearlyCredit(other.MonthInjectionAmount * 3);
-            Bill &m = y->yearMonths->getbill(month);
-            m = other;
-        }
-        else
-        {
-            cout << "Customer not found." << endl;
-        }
-    }
+    void setInfoCustomerOneMonthBST(int , int , int , Bill &);
     void getOneMonthBillBST(int, int, int);
     void getOneYearBillBST(int, int);
     void getPeriodBillBST(int, int, int, int, int);

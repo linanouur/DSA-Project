@@ -174,6 +174,61 @@ void getOneMonthBillDistrict(htRegions &Alg, int RegionID, int CityID, int Distr
     D.getOneMonthBillinDistrict(month, year);
 }
 
+
+void getOneYearBillCountry(htRegions &Alg, int RegionID, int year)
+{
+    Alg.getOneYearBillinRegions(year);
+}
+
+void getOneYearRegion(htRegions &Alg, int RegionID, int year)
+{
+    Region *R = Alg.getRegion(RegionID);
+    R->getOneYearBillinRegion(year);
+}
+
+void getOneYearBillCity(htRegions &Alg, int RegionID, int CityID,  int year)
+{
+    Region *R = Alg.getRegion(RegionID);
+    City *C = R->Cities->getCityptr(CityID);
+    C->getOneYearBillinCity(year);
+}
+
+void getOneYearBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID,  int year)
+{
+    Region *R = Alg.getRegion(RegionID);
+    City *C = R->Cities->getCityptr(CityID);
+    District D = C->Districts->getDistrict(DistrictID);
+    D.getOneYearBillinDistrict(year);
+}
+
+
+void getOnePeriodBillCountry(htRegions &Alg, int RegionID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    Alg.getPeriodBillinRegions(monthStart, monthEnd,  yearStart,  yearEnd);
+}
+
+void getOnePeriodRegion(htRegions &Alg, int RegionID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    Region *R = Alg.getRegion(RegionID);
+    R->getPeriodBillinRegion(monthStart, monthEnd, yearStart, yearEnd);
+}
+
+void getOnePeriodBillCity(htRegions &Alg, int RegionID, int CityID,  int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    Region *R = Alg.getRegion(RegionID);
+    City *C = R->Cities->getCityptr(CityID);
+    C->getPeriodBillinCity(monthStart, monthEnd,yearStart, yearEnd);
+}
+
+void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID,  int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    Region *R = Alg.getRegion(RegionID);
+    City *C = R->Cities->getCityptr(CityID);
+    District D = C->Districts->getDistrict(DistrictID);
+    D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
+}
+
+
 int main()
 {
     htRegions regionHashTable;
@@ -242,13 +297,13 @@ int main()
     else
         cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
-    // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
+    //getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
     //  getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
     //  getOneYearBill(regionHashTable,1010010002,2023);
     setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-
+    getOneMonthBillDistrict(regionHashTable,1,1,1,1,2023);
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;

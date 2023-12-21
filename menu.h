@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "weatherHashTable.h"
+//#include "weatherHashTable.h"
 #include "customers.h"
 // #include "userFunctions.cpp"
 // #include "Regions.h"
@@ -86,7 +86,7 @@ void menu::HomePage()
 
      Customers BST;
      // htRegions Algeria;
-     weatherHashTable wht;
+     //weatherHashTable wht;
      bool conn;
      const int width = 60;
      int n;
@@ -986,7 +986,7 @@ void menu::HomePage()
                          }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
-                         wht.printWeatherInfo(yw, mw, dw);
+                         //wht.printWeatherInfo(yw, mw, dw);
 
                          break;
                     case 5:

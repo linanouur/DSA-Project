@@ -3,7 +3,7 @@
 #include"City.h"  
 #include"District.h" 
 #include"customers.h"
-#include"weatherHashTable.h"
+
 #include<iostream>
 #include<string>
 
@@ -21,7 +21,7 @@ class htcities;
 
 class Region {
 public:
-    weatherHashTable tWeather;
+     //weatherHashTable tWeather;
     int RegionID;
     string RegionName;
     htCities* Cities;  

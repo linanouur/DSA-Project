@@ -2,7 +2,6 @@
 #define REGIONS_CPP
 
  #include <iostream>
-
 #include <string>
 #include"Regions.h"
 #include"City.h" 
@@ -20,12 +19,12 @@ using namespace std;
 
 Region::Region() : RegionID(0), RegionName("")
 {   
-    tWeather =  weatherHashTable();
+   // tWeather =  weatherHashTable();
     Cities = new htCities;
 }
 Region::Region(int id, const std::string &name) : RegionID(id), RegionName(name)
 {
-    tWeather = weatherHashTable();
+    //tWeather = weatherHashTable();
     Cities = new htCities;
 } 
 void  Region:: getOneMonthBillinRegion(int month, int year) 
@@ -101,7 +100,7 @@ void htRegions::insertDistrict(int regionID, int cityID, const District &distric
 { 
     for ( int i = 0 ; i < num_reg ; i++){
         if(regions[i].RegionID != 0){
-            cout<<"name of region " <<regions[i].RegionName <<endl; }  } 
+            cout<<"name of region " <<regions[i].RegionName <<endl; }  }
 }  
 
  void htRegions :: getOneMonthBillinRegions(int month, int year) 

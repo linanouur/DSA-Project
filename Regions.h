@@ -27,7 +27,10 @@ public:
     htCities* Cities;  
     value cas = value::empty;
     Region();
-    Region(int id, const string& name);    
+    Region(int id, const string& name);     
+    void getOneMonthBillinRegion(int month, int year);  
+    void getOneYearBillinRegion(int year);
+    void getPeriodBillinRegion(int StartMonth, int StartYear, int EndMonth, int EnDYear);
 };
 
 class htRegions {
@@ -39,7 +42,11 @@ public:
     void insertDistrict(int regionID , int cityID , const District &district);
     Region* getRegion(int RegionID);
     void displaycities(int RegionID); 
-    void displayregions();  
+    void displayregions();    
+    void getOneMonthBillinRegions(int month, int year); 
+    void getOneYearBillinRegions(int year);
+    void getPeriodBillinRegions(int StartMonth, int StartYear, int EndMonth, int EnDYear);
+   
 };
 
 #endif 

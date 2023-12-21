@@ -40,7 +40,10 @@ public:
     Department department;
 
     City() : CityID(0), CityName(""), department(0, 100000.00, 0.0) { Districts = new htDistricts;}
-    City(int id, const string &name) : CityID(id), CityName(name), department(id, 100000.00, 0.0) {  Districts = new htDistricts;}
+    City(int id, const string &name) : CityID(id), CityName(name), department(id, 100000.00, 0.0) {  Districts = new htDistricts;} 
+    void getOneMonthBillinCity(int month, int year); 
+    void getOneYearBillinCity(int year);
+    void getPeriodBillinCity(int StartMonth, int StartYear, int EndMonth, int EnDYear);
 };
 
 
@@ -51,7 +54,8 @@ public:
     City cities[num_cit];
     int hashFunctionCity(int key); 
     void insertCity(const City& city);
-   City * getCity(int cityId);
+   City * getCityptr(int cityId); 
+    City getCity(int cityId);
     void displaycities();  
   
 

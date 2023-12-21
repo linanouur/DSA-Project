@@ -1,32 +1,54 @@
- /* ifstream file("RegionCityDistrict.csv");  
+void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumption, int Minjection)
+// {
+//     Bill bill;
+//     bill.setBillInfo(Mconsumption, Minjection);
+//     int R = getRegionId(ID);
+//     int C = getCityId(ID);
+//     int D = getDistrictId(ID);
+//     Region *Rptr = Alg.getRegion(R);
+//     City *Cptr = Rptr->Cities->getCity(C);
+//     District Dis=Cptr->Districts->getDistrict(D);
+   
+//     // District *Dptr = Cptr->Districts->getDistrict(D);
+//     // Dptr->BST.setInfoCustomerOneMonthBST(ID, month, year, bill);
+// }
 
-    if (file.is_open())
-    {
-        string line;
-        while (getline(file, line))
-        {
-            stringstream ss(line);
-            string regionID, regionName, cityID, cityName, districtID, districtName;
 
-            getline(ss, regionID, ',');
-            getline(ss, regionName, ',');
-            getline(ss, cityID, ',');
-            getline(ss, cityName, ',');
-            getline(ss, districtID, ',');
-            getline(ss, districtName, ',');
-            int RegionID, CityID, DistrictID;
-            RegionID = stoi(regionID);
-            CityID = stoi(cityID);
-            DistrictID = stoi(districtID);
-            regionHashTable.insertRegion(Region(RegionID, regionName));
-            regionHashTable.insertCity(RegionID, City(CityID, cityName));
-            regionHashTable.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
-        }
+// void getOnemonthBill(htRegions Alg, int ID, int month, int year)
+// {
+//     int R = getRegionId(ID);
+//     int C = getCityId(ID);
+//     int D = getDistrictId(ID);
+//     Region *Rptr = Alg.getRegion(R);
+//     City *Cptr = Rptr->Cities->getCity(C);
+//      District Dis=Cptr->Districts->getDistrict(D);
+//     Dis.BST.getOneMonthBillBST(ID,month,year);
+//     // District *Dptr = Cptr->Districts->getDistrict(D);
+//     // Dptr->BST.getOneMonthBillBST(ID, month, year);
+// }
 
-        file.close();
-    }
-    else
-    {
-        cout << "Unable to open file." << endl;
-    } 
-    */
+// void getOneYearBill(htRegions Alg, int ID, int year)
+// {
+//     int R = getRegionId(ID);
+//     int C = getCityId(ID);
+//     int D = getDistrictId(ID);
+//     Region *Rptr = Alg.getRegion(R);
+//     City *Cptr = Rptr->Cities->getCity(C);
+//      District Dis=Cptr->Districts->getDistrict(D);
+//     Dis.BST.getOneYearBillBST(ID,year);
+//     // District *Dptr = Cptr->Districts->getDistrict(D);
+//     // Dptr->BST.getOneYearBillBST(ID, year);
+// }
+
+// void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+// {
+//     int R = getRegionId(ID);
+//     int C = getCityId(ID);
+//     int D = getDistrictId(ID);
+//     Region *Rptr = Alg.getRegion(R);
+//     City *Cptr = Rptr->Cities->getCity(C);
+//      District Dis=Cptr->Districts->getDistrict(D);
+//     Dis.BST.getPeriodBillBST(ID,monthStart,monthEnd,yearStart,yearEnd);
+//     // District *Dptr = Cptr->Districts->getDistrict(D);
+//     // Dptr->BST.getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
+// }

@@ -1,16 +1,14 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
-
-#include <iostream>
+#include<iostream>
+using namespace std;
 #include <string>
 #include <vector>
-
-#include"calendar.cpp"
-using namespace std;
-
+#include "calendar.cpp"
 
 class Customer
-{ public : 
+{
+public:
     string firstName;
     string FamilyName;
     long int ElectricityAccountId;
@@ -27,16 +25,18 @@ class Customer
     int height;
     int id;
 
-
-    Customer(string, string, int, int, string, string, string ,int );
-    void setInfo(string, string, int, int, string, string, string); 
-    vector<string> getIDs( string , string, string); 
-    string getConcatenatedIDs(string, string, string); 
-    long int  generateCustomerID(string,string,string,int);
+    Customer() {}
+    Customer(string, string, int, int, string, string, string, int);
+    void setInfo(string, string, int, int, string, string, string);
+    vector<string> getIDs(string, string, string);
+    string getConcatenatedIDs(string, string, string);
+    long int generateCustomerID(string, string, string, int);
     void settotalInjection(int);
     long int getCustomerId();
-    void getOneMonthBillCustomer(int , int);
+    void getOneMonthBillCustomer(int, int);
     void getOneYearBillCustomer(int);
-    void getPeriodBillCustomer( int , int , int , int );
-}; 
+    void getPeriodBillCustomer(int, int, int, int);
+};
+
+
 #endif

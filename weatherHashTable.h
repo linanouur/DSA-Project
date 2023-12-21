@@ -1,4 +1,6 @@
 #include"w_year.h"
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 
@@ -44,6 +46,56 @@ public:
                 
             
       }  
+
+
+
+       void readWeatherFromFile(const std::string& filename) {
+        std::ifstream file(filename);
+        std::string line;
+
+        // Skip the header line
+        std::getline(file, line);
+
+        while (std::getline(file, line)) {
+            std::stringstream ss(line);
+            std::string dateStr, maxTempStr, minTempStr, sunnyHoursStr, condition;
+            int date[3], day, month, year;
+            double maxTemp, minTemp;
+            int sunnyHours;
+
+            std::getline(ss, dateStr, ',');
+            std::getline(ss, maxTempStr, ',');
+            std::getline(ss, minTempStr, ',');
+            std::getline(ss, sunnyHoursStr, ',');
+            std::getline(ss, condition);
+
+            // Parse date
+            std::stringstream dateSS(dateStr);
+            std::string token;
+            std::getline(dateSS, token, '-');
+            day = std::stoi(token);
+            std::getline(dateSS, token, '-');
+            month = std::stoi(token);
+            std::getline(dateSS, token, '-');
+            year = std::stoi(token);
+
+            // Set date array
+            date[0] = day;
+            date[1] = month;
+            date[2] = year;
+
+            // Parse other data
+            maxTemp = std::stod(maxTempStr);
+            minTemp = std::stod(minTempStr);
+            sunnyHours = std::stoi(sunnyHoursStr);
+
+            // Create a weather object and insert it into the hash table
+            weather w(date, maxTemp, minTemp, sunnyHours, condition);
+            insertWeather(year, month, day, w);
+        }
+    }
+};
+
    
 
 

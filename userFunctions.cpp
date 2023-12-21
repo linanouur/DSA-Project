@@ -93,7 +93,7 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     // cout << C << endl;
     // cout << D << endl;
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
@@ -114,7 +114,7 @@ void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumptio
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->setInfoCustomerOneMonthBST(ID, month, year, bill);
@@ -136,7 +136,7 @@ void getOnemonthBill(htRegions Alg, int ID, int month, int year)
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(1);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->getOneMonthBillBST(ID, month, year);
@@ -217,7 +217,7 @@ int main()
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 180);
 
     Region *Rptr = regionHashTable.getRegion(1);
-    City *Cptr = Rptr->Cities->getCity(1);
+    City *Cptr = Rptr->Cities->getCityptr(1);
     // Cptr->Districts->displayAllDistricts();
 
     // cout << D.DistrictName << endl;

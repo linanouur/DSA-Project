@@ -1,4 +1,4 @@
-void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumption, int Minjection)
+//void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumption, int Minjection)
 // {
 //     Bill bill;
 //     bill.setBillInfo(Mconsumption, Minjection);

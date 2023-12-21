@@ -80,10 +80,10 @@ void htRegions::displaycities(int RegionID)
 }
 
 
-void htRegions::insertCity(int regionID, const City &city)
+void htRegions::insertCity(int regionID, const City &city, DepartmentHeap &heap)
 {
     Region *region = getRegion(regionID);
-    region->Cities->insertCity(city);  
+    region->Cities->insertCity(city, heap);  
    
    
 }

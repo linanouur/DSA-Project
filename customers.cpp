@@ -10,7 +10,8 @@ int Customers ::maxInjectorID = 0;
 int Customers ::maxAmountInjected = 0;
 string Customers ::regionWinner = "";
 string Customers ::cityWinner = "";
-string Customers ::districtWinner = "";
+string Customers ::districtWinner = ""; 
+static int CustomersNum = 0;
 
 // Customers ::Customers()
 // {
@@ -277,7 +278,9 @@ void Customers ::displayWinner()
     cout << "ID Winner: " << Customers ::maxInjectorID << endl;
     cout << "From: " << Customers::regionWinner << "  " << Customers::cityWinner << "  " << Customers::districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
-}
+} 
+
+
 
 /*
 int main(){

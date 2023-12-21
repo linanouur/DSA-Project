@@ -89,7 +89,6 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
     int D = getDistrictId(NewID);
-
     Region *Rptr = Alg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
@@ -106,7 +105,9 @@ void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumptio
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCityptr(C);
+    City *Cptr = Rptr->Cities->getCityptr(C); 
+    int difference = 5*bill.MonthConsumptionAmount - 3*bill.MonthInjectionAmount;
+    Cptr->setInfoDepartment(month,year,difference,Minjection);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->setInfoCustomerOneMonthBST(ID, month, year, bill);
@@ -228,7 +229,8 @@ void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int Dist
 
 int main()
 {
-    htRegions regionHashTable;
+    htRegions regionHashTable; 
+    DepartmentHeap depHeap;
     // regionHashTable.insertRegion(Region(1,"Adrar"));
     // regionHashTable.insertCity(1,City(1,"Adrar"));
     // regionHashTable.insertCity(2,City(2,"Chlef"));
@@ -254,7 +256,7 @@ int main()
             CityID = stoi(cityID);
             DistrictID = stoi(districtID);
             regionHashTable.insertRegion(Region(RegionID, regionName));
-            regionHashTable.insertCity(RegionID, City(CityID, cityName));
+            regionHashTable.insertCity(RegionID, City(CityID, cityName), depHeap);
             regionHashTable.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
         }
 
@@ -293,7 +295,7 @@ int main()
     Customer *nas = B->searchCustomer(1010010002);
     if (nas == nullptr)
         cout << "null" << endl;
-    else
+    
         cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
     // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
@@ -302,7 +304,14 @@ int main()
     setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
+    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023); 
+      Rptr->Cities->displaycities(); 
+      depHeap.printBestDepartments();
+      Department D = Cptr->department;
+      YearDepartment *Y= D.Departmentyears->getYear(2023);
+    cout<<"2023 payment "<<Y->payment<<endl;
+    Month M = Y->YMonths->getmonth(1);
+    cout<<"1 TotalSpentAmount"<<M.TotalSpentAmount<<endl;
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;

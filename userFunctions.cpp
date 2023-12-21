@@ -89,45 +89,29 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
     int D = getDistrictId(NewID);
-    // cout << R << endl;
-    // cout << C << endl;
-    // cout << D << endl;
+
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    // Cptr->Districts->insertCustomerIntoDistrict(Dis, cus);
-    // Customer *nas = Dis.BST.searchCustomer(NewID);
-    // cout << nas->District << endl;
     Dis.BST.print();
 
-    // Dis.BST.insertNewCustomerBST(cus);
 }
 
 void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumption, int Minjection)
 {
-
     Bill bill;
     bill.setBillInfo(Mconsumption, Minjection);
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->setInfoCustomerOneMonthBST(ID, month, year, bill);
 
-    // cout<<Dis.DistrictID<<endl;
-    // Cptr->Districts->setInfoInDistrict(Dis,ID,month,year,bill);
-
-    // District *Dptr = Cptr->Districts->getDistrict(D);
-    //    Dis.setInfoCustomerOneMonthBST(ID,month,year,bill);
-    //    cout<<"cc";
-    //   District *Dptr = Cptr->Districts->getDistrictptr(D);
-    // Dptr->BST.setInfoCustomerOneMonthBST(ID,month,year,bill);
-    // Dptr->BST.setInfoCustomerOneMonthBST(ID, month, year, bill);
 }
 
 void getOnemonthBill(htRegions Alg, int ID, int month, int year)
@@ -136,37 +120,36 @@ void getOnemonthBill(htRegions Alg, int ID, int month, int year)
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->getOneMonthBillBST(ID, month, year);
 }
 
-// void getOneYearBill(htRegions Alg, int ID, int year)
-// {
-//     int R = getRegionId(ID);
-//     int C = getCityId(ID);
-//     int D = getDistrictId(ID);
-//     Region *Rptr = Alg.getRegion(R);
-//     City *Cptr = Rptr->Cities->getCity(C);
-//      District Dis=Cptr->Districts->getDistrict(D);
-//     Dis.BST.getOneYearBillBST(ID,year);
-//     // District *Dptr = Cptr->Districts->getDistrict(D);
-//     // Dptr->BST.getOneYearBillBST(ID, year);
-// }
+void getOneYearBill(htRegions Alg, int ID, int year)
+{
+     int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Region *Rptr = Alg.getRegion(R);
+    City *Cptr = Rptr->Cities->getCityptr(C);
+    District Dis = Cptr->Districts->getDistrict(D);
+    Customers *B = Cptr->Districts->getBST(D);
+    B->getOneYearBillBST(ID,year);
+   
+}
 
-// void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
-// {
-//     int R = getRegionId(ID);
-//     int C = getCityId(ID);
-//     int D = getDistrictId(ID);
-//     Region *Rptr = Alg.getRegion(R);
-//     City *Cptr = Rptr->Cities->getCity(C);
-//      District Dis=Cptr->Districts->getDistrict(D);
-//     Dis.BST.getPeriodBillBST(ID,monthStart,monthEnd,yearStart,yearEnd);
-//     // District *Dptr = Cptr->Districts->getDistrict(D);
-//     // Dptr->BST.getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
-// }
+void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    int R = getRegionId(ID);
+    int C = getCityId(ID);
+    int D = getDistrictId(ID);
+    Region *Rptr = Alg.getRegion(R);
+    City *Cptr = Rptr->Cities->getCityptr(C);
+    District Dis = Cptr->Districts->getDistrict(D);
+    Customers *B = Cptr->Districts->getBST(D);
+    B->getPeriodBillBST(ID,monthStart,monthEnd,yearStart,yearEnd);
+}
 
 int main()
 {
@@ -217,7 +200,7 @@ int main()
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 180);
 
     Region *Rptr = regionHashTable.getRegion(1);
-    City *Cptr = Rptr->Cities->getCity(1);
+    City *Cptr = Rptr->Cities->getCityptr(1);
     // Cptr->Districts->displayAllDistricts();
 
     // cout << D.DistrictName << endl;
@@ -235,12 +218,14 @@ int main()
     else
         cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
-    getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
-    setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
-    setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
-    setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
+    getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
+    // getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
+    // getOneYearBill(regionHashTable,1010010002,2023);
+    // setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
+    // setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
+    // setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
 
-    B->displayOneMonthBillsALLPub(1, 2023);
+    // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;
     // cout << getCustomerID(1010010003) << endl;

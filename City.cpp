@@ -10,7 +10,27 @@
 using namespace std;
 
 
-
+ void  City:: getOneMonthBillinCity(int month, int year) 
+    {  for(int i=0;i<num_dis;i++){  
+        District d= Districts->getDistrict(i);
+        d.getOneMonthBillinDistrict(month,year); }
+    } 
+void City::getOneYearBillinCity(int year)
+{
+    for (int i = 0; i < num_dis; i++)
+    {
+        District d = Districts->getDistrict(i);
+        d.getOneYearBillinDistrict(year);
+    }
+} 
+void City::getPeriodBillinCity(int StartMonth, int StartYear, int EndMonth, int EnDYear)
+{
+    for (int i = 0; i < num_dis; i++)
+    {
+        District d = Districts->getDistrict(i);
+        d.getPeriodBillinDistrict(StartMonth, StartYear, EndMonth, EnDYear);
+    }
+}
 int htCities::hashFunctionCity(int key)
 {
     return key % num_cit;
@@ -29,10 +49,15 @@ void htCities::insertCity(const City &city)
 }
 
 
-City *htCities::getCity(int cityId)
+City *htCities::getCityptr(int cityId)
 {
     int index = hashFunctionCity(cityId);
     return &cities[index];
+} 
+City htCities::getCity(int cityId)
+{
+    int index = hashFunctionCity(cityId);
+    return cities[index];
 }
 
 void htCities::displaycities()
@@ -43,7 +68,8 @@ void htCities::displaycities()
         std::cout<<cities[i].CityName << "  " << cities[i].CityID << endl;
         
     }
-} }
+} } 
+
 // void htCities::getOnemonthBillCity(int cityID, int month, int year)
 // {
 //     City *city = getCity(cityID);

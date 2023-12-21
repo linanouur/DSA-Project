@@ -21,7 +21,9 @@ private:
     static string cityWinner;
     static string regionWinner;
     static string districtWinner;
-void displayOneMonthBillsALL(Customer *ptr, int , int);
+    void displayOneMonthBillsALL(Customer *ptr, int, int);
+    void displayOneYearBillsALL(Customer *ptr, int);
+    void displayPeriodBillsALL(Customer *ptr, int, int , int , int);
 public:
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
@@ -29,7 +31,7 @@ public:
     {
 
         Customer *cust = searchCustomer(ID);
-        cout<<cust->firstName<<endl;
+        cout << cust->firstName << endl;
         if (cust != nullptr)
         {
             cust->settotalInjection(other.MonthInjectionAmount);
@@ -58,6 +60,8 @@ public:
     static int getmaxAmoutInjected();
     static void displayWinner();
     void printLevelOrder();
-    void displayOneMonthBillsALLPub( int , int);
+    void displayOneMonthBillsALLPub(int, int);
+    void displayOneYearBillsALLPub(int);
+    void displayOnePeriodBillsALLPub(int, int, int, int);
 };
 #endif

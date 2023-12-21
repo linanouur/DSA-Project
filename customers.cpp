@@ -97,22 +97,60 @@ void Customers::printInorder(Customer *ptr)
     printInorder(ptr->right);
 }
 
-void Customers::displayOneMonthBillsALLPub( int month, int year){
-displayOneMonthBillsALL(rootCus,month,year);
+void Customers::displayOneMonthBillsALLPub(int month, int year)
+{
+    displayOneMonthBillsALL(rootCus, month, year);
 }
 
-void Customers::displayOneMonthBillsALL(Customer *ptr , int month , int year)
+void Customers::displayOneYearBillsALL(Customer *ptr, int year)
 {
     if (ptr == NULL)
     {
         return;
     }
 
-    displayOneMonthBillsALL(ptr->left,month,year);
+    displayOneYearBillsALL(ptr->left, year);
 
-   ptr->getOneMonthBillCustomer(month,year);
+    ptr->getOneYearBillCustomer(year);
 
-   displayOneMonthBillsALL(ptr->right,month,year);
+    displayOneYearBillsALL(ptr->right, year);
+}
+
+void Customers::displayPeriodBillsALL(Customer *ptr, int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    if (ptr == NULL)
+    {
+        return;
+    }
+
+    displayPeriodBillsALL(ptr->left, monthStart, monthEnd, yearStart, yearEnd);
+
+    ptr->getPeriodBillCustomer(monthStart, monthEnd, yearStart, yearEnd);
+
+    displayPeriodBillsALL(ptr->right, monthStart, monthEnd, yearStart, yearEnd);
+}
+
+void Customers::displayOneYearBillsALLPub(int year)
+{
+    displayOneYearBillsALL(rootCus, year);
+}
+void Customers::displayOnePeriodBillsALLPub(int monthStart, int monthEnd, int yearStart, int yearEnd)
+{
+    displayOnePeriodBillsALLPub(monthStart, monthEnd, yearStart, yearEnd);
+}
+
+void Customers::displayOneMonthBillsALL(Customer *ptr, int month, int year)
+{
+    if (ptr == NULL)
+    {
+        return;
+    }
+
+    displayOneMonthBillsALL(ptr->left, month, year);
+
+    ptr->getOneMonthBillCustomer(month, year);
+
+    displayOneMonthBillsALL(ptr->right, month, year);
 }
 
 void Customers::print()
@@ -187,7 +225,6 @@ void Customers ::getOneMonthBillBST(int ID, int month, int year)
 
 void Customers ::getOneYearBillBST(int ID, int year)
 {
-    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
     cout << "Bill of " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
     if (cust != nullptr)
@@ -202,10 +239,8 @@ void Customers ::getOneYearBillBST(int ID, int year)
 
 void Customers ::getPeriodBillBST(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
-    // cout << "Region: " << Region << "  City: " << City << "  District: " << District << endl;
-    cout << "Bill of " << monthStart << " / " << yearStart << " : "
-         << "/t"
-         << "To: " << monthEnd << " / " << yearEnd;
+
+    cout << "Bill of " << monthStart << " / " << yearStart << " : "<< "/t"<< " To: " << monthEnd << " / " << yearEnd;
     Customer *cust = searchCustomer(ID);
 
     if (cust != nullptr)

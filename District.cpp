@@ -21,7 +21,8 @@ void District::getOneMonthBillinDistrict(int month, int year)
 }
 void District ::getPeriodBillinDistrict(int StartMonth, int StartYear, int EndMonth, int EnDYear)
 {
-    BST.displayPeriodBillsALLPub(StartMonth, StartYear, EndMonth, EnDYear);
+    BST.displayOnePeriodBillsALLPub(StartMonth, StartYear, EndMonth, EnDYear);
+   
 }
 void District ::getOneYearBillinDistrict(int year)
 {

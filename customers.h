@@ -21,7 +21,7 @@ private:
     static string cityWinner;
     static string regionWinner;
     static string districtWinner;
-
+void displayOneMonthBillsALL(Customer *ptr, int , int);
 public:
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
@@ -58,5 +58,6 @@ public:
     static int getmaxAmoutInjected();
     static void displayWinner();
     void printLevelOrder();
+    void displayOneMonthBillsALLPub( int , int);
 };
 #endif

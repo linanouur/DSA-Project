@@ -82,7 +82,6 @@ void Customers::printInorder(Customer *ptr)
 {
     if (ptr == NULL)
     {
-        
         return;
     }
 
@@ -97,6 +96,25 @@ void Customers::printInorder(Customer *ptr)
 
     printInorder(ptr->right);
 }
+
+void Customers::displayOneMonthBillsALLPub( int month, int year){
+displayOneMonthBillsALL(rootCus,month,year);
+}
+
+void Customers::displayOneMonthBillsALL(Customer *ptr , int month , int year)
+{
+    if (ptr == NULL)
+    {
+        return;
+    }
+
+    displayOneMonthBillsALL(ptr->left,month,year);
+
+   ptr->getOneMonthBillCustomer(month,year);
+
+   displayOneMonthBillsALL(ptr->right,month,year);
+}
+
 void Customers::print()
 {
 

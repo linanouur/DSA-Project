@@ -159,11 +159,20 @@ void getOneMonthRegion(htRegions &Alg, int RegionID, int month, int year)
     R->getOneMonthBillinRegion(month, year);
 }
 
-
-void getOneMonthBillCity(htRegions &Alg, int CityID, int month, int year){
-    
+void getOneMonthBillCity(htRegions &Alg, int RegionID, int CityID, int month, int year)
+{
+    Region *R = Alg.getRegion(RegionID);
+    City *C = R->Cities->getCityptr(CityID);
+    C->getOneMonthBillinCity(month, year);
 }
 
+void getOneMonthBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID, int month, int year)
+{
+    Region *R = Alg.getRegion(RegionID);
+    City *C = R->Cities->getCityptr(CityID);
+    District D = C->Districts->getDistrict(DistrictID);
+    D.getOneMonthBillinDistrict(month, year);
+}
 
 int main()
 {

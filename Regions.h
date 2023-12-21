@@ -21,7 +21,7 @@ class htcities;
 
 class Region {
 public:
-    weatherHashTable tWeather;
+     //weatherHashTable tWeather;
     int RegionID;
     string RegionName;
     htCities* Cities;  

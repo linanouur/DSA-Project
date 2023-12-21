@@ -220,7 +220,7 @@ double Department::getTotalAmountPaid() const
     return this->totalAmountPaid;
 }
 
-int main()
+/*int main()
 {
     DepartmentHeap dh;
     Department d1(1, 100000.00, 111);
@@ -288,5 +288,5 @@ int main()
     dh.getBest10();
     dh.getWorst10();
     return 0;
-}
+}*/
 #endif

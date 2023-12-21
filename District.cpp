@@ -22,7 +22,6 @@ void District::getOneMonthBillinDistrict(int month, int year)
 void District ::getPeriodBillinDistrict(int StartMonth, int StartYear, int EndMonth, int EnDYear)
 {
     BST.displayOnePeriodBillsALLPub(StartMonth, StartYear, EndMonth, EnDYear);
-   
 }
 void District ::getOneYearBillinDistrict(int year)
 {
@@ -55,6 +54,32 @@ District *htDistricts::getDistrictptr(int districtId)
     return &districts[index];
 }
 
+void htDistricts ::insertCustomerIntoDistrict(District &obj, Customer *node)
+{
+    obj.BST.insertNewCustomerBST(node);
+}
+
+void htDistricts::setInfoInDistrict(District &obj, int ID, int month, int year, Bill &b)
+{
+    cout << obj.DistrictName << endl;
+    obj.BST.setInfoCustomerOneMonthBST(ID, month, year, b);
+}
+
+void htDistricts::displayAllDistricts()
+{
+    for (int i = 0; i < num_dis; i++)
+    {
+        if (districts[i].DistrictID != 0)
+        {
+            std::cout << districts[i].DistrictName << "  " << districts[i].DistrictID << endl;
+        }
+    }
+}
+
+Customers *htDistricts ::getBST(int districtID)
+{
+    return &districts[districtID].BST;
+}
 // void htDistricts::getOnemonthBillDistrict (int districtID, int month, int year)
 // {
 //     District *district = getDistrict(districtID);

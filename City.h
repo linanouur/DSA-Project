@@ -14,13 +14,10 @@ using namespace std;
 const int num_cit = 100;
 
 
-
-
-
 class Department;
 class DepartmentHeap;
 class htDistricts;
-// class Region;
+
 
 enum class valueC
 {
@@ -35,7 +32,6 @@ public:
     htDistricts *Districts;  
     valueC cas = valueC::empty;
    
-    // City(int id, const string& name); 
     Department department;
 
     City() : CityID(0), CityName(""), department(0, 100000.00, 0.0) { Districts = new htDistricts;}
@@ -57,7 +53,6 @@ public:
     City getCity(int cityId);
     void displaycities();  
   
-
 
 };
 

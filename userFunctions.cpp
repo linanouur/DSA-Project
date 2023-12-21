@@ -82,9 +82,9 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb,vector<int>ages, string region, string city, string district, int id)
 {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, region, city, district, id);
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb,ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
@@ -174,7 +174,6 @@ void getOneMonthBillDistrict(htRegions &Alg, int RegionID, int CityID, int Distr
     D.getOneMonthBillinDistrict(month, year);
 }
 
-
 void getOneYearBillCountry(htRegions &Alg, int RegionID, int year)
 {
     Alg.getOneYearBillinRegions(year);
@@ -186,14 +185,14 @@ void getOneYearRegion(htRegions &Alg, int RegionID, int year)
     R->getOneYearBillinRegion(year);
 }
 
-void getOneYearBillCity(htRegions &Alg, int RegionID, int CityID,  int year)
+void getOneYearBillCity(htRegions &Alg, int RegionID, int CityID, int year)
 {
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     C->getOneYearBillinCity(year);
 }
 
-void getOneYearBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID,  int year)
+void getOneYearBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID, int year)
 {
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
@@ -201,10 +200,9 @@ void getOneYearBillDistrict(htRegions &Alg, int RegionID, int CityID, int Distri
     D.getOneYearBillinDistrict(year);
 }
 
-
 void getOnePeriodBillCountry(htRegions &Alg, int RegionID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
-    Alg.getPeriodBillinRegions(monthStart, monthEnd,  yearStart,  yearEnd);
+    Alg.getPeriodBillinRegions(monthStart, monthEnd, yearStart, yearEnd);
 }
 
 void getOnePeriodRegion(htRegions &Alg, int RegionID, int monthStart, int monthEnd, int yearStart, int yearEnd)
@@ -213,21 +211,20 @@ void getOnePeriodRegion(htRegions &Alg, int RegionID, int monthStart, int monthE
     R->getPeriodBillinRegion(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodBillCity(htRegions &Alg, int RegionID, int CityID,  int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillCity(htRegions &Alg, int RegionID, int CityID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
-    C->getPeriodBillinCity(monthStart, monthEnd,yearStart, yearEnd);
+    C->getPeriodBillinCity(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID,  int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
-
 
 int main()
 {
@@ -268,14 +265,16 @@ int main()
         cout << "Unable to open file." << endl;
     }
 
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);
-    insertNewCustomer(regionHashTable, "Moh", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 2);
-    insertNewCustomer(regionHashTable, "Mo", "Ali", 13456, 5, "Adrar", "Adrar", "Adrar", 3);
-    insertNewCustomer(regionHashTable, "Ahmed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 4);
-    insertNewCustomer(regionHashTable, "Moha", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 150);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5, "Adrar", "Adrar", "Adrar", 1);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5, "Adrar", "Adrar", "Adrar", 90);
-    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, "Adrar", "Adrar", "Adrar", 180);
+    vector<int> A = {1, 2, 3, 4};
+    
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, A, "Adrar", "Adrar", "Adrar", 123);
+    insertNewCustomer(regionHashTable, "Moh", "Ali", 1236, 5, A, "Adrar", "Adrar", "Adrar", 2);
+    insertNewCustomer(regionHashTable, "Mo", "Ali", 13456, 5,A, "Adrar", "Adrar", "Adrar", 3);
+    insertNewCustomer(regionHashTable, "Ahmed", "Ali", 1256, 5,A, "Adrar", "Adrar", "Adrar", 4);
+    insertNewCustomer(regionHashTable, "Moha", "Ali", 123456, 5, A,"Adrar", "Adrar", "Adrar", 150);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1236, 5,A, "Adrar", "Adrar", "Adrar", 1);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 13456, 5,A, "Adrar", "Adrar", "Adrar", 90);
+    insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, A,"Adrar", "Adrar", "Adrar", 180);
 
     Region *Rptr = regionHashTable.getRegion(1);
     Rptr->Cities->displaycities();
@@ -297,13 +296,13 @@ int main()
     else
         cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
-    //getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
-    //  getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
-    //  getOneYearBill(regionHashTable,1010010002,2023);
+    // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
+    //   getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
+    //   getOneYearBill(regionHashTable,1010010002,2023);
     setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-    getOneMonthBillDistrict(regionHashTable,1,1,1,1,2023);
+    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;

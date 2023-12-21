@@ -132,7 +132,7 @@ void getOneYearBill(htRegions Alg, int ID, int year)
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->getOneYearBillBST(ID,year);
@@ -145,7 +145,7 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCity(C);
+    City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->getPeriodBillBST(ID,monthStart,monthEnd,yearStart,yearEnd);

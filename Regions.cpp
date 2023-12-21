@@ -1,8 +1,7 @@
 #ifndef REGIONS_CPP
 #define REGIONS_CPP
 
- #include <iostream>
-
+#include <iostream>
 #include <string>
 #include"Regions.h"
 #include"City.h" 
@@ -101,7 +100,7 @@ void htRegions::insertDistrict(int regionID, int cityID, const District &distric
 { 
     for ( int i = 0 ; i < num_reg ; i++){
         if(regions[i].RegionID != 0){
-            cout<<"name of region " <<regions[i].RegionName <<endl; }  } 
+            cout<<"name of region " <<regions[i].RegionName <<endl; }  }
 }  
 
  void htRegions :: getOneMonthBillinRegions(int month, int year) 

@@ -14,8 +14,9 @@ using namespace std;
 
 District::District() : DistrictID(0), DistrictName("")
 {
-    BST= new Customers();
+    // BST= new Customers();
 }
+
 District::District(int id, const std::string &name) : DistrictID(id), DistrictName(name) {}
 
 int htDistricts::hashFunctionDistrict(int key)
@@ -32,21 +33,25 @@ void htDistricts::insertDistrict(const District &district)
 } 
  }
 
-District *htDistricts::getDistrict(int districtId)
+District htDistricts::getDistrict(int districtId)
 {
+    int index = hashFunctionDistrict(districtId);
+    return districts[index];
+}
+
+District * htDistricts::getDistrictptr(int districtId){
     int index = hashFunctionDistrict(districtId);
     return &districts[index];
 }
-
-void htDistricts::getOnemonthBillDistrict (int districtID, int month, int year)
-{
-    District *district = getDistrict(districtID);
-    if (district != nullptr)
-    { 
-        district->BST->getOneMonthBillBST(districtID, month, year);
+// void htDistricts::getOnemonthBillDistrict (int districtID, int month, int year)
+// {
+//     District *district = getDistrict(districtID);
+//     if (district != nullptr)
+//     { 
+//         district->BST->getOneMonthBillBST(districtID, month, year);
       
-      }
-    }
+//       }
+//     }
 
 
 #endif

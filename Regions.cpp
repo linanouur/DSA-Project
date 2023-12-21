@@ -83,16 +83,16 @@ void htRegions::insertDistrict(int regionID, int cityID, const District &distric
         if(regions[i].RegionID != 0){
             cout<<"name of region " <<regions[i].RegionName <<endl; }  } 
 }  
-void htRegions::getOnemonthBillRegion(int regionID, int month, int year)
-{
-    Region *region = getRegion(regionID); 
-    for ( int i=1; i< num_cit ; i++){
-        if(region->Cities->cities[i].CityID != 0){
-            region->Cities->getOnemonthBillCity(region->Cities->cities[i].CityID, month, year);
-        }
-    }
+// void htRegions::getOnemonthBillRegion(int regionID, int month, int year)
+// {
+//     Region *region = getRegion(regionID); 
+//     for ( int i=1; i< num_cit ; i++){
+//         if(region->Cities->cities[i].CityID != 0){
+//             region->Cities->getOnemonthBillCity(region->Cities->cities[i].CityID, month, year);
+//         }
+//     }
  
-}
+// }
  
 
 #endif

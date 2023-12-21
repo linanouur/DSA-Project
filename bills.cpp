@@ -1,11 +1,12 @@
 #ifndef BILLS_CPP
 #define BILLS_CPP
 
-#include <iostream>
-#include <string>
-#include"bills.h"
-
+#include<iostream>
 using namespace std;
+#include <string>
+#include <vector>
+#include "bills.h"
+
 
 Bill ::Bill()
 {
@@ -30,11 +31,12 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
     }
 
     int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;
-    state = status::calculated;
+    
     if (difference > 0)
     {
         Total = difference;
         MonthTransferCreditByBank = false;
+        state = status::calculated;
         return Total;
     }
 
@@ -43,6 +45,7 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
         MonthlyCredit = difference * (-1);
         MonthTransferCreditByBank = true;
         Total = 0;
+        state = status::calculated;
         return Total;
     }
 }

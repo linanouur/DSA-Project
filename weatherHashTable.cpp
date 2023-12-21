@@ -1,12 +1,15 @@
 #include"weatherHashTable.h"
 
 weatherHashTable::weatherHashTable(){
+
     startYear=2022;
     addYear(2022+1);
+    readWeatherFromFile("weather.csv");
 }
 weatherHashTable::weatherHashTable(int sy,int ny){
     startYear=sy;
     addYear(sy+ny);//resizing the table according to number of years
+    readWeatherFromFile("weather.csv");
 
 }
 void  weatherHashTable::addYear(int year) {
@@ -26,7 +29,7 @@ void weatherHashTable::insertWeather(int year, int month, int day, const weather
         addYear(year); // Ensure the year exists
         int yearIndex = year - startYear;
         years[yearIndex].getMonth(month).getDay(day).w = weather;
-        cout << "Weather inserted for " << year << "/" << month << "/" << day << endl;
+       
     }
 
     

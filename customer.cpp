@@ -125,10 +125,11 @@ void Customer ::getOneYearBillCustomer(int year)
 {
     cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;
     Year *y = Customeryears->getYear(year);
+     cout<< y->year<<endl;
     for (int month = 1; month < 13; month++)
     {
         Bill &m = y->yearMonths->getbill(month);
-        cout << "Month " << month << endl;
+         cout << m.monthName << endl;
         m.displayBill();
     }
 }
@@ -142,7 +143,7 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
         for (int month = monthStart; month < monthEnd; month++)
         {
             Bill &m = y->yearMonths->getbill(month);
-            cout << "Month " << month << endl;
+             cout << m.monthName <<" / " << y->year<<endl;
             m.displayBill();
         }
         return;
@@ -151,11 +152,13 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
     for (int year = yearStart; year <= yearEnd; year++)
     {
         Year *y = Customeryears->getYear(year);
+        cout<<y->year<<endl;
         for (int month = 1; month < 13; month++)
         {
-            if (year = yearEnd && month > monthEnd)
+            if (year == yearEnd && month > monthEnd)
                 break;
             Bill &m = y->yearMonths->getbill(month);
+            cout<<m.monthName<<" / "<<y->year<<endl;
             m.displayBill();
         }
     }

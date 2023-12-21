@@ -2,7 +2,7 @@
 
 
 
-month& year::getMonth(int month) {
+w_month& w_year::getMonth(int month) {
         return months[month - 1]; 
     }
 

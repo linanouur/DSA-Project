@@ -14,7 +14,7 @@ enum class status
 class Bill
 {
     public:
-    string monthName;
+    std::string monthName;
     int numberMonth;
     int Total = 0;
     int MonthConsumptionAmount;
@@ -28,7 +28,7 @@ class Bill
     // Constructor
     Bill();
 
-    void setMonth(string name, int num)
+    void setMonth(std::string name, int num)
     {
         monthName = name;
         numberMonth = num;

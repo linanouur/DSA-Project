@@ -1,6 +1,6 @@
 #include"w_day.h"
 
-day::day(){
+w_day::w_day(){
  
 }
 
@@ -13,6 +13,6 @@ day::day(){
     w.setSunnyHours(we.getSunnyHours());
 }*/
 
-day::~day(){
+w_day::~w_day(){
 
 }

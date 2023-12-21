@@ -1,8 +1,8 @@
 #include"w_month.h"
 
 
-day& month::getDay(int day) {
+w_day& w_month::getDay(int day) {
         return days[day - 1];
     }
 
-month::~month(){}
+w_month::~w_month(){}

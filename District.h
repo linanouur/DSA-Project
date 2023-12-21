@@ -21,7 +21,10 @@ public:
     Customer *searchinDistrict( int ID)
     {
         return BST.searchCustomer(ID);
-    }
+    } 
+    void getOneMonthBillinDistrict(int month, int year); 
+    void getPeriodBillinDistrict(int StartMonth, int StartYear, int EndMonth, int EnDYear); 
+    void getOneYearBillinDistrict(int year);
 };
 
 class htDistricts
@@ -56,8 +59,8 @@ void displayAllDistricts(){
         
     }
     }
-    }
-
+    } 
+  
 //    Customer *searchCustomerinHD(int DistrictID, int ID)
 //     {
 //         District *district = getDistrictptr(DistrictID);

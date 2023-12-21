@@ -31,6 +31,18 @@ public:
     std::string getCondition() const;
     int getSunnyHours() const;
 
+    weather& operator=(const weather& other) {
+        if (this != &other) {
+            // Copy all data members
+            maxTemp = other.maxTemp;
+            minTemp = other.minTemp;
+            sunnyHours = other.sunnyHours;
+            condition = other.condition;
+            std::copy(std::begin(other.date), std::end(other.date), std::begin(date));
+        }
+        return *this;
+    }
+
     
     ~weather();
 };

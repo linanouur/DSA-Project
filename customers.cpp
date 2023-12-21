@@ -53,15 +53,11 @@ Customer *Customers::insert(Customer *root, Customer *node)
 Customer *Customers::searchCustomer(int ID, Customer *r)
 {
 
-    if (r == nullptr)
+    if (r == nullptr || r->ElectricityAccountId == ID)
     {
         return r;
     }
-    else if (r->ElectricityAccountId == ID)
-    {
-        cout << r->FamilyName << endl;
-        return r;
-    }
+    
     else if (ID < r->ElectricityAccountId)
     {
         return searchCustomer(ID, r->left);

@@ -44,16 +44,16 @@ void htCities::displaycities()
         
     }
 } }
-void htCities::getOnemonthBillCity(int cityID, int month, int year)
-{
-    City *city = getCity(cityID);
-    if (city != nullptr)
-    {
-      for(int i=0;i<200;i++){
-          if(city->Districts->districts[i].DistrictID!=0){
-        city->Districts->districts[i].BST->getOneMonthBillBST(city->Districts->districts[i].DistrictID, month, year);
-          }
-      }
-    }
-}
+// void htCities::getOnemonthBillCity(int cityID, int month, int year)
+// {
+//     City *city = getCity(cityID);
+//     if (city != nullptr)
+//     {
+//       for(int i=0;i<200;i++){
+//           if(city->Districts->districts[i].DistrictID!=0){
+//         city->Districts->districts[i].BST->getOneMonthBillBST(city->Districts->districts[i].DistrictID, month, year);
+//           }
+//       }
+//     }
+// }
 #endif

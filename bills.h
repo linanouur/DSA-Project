@@ -1,9 +1,9 @@
 #ifndef BILLS_H
 #define BILLS_H
-
-#include <iostream>
-#include <string>
+#include<iostream>
 using namespace std;
+#include <string>
+#include <vector>
 
 enum class status
 {
@@ -39,5 +39,6 @@ class Bill
     int getTotal();
     void operator = (const Bill &other);
 };
+
 
 #endif

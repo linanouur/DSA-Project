@@ -1,7 +1,10 @@
-#ifndef CALENDAR_H 
-#define CALENDAR_H
- #include <iostream>
+#ifndef CALENDAR_CPP
+#define CALENDAR_CPP
+
+#include<iostream>
+using namespace std;
 #include <string>
+#include <vector>
 #include"bills.cpp"
 
 using namespace std;
@@ -68,6 +71,7 @@ class Year
     }
 };
 
+
 class Years
 { 
        public:   
@@ -85,9 +89,9 @@ class Years
         years[hash(numYear)] = Year(numYear);
     }
 
-    Year & getYear(int year)
+    Year * getYear(int year)
     {
-        return years[hash(year)];
+        return &years[hash(year)];
     }
 }; 
 

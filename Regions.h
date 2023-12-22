@@ -4,7 +4,7 @@
 #include"District.h" 
 #include"customers.h" 
 #include"Departments.h"
-// #include"weatherHashTable.h"
+#include"weatherHashTable.h"
 #include<iostream>
 #include<string>
 
@@ -22,7 +22,7 @@ class htcities;
 
 class Region {
 public:
-    // weatherHashTable tWeather;
+    weatherHashTable tWeather;
     int RegionID;
     string RegionName;
     htCities* Cities;  

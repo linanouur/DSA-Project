@@ -1,4 +1,5 @@
-
+#ifndef WEATHER_CPP
+#define WEATHER_CPP
 #include"weather.h"
 using namespace std;
 
@@ -75,3 +76,6 @@ using namespace std;
 
     
     weather::~weather(){}
+
+
+    #endif

@@ -14,12 +14,13 @@
 #include"customer.cpp"
 #include"calendar.cpp"
 #include"bills.h"
+#include"weatherHashTable.h"
 using namespace std;
  
 
 Region::Region() : RegionID(0), RegionName("")
 {   
-    // tWeather =  weatherHashTable();
+     //tWeather = weatherHashTable();
     Cities = new htCities;
 }
 Region::Region(int id, const std::string &name) : RegionID(id), RegionName(name)

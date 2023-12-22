@@ -1,3 +1,6 @@
+#ifndef W_YEAR_H
+#define W_YEAR_H
+
 #include"w_month.h"
 
 class w_year
@@ -20,3 +23,6 @@ public:
 
     
 };
+
+
+#endif

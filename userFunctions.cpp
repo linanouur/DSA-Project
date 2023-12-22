@@ -252,12 +252,12 @@ void getPeriodBill(htRegions &Alg, int ID, int monthStart, int monthEnd, int yea
     B->getPeriodBillBST(ID, monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOneMonthBillCountry(htRegions &Alg, int RegionID, int month, int year)
+void getOneMonthBillCountry(htRegions &Alg, int month, int year)
 {
     Alg.getOneMonthBillinRegions(month, year);
 }
 
-void getOneMonthRegion(htRegions &Alg, int RegionID, int month, int year)
+void getOneMonthBillRegion(htRegions &Alg, int RegionID, int month, int year)
 {
     Region *R = Alg.getRegion(RegionID);
     R->getOneMonthBillinRegion(month, year);
@@ -278,7 +278,7 @@ void getOneMonthBillDistrict(htRegions &Alg, int RegionID, int CityID, int Distr
     D.getOneMonthBillinDistrict(month, year);
 }
 
-void getOneYearBillCountry(htRegions &Alg, int RegionID, int year)
+void getOneYearBillCountry(htRegions &Alg, int year)
 {
     Alg.getOneYearBillinRegions(year);
 }
@@ -304,7 +304,7 @@ void getOneYearBillDistrict(htRegions &Alg, int RegionID, int CityID, int Distri
     D.getOneYearBillinDistrict(year);
 }
 
-void getOnePeriodBillCountry(htRegions &Alg, int RegionID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillCountry(htRegions &Alg, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     Alg.getPeriodBillinRegions(monthStart, monthEnd, yearStart, yearEnd);
 }
@@ -329,7 +329,7 @@ void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int Dist
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
-
+/*
 int main()
 {
 
@@ -495,5 +495,5 @@ cout<<getDistrictIDfromFile("Si Abdelghani");
 
 
     return 0;
-}
+}*/
 #endif

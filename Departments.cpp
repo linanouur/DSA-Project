@@ -167,6 +167,7 @@ void Department :: setInfo(int month , int year, int CustomerPayment , int Minje
     YearDepartment *Year = Departmentyears->getYear(year);
     Year->payment += CustomerPayment;
     Month m = Year->YMonths->getmonth(month);
+   // cout<<"Month number: "<<m.monthNumber<<"Month name: " <<m.monthName<<endl;
     int value = 3*Minjection;
     m.TotalSpentAmount+=value;
     // m.setMonthInfo(value);

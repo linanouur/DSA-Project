@@ -232,6 +232,20 @@ void menu::HomePage()
                          {
                               throw std::runtime_error("Input was not an integer.");
                          }
+                         int*ages;
+                         for (int i = 0; i < fnum; i++)
+                         {
+                              std::cout << "\t\t"
+                                   << "^" << setfill(' ') << setw(width - 16) << "Age of member N"<<i<<":" << setw(15) << "^" << endl;
+                         std::cout << "\t\t\t\t";
+                         std::cin >> ages[i];
+                         if (std::cin.fail())
+                         {
+                              throw std::runtime_error("Input was not an integer.");
+                         }
+                              
+                         }
+                         
                          if (fnum < 0)
                          {
                               std::cout << "\t\t\t Invalid family members number entered!!\n\n";

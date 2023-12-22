@@ -474,7 +474,7 @@ int main()
     cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
     // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
-   //getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
+   getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
    getOnemonthBill(regionHashTable,1010387696,5,2040);
     //   getOneYearBill(regionHashTable,1010010002,2023);
     // setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
@@ -517,9 +517,9 @@ int main()
     // Department d1 = c1.department;
     // double budget= d1.getBudget();
     // cout << "Budget of d1: " << budget << endl;
-cout<<getCityIDfromFile("Adrar");
-cout<<getRegionIDfromFile("Chlef");
-cout<<getDistrictIDfromFile("Si Abdelghani");
+// cout<<getCityIDfromFile("Adrar");
+// cout<<getRegionIDfromFile("Chlef");
+// cout<<getDistrictIDfromFile("Si Abdelghani");
 
 
     return 0;

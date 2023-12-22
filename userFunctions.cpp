@@ -18,7 +18,16 @@
 #include "bills.cpp"
 #include "Departments.h"
 #include "Departments.cpp"
-
+#include "weatherHashTable.h"
+#include "weatherHashTable.cpp"
+#include "w_year.h"
+#include "w_year.cpp"
+#include "w_month.h"
+#include "w_month.cpp"
+#include "w_day.h"
+#include "w_day.cpp"
+#include "weather.h"
+// #include "weather.cpp"
 using namespace std;
 
 int getRegionId(int CustomerID)
@@ -105,9 +114,10 @@ void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumptio
     int C = getCityId(ID);
     int D = getDistrictId(ID);
     Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCityptr(C); 
-    int difference = 5*bill.MonthConsumptionAmount - 3*bill.MonthInjectionAmount;
-    Cptr->setInfoDepartment(month,year,difference,Minjection);
+    City *Cptr = Rptr->Cities->getCityptr(C);
+    int difference = 5 * bill.MonthConsumptionAmount - 3 * bill.MonthInjectionAmount;
+    cout<<"VALUE A:"<<Minjection<<endl;
+    Cptr->setInfoDepartment(month, year, difference, Minjection);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->setInfoCustomerOneMonthBST(ID, month, year, bill);
@@ -229,16 +239,19 @@ void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int Dist
 
 int main()
 {
-    htRegions regionHashTable; 
+
+    htRegions regionHashTable;
     DepartmentHeap depHeap;
     // regionHashTable.insertRegion(Region(1,"Adrar"));
     // regionHashTable.insertCity(1,City(1,"Adrar"));
     // regionHashTable.insertCity(2,City(2,"Chlef"));
     // regionHashTable.insertDistrict(1,1,District(1,"Adrar"));
+
     ifstream file("RegionCityDistrict.csv");
 
     if (file.is_open())
     {
+
         string line;
         while (getline(file, line))
         {
@@ -264,11 +277,11 @@ int main()
     }
     else
     {
-       std:: cout << "Unable to open file." << endl;
+        std::cout << "Unable to open file." << endl;
     }
 
     // ifstream fileTwo("CustomerInfo.csv");
-    
+
     // if (fileTwo.is_open())
     // {
     //     int id=1;
@@ -284,7 +297,7 @@ int main()
     //         getline(ss, city, ',');
     //         getline(ss, district, ',');
     //         getline(ss, numMemb, ',');
-            
+
     //         int num = stoi(numMemb);
     //         for (int i = 0; i < num; i++)
     //         {
@@ -292,7 +305,7 @@ int main()
     //             getline(ss, age, ',');
     //             A[i] = stoi(age);
     //         }
-            
+
     //         getline(ss, bankAccount, ',');
     //         int Account = stoi(bankAccount);
     //         // getline(ss, id, ',');
@@ -337,8 +350,8 @@ int main()
     Customer *nas = B->searchCustomer(1010010002);
     if (nas == nullptr)
         cout << "null" << endl;
-    
-        cout << nas->FamilyName << endl;
+
+    cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
     // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
     //   getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
@@ -346,14 +359,14 @@ int main()
     setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023); 
-      Rptr->Cities->displaycities(); 
-      depHeap.printBestDepartments();
-      Department D = Cptr->department;
-      YearDepartment *Y= D.Departmentyears->getYear(2023);
-    cout<<"2023 payment "<<Y->payment<<endl;
+    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
+    Rptr->Cities->displaycities();
+    depHeap.printBestDepartments();
+    Department D = Cptr->department;
+    YearDepartment *Y = D.Departmentyears->getYear(2023);
+    cout << "2023 payment " << Y->payment << endl;
     Month M = Y->YMonths->getmonth(1);
-    cout<<"1 TotalSpentAmount"<<M.TotalSpentAmount<<endl;
+    cout << "1 TotalSpentAmount" << M.TotalSpentAmount << endl;
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;

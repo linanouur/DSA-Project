@@ -168,7 +168,8 @@ void Department :: setInfo(int month , int year, int CustomerPayment , int Minje
     Year->payment += CustomerPayment;
     Month m = Year->YMonths->getmonth(month);
     int value = 3*Minjection;
-    m.setMonthInfo(value);
+    m.TotalSpentAmount+=value;
+    // m.setMonthInfo(value);
 }
 
 // printWorstDepartments function to print the departments from the best to the worst

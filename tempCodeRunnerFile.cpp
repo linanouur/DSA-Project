@@ -1,1 +1,1 @@
- // insertNewCustomer(regionHashTable,fname,lname,Account,num,A,region,city,district,ID);
+cout<<"VALUE A:"<<Minjection<<endl;

@@ -1,5 +1,6 @@
 #include"w_day.h"
-
+#include"weather.h"
+#include"weather.cpp"
 w_day::w_day(){
  
 }

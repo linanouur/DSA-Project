@@ -12,7 +12,7 @@ class Month {
     public:
     string monthName;
     int monthNumber;
-    int TotalSpentAmount;
+    int TotalSpentAmount = 0;
     
     Month(){}
     Month(string name, int num)
@@ -28,7 +28,10 @@ class Month {
 
     void setMonthInfo(int TotalSpent)
     {
-        TotalSpentAmount += TotalSpent;
+        cout<<"VALUE C:" <<TotalSpent<<endl;
+         cout<<"INITIAL1:"<<TotalSpentAmount<<endl;
+        TotalSpentAmount = TotalSpentAmount+TotalSpent;
+        cout<<"INITIAL2:"<<TotalSpentAmount<<endl;
         cout<<TotalSpent<<endl;
     }
 

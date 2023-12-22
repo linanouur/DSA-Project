@@ -1,5 +1,8 @@
+#ifndef WEATHER_H
+#define WEATHER_H
 #include<iostream>
 #include<string>
+
 using namespace std;
 
 class weather
@@ -47,3 +50,4 @@ public:
     ~weather();
 };
 
+#endif

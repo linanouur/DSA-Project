@@ -46,16 +46,7 @@
     "ostream": "cpp",
     "stdexcept": "cpp",
     "streambuf": "cpp",
-    "typeinfo": "cpp",
-    "bit": "cpp",
-    "compare": "cpp",
-    "concepts": "cpp",
-    "optional": "cpp",
-    "string_view": "cpp",
-    "format": "cpp",
-    "numbers": "cpp",
-    "span": "cpp",
-    "variant": "cpp"
+    "typeinfo": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

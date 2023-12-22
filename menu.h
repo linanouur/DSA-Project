@@ -5,24 +5,64 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "weatherHashTable.h"
+// #include "weatherHashTable.h"
 #include "customers.h"
-// #include "userFunctions.cpp"
+#include "userFunctions.cpp"
 // #include "Regions.h"
 using namespace std;
 class menu
 {
 private:
      /* data */
+     htRegions Alg;
+     DepartmentHeap DHeap;
+
 public:
-     menu(/* args */);
+     
+     menu();
      void HomePage();
      void display();
      ~menu();
 };
 
-menu::menu(/* args */)
+menu::menu()
 {
+
+     ifstream file("RegionCityDistrict.csv");
+
+     if (file.is_open())
+     {
+
+          string line;
+          while (getline(file, line))
+          {
+               stringstream ss(line);
+               string regionID, regionName, cityID, cityName, districtID, districtName;
+
+               getline(ss, regionID, ',');
+               getline(ss, regionName, ',');
+               getline(ss, cityID, ',');
+               getline(ss, cityName, ',');
+               getline(ss, districtID, ',');
+               getline(ss, districtName, ',');
+               int RegionID, CityID, DistrictID;
+               RegionID = stoi(regionID);
+               CityID = stoi(cityID);
+               DistrictID = stoi(districtID);
+               Alg.insertRegion(Region(RegionID, regionName));
+               Alg.insertCity(RegionID, City(CityID, cityName), DHeap);
+               Alg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
+          }
+
+          file.close();
+     }
+     else
+     {
+          std::cout << "Unable to open file." << endl;
+     }
+
+     
+     
 }
 
 void menu::display()
@@ -85,7 +125,6 @@ void menu::HomePage()
 {
 
      Customers BST;
-     // htRegions Algeria;
      weatherHashTable wht;
      bool conn;
      const int width = 60;
@@ -252,24 +291,24 @@ void menu::HomePage()
                               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                               break;
                          }
-                         // std::cout << "\t\t"
-                         //   << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
-                         // std::cout << "\t\t\t\t";
+                         std::cout << "\t\t"
+                           << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
+                         std::cout << "\t\t\t\t";
 
-                         // std::cin >> id_num;
-                         // if (id_num > 9999 || id_num < 0)
-                         //{
-                         //  std::cout << "\t\t\t Invalid ID entered!!\n\n";
-                         //  std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
-                         //  break;
-                         //}
+                         std::cin >> id_num;
+                         if (id_num > 9999 || id_num < 0)
+                         {
+                          std::cout << "\t\t\t Invalid ID entered!!\n\n";
+                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                          break;
+                         }
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
 
                          cout << "\t\t\t\t";
-                         // insertNewCustomer(Algeria, fname, lname, bnum, fnum, reg, city, dist, id_num);
+                         // insertNewCustomer(Alg, fname, lname, bnum, fnum, reg, city, dist, id_num);
                          std::cout << endl;
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 20) << "Custumer added successfully" << setw(19) << "^" << endl;
@@ -341,7 +380,7 @@ void menu::HomePage()
                               break;
                          }
 
-                         // setInfoOneMonth(Algeria, id_bill, m_bill, y_bill, mconsumption, minjection);
+                         setInfoOneMonth(Alg, id_bill, m_bill, y_bill, mconsumption, minjection);
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
                          break;
@@ -365,12 +404,12 @@ void menu::HomePage()
                          std::cin >> y;
                          switch (y)
                          {
-                              long int S_id;
+                               int S_id;
                          case 1:
                               std::cout << "\t\t\t enter the customer ID please:\n";
                               std::cout << "\t\t\t\t   ";
                               std::cin >> S_id;
-                              if (S_id > 99999999999 || id_bill < 0)
+                              if (S_id > 99999999999 || S_id < 0)
                               {
                                    std::cout << "\t\t\t Invalid ID entered!!\n\n";
                                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
@@ -389,7 +428,7 @@ void menu::HomePage()
                               std::cout << "\t\t"
                                         << "^" << setfill(' ') << setw(19) << "2_ year" << setw(40) << "^" << endl;
                               std::cout << "\t\t"
-                                        << "^" << setfill(' ') << setw(30) << "3_ periode of time" << setw(29) << "^" << endl;
+                                        << "^" << setfill(' ') << setw(30) << "3_ period of time" << setw(29) << "^" << endl;
                               int t;
                               std::cout << "\t\t\t\t";
                               std::cin >> t;
@@ -416,7 +455,7 @@ void menu::HomePage()
                                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                         break;
                                    }
-                                   // getOnemonthBill(Algeria, S_id, tm, ty);
+                                   getOnemonthBill(Alg, S_id, tm, ty);
                                    break;
                               case 2:
                                    std::cout << "\t\t\t enter the year" << endl;
@@ -429,7 +468,7 @@ void menu::HomePage()
                                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                         break;
                                    }
-                                   // getOneYearBill(Algeria, S_id, ty);
+                                   getOneYearBill(Alg, S_id, ty);
                                    break;
 
                               case 3:
@@ -475,7 +514,7 @@ void menu::HomePage()
                                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                         break;
                                    }
-                                   // getPeriodBill(Algeria,S_id, sm, em, sy, ey);
+                                   getPeriodBill(Alg, S_id, sm, em, sy, ey);
                                    break;
 
                               default:
@@ -530,7 +569,7 @@ void menu::HomePage()
                                    std::cout << "\t\t"
                                              << "^" << setfill(' ') << setw(19) << "2_ year" << setw(40) << "^" << endl;
                                    std::cout << "\t\t"
-                                             << "^" << setfill(' ') << setw(30) << "3_ periode of time" << setw(29) << "^" << endl;
+                                             << "^" << setfill(' ') << setw(30) << "3_ period of time" << setw(29) << "^" << endl;
                                    int tz;
                                    std::cout << "\t\t\t\t";
                                    std::cin >> tz;
@@ -557,7 +596,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        // getOneMonthBillDistrict(Algeria, rg1,ct1, dist1, tm, ty)
+                                        // getOneMonthBillDistrict(Alg, rg1,ct1, dist1, tm, ty);
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;
@@ -750,7 +789,7 @@ void menu::HomePage()
                                    std::cout << "\t\t"
                                              << "^" << setfill(' ') << setw(19) << "2_ year" << setw(40) << "^" << endl;
                                    std::cout << "\t\t"
-                                             << "^" << setfill(' ') << setw(30) << "3_ periode of time" << setw(29) << "^" << endl;
+                                             << "^" << setfill(' ') << setw(30) << "3_ period of time" << setw(29) << "^" << endl;
                                    int tzzz;
                                    std::cout << "\t\t\t\t";
                                    std::cin >> tzzz;
@@ -853,7 +892,7 @@ void menu::HomePage()
                                    std::cout << "\t\t"
                                              << "^" << setfill(' ') << setw(19) << "2_ year" << setw(40) << "^" << endl;
                                    std::cout << "\t\t"
-                                             << "^" << setfill(' ') << setw(30) << "3_ periode of time" << setw(29) << "^" << endl;
+                                             << "^" << setfill(' ') << setw(30) << "3_ period of time" << setw(29) << "^" << endl;
                                    int ttz;
                                    std::cout << "\t\t\t\t";
                                    std::cin >> ttz;
@@ -880,7 +919,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        // getOneMonthBillCountry(Algeria, tm, ty)
+                                        getOneMonthBillCountry(Alg, tm, ty);
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;
@@ -894,7 +933,7 @@ void menu::HomePage()
                                              break;
                                         }
 
-                                        // getOneYearBillCountry(Algeria,ty2);
+                                        getOneYearBillCountry(Alg, ty2);
                                         break;
 
                                    case 3:
@@ -940,7 +979,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        // getOnePeriodBillCountry(Algeria,sm, em, sy, ey);
+                                        getOnePeriodBillCountry(Alg, sm, em, sy, ey);
                                         break;
                                    default:
                                         break;
@@ -1000,7 +1039,7 @@ void menu::HomePage()
                          }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
-                         wht.printWeatherInfo(yw, mw, dw);
+                          wht.printWeatherInfo(yw, mw, dw);
 
                          break;
                     case 5:

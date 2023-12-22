@@ -1,3 +1,5 @@
+#ifndef W_MONTH_H
+#define W_MONTH_H
 #include"w_day.h"
 #include<vector>
 using namespace std;
@@ -24,3 +26,4 @@ public:
 };
 
 
+#endif

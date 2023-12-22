@@ -1,4 +1,8 @@
+#ifndef WEATHERHASHTABLE_H
+#define WEATHERHASHTABLE_H
+
 #include"w_year.h"
+
 #include<string>
 #include<fstream>
 #include<sstream>
@@ -98,6 +102,6 @@ public:
 };
 
    
-
+#endif
 
 

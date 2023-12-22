@@ -1,16 +1,19 @@
-#include"weather.h"
+// #ifndef DAY_H
+// #define DAY_H
+// #include"weather.h"
 
 
-class day
-{
+// class day
+// {
 
-public:
+// public:
 
-    weather w;
-    day();
-    ~day();
-    //void setDayWeather(const weather& we);
+//     weather w;
+//     day();
+//     ~day();
+//     //void setDayWeather(const weather& we);
 
-};
+// };
 
 
+// #endif

@@ -6,23 +6,129 @@
 
 using namespace std;
 
+
+
+class Month {
+    public:
+    string monthName;
+    int monthNumber;
+    int TotalSpentAmount = 0;
+    
+    Month(){}
+    Month(string name, int num)
+    {
+        monthName = name;
+        monthNumber = num;
+    }
+    void setMonth(string name, int num)
+    {
+        monthName = name;
+        monthNumber = num;
+    }
+
+    void setMonthInfo(int TotalSpent)
+    {
+        cout<<"VALUE C:" <<TotalSpent<<endl;
+         cout<<"INITIAL1:"<<TotalSpentAmount<<endl;
+        TotalSpentAmount = TotalSpentAmount+TotalSpent;
+        cout<<"INITIAL2:"<<TotalSpentAmount<<endl;
+        cout<<TotalSpent<<endl;
+    }
+
+};
+
+
+
+class MonthsDepartment
+
+{
+public:
+    Month months[13];
+    MonthsDepartment() {
+        const string monthNames[] = {
+            "January", "February", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December"};
+
+        for (int i = 1; i <= 12; ++i)
+        {
+            months[i].setMonth(monthNames[i - 1], i);
+        }
+    }
+
+    Month &getmonth(int month)
+    {
+        return months[month];
+    }
+};
+
+class YearDepartment
+{ 
+    public: 
+     MonthsDepartment *YMonths;
+
+    int year;
+   
+    int payment = 0;
+
+    YearDepartment() { 
+        YMonths = new MonthsDepartment();
+    }
+    YearDepartment(int num)
+    {
+        YMonths = new MonthsDepartment();
+        year = num;
+      
+    }
+};
+
+
+class YearsDepartment
+{ 
+       public:   
+   
+      YearsDepartment() { }
+  
+     YearDepartment years[50];
+    int hash(int numYear)
+    {
+        return numYear % 50;
+    }
+
+    void insertYear(int numYear)
+    {
+        years[hash(numYear)] = YearDepartment(numYear);
+    }
+
+    YearDepartment * getYear(int year)
+    {
+        return &years[hash(year)];
+    }
+}; 
 // Definition of the Department class
 class Department
 {
-public:
-    int city_id;
+public: 
+    YearsDepartment *Departmentyears;
+    int city_id; 
+    string city_name;
     double budget;
     double totalAmountPaid;
 
     // Constructor with default values for parameters
-    Department(int id = 0, double budg = 100000.00, double amountPaid = 0.0)
-        : city_id(id), budget(budg), totalAmountPaid(amountPaid) {}
+    Department(int id = 0,string name="", double budg = 100000.00, double amountPaid = 0.0 )
+        : city_id(id),city_name(name), budget(budg), totalAmountPaid(amountPaid) { Departmentyears = new YearsDepartment();
+        for(int i=2022;i<2072;i++)
+        {
+            Departmentyears->insertYear(i);}
+        }
 
     // Member functions for setting and getting budget and total amount paid
     void setBudget(double);
     double getBudget() const;
     void setTotalAmountPaid(double);
     double getTotalAmountPaid() const;
+    void setInfo(int , int , int , int);
 };
 
 
@@ -51,7 +157,13 @@ public:
     void printWorstDepartments();
     void getBest10() const;
     void getWorst10() const;
-};
+}; 
+
+
+
+
+
+
 
 
 #endif

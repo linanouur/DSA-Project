@@ -14,17 +14,18 @@
 #include"customer.cpp"
 #include"calendar.cpp"
 #include"bills.h"
+#include"weatherHashTable.h"
 using namespace std;
  
 
 Region::Region() : RegionID(0), RegionName("")
 {   
-    // tWeather =  weatherHashTable();
+     tWeather = weatherHashTable();
     Cities = new htCities;
 }
 Region::Region(int id, const std::string &name) : RegionID(id), RegionName(name)
 {
-    // tWeather = weatherHashTable();
+    tWeather = weatherHashTable();
     Cities = new htCities;
 } 
 void  Region:: getOneMonthBillinRegion(int month, int year) 
@@ -80,10 +81,10 @@ void htRegions::displaycities(int RegionID)
 }
 
 
-void htRegions::insertCity(int regionID, const City &city)
+void htRegions::insertCity(int regionID, const City &city, DepartmentHeap &heap)
 {
     Region *region = getRegion(regionID);
-    region->Cities->insertCity(city);  
+    region->Cities->insertCity(city, heap);  
    
    
 }

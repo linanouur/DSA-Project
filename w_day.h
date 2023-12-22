@@ -1,5 +1,9 @@
+#ifndef W_DAY_H
+#define W_DAY_H
 #include"weather.h"
+#include"weather.cpp"
 
+class weather;
 
 class w_day
 {
@@ -20,3 +24,4 @@ public:
 };
 
 
+#endif

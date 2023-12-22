@@ -23,8 +23,11 @@ private:
     static string districtWinner;
     void displayOneMonthBillsALL(Customer *ptr, int, int);
     void displayOneYearBillsALL(Customer *ptr, int);
-    void displayPeriodBillsALL(Customer *ptr, int, int , int , int);
-public:
+    void displayPeriodBillsALL(Customer *ptr, int, int , int , int); 
+    int CustomersNum ; 
+public: 
+  
+  
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
     void setInfoCustomerOneMonthBST(int , int , int , Bill &);

@@ -2,8 +2,9 @@
 #define REGION_H
 #include"City.h"  
 #include"District.h" 
-#include"customers.h"
-// #include"weatherHashTable.h"
+#include"customers.h" 
+#include"Departments.h"
+#include"weatherHashTable.h"
 #include<iostream>
 #include<string>
 
@@ -21,7 +22,7 @@ class htcities;
 
 class Region {
 public:
-    // weatherHashTable tWeather;
+    weatherHashTable tWeather;
     int RegionID;
     string RegionName;
     htCities* Cities;  
@@ -38,7 +39,7 @@ public:
     Region regions[num_reg];
     int hashFunctionRegion(int key);
     void insertRegion(const Region& region);   
-    void insertCity(int regionID , const City &city);
+    void insertCity(int regionID , const City &city, DepartmentHeap &heap);
     void insertDistrict(int regionID , int cityID , const District &district);
     Region* getRegion(int RegionID);
     void displaycities(int RegionID); 

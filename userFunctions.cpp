@@ -19,7 +19,109 @@
 #include "Departments.h"
 #include "Departments.cpp"
 
-using namespace std;
+using namespace std;  
+
+int getRegionIDfromFile(string region)
+{
+    ifstream file("RegionCityDistrict.csv");
+    string line;
+    string IDorName;
+    vector<string> IDSorNames;
+
+    if (!file.is_open())
+    {
+        cerr << "Unable to open file" << endl;
+        return-1;
+    }
+
+    while (getline(file, line))
+    {
+        istringstream lineStream(line);
+        IDSorNames.clear();
+
+        while (getline(lineStream, IDorName, ','))
+        {
+            IDSorNames.push_back(IDorName);
+        }
+
+        if (IDSorNames.size() >= 6 &&
+            IDSorNames[1] == region )
+        {
+             
+              return stoi(IDSorNames[0]);    
+           
+           
+
+        }
+    }
+
+    return -1;
+} 
+int getCityIDfromFile( string city)
+{
+    ifstream file("RegionCityDistrict.csv");
+    string line;
+    string IDorName;
+    vector<string> IDSorNames;
+
+    if (!file.is_open())
+    {
+        cerr << "Unable to open file" << endl;
+        return -1;
+    }
+
+    while (getline(file, line))
+    {
+        istringstream lineStream(line);
+        IDSorNames.clear();
+
+        while (getline(lineStream, IDorName, ','))
+        {
+            IDSorNames.push_back(IDorName);
+        }
+
+        if (IDSorNames.size() >= 6 && IDSorNames[3] == city )
+        {
+               
+                 return stoi (IDSorNames[2]); 
+      
+        }
+    }
+
+    return-1;
+}  
+int getDistrictIDfromFile( string district)
+{
+    ifstream file("RegionCityDistrict.csv");
+    string line;
+    string IDorName;
+    vector<string> IDSorNames;
+
+    if (!file.is_open())
+    {
+        cerr << "Unable to open file" << endl;
+        return -1;
+    }
+
+    while (getline(file, line))
+    {
+        istringstream lineStream(line);
+        IDSorNames.clear();
+
+        while (getline(lineStream, IDorName, ','))
+        {
+            IDSorNames.push_back(IDorName);
+        }
+
+        if (IDSorNames.size() >= 6 && IDSorNames[5] == district )
+        {
+          return stoi(IDSorNames[4]); 
+        }
+    }
+
+    return-1;
+} 
+
 
 int getRegionId(int CustomerID)
 {
@@ -88,7 +190,7 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
-    int D = getDistrictId(NewID);
+    int D = getDistrictId(NewID); 
     Region *Rptr = Alg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
@@ -341,6 +443,10 @@ int main()
     // Department d1 = c1.department;
     // double budget= d1.getBudget();
     // cout << "Budget of d1: " << budget << endl;
+cout<<getCityIDfromFile("Adrar");   
+cout<<getRegionIDfromFile("Chlef");  
+cout<<getDistrictIDfromFile("Si Abdelghani");
+
 
     return 0;
 }

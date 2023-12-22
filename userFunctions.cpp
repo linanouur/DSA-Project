@@ -18,7 +18,7 @@
 #include "bills.cpp"
 #include "Departments.h"
 #include "Departments.cpp"
-
+#include "weatherHashTable.h"
 using namespace std;  
 
 int getRegionIDfromFile(string region)
@@ -184,6 +184,7 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
+
 void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, vector<int> ages, string region, string city, string district, int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
@@ -257,21 +258,27 @@ void getOneMonthBillCountry(htRegions &Alg, int month, int year)
     Alg.getOneMonthBillinRegions(month, year);
 }
 
-void getOneMonthBillRegion(htRegions &Alg, int RegionID, int month, int year)
+void getOneMonthBillRegion(htRegions &Alg, string RegionName ,int month, int year)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
     R->getOneMonthBillinRegion(month, year);
 }
 
-void getOneMonthBillCity(htRegions &Alg, int RegionID, int CityID, int month, int year)
+void getOneMonthBillCity(htRegions &Alg, string RegionName, string CityName, int month, int year)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
+    int CityID = getCityIDfromFile(CityName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     C->getOneMonthBillinCity(month, year);
 }
 
-void getOneMonthBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID, int month, int year)
+void getOneMonthBillDistrict(htRegions &Alg, string RegionName, string CityName, string DistrictName, int month, int year)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
+    int CityID = getCityIDfromFile(CityName);
+    int DistrictID=getRegionIDfromFile(DistrictName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
@@ -283,21 +290,27 @@ void getOneYearBillCountry(htRegions &Alg, int year)
     Alg.getOneYearBillinRegions(year);
 }
 
-void getOneYearRegion(htRegions &Alg, int RegionID, int year)
+void getOneYearRegion(htRegions &Alg, string RegionName, int year)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
     R->getOneYearBillinRegion(year);
 }
 
-void getOneYearBillCity(htRegions &Alg, int RegionID, int CityID, int year)
+void getOneYearBillCity(htRegions &Alg, string RegionName, string CityName, int year)
 {
+     int RegionID = getRegionIDfromFile(RegionName);
+    int CityID = getCityIDfromFile(CityName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     C->getOneYearBillinCity(year);
 }
 
-void getOneYearBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID, int year)
+void getOneYearBillDistrict(htRegions &Alg,  string RegionName, string CityName, string DistrictName, int year)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
+    int CityID = getCityIDfromFile(CityName);
+    int DistrictID=getRegionIDfromFile(DistrictName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
@@ -309,27 +322,34 @@ void getOnePeriodBillCountry(htRegions &Alg, int monthStart, int monthEnd, int y
     Alg.getPeriodBillinRegions(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodRegion(htRegions &Alg, int RegionID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodRegion(htRegions &Alg, string RegionName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
+   int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
     R->getPeriodBillinRegion(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodBillCity(htRegions &Alg, int RegionID, int CityID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillCity(htRegions &Alg, string RegionName, string CityName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
+    int CityID = getCityIDfromFile(CityName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     C->getPeriodBillinCity(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int DistrictID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+
+void getOnePeriodBillDistrict(htRegions &Alg,  string RegionName, string CityName, string DistrictName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
+    int RegionID = getRegionIDfromFile(RegionName);
+    int CityID = getCityIDfromFile(CityName);
+    int DistrictID=getRegionIDfromFile(DistrictName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
-/*
+
 int main()
 {
 
@@ -452,7 +472,7 @@ int main()
     setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
     setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-    getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
+    // getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
     Rptr->Cities->displaycities();
     depHeap.printBestDepartments();
     Department D = Cptr->department;
@@ -495,5 +515,5 @@ cout<<getDistrictIDfromFile("Si Abdelghani");
 
 
     return 0;
-}*/
+}
 #endif

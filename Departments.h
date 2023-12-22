@@ -28,11 +28,11 @@ class Month {
 
     void setMonthInfo(int TotalSpent)
     {
-        cout<<"VALUE C:" <<TotalSpent<<endl;
-         cout<<"INITIAL1:"<<TotalSpentAmount<<endl;
+        cout<<"TADKHOL LLMONTH B : " <<TotalSpent<<endl;
+         cout<<"LORIGINAL TA3 LMONTH/ "<<TotalSpentAmount<<endl;
         TotalSpentAmount = TotalSpentAmount+TotalSpent;
-        cout<<"INITIAL2:"<<TotalSpentAmount<<endl;
-        cout<<TotalSpent<<endl;
+        cout<<"HAWLIK KIFACH WALAT MONTHAMOUNT:"<<TotalSpentAmount<<endl;
+        cout<<"DAKHLAT B:" <<TotalSpent<<endl;
     }
 
 };
@@ -56,9 +56,9 @@ public:
         }
     }
 
-    Month &getmonth(int month)
+    Month *getmonth(int month)
     {
-        return months[month];
+        return &months[month];
     }
 };
 

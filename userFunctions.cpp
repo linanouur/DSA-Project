@@ -445,7 +445,11 @@ int main()
     //     std::cout << "Unable to open file." << endl;
     // }
 
-    vector<int> A = {1, 2, 3, 4};
+    // int *A = new int[5];
+    // for(int i=0;i<5;i++){
+    //     A[i]=i;
+    // }
+    
 
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, A, "Adrar", "Adrar", "Adrar", 123);
     insertNewCustomer(regionHashTable, "Moh", "Ali", 1236, 5, A, "Adrar", "Adrar", "Adrar", 2);

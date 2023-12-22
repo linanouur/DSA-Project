@@ -36,18 +36,28 @@ int htCities::hashFunctionCity(int key)
     return key % num_cit;
 }
 
-void htCities::insertCity(const City &city)
+void htCities::insertCity(const City &city, DepartmentHeap &heap)
 {
     int index = hashFunctionCity(city.CityID);
-    if(cities[index].cas==valueC::empty){
+    
     cities[index].CityID = city.CityID;
-    cities[index].CityName = city.CityName;
-    cities[index].cas==valueC::inserted;
-    dh.insertDepartment(city.department);
-    }
+    cities[index].CityName = city.CityName; 
+    
+
+  if(cities[index].cas==valueC::empty)  {
+   
+    heap.insertDepartment(city.department);    
+     cities[index].cas=valueC::inserted; 
+    
+  }
+  
+    
     else return;
 }
 
+void City:: setInfoDepartment( int month , int year, int CustomerPayment , int MInjection){
+    department.setInfo(month , year, CustomerPayment ,MInjection);
+}
 
 City *htCities::getCityptr(int cityId)
 {

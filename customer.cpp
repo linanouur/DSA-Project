@@ -6,7 +6,8 @@
 using namespace std;
 #include <string>
 #include <vector>
-#include "customer.h"
+#include "customer.h" 
+#include "customers.h"
 
 void Customer::settotalInjection(int value)
 {
@@ -94,11 +95,12 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 long int Customer ::generateCustomerID(string region, string city, string district, int CustomerID)
 {
     if (CustomerID > 0 && CustomerID < 10000)
-    {
+    {   
         string concatenatedIDs = getConcatenatedIDs(region, city, district);
         string CustomerIDstring = to_string(CustomerID);
-        string IDstring = string(4 - CustomerIDstring.length(), '0') + CustomerIDstring;
-        string CustomerID = concatenatedIDs + IDstring;
+        string IDstring = string(4 - CustomerIDstring.length(), '0') +CustomerIDstring;
+        string CustomerID = concatenatedIDs + IDstring; 
+     
         return stoi(CustomerID);
     }
     else

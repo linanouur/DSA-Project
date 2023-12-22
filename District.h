@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include "customers.h"
-
+#include "customers.h"
 using namespace std;
 
 const int num_dis = 100;
@@ -18,7 +18,6 @@ public:
     Customers BST;
     District();
     District(int id, const std::string &name);
-    Customer *searchinDistrict(int ID);
     void getOneMonthBillinDistrict(int month, int year);
     void getPeriodBillinDistrict(int StartMonth, int StartYear, int EndMonth, int EnDYear);
     void getOneYearBillinDistrict(int year);

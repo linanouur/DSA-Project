@@ -27,7 +27,7 @@
 #include "w_day.h"
 #include "w_day.cpp"
 #include "weather.h"
-// #include "weather.cpp"
+
 using namespace std;
 
 using namespace std;
@@ -190,7 +190,7 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, vector<int> ages , string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
@@ -202,24 +202,26 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    Dis.BST.print();
 }
 
-void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumption, int Minjection)
+void setInfoOneMonth(htRegions &HReg, int ID, int month, int year, int Mconsumption, int Minjection)
 {
+    bool exists = false;
     Bill bill;
     bill.setBillInfo(Mconsumption, Minjection);
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
-    Region *Rptr = Alg.getRegion(R);
+    Region *Rptr = HReg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
-    int difference = 5 * bill.MonthConsumptionAmount - 3 * bill.MonthInjectionAmount;
-    cout << "VALUE A:" << Minjection << endl;
-    Cptr->setInfoDepartment(month, year, difference, Minjection);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
-    B->setInfoCustomerOneMonthBST(ID, month, year, bill);
+    B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists);
+    if (exists == true)
+    {
+        int difference = 5 * Mconsumption - 3 * Minjection;
+        Cptr->setInfoDepartment(month, year, difference, Minjection);
+    }
 }
 
 void getOnemonthBill(htRegions &Alg, int ID, int month, int year)
@@ -297,7 +299,7 @@ void getOneYearBillCountry(htRegions &Alg, int year)
     Alg.getOneYearBillinRegions(year);
 }
 
-void getOneYearRegion(htRegions &Alg, string RegionName, int year)
+void getOneYearBillRegion(htRegions &Alg, string RegionName, int year)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
@@ -329,7 +331,7 @@ void getOnePeriodBillCountry(htRegions &Alg, int monthStart, int monthEnd, int y
     Alg.getPeriodBillinRegions(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodRegion(htRegions &Alg, string RegionName, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillRegion(htRegions &Alg, string RegionName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
@@ -354,6 +356,18 @@ void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
+}
+
+int main()
+{
+    Department d;
+    d.setInfo(2, 2025, 200, 100);
+   
+    YearDepartment *Y=d.Departmentyears->getYear(2025);
+     cout <<"DEPARTMENT PROFIT FL3AM: "<< Y->payment<<endl;
+    Month *M=Y->YMonths->getmonth(2);
+    cout<<"FCHHER AMOUNTSPENT "<<M->TotalSpentAmount<<endl;
+        return 0;
 }
 
 /*
@@ -442,7 +456,11 @@ int main()
     //     std::cout << "Unable to open file." << endl;
     // }
 
-    vector<int> A = {1, 2, 3, 4};
+    int *A = new int[5];
+    for(int i=0;i<5;i++){
+        A[i]=i;
+    }
+
 
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 123456, 5, A, "Adrar", "Adrar", "Adrar", 123);
     insertNewCustomer(regionHashTable, "Moh", "Ali", 1236, 5, A, "Adrar", "Adrar", "Adrar", 2);
@@ -477,17 +495,18 @@ int main()
    getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
    getOnemonthBill(regionHashTable,1010387696,5,2040);
     //   getOneYearBill(regionHashTable,1010010002,2023);
-    // setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
-    // setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
-    // setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
+    setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
+    setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
+    setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
     // // getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
     // Rptr->Cities->displaycities();
-    // depHeap.printBestDepartments();
-    // Department D = Cptr->department;
-    // YearDepartment *Y = D.Departmentyears->getYear(2023);
-    // cout << "2023 payment " << Y->payment << endl;
-    // Month M = Y->YMonths->getmonth(1);
-    // cout << "1 TotalSpentAmount" << M.TotalSpentAmount << endl;
+    depHeap.printBestDepartments();
+    Department D = Cptr->department;
+    YearDepartment *Y = D.Departmentyears->getYear(2023);
+    cout << "2023 payment " << Y->payment << endl;
+    Month M = Y->YMonths->getmonth(1);
+    cout << "1 TotalSpentAmount" << M.TotalSpentAmount << endl;
+
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;

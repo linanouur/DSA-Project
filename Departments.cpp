@@ -166,11 +166,11 @@ void DepartmentHeap::printHeap(const vector<int> &heap) const
 void Department :: setInfo(int month , int year, int CustomerPayment , int Minjection){
     YearDepartment *Year = Departmentyears->getYear(year);
     Year->payment += CustomerPayment;
-    Month m = Year->YMonths->getmonth(month);
+    Month *m = Year->YMonths->getmonth(month);
    // cout<<"Month number: "<<m.monthNumber<<"Month name: " <<m.monthName<<endl;
-    int value = 3*Minjection;
-    m.TotalSpentAmount+=value;
-    // m.setMonthInfo(value);
+     int value = 3*Minjection;
+    // m.TotalSpentAmount+=value;
+    m->setMonthInfo(value);
 }
 
 // printWorstDepartments function to print the departments from the best to the worst

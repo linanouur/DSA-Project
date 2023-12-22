@@ -59,11 +59,6 @@ void htDistricts ::insertCustomerIntoDistrict(District &obj, Customer *node)
     obj.BST.insertNewCustomerBST(node);
 }
 
-void htDistricts::setInfoInDistrict(District &obj, int ID, int month, int year, Bill &b)
-{
-    cout << obj.DistrictName << endl;
-    obj.BST.setInfoCustomerOneMonthBST(ID, month, year, b);
-}
 
 void htDistricts::displayAllDistricts()
 {

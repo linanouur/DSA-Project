@@ -28,11 +28,11 @@ class Month {
 
     void setMonthInfo(int TotalSpent)
     {
-        cout<<"VALUE C:" <<TotalSpent<<endl;
-         cout<<"INITIAL1:"<<TotalSpentAmount<<endl;
+        cout<<"TADKHOL LLMONTH B : " <<TotalSpent<<endl;
+         cout<<"LORIGINAL TA3 LMONTH/ "<<TotalSpentAmount<<endl;
         TotalSpentAmount = TotalSpentAmount+TotalSpent;
-        cout<<"INITIAL2:"<<TotalSpentAmount<<endl;
-        cout<<TotalSpent<<endl;
+        cout<<"HAWLIK KIFACH WALAT MONTHAMOUNT:"<<TotalSpentAmount<<endl;
+        cout<<"DAKHLAT B:" <<TotalSpent<<endl;
     }
 
 };
@@ -56,21 +56,18 @@ public:
         }
     }
 
-    Month &getmonth(int month)
+    Month *getmonth(int month)
     {
-        return months[month];
+        return &months[month];
     }
 };
 
 class YearDepartment
 { 
     public: 
+     int payment = 0;
      MonthsDepartment *YMonths;
-
     int year;
-   
-    int payment = 0;
-
     YearDepartment() { 
         YMonths = new MonthsDepartment();
     }
@@ -160,9 +157,17 @@ public:
 }; 
 
 
+/*
+getBest10(int year){
+access to all deps : setTotalPaiment(year)
 
+}
 
-
+Department: setTotalPaiment(int year){
+    Year *y=getYear(int)
+    TotalAmount = y->paiment;
+}
+*/
 
 
 

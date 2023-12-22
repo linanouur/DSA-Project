@@ -19,7 +19,18 @@
 #include "Departments.h"
 #include "Departments.cpp"
 #include "weatherHashTable.h"
-using namespace std;  
+#include "weatherHashTable.cpp"
+#include "w_year.h"
+#include "w_year.cpp"
+#include "w_month.h"
+#include "w_month.cpp"
+#include "w_day.h"
+#include "w_day.cpp"
+#include "weather.h"
+// #include "weather.cpp"
+using namespace std;
+
+using namespace std;
 
 int getRegionIDfromFile(string region)
 {
@@ -31,7 +42,7 @@ int getRegionIDfromFile(string region)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return-1;
+        return -1;
     }
 
     while (getline(file, line))
@@ -45,19 +56,16 @@ int getRegionIDfromFile(string region)
         }
 
         if (IDSorNames.size() >= 6 &&
-            IDSorNames[1] == region )
+            IDSorNames[1] == region)
         {
-             
-              return stoi(IDSorNames[0]);    
-           
-           
 
+            return stoi(IDSorNames[0]);
         }
     }
 
     return -1;
-} 
-int getCityIDfromFile( string city)
+}
+int getCityIDfromFile(string city)
 {
     ifstream file("RegionCityDistrict.csv");
     string line;
@@ -80,17 +88,16 @@ int getCityIDfromFile( string city)
             IDSorNames.push_back(IDorName);
         }
 
-        if (IDSorNames.size() >= 6 && IDSorNames[3] == city )
+        if (IDSorNames.size() >= 6 && IDSorNames[3] == city)
         {
-               
-                 return stoi (IDSorNames[2]); 
-      
+
+            return stoi(IDSorNames[2]);
         }
     }
 
-    return-1;
-}  
-int getDistrictIDfromFile( string district)
+    return -1;
+}
+int getDistrictIDfromFile(string district)
 {
     ifstream file("RegionCityDistrict.csv");
     string line;
@@ -113,15 +120,14 @@ int getDistrictIDfromFile( string district)
             IDSorNames.push_back(IDorName);
         }
 
-        if (IDSorNames.size() >= 6 && IDSorNames[5] == district )
+        if (IDSorNames.size() >= 6 && IDSorNames[5] == district)
         {
-          return stoi(IDSorNames[4]); 
+            return stoi(IDSorNames[4]);
         }
     }
 
-    return-1;
-} 
-
+    return -1;
+}
 
 int getRegionId(int CustomerID)
 {
@@ -184,14 +190,13 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, vector<int> ages, string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, vector<int> ages , string region, string city, string district, int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
-    int D = getDistrictId(NewID); 
+    int D = getDistrictId(NewID);
     Region *Rptr = Alg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
@@ -210,15 +215,16 @@ void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumptio
     Region *Rptr = Alg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
     int difference = 5 * bill.MonthConsumptionAmount - 3 * bill.MonthInjectionAmount;
-    cout<<"VALUE A:"<<Minjection<<endl;
+    cout << "VALUE A:" << Minjection << endl;
     Cptr->setInfoDepartment(month, year, difference, Minjection);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->setInfoCustomerOneMonthBST(ID, month, year, bill);
 }
 
-void getOnemonthBill(htRegions Alg, int ID, int month, int year)
+void getOnemonthBill(htRegions &Alg, int ID, int month, int year)
 {
+    cout << "hello";
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
@@ -226,6 +232,7 @@ void getOnemonthBill(htRegions Alg, int ID, int month, int year)
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
+    cout << "Phase 1" << endl;
     B->getOneMonthBillBST(ID, month, year);
 }
 
@@ -258,7 +265,7 @@ void getOneMonthBillCountry(htRegions &Alg, int month, int year)
     Alg.getOneMonthBillinRegions(month, year);
 }
 
-void getOneMonthBillRegion(htRegions &Alg, string RegionName ,int month, int year)
+void getOneMonthBillRegion(htRegions &Alg, string RegionName, int month, int year)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
@@ -278,7 +285,7 @@ void getOneMonthBillDistrict(htRegions &Alg, string RegionName, string CityName,
 {
     int RegionID = getRegionIDfromFile(RegionName);
     int CityID = getCityIDfromFile(CityName);
-    int DistrictID=getRegionIDfromFile(DistrictName);
+    int DistrictID = getRegionIDfromFile(DistrictName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
@@ -299,18 +306,18 @@ void getOneYearRegion(htRegions &Alg, string RegionName, int year)
 
 void getOneYearBillCity(htRegions &Alg, string RegionName, string CityName, int year)
 {
-     int RegionID = getRegionIDfromFile(RegionName);
+    int RegionID = getRegionIDfromFile(RegionName);
     int CityID = getCityIDfromFile(CityName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     C->getOneYearBillinCity(year);
 }
 
-void getOneYearBillDistrict(htRegions &Alg,  string RegionName, string CityName, string DistrictName, int year)
+void getOneYearBillDistrict(htRegions &Alg, string RegionName, string CityName, string DistrictName, int year)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     int CityID = getCityIDfromFile(CityName);
-    int DistrictID=getRegionIDfromFile(DistrictName);
+    int DistrictID = getRegionIDfromFile(DistrictName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
@@ -324,7 +331,7 @@ void getOnePeriodBillCountry(htRegions &Alg, int monthStart, int monthEnd, int y
 
 void getOnePeriodRegion(htRegions &Alg, string RegionName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
-   int RegionID = getRegionIDfromFile(RegionName);
+    int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
     R->getPeriodBillinRegion(monthStart, monthEnd, yearStart, yearEnd);
 }
@@ -338,18 +345,18 @@ void getOnePeriodBillCity(htRegions &Alg, string RegionName, string CityName, in
     C->getPeriodBillinCity(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-
-void getOnePeriodBillDistrict(htRegions &Alg,  string RegionName, string CityName, string DistrictName, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName, string DistrictName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     int CityID = getCityIDfromFile(CityName);
-    int DistrictID=getRegionIDfromFile(DistrictName);
+    int DistrictID = getRegionIDfromFile(DistrictName);
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
 
+/*
 int main()
 {
 
@@ -447,9 +454,9 @@ int main()
     insertNewCustomer(regionHashTable, "Mohamed", "Ali", 1256, 5, A, "Adrar", "Adrar", "Adrar", 180);
 
     Region *Rptr = regionHashTable.getRegion(1);
-    Rptr->Cities->displaycities();
+    // Rptr->Cities->displaycities();
     City *Cptr = Rptr->Cities->getCityptr(1);
-    Cptr->Districts->displayAllDistricts();
+    // Cptr->Districts->displayAllDistricts();
 
     // cout << D.DistrictName << endl;
     // District Dis = Cptr->Districts->getDistrict(1);
@@ -467,19 +474,20 @@ int main()
     cout << nas->FamilyName << endl;
     setInfoOneMonth(regionHashTable, 1010010002, 1, 2023, 100, 100);
     // getPeriodBill(regionHashTable,1010010002,1,5,2023,2025);
-    //   getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
+   //getOnemonthBill(regionHashTable, 1010010002, 1, 2023);
+   getOnemonthBill(regionHashTable,1010387696,5,2040);
     //   getOneYearBill(regionHashTable,1010010002,2023);
-    setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
-    setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
-    setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
-    // getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
-    Rptr->Cities->displaycities();
-    depHeap.printBestDepartments();
-    Department D = Cptr->department;
-    YearDepartment *Y = D.Departmentyears->getYear(2023);
-    cout << "2023 payment " << Y->payment << endl;
-    Month M = Y->YMonths->getmonth(1);
-    cout << "1 TotalSpentAmount" << M.TotalSpentAmount << endl;
+    // setInfoOneMonth(regionHashTable, 1010010123, 1, 2023, 100, 100);
+    // setInfoOneMonth(regionHashTable, 1010010003, 1, 2023, 100, 100);
+    // setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
+    // // getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
+    // Rptr->Cities->displaycities();
+    // depHeap.printBestDepartments();
+    // Department D = Cptr->department;
+    // YearDepartment *Y = D.Departmentyears->getYear(2023);
+    // cout << "2023 payment " << Y->payment << endl;
+    // Month M = Y->YMonths->getmonth(1);
+    // cout << "1 TotalSpentAmount" << M.TotalSpentAmount << endl;
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
     // cout << getCustomerID(1010010002) << endl;
@@ -509,11 +517,11 @@ int main()
     // Department d1 = c1.department;
     // double budget= d1.getBudget();
     // cout << "Budget of d1: " << budget << endl;
-cout<<getCityIDfromFile("Adrar");   
-cout<<getRegionIDfromFile("Chlef");  
+cout<<getCityIDfromFile("Adrar");
+cout<<getRegionIDfromFile("Chlef");
 cout<<getDistrictIDfromFile("Si Abdelghani");
 
 
     return 0;
-}
+}*/
 #endif

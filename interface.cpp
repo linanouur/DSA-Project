@@ -5,7 +5,7 @@
 using namespace std;
 
 
-int main (){
+/*int main (){
     try{ menu m;
      m.display();
      m.HomePage();
@@ -15,6 +15,6 @@ int main (){
         std::cerr << "Unknown exception caught" << std::endl;
     }
 }
-
+*/
 
 

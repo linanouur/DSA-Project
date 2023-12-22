@@ -27,8 +27,7 @@ private:
     int CustomersNum ; 
 public: 
   
-     int getCustomersNum(); 
-     void setCustomersNum(int);
+  
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
     void setInfoCustomerOneMonthBST(int , int , int , Bill &);

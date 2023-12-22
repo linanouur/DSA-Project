@@ -13,10 +13,6 @@ string Customers ::cityWinner = "";
 string Customers ::districtWinner = ""; 
 static int CustomersNum = 0;
 
-// Customers ::Customers()
-// {
-//   rootCus=new Customer("Lina", "Slama", 123456, 5, "Adrar", "Adrar", "Ouled Ahmed Timmi", 1320);
-// }
 
 void Customers::setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &other)
 {

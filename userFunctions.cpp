@@ -17,7 +17,18 @@
 #include "bills.h"
 #include "bills.cpp"
 #include "Departments.h"
-#include "Departments.cpp"
+#include "Departments.cpp" 
+#include "weatherHashTable.h"
+#include "weatherHashTable.cpp"
+#include "w_year.h"
+#include "w_year.cpp"
+#include "w_month.h"
+#include "w_month.cpp"
+#include "w_day.h"
+#include "w_day.cpp"
+#include "weather.h"
+// #include "weather.cpp"
+using namespace std;
 
 using namespace std;  
 
@@ -329,7 +340,7 @@ void getOnePeriodBillDistrict(htRegions &Alg, int RegionID, int CityID, int Dist
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
-/*
+
 int main()
 {
 
@@ -495,5 +506,5 @@ cout<<getDistrictIDfromFile("Si Abdelghani");
 
 
     return 0;
-}*/
+}
 #endif

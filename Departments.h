@@ -65,12 +65,9 @@ public:
 class YearDepartment
 { 
     public: 
+     int payment = 0;
      MonthsDepartment *YMonths;
-
     int year;
-   
-    int payment = 0;
-
     YearDepartment() { 
         YMonths = new MonthsDepartment();
     }
@@ -160,9 +157,17 @@ public:
 }; 
 
 
+/*
+getBest10(int year){
+access to all deps : setTotalPaiment(year)
 
+}
 
-
+Department: setTotalPaiment(int year){
+    Year *y=getYear(int)
+    TotalAmount = y->paiment;
+}
+*/
 
 
 

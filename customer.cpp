@@ -19,10 +19,11 @@ long int Customer ::getCustomerId()
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int bankAccount, int numMemb, const vector<int> &ages, string region, string city, string district, int id)
+Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, int id)
 {
-
+    Ages=new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
+    
     cout << "Customer ID: " << generateCustomerID(region, city, district, id) << endl;
     ElectricityAccountId = generateCustomerID(region, city, district, id);
     Customeryears = new Years();
@@ -30,15 +31,19 @@ Customer::Customer(string fname, string lname, int bankAccount, int numMemb, con
     {
         Customeryears->insertYear(i);
     }
+    
 }
 
-void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, vector<int> ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int* ages, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    Ages = ages;
+    for (int i = 0; i < numMemb; i++)
+    {
+        Ages[i] = ages[i];   
+    }
     Region = region;
     City = city;
     District = district;

@@ -27,7 +27,7 @@
 #include "w_day.h"
 #include "w_day.cpp"
 #include "weather.h"
-// #include "weather.cpp"
+
 using namespace std;
 
 using namespace std;
@@ -190,7 +190,7 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, vector<int> ages , string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
@@ -202,24 +202,27 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    Dis.BST.print();
+    
 }
 
-void setInfoOneMonth(htRegions Alg, int ID, int month, int year, int Mconsumption, int Minjection)
+void setInfoOneMonth(htRegions &HReg, int ID, int month, int year, int Mconsumption, int Minjection)
 {
+    bool exists = false;
     Bill bill;
     bill.setBillInfo(Mconsumption, Minjection);
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
-    Region *Rptr = Alg.getRegion(R);
+    Region *Rptr = HReg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
-    int difference = 5 * bill.MonthConsumptionAmount - 3 * bill.MonthInjectionAmount;
-    cout << "VALUE A:" << Minjection << endl;
-    Cptr->setInfoDepartment(month, year, difference, Minjection);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
-    B->setInfoCustomerOneMonthBST(ID, month, year, bill);
+    B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists);
+    if (exists == true)
+    {
+        int difference = 5 * Mconsumption - 3 * Minjection;
+        Cptr->setInfoDepartment(month, year, difference, Minjection);
+    }
 }
 
 void getOnemonthBill(htRegions &Alg, int ID, int month, int year)
@@ -297,7 +300,7 @@ void getOneYearBillCountry(htRegions &Alg, int year)
     Alg.getOneYearBillinRegions(year);
 }
 
-void getOneYearRegion(htRegions &Alg, string RegionName, int year)
+void getOneYearBillRegion(htRegions &Alg, string RegionName, int year)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);
@@ -329,7 +332,7 @@ void getOnePeriodBillCountry(htRegions &Alg, int monthStart, int monthEnd, int y
     Alg.getPeriodBillinRegions(monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void getOnePeriodRegion(htRegions &Alg, string RegionName, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getOnePeriodBillRegion(htRegions &Alg, string RegionName, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     int RegionID = getRegionIDfromFile(RegionName);
     Region *R = Alg.getRegion(RegionID);

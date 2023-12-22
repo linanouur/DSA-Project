@@ -6,7 +6,6 @@
 #include "customer.cpp"
 #include "bills.cpp"
 #include "customer.h"
-
 using namespace std;
 
 class Customers
@@ -23,14 +22,13 @@ private:
     static string districtWinner;
     void displayOneMonthBillsALL(Customer *ptr, int, int);
     void displayOneYearBillsALL(Customer *ptr, int);
-    void displayPeriodBillsALL(Customer *ptr, int, int , int , int); 
-    int CustomersNum ; 
-public: 
-  
-  
+    void displayPeriodBillsALL(Customer *ptr, int, int, int, int);
+    int CustomersNum;
+
+public:
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
-    void setInfoCustomerOneMonthBST(int , int , int , Bill &);
+    void setInfoCustomerOneMonthBST(int, int, int, Bill &, bool &doesExist);
     void getOneMonthBillBST(int, int, int);
     void getOneYearBillBST(int, int);
     void getPeriodBillBST(int, int, int, int, int);

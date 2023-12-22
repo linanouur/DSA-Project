@@ -10,13 +10,11 @@ int Customers ::maxInjectorID = 0;
 int Customers ::maxAmountInjected = 0;
 string Customers ::regionWinner = "";
 string Customers ::cityWinner = "";
-string Customers ::districtWinner = ""; 
+string Customers ::districtWinner = "";
 static int CustomersNum = 0;
 
-
-void Customers::setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &other)
+void Customers::setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &other, bool &doesExist)
 {
-
     Customer *cust = searchCustomer(ID);
     if (cust != nullptr)
     {
@@ -28,9 +26,11 @@ void Customers::setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &ot
         y->setYearlyCredit(other.MonthInjectionAmount * 3);
         Bill &m = y->yearMonths->getbill(month);
         m = other;
+        doesExist = true;
     }
     else
     {
+        doesExist = false;
         cout << "Customer not found." << endl;
     }
 }
@@ -43,7 +43,6 @@ int getPrize(Customers *BST)
 
 void Customers::insertNewCustomerBST(Customer *ptr)
 {
-    cout << "hey";
     rootCus = insert(rootCus, ptr);
 }
 
@@ -88,7 +87,6 @@ Customer *Customers::searchCustomer(int ID, Customer *r)
 
 Customer *Customers::searchCustomer(int ID)
 {
-
     return searchCustomer(ID, rootCus);
 }
 
@@ -223,11 +221,11 @@ int Customers ::getmaxAmoutInjected()
 
 void Customers ::getOneMonthBillBST(int ID, int month, int year)
 {
-    cout<<"Phase 2"<<endl;
+    cout << "Phase 2" << endl;
     cout << "Bill of " << month
          << " / " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
-    cout<<"Phase 3"<<endl;
+    cout << "Phase 3" << endl;
     if (cust != nullptr)
     {
         cust->getOneMonthBillCustomer(month, year);
@@ -275,9 +273,7 @@ void Customers ::displayWinner()
     cout << "ID Winner: " << Customers ::maxInjectorID << endl;
     cout << "From: " << Customers::regionWinner << "  " << Customers::cityWinner << "  " << Customers::districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
-} 
-
-
+}
 
 /*
 int main(){

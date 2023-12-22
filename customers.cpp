@@ -223,10 +223,11 @@ int Customers ::getmaxAmoutInjected()
 
 void Customers ::getOneMonthBillBST(int ID, int month, int year)
 {
+    cout<<"Phase 2"<<endl;
     cout << "Bill of " << month
          << " / " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
-    cout << cust->ElectricityAccountId;
+    cout<<"Phase 3"<<endl;
     if (cust != nullptr)
     {
         cust->getOneMonthBillCustomer(month, year);

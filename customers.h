@@ -39,8 +39,8 @@ public:
     static int getmaxAmoutInjected();
     static void displayWinner();
     void printLevelOrder();
-    void displayOneMonthBillsALLPub(int, int);
-    void displayOneYearBillsALLPub(int);
-    void displayOnePeriodBillsALLPub(int, int, int, int);
+    void displayOneMonthBillsALLPub(int, int , bool &);
+    void displayOneYearBillsALLPub(int , bool &);
+    void displayOnePeriodBillsALLPub(int, int, int, int , bool &);
 };
 #endif

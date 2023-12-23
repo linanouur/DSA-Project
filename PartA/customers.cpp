@@ -273,11 +273,13 @@ void Customers ::getPeriodBillBST(long long int ID, int monthStart, int monthEnd
 
 void Customers ::displayWinner()
 {
-    
+    if(Customers ::maxInjectorID >0){
     cout << "The winner of this month is: " << endl;
     cout << "ID Winner: " << Customers ::maxInjectorID << endl;
     cout << "From: " << Customers::regionWinner << "  " << Customers::cityWinner << "  " << Customers::districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
+    }
+    else cout << "No Winner for this month"<<endl;
 }
 
 

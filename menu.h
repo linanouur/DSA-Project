@@ -270,7 +270,7 @@ void menu::HomePage()
                          }
 
                          std::cout << "\t\t"
-                                   << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
+                                   << "^" << setfill(' ') << setw(width - 24) << "Enter national card ID" << setw(23) << "^" << endl;
                          std::cout << "\t\t\t\t";
 
                          std::cin >> id_num;
@@ -584,6 +584,7 @@ void menu::HomePage()
                                         }
                                         cout << "hey" << endl;
                                         getOneMonthBillDistrict(Alg, rg1, ct1, dist1, tm, ty);
+
 
                                         break;
                                    case 2:

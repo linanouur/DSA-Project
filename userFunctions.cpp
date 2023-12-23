@@ -210,23 +210,6 @@ void writeinFile(int Id)
     }
 }
 
-void writeinFile(int *Id, int size)
-{
-    ofstream outputFile("newIds.csv");
-    if (outputFile.is_open())
-    {
-        for(int i = 0; i < size; i++)
-        {
-            outputFile << Id[size] << endl;
-        }
-        outputFile.close();
-        cout << "Ids have been written to newIds.csv successfully." << endl;
-    }
-    else
-    {
-        std::cout << "Unable to open the file." << std::endl;
-    }
-}
 
 void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
@@ -242,13 +225,12 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
     cout << "Customer Id: " << NewID << endl;
-
     std::cout << "\t\t"
               << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
     writeinFile(NewID);
 }
 
-void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id, int *IDS)
+void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
     static int i = 0;
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
@@ -261,7 +243,8 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAcc
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    IDS[i] = NewID;
+    cout << NewID << endl;
+    
 }
 
 void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
@@ -437,15 +420,24 @@ void FillHashTablesRCD(htRegions &Reg, DepartmentHeap &heap)
             string regionID, regionName, cityID, cityName, districtID, districtName;
 
             getline(ss, regionID, ',');
+            
             getline(ss, regionName, ',');
+            
             getline(ss, cityID, ',');
+            
             getline(ss, cityName, ',');
+            
             getline(ss, districtID, ',');
+            
             getline(ss, districtName, ',');
+           
             int RegionID, CityID, DistrictID;
             RegionID = stoi(regionID);
+          
             CityID = stoi(cityID);
+            
             DistrictID = stoi(districtID);
+            
             Reg.insertRegion(Region(RegionID, regionName));
             Reg.insertCity(RegionID, City(CityID, cityName), heap);
             Reg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
@@ -461,11 +453,11 @@ void FillHashTablesRCD(htRegions &Reg, DepartmentHeap &heap)
 
 void SetCustomersFromFile(htRegions &Reg)
 {
-    int *IDS;
-    IDS = new int[100];
+
     ifstream fileCus("Customer.csv");
     if (fileCus.is_open())
     {
+       // int i=0;
         string line;
         while (getline(fileCus, line))
         {
@@ -495,7 +487,9 @@ void SetCustomersFromFile(htRegions &Reg)
             getline(ss, id, ',');
             ID = stoll(id);
 
-            insertNewCustomerTwo(Reg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID, IDS);
+            insertNewCustomerTwo(Reg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
+           // i++;
+            //cout<<i<<endl;
         }
 
         fileCus.close();
@@ -504,7 +498,5 @@ void SetCustomersFromFile(htRegions &Reg)
     {
         std::cout << "Unable to open file2." << endl;
     }
-
-    writeinFile(IDS,100);
 }
 #endif

@@ -11,7 +11,7 @@ int main()
     DepartmentHeap AlgHeap;
     FillHashTablesRCD(Alg, AlgHeap);
     SetCustomersFromFile(Alg);
-    FillHashTablesRCD(Alg, AlgHeap);
+   
     try
     {
         menu m(Alg, AlgHeap);

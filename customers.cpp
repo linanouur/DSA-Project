@@ -56,14 +56,11 @@ Customer *Customers::insert(Customer *root, Customer *node)
     }
     else if (node->ElectricityAccountId < root->ElectricityAccountId)
     {
-        cout << root->ElectricityAccountId << endl;
-        cout << node->ElectricityAccountId << endl;
         root->left = insert(root->left, node);
         return root;
     }
     else if (node->ElectricityAccountId > root->ElectricityAccountId)
     {
-        cout << node->firstName << endl;
         root->right = insert(root->right, node);
         return root;
     }

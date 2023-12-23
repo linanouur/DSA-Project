@@ -5,11 +5,11 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-// #include "weatherHashTable.h"
+#include "weatherHashTable.h"
 #include "customers.h"
 #include "userFunctions.cpp"
 #include <vector>
-// #include "Regions.h"
+#include "Regions.h"
 using namespace std;
 class menu
 {
@@ -27,7 +27,7 @@ public:
 
 menu::menu()
 {
-
+  
      ifstream file("RegionCityDistrict.csv");
 
      if (file.is_open())
@@ -52,9 +52,11 @@ menu::menu()
                Alg.insertRegion(Region(RegionID, regionName));
                Alg.insertCity(RegionID, City(CityID, cityName), DHeap);
                Alg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
+              
           }
 
           file.close();
+         
      }
      else
      {

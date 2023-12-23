@@ -3,11 +3,10 @@
 #include "userFunctions.cpp"
 
 using namespace std;
-/*
+
 int main()
 {
-    // htRegions Algeria;
-    // DepartmentHeap AlgDeps;
+
     try
     {
         cout << "Loading.." << endl;
@@ -22,4 +21,3 @@ int main()
         std::cerr << "Unknown exception caught" << std::endl;
     }
 }
-*/

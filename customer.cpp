@@ -21,29 +21,34 @@ long int Customer ::getCustomerId()
 
 Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, int id)
 {
-    Ages=new int[numMemb];
+    Ages = new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
-    
     cout << "Customer ID: " << generateCustomerID(region, city, district, id) << endl;
+    cout<<"CC"<<endl;
     ElectricityAccountId = generateCustomerID(region, city, district, id);
     Customeryears = new Years();
     for (int i = 2023; i < 2023 + 50; i++)
     {
         Customeryears->insertYear(i);
     }
-    
+    cout<<"end of constructor<<endl";
 }
 
 void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int* ages, string region, string city, string district)
 {
+    cout<<"debut setInfo"<<endl;
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
+    cout<<"9bl lages"<<endl;
     for (int i = 0; i < numMemb; i++)
     {
+        cout<<"dakhl lages"<<endl;
         Ages[i] = ages[i];   
+        cout<<Ages[i]<<endl;
     }
+    cout<<"kharj lages"<<endl;
     Region = region;
     City = city;
     District = district;

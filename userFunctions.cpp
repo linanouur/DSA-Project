@@ -192,8 +192,10 @@ int getCustomerID(int CustomerID)
 
 void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, int id)
 {
+    cout<<"hey";
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
-    long int NewID = cus->ElectricityAccountId;
+    cout<<"hello";
+    int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
     int C = getCityId(NewID);
     int D = getDistrictId(NewID);
@@ -358,6 +360,7 @@ void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
 
+/*
 int main()
 {
     Department d;
@@ -368,7 +371,7 @@ int main()
     Month *M=Y->YMonths->getmonth(2);
     cout<<"FCHHER AMOUNTSPENT "<<M->TotalSpentAmount<<endl;
         return 0;
-}
+}*/
 
 /*
 int main()

@@ -9,9 +9,9 @@ int main()
     cout << "Electricity Management system loading.." << endl;
     htRegions Alg;
     DepartmentHeap AlgHeap;
-    FillHashTablesRCD(Alg, AlgHeap);
-    SetCustomersFromFile(Alg);
-    FillHashTablesRCD(Alg, AlgHeap);
+    //FillHashTablesRCD(Alg, AlgHeap);
+    //SetCustomersFromFile(Alg);
+    //FillHashTablesRCD(Alg, AlgHeap);
     try
     {
         menu m(Alg, AlgHeap);

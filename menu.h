@@ -1035,17 +1035,23 @@ void menu::HomePage()
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                          std::cout << "\t\t\t\t   Best customer " << endl;
+                         int xm;
+                         
+                         
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          BST.displayWinner();
-                         cout << "\t\t\t BST.displayWinner();" << endl;
+                        
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
                          break;
 
                     case 6:
+                         
+                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
+                         std::cout << "\t\t\t\t   listing of departements " << endl;
                          int z;
                          std::cout << "\t\t\t\t   Enter listing year: ";
                          std::cin >> z;
@@ -1054,54 +1060,51 @@ void menu::HomePage()
                               cout << "Invalid year; enter again: ";
                               cin >> z;
                          }
-                         std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
-                         std::cout << "\t\t\t\t   listing of departements " << endl;
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          DHeap.printDepartments(z);
-                         cout << "\t\t\t printDepartments();" << endl;
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
                          break;
                     case 7:
-                         int x;
-                         std::cout << "\t\t\t\t   Enter listing year: ";
-                         std::cin >> x;
-                         while (x > 2023 || x < 2020)
-                         {
-                              cout << "Invalid year; enter again: ";
-                              cin >> x;
-                         }
+                         
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                          std::cout << "\t\t\t\t   Top 10 departements: " << endl;
+                         int xdep;
+                         std::cout << "\t\t\t\t   Enter year: ";
+                         std::cin >> xdep;
+                         while (xdep > 2023 || xdep < 2020)
+                         {
+                              cout << "Invalid year; enter again: ";
+                              cin >> xdep;
+                         }
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         DHeap.getBest10(x);
-                         cout << "\t\t\t getBest10();" << endl;
+                         DHeap.getBest10(xdep);
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
                          break;
                     case 8:
-                         int xy;
-                         std::cout << "\t\t\t\t   Enter listing year: ";
-                         std::cin >> xy;
-                         while (xy > 2023 || xy < 2020)
-                         {
-                              cout << "Invalid year; enter again: ";
-                              cin >> xy;
-                         }
+                         
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                          std::cout << "\t\t\t\t   Worst 10 departements: " << endl;
+                         int xydep;
+                         std::cout << "\t\t\t\t   Enter year: ";
+                         std::cin >> xydep;
+                         while (xydep > 2023 || xydep < 2020)
+                         {
+                              cout << "Invalid year; enter again: ";
+                              cin >> xydep;
+                         }
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         DHeap.getWorst10(xy);
-                         cout << "\t\t\t getWorst10();" << endl;
+                         DHeap.getWorst10(xydep);
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 

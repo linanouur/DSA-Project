@@ -355,7 +355,7 @@ void menu::HomePage()
                          }
 
                          std::cout << "\t\t"
-                                   << "^" << setfill(' ') << setw(width - 38) << "Enter ID" << setw(37) << "^" << endl;
+                                   << "^" << setfill(' ') << setw(width - 24) << "Enter national card ID" << setw(23) << "^" << endl;
                          std::cout << "\t\t\t\t";
 
                          std::cin >> id_num;

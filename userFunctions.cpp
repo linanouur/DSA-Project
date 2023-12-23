@@ -1,7 +1,8 @@
 #ifndef USERFUNCTIONS_CPP
 #define USERFUNCTIONS_CPP
-#include<iomanip>
+#include <iomanip>
 #include <iostream>
+#include <vector>
 #include <string>
 #include "Regions.h"
 #include "Regions.cpp"
@@ -42,7 +43,7 @@ int getRegionIDfromFile(string region)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return -1;
+        return -2;
     }
 
     while (getline(file, line))
@@ -75,7 +76,7 @@ int getCityIDfromFile(string city)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return -1;
+        return -2;
     }
 
     while (getline(file, line))
@@ -107,7 +108,7 @@ int getDistrictIDfromFile(string district)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return -1;
+        return -2;
     }
 
     while (getline(file, line))
@@ -129,25 +130,24 @@ int getDistrictIDfromFile(string district)
     return -1;
 }
 
-int getRegionId( long long int CustomerID)
-{ 
-     std ::string CustomerIDString = std ::to_string(CustomerID); 
- 
+int getRegionId(long long int CustomerID)
+{
+    std ::string CustomerIDString = std ::to_string(CustomerID);
+
     string regionID;
     if (CustomerIDString.length() == 15)
     {
 
-        regionID = CustomerIDString.substr(0, 1); 
-     
+        regionID = CustomerIDString.substr(0, 1);
     }
     else
     {
-        regionID = CustomerIDString.substr(0, 2); 
-        
+        regionID = CustomerIDString.substr(0, 2);
     }
     return stoi(regionID);
 }
-int getCityId( long long  int CustomerID)
+
+int getCityId(long long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string cityID;
@@ -161,7 +161,7 @@ int getCityId( long long  int CustomerID)
     }
     return stoi(cityID);
 }
-int getDistrictId( long long int CustomerID)
+int getDistrictId(long long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string districtID;
@@ -176,7 +176,7 @@ int getDistrictId( long long int CustomerID)
 
     return stoi(districtID);
 }
-int getCustomerID( long long  int CustomerID)
+int getCustomerID(long long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string customerID;
@@ -193,12 +193,47 @@ int getCustomerID( long long  int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long long int id)
+void writeinFile(int Id)
 {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
-    long long  int NewID = cus->ElectricityAccountId;
-    int R = getRegionId(NewID);
+    ofstream outputFile("newIds.csv");
+    if (outputFile.is_open())
+    {
 
+        outputFile << Id << endl;
+
+        outputFile.close();
+        cout << "Ids have been written to newIds.csv successfully." << endl;
+    }
+    else
+    {
+        std::cout << "Unable to open the file." << std::endl;
+    }
+}
+
+void writeinFile(int *Id, int size)
+{
+    ofstream outputFile("newIds.csv");
+    if (outputFile.is_open())
+    {
+        for(int i = 0; i < size; i++)
+        {
+            outputFile << Id[size] << endl;
+        }
+        outputFile.close();
+        cout << "Ids have been written to newIds.csv successfully." << endl;
+    }
+    else
+    {
+        std::cout << "Unable to open the file." << std::endl;
+    }
+}
+
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
+{
+
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
+    long long int NewID = cus->ElectricityAccountId;
+    int R = getRegionId(NewID);
     int C = getCityId(NewID);
     int D = getDistrictId(NewID);
     Region *Rptr = Alg.getRegion(R);
@@ -206,8 +241,27 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
+    cout << "Customer Id: " << NewID << endl;
+
     std::cout << "\t\t"
-    << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
+              << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
+    writeinFile(NewID);
+}
+
+void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id, int *IDS)
+{
+    static int i = 0;
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
+    long long int NewID = cus->ElectricityAccountId;
+    int R = getRegionId(NewID);
+    int C = getCityId(NewID);
+    int D = getDistrictId(NewID);
+    Region *Rptr = Alg.getRegion(R);
+    City *Cptr = Rptr->Cities->getCityptr(C);
+    District Dis = Cptr->Districts->getDistrict(D);
+    Customers *B = Cptr->Districts->getBST(D);
+    B->insertNewCustomerBST(cus);
+    IDS[i] = NewID;
 }
 
 void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
@@ -230,9 +284,8 @@ void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int
     }
 }
 
-void getOnemonthBill(htRegions &Alg,long long int ID, int month, int year)
+void getOnemonthBill(htRegions &Alg, long long int ID, int month, int year)
 {
-    cout << "hello";
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
@@ -240,11 +293,10 @@ void getOnemonthBill(htRegions &Alg,long long int ID, int month, int year)
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
-    cout << "Phase 1" << endl;
     B->getOneMonthBillBST(ID, month, year);
 }
 
-void getOneYearBill(htRegions Alg,long long int ID, int year)
+void getOneYearBill(htRegions Alg, long long int ID, int year)
 {
     int R = getRegionId(ID);
     int C = getCityId(ID);
@@ -256,7 +308,7 @@ void getOneYearBill(htRegions Alg,long long int ID, int year)
     B->getOneYearBillBST(ID, year);
 }
 
-void getPeriodBill(htRegions &Alg,long long int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getPeriodBill(htRegions &Alg, long long int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     int R = getRegionId(ID);
     int C = getCityId(ID);
@@ -291,9 +343,16 @@ void getOneMonthBillCity(htRegions &Alg, string RegionName, string CityName, int
 
 void getOneMonthBillDistrict(htRegions &Alg, string RegionName, string CityName, string DistrictName, int month, int year)
 {
+    cout << "Region: " << RegionName << endl;
+    cout << "CityName: " << CityName << endl;
+    cout << "DistrictName: " << DistrictName << endl;
+    cout << "1" << endl;
     int RegionID = getRegionIDfromFile(RegionName);
+    cout << "RegionID " << RegionID << endl;
     int CityID = getCityIDfromFile(CityName);
+    cout << "CityID " << CityID << endl;
     int DistrictID = getRegionIDfromFile(DistrictName);
+    cout << "DistrictID " << DistrictID << endl;
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
@@ -398,4 +457,88 @@ void readCustomersFile(htRegions &Alg)
     }
 }
 
+void FillHashTablesRCD(htRegions &Reg, DepartmentHeap &heap)
+{
+    ifstream file("RegionCityDistrict.csv");
+
+    if (file.is_open())
+    {
+
+        string line;
+        while (getline(file, line))
+        {
+            stringstream ss(line);
+            string regionID, regionName, cityID, cityName, districtID, districtName;
+
+            getline(ss, regionID, ',');
+            getline(ss, regionName, ',');
+            getline(ss, cityID, ',');
+            getline(ss, cityName, ',');
+            getline(ss, districtID, ',');
+            getline(ss, districtName, ',');
+            int RegionID, CityID, DistrictID;
+            RegionID = stoi(regionID);
+            CityID = stoi(cityID);
+            DistrictID = stoi(districtID);
+            Reg.insertRegion(Region(RegionID, regionName));
+            Reg.insertCity(RegionID, City(CityID, cityName), heap);
+            Reg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
+        }
+
+        file.close();
+    }
+    else
+    {
+        std::cout << "Unable to open file." << endl;
+    }
+}
+
+void SetCustomersFromFile(htRegions &Reg)
+{
+    int *IDS;
+    IDS = new int[100];
+    ifstream fileCus("Customer.csv");
+    if (fileCus.is_open())
+    {
+        string line;
+        while (getline(fileCus, line))
+        {
+            stringstream ss(line);
+            string fname, lname, reg, city, dist, bnum, fnum, fage, id;
+            int age;
+            long long int bankNum, ID;
+            int *ages;
+            int regID, cityID, distID;
+
+            getline(ss, fname, ',');
+            getline(ss, lname, ',');
+            getline(ss, reg, ',');
+            getline(ss, city, ',');
+            getline(ss, dist, ',');
+            getline(ss, bnum, ',');
+            bankNum = stoll(bnum);
+            getline(ss, fnum, ',');
+            int famNum = stoi(fnum);
+            ages = new int[famNum];
+            for (int i = 0; i < famNum; i++)
+            {
+                getline(ss, fage, ',');
+                age = stoi(fage);
+                ages[i] = age;
+            }
+            getline(ss, id, ',');
+            ID = stoll(id);
+
+            insertNewCustomerTwo(Reg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID, IDS);
+        }
+
+        fileCus.close();
+    }
+    else
+    {
+        std::cout << "Unable to open file." << endl;
+    }
+
+    writeinFile(IDS,100);
+}
 #endif

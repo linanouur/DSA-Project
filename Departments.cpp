@@ -7,6 +7,9 @@
 #include "Departments.h"
 #include "City.h"
 #include "City.cpp"
+#include "District.h"
+#include "District.cpp"
+#include <iomanip>
 #include <chrono>
 
 using namespace std;
@@ -142,7 +145,7 @@ void DepartmentHeap::updateBudget()
 
     make_heap(minHeap.begin(), minHeap.end(), [&](const int &a, const int &b)
               { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
-              
+
     // Calculating and displaying the time taken
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
@@ -150,56 +153,95 @@ void DepartmentHeap::updateBudget()
 }
 
 // printHeap function to display the heap elements with their attributes
-void DepartmentHeap::printHeap(const vector<int> &heap) const
+void DepartmentHeap::printHeap(const vector<int> &heap, int year)
 {
-
-    cout << "Department\t"
-         << "Budget\t"
-         << "Profit" << endl;
-    for (const auto &departmentIndex : heap)
+    for (int i = 0; i < departments.size(); i++)
     {
+        departments[maxHeap[i]].setTotalAmountPaid(year);
+    }
+     for (int i = 0; i < departments.size(); i++)
+    {
+        departments[minHeap[i]].setTotalAmountPaid(year);
+    }
+    make_heap(maxHeap.begin(), maxHeap.end(), [&](const int &a, const int &b)
+              { return departments[a].totalAmountPaid < departments[b].totalAmountPaid; });
+    make_heap(minHeap.begin(), minHeap.end(), [&](const int &a, const int &b)
+              { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
+
+     cout << left << setw(15) << "Department ID"
+         << setw(25) << "Department name"
+         << setw(15) << "Budget"
+         << setw(15) << "Profit" << endl;
+
+    for (const auto &departmentIndex : heap) {
         const auto &department = departments[departmentIndex];
-        cout << department.city_id << "\t\t"  << department.city_name << "\t\t"<< department.budget << " dzd\t" << department.totalAmountPaid << " dzd\n";
+        cout << setw(15) << department.city_id
+             << setw(25) << department.city_name
+             << setw(15) << fixed << setprecision(2) << department.budget 
+             << setw(15) << fixed << setprecision(2) << department.totalAmountPaid << " dzd" << endl;
     }
 }
 
-void Department :: setInfo(int month , int year, int CustomerPayment , int Minjection){
+void Department ::setInfo(int month, int year, int CustomerPayment, int Minjection)
+{
     YearDepartment *Year = Departmentyears->getYear(year);
     Year->payment += CustomerPayment;
     Month *m = Year->YMonths->getmonth(month);
-     int value = 3*Minjection;
+    int value = 3 * Minjection;
     m->setMonthInfo(value);
 }
 
 // printWorstDepartments function to print the departments from the best to the worst
-void DepartmentHeap::printBestDepartments()
+void DepartmentHeap::printDepartments(int year)
 {
-    printHeap(maxHeap);
+    printHeap(maxHeap, year);
 }
 
-// printWorstDepartments function to print the departments from the worst to best
-void DepartmentHeap::printWorstDepartments()
+/* printWorstDepartments function to print the departments from the worst to best NOT NEEDED
+void DepartmentHeap::printWorstDepartments(int year)
 {
-    printHeap(minHeap);
-}
+    printHeap(minHeap, year);
+}*/
 
 // getBest10 function to display the best 10 departments of the year
-void DepartmentHeap::getBest10() const
+void DepartmentHeap::getBest10(int year) 
 {
-    cout << "Best 10 Departments of this year: " << endl;
+    for (auto dep : departments)
+    {
+        dep.setTotalAmountPaid(year);
+    }
+    make_heap(maxHeap.begin(), maxHeap.end(), [&](const int &a, const int &b)
+              { return departments[a].totalAmountPaid < departments[b].totalAmountPaid; });
+    make_heap(minHeap.begin(), minHeap.end(), [&](const int &a, const int &b)
+              { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
+    cout << "Best 10 Departments of year " << year << " :" << endl;
     for (int i = 0; i < 10; i++)
     {
-        cout << i + 1 << ". " << departments[maxHeap[i]].city_id << endl;
+        if (departments[maxHeap[i]].getTotalAmountPaid()< departments[maxHeap[i+1]].getTotalAmountPaid()) {
+            swap(departments[maxHeap[i]], departments[maxHeap[i + 1]]);
+        }
+        cout << i + 1 << ". " << departments[maxHeap[i]].city_id << " ~ " << departments[minHeap[i]].city_name << endl;
     }
 }
 
 // getWorst10 function to display the worst 10 departments of the year
-void DepartmentHeap::getWorst10() const
+void DepartmentHeap::getWorst10(int year) 
 {
+        for (auto dep : departments)
+    {
+        dep.setTotalAmountPaid(year);
+    }
+    make_heap(maxHeap.begin(), maxHeap.end(), [&](const int &a, const int &b)
+              { return departments[a].totalAmountPaid < departments[b].totalAmountPaid; });
+    make_heap(minHeap.begin(), minHeap.end(), [&](const int &a, const int &b)
+              { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
     cout << "Worst 10 Departments of this year: " << endl;
     for (int i = 0; i < 10; i++)
     {
-        cout << i + 1 << ". " << departments[minHeap[i]].city_id << endl;
+        if (departments[maxHeap[i]].getTotalAmountPaid()> departments[maxHeap[i+1]].getTotalAmountPaid()) {
+            swap(departments[maxHeap[i]], departments[maxHeap[i + 1]]);
+        }
+        cout << i + 1 << ". " << departments[minHeap[i]].city_id << " ~ " << departments[minHeap[i]].city_name << endl;
     }
 }
 
@@ -212,7 +254,7 @@ void Department::setBudget(double budg)
 // setTotalAmountPaid function in the Department class for setting the total amount paid for the department
 void Department::setTotalAmountPaid(int year)
 {
-    YearDepartment *Y= Departmentyears->getYear(year);
+    YearDepartment *Y = Departmentyears->getYear(year);
     totalAmountPaid = Y->payment;
 }
 
@@ -231,30 +273,30 @@ double Department::getTotalAmountPaid() const
 /*int main()
 {
     DepartmentHeap dh;
-    Department d1(1, 100000.00, 111);
-    Department d2(2, 100000.00, 222);
-    Department d3(3, 100000.00, 333);
-    Department d4(4, 100000.00, 444);
-    Department d5(5, 100000.00, 555);
-    Department d6(6, 100000.00, 666);
-    Department d7(7, 100000.00, 777);
-    Department d8(8, 100000.00, 888);
-    Department d9(9, 100000.00, 999);
-    Department d10(10, 100000.00, 1111);
-    Department d11(11, 100000.00, 2222);
-    Department d12(12, 100000.00, 3333);
-    Department d13(13, 100000.00, 4444);
-    Department d14(14, 100000.00, 5555);
-    Department d15(15, 100000.00, 6666);
-    Department d16(16, 100000.00, 7777);
-    Department d17(17, 100000.00, 8888);
-    Department d18(18, 100000.00, 9999);
-    Department d19(19, 100000.00, 11111);
-    Department d20(20, 100000.00, 22222);
-    Department d21(21, 100000.00, 33333);
-    Department d22(22, 100000.00, 44444);
-    Department d23(23, 100000.00, 55555);
-    Department d24(24, 100000.00, 66666);
+    Department d1(1, "A", 100000.00, 111);
+    Department d2(2, "B", 100000.00, 222);
+    Department d3(3, "C", 100000.00, 333);
+    Department d4(4, "D", 100000.00, 444);
+    Department d5(5, "E", 100000.00, 555);
+    Department d6(6, "F", 100000.00, 666);
+    Department d7(7, "G", 100000.00, 777);
+    Department d8(8, "H", 100000.00, 888);
+    Department d9(9, "I", 100000.00, 999);
+    Department d10(10, "J", 100000.00, 1111);
+    Department d11(11, "K", 100000.00, 2222);
+    Department d12(12, "L", 100000.00, 3333);
+    Department d13(13, "M", 100000.00, 4444);
+    Department d14(14, "N", 100000.00, 5555);
+    Department d15(15, "O", 100000.00, 6666);
+    Department d16(16, "P", 100000.00, 7777);
+    Department d17(17, "Q", 100000.00, 8888);
+    Department d18(18, "R", 100000.00, 9999);
+    Department d19(19, "S", 100000.00, 11111);
+    Department d20(20, "T", 100000.00, 22222);
+    Department d21(21, "U", 100000.00, 33333);
+    Department d22(22, "V", 100000.00, 44444);
+    Department d23(23, "W", 100000.00, 55555);
+    Department d24(24, "X", 100000.00, 66666);
 
     dh.insertDepartment(d1);
     dh.insertDepartment(d2);
@@ -282,19 +324,16 @@ double Department::getTotalAmountPaid() const
     dh.insertDepartment(d24);
 
     cout << "**************Initial Heap:*****************\n";
-    cout << "-----------------BEST-----------------------" << endl;
-    dh.printBestDepartments();
-    cout << "-----------------WORST-----------------------" << endl;
-    dh.printWorstDepartments();
+    dh.printDepartments(2022);
     dh.updateBudget();
     cout << "\n***********After Updating:***************\n";
-    cout << "-----------------  BEST  -----------------------" << endl;
-    dh.printBestDepartments();
-    cout << "-----------------  WORST -----------------------" << endl;
-    dh.printWorstDepartments();
+    dh.printDepartments(2022);
 
-    dh.getBest10();
-    dh.getWorst10();
+    
+    cout << "-----------------  BEST 10 -----------------------" << endl;
+    dh.getBest10(2022);
+    cout << "-----------------  WORST 10-----------------------" << endl;
+    dh.getWorst10(2022);
     return 0;
 }*/
 #endif

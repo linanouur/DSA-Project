@@ -11,7 +11,7 @@ using namespace std;
 class Customers
 {
 private:
-    Customer *searchCustomer(int, Customer *);
+    Customer *searchCustomer(long long int, Customer *);
     void printInorder(Customer *);
     Customer *rootCus;
     Customer *insert(Customer *, Customer *);
@@ -28,13 +28,13 @@ private:
 public:
     Customers() : rootCus(nullptr) {}
     void insertNewCustomerBST(Customer *);
-    void setInfoCustomerOneMonthBST(int, int, int, Bill &, bool &doesExist);
-    void getOneMonthBillBST(int, int, int);
-    void getOneYearBillBST(int, int);
-    void getPeriodBillBST(int, int, int, int, int);
-    Customer *searchCustomer(int);
+    void setInfoCustomerOneMonthBST(long long int, int, int, Bill &, bool &doesExist);
+    void getOneMonthBillBST(long long int, int, int);
+    void getOneYearBillBST(long long int, int);
+    void getPeriodBillBST(long long int, int, int, int, int);
+    Customer *searchCustomer(long long int);
     void print();
-    static void setInfoNewInjector(int, int, string, string, string);
+    static void setInfoNewInjector(long long int, int, string, string, string);
     static int getmaxInjectorID();
     static int getmaxAmoutInjected();
     static void displayWinner();

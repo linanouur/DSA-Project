@@ -26,7 +26,7 @@ void District ::getPeriodBillinDistrict(int StartMonth, int StartYear, int EndMo
 {
     bool existCus=false ;
     BST.displayOnePeriodBillsALLPub(StartMonth, StartYear, EndMonth, EnDYear,existCus);
-      if (existCus==false) cout<<"No customers in district: "<<DistrictName<<endl;
+      if (existCus==false) cout<<"No customers in district: "<< DistrictName<<endl;
 }
 void District ::getOneYearBillinDistrict(int year)
 {

@@ -230,7 +230,7 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, long long int 
 }
 
 void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
-{
+{   //same function as the previous , but this is used when inserting our dataset chosen to avoid show CustomerIds each time when inserting the customers at the beginning of the program
     static int i = 0;
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long long int NewID = cus->ElectricityAccountId;
@@ -248,8 +248,8 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long i
 void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
 {
     bool exists = false;
-    Bill bill;
-    bill.setBillInfo(Mconsumption, Minjection);
+    Bill bill;  //create bill
+    bill.setBillInfo(Mconsumption, Minjection);  //set Bill info
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
@@ -257,11 +257,11 @@ void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
-    B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists);
-    if (exists == true)
+    B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists); 
+    if (exists == true)  //if customer exist then passing the appropriate needed values to department to calculate its profit each time setting the bills of any customer belongs to,to avoid searching each time for the paiments of all customers
     {
         int difference = 5 * Mconsumption - 3 * Minjection;
-        Cptr->setInfoDepartment(month, year, difference, Minjection);
+        Cptr->setInfoDepartment(month, year, difference, Minjection); 
     }
 }
 
@@ -403,6 +403,7 @@ void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 } 
+
 void readCustomersFile(htRegions &Alg)
 {
     ifstream file("Customers.csv");
@@ -511,25 +512,9 @@ void SetCustomersFromFile(htRegions &Reg)
     int ages12[] = {1, 57, 33, 87, 87, 20, 13};
     insertNewCustomerTwo(Reg, "Moussa", "Cherchar", 5281571222, 7, ages12, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5281571222);
 
-    int ages13[] = {55, 64, 62};
-    insertNewCustomerTwo(Reg, "Soufiane", "Lassouioui", 9299035658, 3, ages13, "Adrar", "Aoulef", "Akabli", 9299035658);
 
-    int ages14[] = {8, 60, 73, 23};
-    insertNewCustomerTwo(Reg, "Yousuf", "Keddouri", 3304493267, 4, ages14, "Souk_Ahras", "Haddada", "Ouled_Moumen", 3304493267);
 
-    int ages15[] = {86, 28, 33};
-    insertNewCustomerTwo(Reg, "Amir", "Waali", 1832267282, 3, ages15, "Adrar", "Adrar", "Bouda", 1832267282);
+  
 
-    int ages16[] = {88, 54, 60, 52, 17, 78, 8, 90};
-    insertNewCustomerTwo(Reg, "Zakaria", "Abdoun", 5351065986, 8, ages16, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5351065986);
-
-    int ages17[] = {2, 22, 36, 24, 36, 72};
-    insertNewCustomerTwo(Reg, "Bilal", "Berkane", 2471779110, 6, ages17, "Tipaza", "Kolea", "Kolea", 2471779110);
-
-    int ages18[] = {58, 85};
-    insertNewCustomerTwo(Reg, "Wissam", "Zemirli", 6235961614, 2, ages18, "Adrar", "Adrar", "Bouda", 6235961614);
-
-    int ages19[] = {87, 31, 4, 2, 86, 43, 32};
-    insertNewCustomerTwo(Reg, "Mustafa", "Guessoum", 8592819102, 7, ages19, "Adrar", "Aoulef", "Akabli", 8592819102);
 }
 #endif

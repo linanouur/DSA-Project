@@ -34,7 +34,6 @@ public:
     District *getDistrictptr(int districtId);
     Customers *getBST(int districtID);
     void insertCustomerIntoDistrict(District &obj, Customer *node);
-    void setInfoInDistrict(District &obj, int ID, int month, int year, Bill &b);
     void displayAllDistricts();
 
 };

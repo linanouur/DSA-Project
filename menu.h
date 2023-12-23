@@ -19,13 +19,13 @@ private:
      DepartmentHeap DHeap;
 
 public:
-     menu(htRegions & , DepartmentHeap &);
+     menu(htRegions &, DepartmentHeap &);
      void HomePage();
      void display();
      ~menu();
 };
 
-menu::menu(htRegions &Regions , DepartmentHeap &heap)
+menu::menu(htRegions &Regions, DepartmentHeap &heap)
 {
      Alg = Regions;
      DHeap = heap;
@@ -393,8 +393,8 @@ void menu::HomePage()
                               std::cout << "\t\t\t enter the customer ID please:\n";
                               std::cout << "\t\t\t\t   ";
                               std::cin >> S_id;
-                              if (S_id >= 10000000000000000|| S_id < 0)
-                              {         
+                              if (S_id >= 10000000000000000 || S_id < 0)
+                              {
                                    std::cout << "\t\t\t Invalid ID entered!!\n\n";
                                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                    break;
@@ -540,12 +540,11 @@ void menu::HomePage()
 
                                    std::cout << "\t\t\t\t";
                                    std::getline(std::cin >> std::ws, ct1);
-                                   
+
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
                                    std::getline(std::cin >> std::ws, rg1);
-                                   
 
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills of: \n"
@@ -584,7 +583,6 @@ void menu::HomePage()
                                         }
                                         cout << "hey" << endl;
                                         getOneMonthBillDistrict(Alg, rg1, ct1, dist1, tm, ty);
-
 
                                         break;
                                    case 2:
@@ -658,12 +656,11 @@ void menu::HomePage()
 
                                    std::cout << "\t\t\t\t";
                                    std::getline(std::cin >> std::ws, ct2);
-                                 
+
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
                                    std::getline(std::cin >> std::ws, rg2);
-                                   
 
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills in: \n"
@@ -772,7 +769,7 @@ void menu::HomePage()
 
                                    std::cout << "\t\t\t\t";
                                    std::getline(std::cin >> std::ws, rg3);
-                                   
+
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills in: \n"
                                              << endl;
@@ -1049,39 +1046,61 @@ void menu::HomePage()
                          break;
 
                     case 6:
-
+                         int z;
+                         std::cout << "\t\t\t\t   Enter listing year: ";
+                         std::cin >> z;
+                         if (z < 0 || z > 2023 || z < 2020)
+                         {
+                              cout << "Wrong year; enter again: ";
+                              cin >> z;
+                         }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                          std::cout << "\t\t\t\t   listing of departements " << endl;
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         DHeap.printBestDepartments();
+                         DHeap.printDepartments(z);
                          cout << "\t\t\t printBestDepartments();" << endl;
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
                          break;
                     case 7:
-
+                         int x;
+                         std::cout << "\t\t\t\t   Enter listing year: ";
+                         std::cin >> x;
+                         if (x < 0 || x > 2023 || x < 2020)
+                         {
+                              cout << "Wrong year; enter again: ";
+                              cin >> x;
+                         }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                          std::cout << "\t\t\t\t   Top 10 departements: " << endl;
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         DHeap.getBest10();
+                         DHeap.getBest10(x);
                          cout << "\t\t\t getBest10();" << endl;
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
                          break;
                     case 8:
+                         int xy;
+                         std::cout << "\t\t\t\t   Enter listing year: ";
+                         std::cin >> xy;
+                         if (xy < 0 || xy > 2023 || xy < 2020)
+                         {
+                              cout << "Wrong year; enter again: ";
+                              cin >> xy;
+                         }
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                          std::cout << "\t\t\t\t   Worst 10 departements: " << endl;
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         DHeap.getWorst10();
+                         DHeap.getWorst10(xy);
                          cout << "\t\t\t getWorst10();" << endl;
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border

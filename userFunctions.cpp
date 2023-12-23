@@ -42,7 +42,7 @@ int getRegionIDfromFile(string region)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return -1;
+        return -2;
     }
 
     while (getline(file, line))
@@ -75,7 +75,7 @@ int getCityIDfromFile(string city)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return -1;
+        return -2;
     }
 
     while (getline(file, line))
@@ -107,7 +107,7 @@ int getDistrictIDfromFile(string district)
     if (!file.is_open())
     {
         cerr << "Unable to open file" << endl;
-        return -1;
+        return -2;
     }
 
     while (getline(file, line))
@@ -232,7 +232,6 @@ void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int
 
 void getOnemonthBill(htRegions &Alg,long long int ID, int month, int year)
 {
-    cout << "hello";
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
@@ -240,7 +239,6 @@ void getOnemonthBill(htRegions &Alg,long long int ID, int month, int year)
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
-    cout << "Phase 1" << endl;
     B->getOneMonthBillBST(ID, month, year);
 }
 
@@ -291,13 +289,22 @@ void getOneMonthBillCity(htRegions &Alg, string RegionName, string CityName, int
 
 void getOneMonthBillDistrict(htRegions &Alg, string RegionName, string CityName, string DistrictName, int month, int year)
 {
+    cout<<"Region: "<<RegionName<<endl;
+    cout<<"CityName: "<<CityName<<endl;
+    cout<<"DistrictName: "<<DistrictName<<endl;
+    cout<<"1"<<endl;
     int RegionID = getRegionIDfromFile(RegionName);
+    cout<<"RegionID "<<RegionID<<endl;
     int CityID = getCityIDfromFile(CityName);
+    cout<<"CityID "<<CityID<<endl;
     int DistrictID = getRegionIDfromFile(DistrictName);
+    cout<<"DistrictID "<<DistrictID<<endl;
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
+    cout<<"2"<<endl;
     D.getOneMonthBillinDistrict(month, year);
+    cout<<"3"<<endl;
 }
 
 void getOneYearBillCountry(htRegions &Alg, int year)

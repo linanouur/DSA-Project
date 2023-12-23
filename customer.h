@@ -27,7 +27,7 @@ public:
     int id;
 
     Customer() {}
-    Customer(string, string, int, int, int* A , string, string, string, int);
+    Customer(string, string, int, int, int* A , string, string, string,long int);
     void setInfo(string, string, int, int,int* A, string, string, string);
     vector<string> getIDs(string, string, string);
     string getConcatenatedIDs(string, string, string);

@@ -6,8 +6,7 @@ using namespace std;
 
 int main()
 {
-    // htRegions Algeria;
-    // DepartmentHeap AlgDeps;
+
     try
     {
         cout << "Loading.." << endl;

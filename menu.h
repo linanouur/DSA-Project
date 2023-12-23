@@ -5,11 +5,11 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-// #include "weatherHashTable.h"
+#include "weatherHashTable.h"
 #include "customers.h"
 #include "userFunctions.cpp"
 #include <vector>
-// #include "Regions.h"
+#include "Regions.h"
 using namespace std;
 class menu
 {
@@ -27,7 +27,7 @@ public:
 
 menu::menu()
 {
-
+  
      ifstream file("RegionCityDistrict.csv");
 
      if (file.is_open())
@@ -53,9 +53,11 @@ menu::menu()
                Alg.insertRegion(Region(RegionID, regionName));
                Alg.insertCity(RegionID, City(CityID, cityName), DHeap);
                Alg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
+              
           }
 
           file.close();
+         
      }
      else
      {
@@ -215,7 +217,8 @@ void menu::HomePage()
                     std::cout << "\n\n\n";
 
                     std::string reg, city, dist, fname, lname;
-                    int id_bill, fnum, id_num, m_bill, y_bill, mconsumption, minjection;
+                    int fnum, m_bill, y_bill, mconsumption, minjection;
+                    long int  id_bill,id_num;
                     long int bnum;
                     int *ages;
                     switch (i)
@@ -313,12 +316,17 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-
+                         
+                          try{
                          cout << "\t\t\t\t";
                          insertNewCustomer(Alg, fname, lname, bnum, fnum, ages, reg, city, dist, id_num);
-                         std::cout << endl;
-                         std::cout << "\t\t"
-                                   << "^" << setfill(' ') << setw(width - 20) << "Custumer added successfully" << setw(19) << "^" << endl;
+                          std::cout << endl;
+                          }catch (...)
+                            {
+                            // Catch-all handler for wrong input
+                            std::cerr << "\t\t\t region,city or district doesn't exist" << std::endl;
+                            }
+                         
 
                          std::cout << endl;
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border

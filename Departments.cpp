@@ -167,9 +167,7 @@ void Department :: setInfo(int month , int year, int CustomerPayment , int Minje
     YearDepartment *Year = Departmentyears->getYear(year);
     Year->payment += CustomerPayment;
     Month *m = Year->YMonths->getmonth(month);
-   // cout<<"Month number: "<<m.monthNumber<<"Month name: " <<m.monthName<<endl;
      int value = 3*Minjection;
-    // m.TotalSpentAmount+=value;
     m->setMonthInfo(value);
 }
 
@@ -212,10 +210,10 @@ void Department::setBudget(double budg)
 }
 
 // setTotalAmountPaid function in the Department class for setting the total amount paid for the department
-void Department::setTotalAmountPaid(double tap)
+void Department::setTotalAmountPaid(int year)
 {
-
-    this->totalAmountPaid = tap;
+    YearDepartment *Y= Departmentyears->getYear(year);
+    totalAmountPaid = Y->payment;
 }
 
 // getBudget function in the Department class for getting the budget of the department

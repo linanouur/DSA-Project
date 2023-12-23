@@ -115,9 +115,13 @@ void Customers::printInorder(Customer *ptr)
     printInorder(ptr->right);
 }
 
-void Customers::displayOneMonthBillsALLPub(int month, int year)
+void Customers::displayOneMonthBillsALLPub(int month, int year, bool &exist)
 {
-    displayOneMonthBillsALL(rootCus, month, year);
+    if(rootCus==nullptr) {
+        exist = false;
+    }
+    else {displayOneMonthBillsALL(rootCus, month, year);}
+   
 }
 
 void Customers::displayOneYearBillsALL(Customer *ptr, int year)
@@ -148,17 +152,26 @@ void Customers::displayPeriodBillsALL(Customer *ptr, int monthStart, int monthEn
     displayPeriodBillsALL(ptr->right, monthStart, monthEnd, yearStart, yearEnd);
 }
 
-void Customers::displayOneYearBillsALLPub(int year)
+void Customers::displayOneYearBillsALLPub(int year , bool &exist)
 {
-    displayOneYearBillsALL(rootCus, year);
+     if(rootCus==nullptr) {
+        exist = false;
+    }
+    else {
+    displayOneYearBillsALL(rootCus, year);}
 }
-void Customers::displayOnePeriodBillsALLPub(int monthStart, int monthEnd, int yearStart, int yearEnd)
+void Customers::displayOnePeriodBillsALLPub(int monthStart, int monthEnd, int yearStart, int yearEnd , bool &exist)
 {
-    displayOnePeriodBillsALLPub(monthStart, monthEnd, yearStart, yearEnd);
+     if(rootCus==nullptr) {
+        exist = false;
+    }
+    else {
+    displayPeriodBillsALL( rootCus, monthStart, monthEnd, yearStart, yearEnd);}
 }
 
 void Customers::displayOneMonthBillsALL(Customer *ptr, int month, int year)
 {
+    
     if (ptr == NULL)
     {
         return;

@@ -97,16 +97,16 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 
     return concatenatedIDs;
 }
-long int Customer ::generateCustomerID(string region, string city, string district, int CustomerID)
+long int Customer ::generateCustomerID(string region, string city, string district, long int CustomerID)
 {
-    if (CustomerID > 0 && CustomerID < 10000)
+    if (CustomerID > 0 && CustomerID < 1000000000)
     {   
         string concatenatedIDs = getConcatenatedIDs(region, city, district);
         string CustomerIDstring = to_string(CustomerID);
-        string IDstring = string(4 - CustomerIDstring.length(), '0') +CustomerIDstring;
-        string CustomerID = concatenatedIDs + IDstring; 
+       
+        string CustomerID = concatenatedIDs + CustomerIDstring;
      
-        return stoi(CustomerID);
+        return stol(CustomerID);
     }
     else
     {

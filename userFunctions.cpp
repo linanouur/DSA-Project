@@ -129,11 +129,11 @@ int getDistrictIDfromFile(string district)
     return -1;
 }
 
-int getRegionId(int CustomerID)
+int getRegionId( long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string regionID;
-    if (CustomerIDString.length() == 10)
+    if (CustomerIDString.length() == 15)
     {
 
         regionID = CustomerIDString.substr(0, 1);
@@ -144,11 +144,11 @@ int getRegionId(int CustomerID)
     }
     return stoi(regionID);
 }
-int getCityId(int CustomerID)
+int getCityId( long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string cityID;
-    if (CustomerIDString.length() == 10)
+    if (CustomerIDString.length() == 15)
     {
         cityID = CustomerIDString.substr(1, 2);
     }
@@ -158,11 +158,11 @@ int getCityId(int CustomerID)
     }
     return stoi(cityID);
 }
-int getDistrictId(int CustomerID)
+int getDistrictId( long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string districtID;
-    if (CustomerIDString.length() == 10)
+    if (CustomerIDString.length() == 15)
     {
         districtID = CustomerIDString.substr(3, 3);
     }
@@ -173,24 +173,24 @@ int getDistrictId(int CustomerID)
 
     return stoi(districtID);
 }
-int getCustomerID(int CustomerID)
+int getCustomerID( long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string customerID;
 
-    if (CustomerIDString.length() == 10)
+    if (CustomerIDString.length() == 15)
     {
-        customerID = CustomerIDString.substr(6, 4);
+        customerID = CustomerIDString.substr(6, 9);
     }
     else
     {
-        customerID = CustomerIDString.substr(7, 4);
+        customerID = CustomerIDString.substr(7, 9);
     }
 
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
@@ -204,7 +204,7 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     B->insertNewCustomerBST(cus);
 }
 
-void setInfoOneMonth(htRegions &HReg, int ID, int month, int year, int Mconsumption, int Minjection)
+void setInfoOneMonth(htRegions &HReg,  long int ID, int month, int year, int Mconsumption, int Minjection)
 {
     bool exists = false;
     Bill bill;

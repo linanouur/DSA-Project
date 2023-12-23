@@ -224,7 +224,7 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long i
     B->insertNewCustomerBST(cus);
 }
 
-void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
+void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, double Mconsumption, double Minjection)
 {
     bool exists = false;
     Bill bill;                                  // create bill
@@ -239,7 +239,7 @@ void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int
     B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists);
     if (exists == true) // if customer exist then passing the appropriate needed values to department to calculate its profit each time setting the bills of any customer belongs to,to avoid searching each time for the paiments of all customers
     {
-        int difference = 5 * Mconsumption - 3 * Minjection;
+        double difference = 5 * Mconsumption - 3 * Minjection;
         Cptr->setInfoDepartment(month, year, difference, Minjection);
     }
 }
@@ -484,7 +484,23 @@ void SetCustomersFromFile(htRegions &Reg)
     int ages10[] = {16, 31, 32, 60};
     insertNewCustomerTwo(Reg, "Amir", "Lassouioui", 6148822254, 4, ages10, "Adrar", "Adrar", "Bouda", 123407668);
 
-    int ages12[] = {1, 57, 33, 87, 87, 20, 13};
-    insertNewCustomerTwo(Reg, "Moussa", "Cherchar", 5281571222, 7, ages12, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5281571222);
+    setInfoOneMonth(Reg, 101001869798390, 11, 2023, 45, 24);
+    setInfoOneMonth(Reg, 101001869798390, 7,2023,167,12);
+    setInfoOneMonth(Reg, 101001869798390, 3,2023,60,27);
+    setInfoOneMonth(Reg, 101001869798390, 1,2023,55,0);
+    setInfoOneMonth(Reg, 101001869798390, 9,2023,29,21);
+    setInfoOneMonth(Reg, 4003458352429046, 7,2023,166,20);
+    setInfoOneMonth(Reg, 4003458352429046, 5,2023,67,22);
+    setInfoOneMonth(Reg, 4003458352429046, 8,2023,132,17);
+    setInfoOneMonth(Reg, 101001542942942 , 11,2023,47,9);
+    setInfoOneMonth(Reg, 101001542942942 , 5,2023,107,28);
+    setInfoOneMonth(Reg, 101001542942942 , 11, 2023, 45, 24);
+    setInfoOneMonth(Reg, 4003458352429046, 8,2023,161,7);
+    setInfoOneMonth(Reg, 4003458352429046, 5,2023,107,28);
+    setInfoOneMonth(Reg, 4003458352429046, 11, 2023, 45, 24);
+    setInfoOneMonth(Reg, 4102512107561686, 8,2023,4,200);
+    setInfoOneMonth(Reg, 4102512107561686, 9,2023,149,26);
+    setInfoOneMonth(Reg, 4102512107561686,7, 2023,158,2);
+    
 }
 #endif

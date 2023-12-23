@@ -56,7 +56,6 @@ void htCities::insertCity(const City &city, DepartmentHeap &heap)
 }
 
 void City:: setInfoDepartment( int month , int year, int CustomerPayment , int MInjection){
-    cout<<"VALUE B:"<<MInjection<<endl;
     department.setInfo(month , year, CustomerPayment ,MInjection);
 }
 

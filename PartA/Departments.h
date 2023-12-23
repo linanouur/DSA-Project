@@ -12,7 +12,7 @@ class Month {
     public:
     string monthName;
     int monthNumber;
-    int TotalSpentAmount = 0;
+    double TotalSpentAmount = 0;
     
     Month(){}
     Month(string name, int num)
@@ -26,11 +26,9 @@ class Month {
         monthNumber = num;
     }
 
-    void setMonthInfo(int TotalSpent)
+    void setMonthInfo(double TotalSpent)
     {
-      
         TotalSpentAmount = TotalSpentAmount+TotalSpent;
-       
     }
 
 };
@@ -63,7 +61,7 @@ public:
 class YearDepartment
 { 
     public: 
-     int payment = 0;
+     double payment = 0;
      MonthsDepartment *YMonths;
     int year;
     YearDepartment() { 
@@ -123,7 +121,7 @@ public:
     double getBudget() const;
     void setTotalAmountPaid(int);
     double getTotalAmountPaid() const;
-    void setInfo(int , int , int , int);
+    void setInfo(int , int , double , double );
     // Custom swap function for the Department class
     friend void swap(Department& first, Department& second) noexcept {
         using std::swap;

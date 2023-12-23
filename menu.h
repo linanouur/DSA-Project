@@ -19,101 +19,16 @@ private:
      DepartmentHeap DHeap;
 
 public:
-     menu();
+     menu(htRegions & , DepartmentHeap &);
      void HomePage();
      void display();
      ~menu();
 };
 
-menu::menu()
+menu::menu(htRegions &Regions , DepartmentHeap &heap)
 {
-
-     ifstream file("RegionCityDistrict.csv");
-
-     if (file.is_open())
-     {
-
-          string line;
-          while (getline(file, line))
-          {
-               stringstream ss(line);
-               string regionID, regionName, cityID, cityName, districtID, districtName;
-
-               getline(ss, regionID, ',');
-               getline(ss, regionName, ',');
-               getline(ss, cityID, ',');
-               getline(ss, cityName, ',');
-               getline(ss, districtID, ',');
-               getline(ss, districtName, ',');
-               int RegionID, CityID, DistrictID;
-               RegionID = stoi(regionID);
-               CityID = stoi(cityID);
-               DistrictID = stoi(districtID);
-               Alg.insertRegion(Region(RegionID, regionName));
-               Alg.insertCity(RegionID, City(CityID, cityName), DHeap);
-               Alg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
-          }
-
-          file.close();
-     }
-     else
-     {
-          std::cout << "Unable to open file." << endl;
-     }
-
-     // std::cout << "Going to File 2" << endl;
-     // ifstream fileCus("Customer.csv");
-     // std::cout << "open File2";
-     // if (fileCus.is_open())
-     // {
-     //      cout<<"hey 1"<<endl;
-     //      string line;
-     //      while (getline(fileCus, line))
-     //      {
-     //           stringstream ss(line);
-     //           string fname, lname, reg, city, dist, bnum, fnum, fage, id;
-     //           int age;
-     //           long long int bankNum , ID;
-     //           int *ages;
-     //           int regID, cityID, distID;
-
-     //           getline(ss, fname, ',');
-     //           cout<<fname;
-     //           getline(ss, lname, ',');
-     //           cout<<lname;
-     //           getline(ss, reg, ',');
-     //           cout<<reg;
-     //           getline(ss, city, ',');
-     //           cout<<city;
-     //           getline(ss, dist, ',');
-     //           cout<<dist;
-     //           getline(ss, bnum, ',');
-     //           cout<<bnum;
-     //           bankNum = stoll(bnum);
-     //           cout<<"Ta7t stoi"<<endl;
-     //           getline(ss, fnum, ',');
-     //           int famNum = stoi(fnum);
-     //           cout<<famNum;
-     //           ages = new int[famNum];
-     //           for (int i = 0; i < famNum; i++)
-     //           {
-     //                getline(ss, fage, ',');
-     //                cout<<fage<<" ";
-     //                age = stoi(fage);
-     //                ages[i] = age;
-     //                cout<<ages[i]<<endl;
-     //           }
-     //           getline(ss, id, ',');
-     //           ID = stoll(id);
-     //           insertNewCustomer(Alg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
-     //      }
-
-     //      fileCus.close();
-     // }
-     // else
-     // {
-     //      std::cout << "Unable to open file." << endl;
-     // }
+     Alg = Regions;
+     DHeap = heap;
 }
 
 void menu::display()
@@ -297,7 +212,7 @@ void menu::HomePage()
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 31) << "Enter Firstname" << setw(30) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                           cin.ignore();
+                         cin.ignore();
                          std::getline(std::cin, fname);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 32) << "Enter Lastname" << setw(31) << "^" << endl;
@@ -311,7 +226,7 @@ void menu::HomePage()
                          {
                               throw std::runtime_error("Input was not an integer.");
                          }
-                         if (bnum < 0 )
+                         if (bnum < 0)
                          {
                               std::cout << "\t\t\t Invalid bank account number entered!!\n\n";
                               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
@@ -473,12 +388,12 @@ void menu::HomePage()
                          std::cin >> y;
                          switch (y)
                          {
-                           long long  int S_id;
+                              long long int S_id;
                          case 1:
                               std::cout << "\t\t\t enter the customer ID please:\n";
                               std::cout << "\t\t\t\t   ";
                               std::cin >> S_id;
-                              if (S_id >= 10000000000000000|| S_id < 0)
+                              if (S_id >= 10000000000000000 || S_id < 0)
                               {
                                    std::cout << "\t\t\t Invalid ID entered!!\n\n";
                                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
@@ -668,7 +583,9 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
+                                        cout << "hey" << endl;
                                         getOneMonthBillDistrict(Alg, rg1, ct1, dist1, tm, ty);
+
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;

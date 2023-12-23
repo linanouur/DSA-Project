@@ -6,11 +6,15 @@ using namespace std;
 
 int main()
 {
-
+    cout << "Loading.." << endl;
+    htRegions Alg;
+    DepartmentHeap AlgHeap;
+    FillHashTablesRCD(Alg,AlgHeap);
+   // SetCustomersFromFile(Alg);
+    FillHashTablesRCD(Alg,AlgHeap);
     try
     {
-        cout << "Loading.." << endl;
-        menu m;
+        menu m(Alg,AlgHeap);
         m.display();
         m.HomePage();
         return 0;

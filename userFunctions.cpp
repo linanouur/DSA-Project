@@ -1,6 +1,6 @@
 #ifndef USERFUNCTIONS_CPP
 #define USERFUNCTIONS_CPP
-
+#include<iomanip>
 #include <iostream>
 #include <string>
 #include "Regions.h"
@@ -190,20 +190,27 @@ int getCustomerID(int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long int id)
 {
     cout<<"hey";
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     cout<<"hello";
-    int NewID = cus->ElectricityAccountId;
+    long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
+    cout<<R<<endl;
     int C = getCityId(NewID);
+    cout<<C<<endl;
     int D = getDistrictId(NewID);
+    cout<<D<<endl;
     Region *Rptr = Alg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
+
+    std::cout << "\t\t"
+    << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
+    cout<<"raho wsel aah"<<endl;
 }
 
 void setInfoOneMonth(htRegions &HReg, int ID, int month, int year, int Mconsumption, int Minjection)

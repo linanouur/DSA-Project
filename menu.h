@@ -216,7 +216,8 @@ void menu::HomePage()
                     std::cout << "\n\n\n";
 
                     std::string reg, city, dist, fname, lname;
-                    int id_bill, fnum, id_num, m_bill, y_bill, mconsumption, minjection;
+                    int fnum, m_bill, y_bill, mconsumption, minjection;
+                    long int  id_bill,id_num;
                     long int bnum;
                     int *ages;
                     switch (i)
@@ -314,12 +315,17 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-
+                         
+                          try{
                          cout << "\t\t\t\t";
                          insertNewCustomer(Alg, fname, lname, bnum, fnum, ages, reg, city, dist, id_num);
-                         std::cout << endl;
-                         std::cout << "\t\t"
-                                   << "^" << setfill(' ') << setw(width - 20) << "Custumer added successfully" << setw(19) << "^" << endl;
+                          std::cout << endl;
+                          }catch (...)
+                            {
+                            // Catch-all handler for wrong input
+                            std::cerr << "\t\t\t region,city or district doesn't exist" << std::endl;
+                            }
+                         
 
                          std::cout << endl;
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border

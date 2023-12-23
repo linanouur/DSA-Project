@@ -61,59 +61,59 @@ menu::menu()
           std::cout << "Unable to open file." << endl;
      }
 
-     std::cout << "Going to File 2" << endl;
-     ifstream fileCus("Customer.csv");
-     std::cout << "open File2";
-     if (fileCus.is_open())
-     {
-          cout<<"hey 1"<<endl;
-          string line;
-          while (getline(fileCus, line))
-          {
-               stringstream ss(line);
-               string fname, lname, reg, city, dist, bnum, fnum, fage, id;
-               int age;
-               long long int bankNum , ID;
-               int *ages;
-               int regID, cityID, distID;
+     // std::cout << "Going to File 2" << endl;
+     // ifstream fileCus("Customer.csv");
+     // std::cout << "open File2";
+     // if (fileCus.is_open())
+     // {
+     //      cout<<"hey 1"<<endl;
+     //      string line;
+     //      while (getline(fileCus, line))
+     //      {
+     //           stringstream ss(line);
+     //           string fname, lname, reg, city, dist, bnum, fnum, fage, id;
+     //           int age;
+     //           long long int bankNum , ID;
+     //           int *ages;
+     //           int regID, cityID, distID;
 
-               getline(ss, fname, ',');
-               cout<<fname;
-               getline(ss, lname, ',');
-               cout<<lname;
-               getline(ss, reg, ',');
-               cout<<reg;
-               getline(ss, city, ',');
-               cout<<city;
-               getline(ss, dist, ',');
-               cout<<dist;
-               getline(ss, bnum, ',');
-               cout<<bnum;
-               bankNum = stoll(bnum);
-               cout<<"Ta7t stoi"<<endl;
-               getline(ss, fnum, ',');
-               int famNum = stoi(fnum);
-               cout<<famNum;
-               ages = new int[famNum];
-               for (int i = 0; i < famNum; i++)
-               {
-                    getline(ss, fage, ',');
-                    cout<<fage<<" ";
-                    age = stoi(fage);
-                    ages[i] = age;
-                    cout<<ages[i]<<endl;
-               }
-               getline(ss, id, ',');
-               ID = stoll(id);
-               insertNewCustomer(Alg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
-          }
+     //           getline(ss, fname, ',');
+     //           cout<<fname;
+     //           getline(ss, lname, ',');
+     //           cout<<lname;
+     //           getline(ss, reg, ',');
+     //           cout<<reg;
+     //           getline(ss, city, ',');
+     //           cout<<city;
+     //           getline(ss, dist, ',');
+     //           cout<<dist;
+     //           getline(ss, bnum, ',');
+     //           cout<<bnum;
+     //           bankNum = stoll(bnum);
+     //           cout<<"Ta7t stoi"<<endl;
+     //           getline(ss, fnum, ',');
+     //           int famNum = stoi(fnum);
+     //           cout<<famNum;
+     //           ages = new int[famNum];
+     //           for (int i = 0; i < famNum; i++)
+     //           {
+     //                getline(ss, fage, ',');
+     //                cout<<fage<<" ";
+     //                age = stoi(fage);
+     //                ages[i] = age;
+     //                cout<<ages[i]<<endl;
+     //           }
+     //           getline(ss, id, ',');
+     //           ID = stoll(id);
+     //           insertNewCustomer(Alg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
+     //      }
 
-          fileCus.close();
-     }
-     else
-     {
-          std::cout << "Unable to open file." << endl;
-     }
+     //      fileCus.close();
+     // }
+     // else
+     // {
+     //      std::cout << "Unable to open file." << endl;
+     // }
 }
 
 void menu::display()
@@ -269,9 +269,9 @@ void menu::HomePage()
 
                     std::string reg, city, dist, fname, lname;
                     int fnum, m_bill, y_bill, mconsumption, minjection;
-                    long int id_bill;
-                    long long id_num;
-                    long int bnum;
+                    long long int id_bill;
+                    long long int id_num;
+                    long long int bnum;
                     int *ages;
                     switch (i)
                     {
@@ -311,7 +311,7 @@ void menu::HomePage()
                          {
                               throw std::runtime_error("Input was not an integer.");
                          }
-                         if (bnum < 0)
+                         if (bnum < 0 )
                          {
                               std::cout << "\t\t\t Invalid bank account number entered!!\n\n";
                               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
@@ -473,12 +473,12 @@ void menu::HomePage()
                          std::cin >> y;
                          switch (y)
                          {
-                              int S_id;
+                           long long  int S_id;
                          case 1:
                               std::cout << "\t\t\t enter the customer ID please:\n";
                               std::cout << "\t\t\t\t   ";
                               std::cin >> S_id;
-                              if (S_id > 99999999999 || S_id < 0)
+                              if (S_id >= 10000000000000000|| S_id < 0)
                               {
                                    std::cout << "\t\t\t Invalid ID entered!!\n\n";
                                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;

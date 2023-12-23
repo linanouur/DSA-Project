@@ -13,7 +13,7 @@ string Customers ::cityWinner = "";
 string Customers ::districtWinner = "";
 static int CustomersNum = 0;
 
-void Customers::setInfoCustomerOneMonthBST(int ID, int month, int year, Bill &other, bool &doesExist)
+void Customers::setInfoCustomerOneMonthBST(long long int ID, int month, int year, Bill &other, bool &doesExist)
 {
     Customer *cust = searchCustomer(ID);
     if (cust != nullptr)
@@ -73,7 +73,7 @@ Customer *Customers::insert(Customer *root, Customer *node)
     }
 }
 
-Customer *Customers::searchCustomer(int ID, Customer *r)
+Customer *Customers::searchCustomer(long long int ID, Customer *r)
 {
 
     if (r == nullptr || r->ElectricityAccountId == ID)
@@ -91,7 +91,7 @@ Customer *Customers::searchCustomer(int ID, Customer *r)
     }
 }
 
-Customer *Customers::searchCustomer(int ID)
+Customer *Customers::searchCustomer(long long int ID)
 {
     return searchCustomer(ID, rootCus);
 }
@@ -219,7 +219,7 @@ void Customers::printLevelOrder()
     }
 }
 
-void Customers ::setInfoNewInjector(int ID, int newValue, string RW, string CW, string DW)
+void Customers ::setInfoNewInjector(long long int ID, int newValue, string RW, string CW, string DW)
 {
     Customers ::maxInjectorID = ID;
     Customers ::maxAmountInjected = newValue;
@@ -238,7 +238,7 @@ int Customers ::getmaxAmoutInjected()
     return Customers ::maxAmountInjected;
 }
 
-void Customers ::getOneMonthBillBST(int ID, int month, int year)
+void Customers ::getOneMonthBillBST(long long int ID, int month, int year)
 {
     cout << "Phase 2" << endl;
     cout << "Bill of " << month
@@ -255,7 +255,7 @@ void Customers ::getOneMonthBillBST(int ID, int month, int year)
     }
 }
 
-void Customers ::getOneYearBillBST(int ID, int year)
+void Customers ::getOneYearBillBST(long long int ID, int year)
 {
     cout << "Bill of " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
@@ -269,7 +269,7 @@ void Customers ::getOneYearBillBST(int ID, int year)
     }
 }
 
-void Customers ::getPeriodBillBST(int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void Customers ::getPeriodBillBST(long long int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
 
     cout << "Bill of " << monthStart << " / " << yearStart << " : "

@@ -362,6 +362,40 @@ void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
+} 
+void readCustomersFile(htRegions &Alg)
+{
+    ifstream file("Customers.csv");
+    string line;
+    string IDorName;
+    vector<string> IDSorNames;
+
+    if (!file.is_open())
+    {
+        cerr << "Unable to open file" << endl;
+        return;
+    }
+
+    while (getline(file, line))
+    {
+        istringstream lineStream(line);
+        IDSorNames.clear();
+
+        while (getline(lineStream, IDorName, ','))
+        {
+            IDSorNames.push_back(IDorName);
+        }
+
+        if (IDSorNames.size() >= 10)
+        {
+            int ages[IDSorNames.size() - 9];
+            for (int i = 0; i < IDSorNames.size() - 9; i++)
+            {
+                ages[i] = stoi(IDSorNames[9 + i]);
+            }
+            insertNewCustomer(Alg, IDSorNames[0], IDSorNames[1], stoi(IDSorNames[2]), stoi(IDSorNames[3]), ages, IDSorNames[4], IDSorNames[5], IDSorNames[6], stoll(IDSorNames[7]));
+        }
+    }
 }
 
 #endif

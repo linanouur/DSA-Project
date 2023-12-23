@@ -1,10 +1,10 @@
 #ifndef BILLS_H
 #define BILLS_H
-#include<iostream>
-using namespace std;
+#include <iostream>
 #include <string>
 #include <vector>
 
+// Enum class representing the status of a bill
 enum class status
 {
     calculated,
@@ -13,32 +13,25 @@ enum class status
 
 class Bill
 {
-    public:
+public:
+    // Member variables
     std::string monthName;
     int numberMonth;
-    int Total = 0;
+    int Total = 0; // Total To be paid by customer
     int MonthConsumptionAmount;
     int MonthInjectionAmount;
-    bool MonthTransferCreditByBank;
-    int MonthlyCredit = 0;
-    status state = status ::NotCalculatedYet;
+    int MonthlyCredit = 0;                    // credit that a customer can get in case of injection
+    bool MonthTransferCreditByBank;           // In case of injection and the amount of injection was larger than the amount of consumption,customer will get that difference by Bank
+    status state = status ::NotCalculatedYet; // state of a bill is by default notCalculatedYet 
 
-    int CalculateBill(int, int);
-    
-    // Constructor
+    // Member Functions
     Bill();
-
-    void setMonth(std::string name, int num)
-    {
-        monthName = name;
-        numberMonth = num;
-    }
-
-    void setBillInfo(int, int );
-    void displayBill();
+    void setMonth(std::string, int); // set the bill's monthNumber and its name
+    void setBillInfo(int, int);      // setting the amounts of consumption and injection
+    int CalculateBill(int, int);     // A function that calculate the Total of the bill and assign its credit
     int getTotal();
-    void operator = (const Bill &other);
+    void displayBill(); // print the bill's details
+    void operator=(const Bill &other);  // Overloaded assignment operator for the Bill class
 };
-
 
 #endif

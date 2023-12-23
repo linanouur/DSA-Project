@@ -19,11 +19,11 @@ long int Customer ::getCustomerId()
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, long  long int id)
+Customer::Customer(string fname, string lname, long long int bankAccount, int numMemb,  int*ages, string region, string city, string district, long  long int id)
 { 
     Ages = new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
-    ElectricityAccountId = generateCustomerID(region, city, district, id); 
+    ElectricityAccountId = generateCustomerID(region, city, district, id);  
     Customeryears = new Years();
     for (int i = 2023; i < 2023 + 50; i++)
     {
@@ -32,7 +32,7 @@ Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  in
     
 }
 
-void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;

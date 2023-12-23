@@ -210,8 +210,7 @@ void writeinFile(int Id)
     }
 }
 
-
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long long int NewID = cus->ElectricityAccountId;
@@ -229,7 +228,7 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     writeinFile(NewID);
 }
 
-void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
+void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
     static int i = 0;
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
@@ -242,8 +241,7 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAcc
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-   
-    
+    cout << NewID << endl;
 }
 
 void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
@@ -419,24 +417,24 @@ void FillHashTablesRCD(htRegions &Reg, DepartmentHeap &heap)
             string regionID, regionName, cityID, cityName, districtID, districtName;
 
             getline(ss, regionID, ',');
-            
+
             getline(ss, regionName, ',');
-            
+
             getline(ss, cityID, ',');
-            
+
             getline(ss, cityName, ',');
-            
+
             getline(ss, districtID, ',');
-            
+
             getline(ss, districtName, ',');
-           
+
             int RegionID, CityID, DistrictID;
             RegionID = stoi(regionID);
-          
+
             CityID = stoi(cityID);
-            
+
             DistrictID = stoi(districtID);
-            
+
             Reg.insertRegion(Region(RegionID, regionName));
             Reg.insertCity(RegionID, City(CityID, cityName), heap);
             Reg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
@@ -453,10 +451,10 @@ void FillHashTablesRCD(htRegions &Reg, DepartmentHeap &heap)
 void SetCustomersFromFile(htRegions &Reg)
 {
 
-    ifstream fileCus("Customer.csv");
+    /*ifstream fileCus("Customer.csv");
     if (fileCus.is_open())
     {
-       // int i=0;
+        int i=0;
         string line;
         while (getline(fileCus, line))
         {
@@ -485,10 +483,10 @@ void SetCustomersFromFile(htRegions &Reg)
             }
             getline(ss, id, ',');
             ID = stoll(id);
-
+            cout<<ID;
             insertNewCustomerTwo(Reg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
-           // i++;
-            //cout<<i<<endl;
+            i++;
+            cout<<i<<endl;
         }
 
         fileCus.close();
@@ -496,6 +494,55 @@ void SetCustomersFromFile(htRegions &Reg)
     else
     {
         std::cout << "Unable to open file2." << endl;
-    }
+    }*/
+
+    int ages1[] = {48};
+    insertNewCustomerTwo(Reg, "Nouha", "Mouchaal", 8300820588, 1, ages1, "Adrar", "Adrar", "Adrar", 869798390);
+    int ages2[] = {41};
+    insertNewCustomerTwo(Reg, "Yusuf", "Mokhtari", 4640001367, 1, ages2, "Khenchela", "Bouhmama", "Yabous", 352429046);
+    int ages3[] = {76, 34, 83, 54, 58};
+    insertNewCustomerTwo(Reg, "Amani", "Lekhdari", 5083422879, 5, ages3, "Adrar", "Adrar", "Adrar", 542942942);
+    int ages4[] = {4};
+    insertNewCustomerTwo(Reg, "Khalid", "Achouri", 6094870317, 1, ages4, "Souk_Ahras", "Haddada", "Ouled_Moumen", 107561686);
+    int ages5[] = {58};
+    insertNewCustomerTwo(Reg, "Yousuf", "Lassouioui", 5020364384, 1, ages5, "Souk_Ahras", "Haddada", "Ouled_Moumen", 550932742);
+    int ages6[] = {36, 36, 45, 58, 18};
+    insertNewCustomerTwo(Reg, "Wissam", "Saidi", 1399874991, 6, ages6, "Tipaza", "Gouraya", "Gouraya", 499271108);
+    int ages7[] = {82, 74, 81, 73, 35, 5};
+    insertNewCustomerTwo(Reg, "Mustafa", "Gourab", 6067171954, 7, ages7, "Tipaza", "Gouraya", "Gouraya", 826830325);
+    int ages8[] = {26, 5, 63, 69};
+    insertNewCustomerTwo(Reg, "Djamel", "Sasi", 6400266291, 5, ages8, "Tipaza", "Gouraya", "Gouraya", 506801070);
+
+    int ages9[] = {27, 59};
+    insertNewCustomerTwo(Reg, "Bilal", "Benzaoui", 6360360548, 2, ages9, "Tipaza", "Gouraya", "Gouraya", 824549593);
+
+    int ages10[] = {16, 31, 32, 60};
+    insertNewCustomerTwo(Reg, "Amir", "Lassouioui", 6148822254, 4, ages10, "Adrar", "Adrar", "Bouda", 123407668);
+
+    
+
+    int ages12[] = {1, 57, 33, 87, 87, 20, 13};
+    insertNewCustomerTwo(Reg, "Moussa", "Cherchar", 5281571222, 7, ages12, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5281571222);
+
+    int ages13[] = {55, 64, 62};
+    insertNewCustomerTwo(Reg, "Soufiane", "Lassouioui", 9299035658, 3, ages13, "Adrar", "Aoulef", "Akabli", 9299035658);
+
+    int ages14[] = {8, 60, 73, 23};
+    insertNewCustomerTwo(Reg, "Yousuf", "Keddouri", 3304493267, 4, ages14, "Souk_Ahras", "Haddada", "Ouled_Moumen", 3304493267);
+
+    int ages15[] = {86, 28, 33};
+    insertNewCustomerTwo(Reg, "Amir", "Waali", 1832267282, 3, ages15, "Adrar", "Adrar", "Bouda", 1832267282);
+
+    int ages16[] = {88, 54, 60, 52, 17, 78, 8, 90};
+    insertNewCustomerTwo(Reg, "Zakaria", "Abdoun", 5351065986, 8, ages16, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5351065986);
+
+    int ages17[] = {2, 22, 36, 24, 36, 72};
+    insertNewCustomerTwo(Reg, "Bilal", "Berkane", 2471779110, 6, ages17, "Tipaza", "Kolea", "Kolea", 2471779110);
+
+    int ages18[] = {58, 85};
+    insertNewCustomerTwo(Reg, "Wissam", "Zemirli", 6235961614, 2, ages18, "Adrar", "Adrar", "Bouda", 6235961614);
+
+    int ages19[] = {87, 31, 4, 2, 86, 43, 32};
+    insertNewCustomerTwo(Reg, "Mustafa", "Guessoum", 8592819102, 7, ages19, "Adrar", "Aoulef", "Akabli", 8592819102);
 }
 #endif

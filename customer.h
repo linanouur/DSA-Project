@@ -27,8 +27,8 @@ public:
     int id;
 
     Customer() {}
-    Customer(string, string, int, int, int* A , string, string, string,long long int);
-    void setInfo(string, string, int, int,int* A, string, string, string);
+    Customer(string, string,long long int, int, int* A , string, string, string,long long int);
+    void setInfo(string, string, long long int, int,int* A, string, string, string);
     vector<string> getIDs(string, string, string);
     string getConcatenatedIDs(string, string, string);
     long long int generateCustomerID(string, string, string, long int);

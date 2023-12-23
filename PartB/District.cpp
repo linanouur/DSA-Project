@@ -59,11 +59,7 @@ void htDistricts ::insertCustomerIntoDistrict(District &obj, Customer *node)
     obj.AVL.insertNewCustomerAVL(node);
 }
 
-void htDistricts::setInfoInDistrict(District &obj, int ID, int month, int year, Bill &b)
-{
-    cout << obj.DistrictName << endl;
-    obj.AVL.setInfoCustomerOneMonthAVL(ID, month, year, b);
-}
+
 
 void htDistricts::displayAllDistricts()
 {
@@ -80,14 +76,6 @@ CustomersAVL *htDistricts ::getAVL(int districtID)
 {
     return &districts[districtID].AVL;
 }
-// void htDistricts::getOnemonthBillDistrict (int districtID, int month, int year)
-// {
-//     District *district = getDistrict(districtID);
-//     if (district != nullptr)
-//     {
-//         district->BST->getOneMonthBillBST(districtID, month, year);
 
-//       }
-//     }
 
 #endif

@@ -5,9 +5,10 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "customer.h" 
-
+#include "customer.h"
+#include "customersAVL.h"
 using namespace std;
+
 void Customer::settotalInjection(int value)
 {
     totalInjection = totalInjection + value;
@@ -18,26 +19,29 @@ long int Customer ::getCustomerId()
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int bankAccount, int numMemb, const vector<int> &ages, string region, string city, string district, int id)
-{
-
+Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, long  long int id)
+{ 
+    Ages = new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
-    cout << "Customer ID: " << generateCustomerID(region, city, district, id) << endl;
-    ElectricityAccountId = generateCustomerID(region, city, district, id);
+    ElectricityAccountId = generateCustomerID(region, city, district, id); 
     Customeryears = new Years();
     for (int i = 2023; i < 2023 + 50; i++)
     {
         Customeryears->insertYear(i);
     }
+    
 }
 
-void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, vector<int> ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district)
 {
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    Ages = ages;
+    for (int i = 0; i < numMemb; i++)
+    {
+        Ages[i] = ages[i];
+    }
     Region = region;
     City = city;
     District = district;
@@ -74,7 +78,8 @@ vector<string> Customer ::getIDs(string region, string city, string district)
             IDSorNames[1] == region &&
             IDSorNames[3] == city &&
             IDSorNames[5] == district)
-        {
+        { 
+        
             return vector<string>{IDSorNames[0], IDSorNames[2], IDSorNames[4]};
         }
     }
@@ -91,16 +96,17 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 
     return concatenatedIDs;
 }
-long int Customer ::generateCustomerID(string region, string city, string district, int CustomerID)
-{
-    if (CustomerID > 0 && CustomerID < 10000)
-    {   
+long long  int Customer ::generateCustomerID(string region, string city, string district,long int CustomerID)
+{ 
+    if (CustomerID > 0 && CustomerID < 1000000000)
+    {
         string concatenatedIDs = getConcatenatedIDs(region, city, district);
-        string CustomerIDstring = to_string(CustomerID);
-        string IDstring = string(4 - CustomerIDstring.length(), '0') +CustomerIDstring;
-        string CustomerID = concatenatedIDs + IDstring; 
-     
-        return stoi(CustomerID);
+      
+        string CustomerIDstring = to_string(CustomerID); 
+       
+        string Customerid = concatenatedIDs + CustomerIDstring; 
+      
+        return stoll(Customerid);
     }
     else
     {
@@ -116,9 +122,9 @@ void Customer ::getOneMonthBillCustomer(int month, int year)
     Year *y = Customeryears->getYear(year);
     cout << y->year;
     // cout << "hey" << endl;
-    Bill &m = y->yearMonths->getbill(month);
-    cout << m.monthName << endl;
-    m.displayBill();
+    Bill *m = y->yearMonths->getbill(month);
+    cout << m->monthName << endl;
+    m->displayBill();
 }
 
 void Customer ::getOneYearBillCustomer(int year)
@@ -128,9 +134,9 @@ void Customer ::getOneYearBillCustomer(int year)
     cout << y->year << endl;
     for (int month = 1; month < 13; month++)
     {
-        Bill &m = y->yearMonths->getbill(month);
-        cout << m.monthName << endl;
-        m.displayBill();
+        Bill *m = y->yearMonths->getbill(month);
+        cout << m->monthName << endl;
+        m->displayBill();
     }
 }
 
@@ -142,9 +148,9 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
         Year *y = Customeryears->getYear(yearStart);
         for (int month = monthStart; month < monthEnd; month++)
         {
-            Bill &m = y->yearMonths->getbill(month);
-            cout << m.monthName << " / " << y->year << endl;
-            m.displayBill();
+            Bill *m = y->yearMonths->getbill(month);
+            cout << m->monthName << " / " << y->year << endl;
+            m->displayBill();
         }
         return;
     }
@@ -159,23 +165,12 @@ void Customer ::getPeriodBillCustomer(int monthStart, int monthEnd, int yearStar
                 break;
             if (year == yearEnd && month > monthEnd)
                 break;
-            Bill &m = y->yearMonths->getbill(month);
-            cout << m.monthName << " / " << y->year << endl;
-            m.displayBill();
+            Bill *m = y->yearMonths->getbill(month);
+            cout << m->monthName << " / " << y->year << endl;
+            m->displayBill();
         }
     }
 }
 
-/*int main()
-{
-    cout << "hello";
-    cout << endl;
-    Customer cust("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);
-    cout << cust.getCustomerId() << endl;
-    cout << cust.left << endl;
-    cout << cust.familyMembersNumber << endl;
-    cust.getOneMonthBillCustomer(10, 1960);
-    return 0;
-}*/
 
 #endif

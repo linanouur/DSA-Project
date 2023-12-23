@@ -1,11 +1,11 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
-#include<iostream>
-using namespace std;
+#include <iostream>
 #include <string>
 #include <vector>
 #include "calendar.cpp"
- 
+using namespace std;
+
 class Customer
 {
 public:
@@ -14,7 +14,7 @@ public:
     long int ElectricityAccountId;
     int BankAccount;
     int familyMembersNumber;
-    int* Ages ;
+    int *Ages;
     int totalInjection = 0;
     Years *Customeryears;
     string Region;
@@ -38,6 +38,5 @@ public:
     void getOneYearBillCustomer(int);
     void getPeriodBillCustomer(int, int, int, int);
 };
-
 
 #endif

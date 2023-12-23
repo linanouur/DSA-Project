@@ -3,11 +3,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-using namespace std;
 #include <string>
 #include <vector>
 #include "customer.h" 
 #include "customers.h"
+using namespace std;
 
 void Customer::settotalInjection(int value)
 {

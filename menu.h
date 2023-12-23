@@ -48,7 +48,6 @@ menu::menu()
                int RegionID, CityID, DistrictID;
                RegionID = stoi(regionID); 
                CityID = stoi(cityID); 
-               cout<<CityID<<endl;
                DistrictID = stoi(districtID);
                Alg.insertRegion(Region(RegionID, regionName));
                Alg.insertCity(RegionID, City(CityID, cityName), DHeap);
@@ -218,7 +217,7 @@ void menu::HomePage()
 
                     std::string reg, city, dist, fname, lname;
                     int fnum, m_bill, y_bill, mconsumption, minjection;
-                    long int  id_bill,id_num;
+                    long long int  id_bill,id_num;
                     long int bnum;
                     int *ages;
                     switch (i)
@@ -306,7 +305,7 @@ void menu::HomePage()
                          std::cout << "\t\t\t\t";
 
                          std::cin >> id_num;
-                         if (id_num > 9999 || id_num < 0)
+                         if (id_num > 1000000000 || id_num < 0)
                          {
                               std::cout << "\t\t\t Invalid ID entered!!\n\n";
                               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;

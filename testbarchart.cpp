@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     }
 
     // Create and show the bar chart
-    ConsoleBarChart *cbc = new ConsoleBarChart("Monthly Salary", 3, 500, result);
+    ConsoleBarChart *cbc = new ConsoleBarChart("customer consumption", 2, 5, result);
     cbc->show();
 
     return 0;

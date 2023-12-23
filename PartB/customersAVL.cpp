@@ -65,7 +65,8 @@ Customer *CustomersAVL::searchCustomer(int ID, Customer *r)
     else if (ID > r->ElectricityAccountId)
     {
         return searchCustomer(ID, r->right);
-    }
+    } 
+    return nullptr; 
 }
 
 Customer *CustomersAVL::searchCustomer(int ID)
@@ -109,38 +110,6 @@ Customer *CustomersAVL::lRotate(Customer *x)
     return y;
 } 
 
-/*Customer *CustomersAVL::insert2(Customer *root, Customer *node)
-{
-    if (root == nullptr)
-    {
-        return node;
-    }
-    else if (node->ElectricityAccountId <= root->ElectricityAccountId)
-    {
-        root->left = insert2(root->left, node);
-    }
-    else
-    {
-        root->right = insert2(root->right, node);
-    }
-    root->height = 1 + max(height(root->left), height(root->right));
-    int balance = getBalance(root);
-    if (balance > 1 && node->ElectricityAccountId < root->left->ElectricityAccountId)
-        return rRotate(root);
-    if (balance < -1 && node->ElectricityAccountId > root->right->ElectricityAccountId)
-        return lRotate(root);
-    if (balance > 1 && node->ElectricityAccountId > root->left->ElectricityAccountId)
-    {
-        root->left = lRotate(root->left);
-        return rRotate(root);
-    }
-    if (balance < -1 && node->ElectricityAccountId < root->right->ElectricityAccountId)
-    {
-        root->right = rRotate(root->right);
-        return lRotate(root);
-    }
-    return root;
-} */ 
 
  
  void CustomersAVL::printLevelOrder()
@@ -194,9 +163,8 @@ void CustomersAVL::print()
     printInorder(rootCus);
 }   
 
-void CustomersAVL::setInfoCustomerOneMonthAVL(int ID, int month, int year, Bill &other)
+void CustomersAVL::setInfoCustomerOneMonthAVL(long long int ID, int month, int year, Bill &other, bool &doesExist)
 {
-
     Customer *cust = searchCustomer(ID);
     if (cust != nullptr)
     {
@@ -206,11 +174,14 @@ void CustomersAVL::setInfoCustomerOneMonthAVL(int ID, int month, int year, Bill 
         Year *y = cust->Customeryears->getYear(year);
         y->setYearlyTotal(other.MonthConsumptionAmount * 5);
         y->setYearlyCredit(other.MonthInjectionAmount * 3);
-        Bill &m = y->yearMonths->getbill(month);
-        m = other;
+        Bill *m = y->yearMonths->getbill(month);
+        m->MonthConsumptionAmount= other.MonthConsumptionAmount;
+        m->MonthInjectionAmount =other.MonthInjectionAmount;
+        doesExist = true;
     }
     else
     {
+        doesExist = false;
         cout << "Customer not found." << endl;
     }
 }

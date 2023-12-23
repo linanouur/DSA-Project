@@ -36,17 +36,14 @@ public:
       CustomersAVL() : rootCus(nullptr) {}
      void insertNewCustomerAVL(Customer *);
 
-    void setInfoCustomerOneMonthAVL(int , int , int , Bill &);
+ 
     void getOneMonthBillAVL(int, int, int);
     void getOneYearBillAVL(int, int);
     void getPeriodBillAVL(int, int, int, int, int);
     Customer *searchCustomer(int);
    
+   void setInfoCustomerOneMonthAVL(long long int , int, int, Bill &, bool &);
    
-   
-  
-
-
     static void setInfoNewInjector(int, int, string, string, string);
     void printLevelOrder(); 
     void print(); 

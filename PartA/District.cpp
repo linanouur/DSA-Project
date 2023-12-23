@@ -82,14 +82,6 @@ Customers *htDistricts ::getBST(int districtID)
 {
     return &districts[districtID].BST;
 }
-// void htDistricts::getOnemonthBillDistrict (int districtID, int month, int year)
-// {
-//     District *district = getDistrict(districtID);
-//     if (district != nullptr)
-//     {
-//         district->BST->getOneMonthBillBST(districtID, month, year);
 
-//       }
-//     }
 
 #endif

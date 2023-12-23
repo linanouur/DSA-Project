@@ -195,21 +195,7 @@ int getCustomerID(long long int CustomerID)
     return stoi(customerID);
 }
 
-void writeinFile(int Id)
-{
-    ofstream outputFile("newIds.csv");
-    if (outputFile.is_open())
-    {
 
-        outputFile << Id << endl;
-
-        outputFile.close();
-    }
-    else
-    {
-        std::cout << "Unable to open the file." << std::endl;
-    }
-}
 
 void insertNewCustomer(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
@@ -226,12 +212,11 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, long long int 
     cout << "Customer Id: " << NewID << endl;  // displaying the Id to the customer to use it other times
     std::cout << "\t\t"
               << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
-    writeinFile(NewID);  // registering its Id in the file (as a small database)
+    
 }
 
 void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {   //same function as the previous , but this is used when inserting our dataset chosen to avoid show CustomerIds each time when inserting the customers at the beginning of the program
-    static int i = 0;
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
@@ -242,7 +227,7 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long i
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    cout << NewID << endl;
+    
 }
 
 void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
@@ -511,9 +496,6 @@ void SetCustomersFromFile(htRegions &Reg)
 
     int ages12[] = {1, 57, 33, 87, 87, 20, 13};
     insertNewCustomerTwo(Reg, "Moussa", "Cherchar", 5281571222, 7, ages12, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5281571222);
-
-
-
   
 
 }

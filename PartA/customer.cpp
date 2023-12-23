@@ -9,6 +9,9 @@
 #include "customers.h"
 using namespace std;
 
+
+
+
 Customer::Customer(string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
     Ages = new int[numMemb];
@@ -19,6 +22,7 @@ Customer::Customer(string fname, string lname, long long int bankAccount, int nu
     {
         Customeryears->insertYear(i);
     }
+    
 }
 
 void Customer::setInfo(string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district)

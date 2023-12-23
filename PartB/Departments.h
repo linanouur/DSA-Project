@@ -28,11 +28,11 @@ class Month {
 
     void setMonthInfo(int TotalSpent)
     {
-        std :: cout<<"VALUE C:" <<TotalSpent<<endl;
-          std :: cout<<"INITIAL1:"<<TotalSpentAmount<<endl;
+        cout<<"TADKHOL LLMONTH B : " <<TotalSpent<<endl;
+         cout<<"LORIGINAL TA3 LMONTH/ "<<TotalSpentAmount<<endl;
         TotalSpentAmount = TotalSpentAmount+TotalSpent;
-        std :: cout<<"INITIAL2:"<<TotalSpentAmount<<endl;
-        std :: cout<<TotalSpent<<endl;
+        cout<<"HAWLIK KIFACH WALAT MONTHAMOUNT:"<<TotalSpentAmount<<endl;
+        cout<<"DAKHLAT B:" <<TotalSpent<<endl;
     }
 
 };
@@ -56,21 +56,18 @@ public:
         }
     }
 
-    Month &getmonth(int month)
+    Month *getmonth(int month)
     {
-        return months[month];
+        return &months[month];
     }
 };
 
 class YearDepartment
 { 
     public: 
+     int payment = 0;
      MonthsDepartment *YMonths;
-
     int year;
-   
-    int payment = 0;
-
     YearDepartment() { 
         YMonths = new MonthsDepartment();
     }
@@ -126,9 +123,16 @@ public:
     // Member functions for setting and getting budget and total amount paid
     void setBudget(double);
     double getBudget() const;
-    void setTotalAmountPaid(double);
+    void setTotalAmountPaid(int);
     double getTotalAmountPaid() const;
     void setInfo(int , int , int , int);
+    // Custom swap function for the Department class
+    friend void swap(Department& first, Department& second) noexcept {
+        using std::swap;
+        swap(first.city_id, second.city_id);
+        swap(first.totalAmountPaid, second.totalAmountPaid);
+        // Add other members if necessary
+    }
 };
 
 
@@ -152,18 +156,19 @@ public:
     // Public member functions for various operations
     void insertDepartment(const Department &department);
     void updateBudget();
-    void printHeap(const vector<int> &heap) const;
-    void printBestDepartments();
-    void printWorstDepartments();
-    void getBest10() const;
-    void getWorst10() const;
+    void printHeap(const vector<int> &heap, int );
+    void printDepartments(int);
+    //void printWorstDepartments(int);
+    void getBest10(int);
+    void getWorst10(int);
 }; 
-
-
-
-
-
-
-
-
 #endif
+
+
+
+
+
+
+
+
+

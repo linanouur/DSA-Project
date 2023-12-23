@@ -1,4 +1,4 @@
-                                   std::cout << "\t\t\t enter district" << endl;
+                                  /* std::cout << "\t\t\t enter district" << endl;
 
                                    std::cout << "\t\t\t\t";
                                    std::cin >> dist1;
@@ -118,4 +118,5 @@
                                    break;
                               }
 
-                              break;
+                              break; 
+                              */

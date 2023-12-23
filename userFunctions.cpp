@@ -359,7 +359,6 @@ void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
 }
-
 /*
 int main()
 {
@@ -402,9 +401,11 @@ int main()
             getline(ss, districtID, ',');
             getline(ss, districtName, ',');
             int RegionID, CityID, DistrictID;
-            RegionID = stoi(regionID);
-            CityID = stoi(cityID);
-            DistrictID = stoi(districtID);
+            RegionID = stoi(regionID); 
+           
+            CityID = stoi(cityID); 
+            DistrictID = stoi(districtID); 
+            cout<<DistrictID<<endl;
             regionHashTable.insertRegion(Region(RegionID, regionName));
             regionHashTable.insertCity(RegionID, City(CityID, cityName), depHeap);
             regionHashTable.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
@@ -458,7 +459,7 @@ int main()
     // {
     //     std::cout << "Unable to open file." << endl;
     // }
-
+/*
     int *A = new int[5];
     for(int i=0;i<5;i++){
         A[i]=i;
@@ -503,12 +504,7 @@ int main()
     setInfoOneMonth(regionHashTable, 1010010004, 1, 2023, 100, 100);
     // // getOneMonthBillDistrict(regionHashTable, 1, 1, 1, 1, 2023);
     // Rptr->Cities->displaycities();
-    depHeap.printBestDepartments();
-    Department D = Cptr->department;
-    YearDepartment *Y = D.Departmentyears->getYear(2023);
-    cout << "2023 payment " << Y->payment << endl;
-    Month M = Y->YMonths->getmonth(1);
-    cout << "1 TotalSpentAmount" << M.TotalSpentAmount << endl;
+   
 
     // B->displayOneMonthBillsALLPub(1, 2023);
     // cout << getCustomerID(1010010123) << endl;
@@ -545,5 +541,5 @@ int main()
 
 
     return 0;
-}*/
+} */
 #endif

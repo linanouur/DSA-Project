@@ -232,28 +232,24 @@ void menu::HomePage()
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 30) << "Enter the region" << setw(29) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin.ignore();
-                         std::getline(std::cin, reg);
+                         std::getline(std::cin >> std::ws, reg);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 32) << "Enter the city" << setw(31) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin.ignore();
-                         std::getline(std::cin, city);
+                         std::getline(std::cin >> std::ws, city);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 28) << "Enter the district" << setw(27) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin.ignore();
-                         std::getline(std::cin, dist);
+                         std::getline(std::cin >> std::ws, dist);
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 31) << "Enter Firstname" << setw(30) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin.ignore();
+                           cin.ignore();
                          std::getline(std::cin, fname);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 32) << "Enter Lastname" << setw(31) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin.ignore();
                          std::getline(std::cin, lname);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 22) << "Enter Bankaccount number" << setw(21) << "^" << endl;

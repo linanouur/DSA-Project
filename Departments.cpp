@@ -155,9 +155,13 @@ void DepartmentHeap::updateBudget()
 // printHeap function to display the heap elements with their attributes
 void DepartmentHeap::printHeap(const vector<int> &heap, int year)
 {
-        for (auto dep : departments)
+    for (int i = 0; i < departments.size(); i++)
     {
-        dep.setTotalAmountPaid(year);
+        departments[maxHeap[i]].setTotalAmountPaid(year);
+    }
+     for (int i = 0; i < departments.size(); i++)
+    {
+        departments[minHeap[i]].setTotalAmountPaid(year);
     }
     make_heap(maxHeap.begin(), maxHeap.end(), [&](const int &a, const int &b)
               { return departments[a].totalAmountPaid < departments[b].totalAmountPaid; });
@@ -234,6 +238,9 @@ void DepartmentHeap::getWorst10(int year)
     cout << "Worst 10 Departments of this year: " << endl;
     for (int i = 0; i < 10; i++)
     {
+        if (departments[maxHeap[i]].getTotalAmountPaid()> departments[maxHeap[i+1]].getTotalAmountPaid()) {
+            swap(departments[maxHeap[i]], departments[maxHeap[i + 1]]);
+        }
         cout << i + 1 << ". " << departments[minHeap[i]].city_id << " ~ " << departments[minHeap[i]].city_name << endl;
     }
 }

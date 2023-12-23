@@ -6,16 +6,15 @@ using namespace std;
 
 int main()
 {
-    cout << "Loading.." << endl;
+    cout << "Electricity Management system loading.." << endl;
     htRegions Alg;
     DepartmentHeap AlgHeap;
-    FillHashTablesRCD(Alg,AlgHeap);
-   // SetCustomersFromFile(Alg);
-    FillHashTablesRCD(Alg,AlgHeap);
+    FillHashTablesRCD(Alg, AlgHeap);
+    SetCustomersFromFile(Alg);
+    FillHashTablesRCD(Alg, AlgHeap);
     try
     {
-        cout << "Electricity network management system loading..." << endl;
-        menu m;
+        menu m(Alg, AlgHeap);
         m.display();
         m.HomePage();
         return 0;

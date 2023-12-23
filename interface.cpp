@@ -14,7 +14,8 @@ int main()
     FillHashTablesRCD(Alg,AlgHeap);
     try
     {
-        menu m(Alg,AlgHeap);
+        cout << "Electricity network management system loading..." << endl;
+        menu m;
         m.display();
         m.HomePage();
         return 0;
@@ -25,3 +26,53 @@ int main()
         std::cerr << "Unknown exception caught" << std::endl;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

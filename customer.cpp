@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "customer.h" 
+#include "customer.h"
 #include "customers.h"
 using namespace std;
 
@@ -24,31 +24,31 @@ Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  in
     Ages = new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
     cout << "Customer ID: " << generateCustomerID(region, city, district, id) << endl;
-    cout<<"CC"<<endl;
+    cout << "CC" << endl;
     ElectricityAccountId = generateCustomerID(region, city, district, id);
     Customeryears = new Years();
     for (int i = 2023; i < 2023 + 50; i++)
     {
         Customeryears->insertYear(i);
     }
-    cout<<"end of constructor<<endl";
+    cout << "end of constructor<<endl";
 }
 
-void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int* ages, string region, string city, string district)
+void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district)
 {
-    cout<<"debut setInfo"<<endl;
+    cout << "debut setInfo" << endl;
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    cout<<"9bl lages"<<endl;
+    cout << "9bl lages" << endl;
     for (int i = 0; i < numMemb; i++)
     {
-        cout<<"dakhl lages"<<endl;
-        Ages[i] = ages[i];   
-        cout<<Ages[i]<<endl;
+        cout << "dakhl lages" << endl;
+        Ages[i] = ages[i];
+        cout << Ages[i] << endl;
     }
-    cout<<"kharj lages"<<endl;
+    cout << "kharj lages" << endl;
     Region = region;
     City = city;
     District = district;
@@ -105,10 +105,11 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 long long  int Customer ::generateCustomerID(string region, string city, string district,long int CustomerID)
 {
     if (CustomerID > 0 && CustomerID < 1000000000)
-    {   
+    {
         string concatenatedIDs = getConcatenatedIDs(region, city, district);
+        cout << "concatenatedIDs" << concatenatedIDs << endl;
         string CustomerIDstring = to_string(CustomerID);
-       
+        cout << "CustomerIDstring" << CustomerIDstring << endl;
         string CustomerID = concatenatedIDs + CustomerIDstring;
      
         return stoll(CustomerID);

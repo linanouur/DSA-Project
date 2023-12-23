@@ -190,7 +190,7 @@ int getCustomerID( long long  int CustomerID)
     return stoi(customerID);
 }
 
-void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long int id)
+void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long long int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long int NewID = cus->ElectricityAccountId;
@@ -209,7 +209,7 @@ void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccoun
     << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
 }
 
-void setInfoOneMonth(htRegions &HReg,  long int ID, int month, int year, int Mconsumption, int Minjection)
+void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
 {
     bool exists = false;
     Bill bill;
@@ -229,7 +229,7 @@ void setInfoOneMonth(htRegions &HReg,  long int ID, int month, int year, int Mco
     }
 }
 
-void getOnemonthBill(htRegions &Alg,long int ID, int month, int year)
+void getOnemonthBill(htRegions &Alg,long long int ID, int month, int year)
 {
     cout << "hello";
     int R = getRegionId(ID);
@@ -243,7 +243,7 @@ void getOnemonthBill(htRegions &Alg,long int ID, int month, int year)
     B->getOneMonthBillBST(ID, month, year);
 }
 
-void getOneYearBill(htRegions Alg,long int ID, int year)
+void getOneYearBill(htRegions Alg,long long int ID, int year)
 {
     int R = getRegionId(ID);
     int C = getCityId(ID);
@@ -255,7 +255,7 @@ void getOneYearBill(htRegions Alg,long int ID, int year)
     B->getOneYearBillBST(ID, year);
 }
 
-void getPeriodBill(htRegions &Alg,long int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
+void getPeriodBill(htRegions &Alg,long long int ID, int monthStart, int monthEnd, int yearStart, int yearEnd)
 {
     int R = getRegionId(ID);
     int C = getCityId(ID);

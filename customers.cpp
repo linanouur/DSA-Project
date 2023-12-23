@@ -52,18 +52,23 @@ Customer *Customers::insert(Customer *root, Customer *node)
     {
         return node;
     }
-    else if (node->ElectricityAccountId <= root->ElectricityAccountId)
+    else if (node->ElectricityAccountId < root->ElectricityAccountId)
     {
         cout << root->ElectricityAccountId << endl;
         cout << node->ElectricityAccountId << endl;
         root->left = insert(root->left, node);
         return root;
     }
-    else
+    else if (node->ElectricityAccountId > root->ElectricityAccountId)
     {
         cout << node->firstName << endl;
         root->right = insert(root->right, node);
         return root;
+    }
+    else if (node->ElectricityAccountId == root->ElectricityAccountId)
+    {
+        cout << "Customer already exists";
+        return nullptr;
     }
 }
 
@@ -274,9 +279,6 @@ void Customers ::displayWinner()
     cout << "From: " << Customers::regionWinner << "  " << Customers::cityWinner << "  " << Customers::districtWinner << endl;
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
-
-
-
 
 /*
 int main(){

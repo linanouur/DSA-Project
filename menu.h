@@ -585,6 +585,7 @@ void menu::HomePage()
                                         cout << "hey" << endl;
                                         getOneMonthBillDistrict(Alg, rg1, ct1, dist1, tm, ty);
 
+
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;

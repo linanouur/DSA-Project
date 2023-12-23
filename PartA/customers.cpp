@@ -16,7 +16,7 @@ string Customers ::districtWinner = "";
 
 void Customers::setInfoCustomerOneMonthBST(long long int ID, int month, int year, Bill &other, bool &doesExist)
 {
-    cout<<"Dakhl BST"<<endl;
+  
     Customer *cust = searchCustomer(ID);
     if (cust != nullptr)  //if customer exist 
     {

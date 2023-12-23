@@ -184,7 +184,7 @@ void DepartmentHeap::printHeap(const vector<int> &heap, int year)
 
 void Department ::setInfo(int month, int year, double CustomerPayment, double Minjection)
 {
-    cout<<"dakhl setInfo department"<<endl;
+    
     YearDepartment *Year = Departmentyears->getYear(year);
     Year->payment += CustomerPayment;
     Month *m = Year->YMonths->getmonth(month);

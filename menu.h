@@ -1049,9 +1049,9 @@ void menu::HomePage()
                          int z;
                          std::cout << "\t\t\t\t   Enter listing year: ";
                          std::cin >> z;
-                         if (z < 0 || z > 2023 || z < 2020)
+                         while (z > 2023 || z < 2020)
                          {
-                              cout << "Wrong year; enter again: ";
+                              cout << "Invalid year; enter again: ";
                               cin >> z;
                          }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
@@ -1060,7 +1060,7 @@ void menu::HomePage()
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          DHeap.printDepartments(z);
-                         cout << "\t\t\t printBestDepartments();" << endl;
+                         cout << "\t\t\t printDepartments();" << endl;
 
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
 
@@ -1069,9 +1069,9 @@ void menu::HomePage()
                          int x;
                          std::cout << "\t\t\t\t   Enter listing year: ";
                          std::cin >> x;
-                         if (x < 0 || x > 2023 || x < 2020)
+                         while (x > 2023 || x < 2020)
                          {
-                              cout << "Wrong year; enter again: ";
+                              cout << "Invalid year; enter again: ";
                               cin >> x;
                          }
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
@@ -1089,9 +1089,9 @@ void menu::HomePage()
                          int xy;
                          std::cout << "\t\t\t\t   Enter listing year: ";
                          std::cin >> xy;
-                         if (xy < 0 || xy > 2023 || xy < 2020)
+                         while (xy > 2023 || xy < 2020)
                          {
-                              cout << "Wrong year; enter again: ";
+                              cout << "Invalid year; enter again: ";
                               cin >> xy;
                          }
 

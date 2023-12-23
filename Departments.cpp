@@ -9,6 +9,7 @@
 #include "City.cpp"
 #include "District.h"
 #include "District.cpp"
+#include <iomanip>
 #include <chrono>
 
 using namespace std;
@@ -163,14 +164,17 @@ void DepartmentHeap::printHeap(const vector<int> &heap, int year)
     make_heap(minHeap.begin(), minHeap.end(), [&](const int &a, const int &b)
               { return departments[a].totalAmountPaid > departments[b].totalAmountPaid; });
 
-    cout << "Department ID \t"
-         << "Department name\t"
-         << "Budget\t"
-         << "\tProfit" << endl;
-    for (const auto &departmentIndex : heap)
-    {
+     cout << left << setw(15) << "Department ID"
+         << setw(25) << "Department name"
+         << setw(15) << "Budget"
+         << setw(15) << "Profit" << endl;
+
+    for (const auto &departmentIndex : heap) {
         const auto &department = departments[departmentIndex];
-        cout << department.city_id << "\t\t" << department.city_name << "\t\t" << department.budget << " dzd\t" << department.totalAmountPaid << " dzd\n";
+        cout << setw(15) << department.city_id
+             << setw(25) << department.city_name
+             << setw(15) << fixed << setprecision(2) << department.budget 
+             << setw(15) << fixed << setprecision(2) << department.totalAmountPaid << " dzd" << endl;
     }
 }
 
@@ -259,7 +263,7 @@ double Department::getTotalAmountPaid() const
     return this->totalAmountPaid;
 }
 
-int main()
+/*int main()
 {
     DepartmentHeap dh;
     Department d1(1, "A", 100000.00, 111);
@@ -286,7 +290,7 @@ int main()
     Department d22(22, "V", 100000.00, 44444);
     Department d23(23, "W", 100000.00, 55555);
     Department d24(24, "X", 100000.00, 66666);
-    
+
     dh.insertDepartment(d1);
     dh.insertDepartment(d2);
     dh.insertDepartment(d3);
@@ -324,5 +328,5 @@ int main()
     cout << "-----------------  WORST 10-----------------------" << endl;
     dh.getWorst10(2022);
     return 0;
-}
+}*/
 #endif

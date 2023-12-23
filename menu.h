@@ -48,7 +48,6 @@ menu::menu()
                int RegionID, CityID, DistrictID;
                RegionID = stoi(regionID); 
                CityID = stoi(cityID); 
-               cout<<CityID<<endl;
                DistrictID = stoi(districtID);
                Alg.insertRegion(Region(RegionID, regionName));
                Alg.insertCity(RegionID, City(CityID, cityName), DHeap);

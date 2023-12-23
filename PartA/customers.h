@@ -12,8 +12,8 @@ class Customers // BST based
 {
 private:
     Customer *rootCus;
-    static int maxAmountInjected;
-    static int maxInjectorID;
+    static double maxAmountInjected;
+    static long long int maxInjectorID;
     static string cityWinner;
     static string regionWinner;
     static string districtWinner;
@@ -34,9 +34,9 @@ public:
     void getOneMonthBillBST(long long int, int, int);
     void getOneYearBillBST(long long int, int);
     void getPeriodBillBST(long long int, int, int, int, int);
-    static void setInfoNewInjector(long long int, int, string, string, string);
-    static int getmaxInjectorID();
-    static int getmaxAmoutInjected();
+    static void setInfoNewInjector(long long int, double, string, string, string);
+    static long long int getmaxInjectorID();
+    static double getmaxAmoutInjected();
     static void displayWinner();
     void displayOneMonthBillsALLPub(int, int);
     void displayOneYearBillsALLPub(int);

@@ -7,8 +7,8 @@
 using namespace std;
 
 //initializing static members of Customers class
-int Customers ::maxInjectorID = 0;
-int Customers ::maxAmountInjected = 0;
+long long int  Customers ::maxInjectorID = 0;
+double  Customers ::maxAmountInjected = 0;
 string Customers ::regionWinner = "";
 string Customers ::cityWinner = "";
 string Customers ::districtWinner = "";
@@ -207,7 +207,7 @@ void Customers::printLevelOrder()
     }
 }
 
-void Customers ::setInfoNewInjector(long long int ID, int newValue, string RW, string CW, string DW)
+void Customers ::setInfoNewInjector(long long int ID, double newValue, string RW, string CW, string DW)
 {
     Customers ::maxInjectorID = ID;
     Customers ::maxAmountInjected = newValue;
@@ -216,12 +216,12 @@ void Customers ::setInfoNewInjector(long long int ID, int newValue, string RW, s
     Customers ::districtWinner = DW;
 }
 
-int Customers ::getmaxInjectorID()
+long long int Customers ::getmaxInjectorID()
 {
     return Customers ::maxInjectorID;
 }
 
-int Customers ::getmaxAmoutInjected()
+double Customers ::getmaxAmoutInjected()
 {
     return Customers ::maxAmountInjected;
 }

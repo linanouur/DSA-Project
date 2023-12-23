@@ -502,7 +502,7 @@ void SetCustomersFromFile(htRegions &Reg)
     }
     else
     {
-        std::cout << "Unable to open file." << endl;
+        std::cout << "Unable to open file2." << endl;
     }
 
     writeinFile(IDS,100);

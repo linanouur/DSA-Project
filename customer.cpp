@@ -85,7 +85,10 @@ vector<string> Customer ::getIDs(string region, string city, string district)
             IDSorNames[1] == region &&
             IDSorNames[3] == city &&
             IDSorNames[5] == district)
-        {
+        { 
+            cout<<"IDSorNames[0] "<<IDSorNames[0]<<endl; 
+            cout<<"IDSorNames[2] "<<IDSorNames[2]<<endl;
+            cout<<"IDSorNames[4] "<<IDSorNames[4]<<endl;
             return vector<string>{IDSorNames[0], IDSorNames[2], IDSorNames[4]};
         }
     }
@@ -107,11 +110,11 @@ long long  int Customer ::generateCustomerID(string region, string city, string 
     if (CustomerID > 0 && CustomerID < 1000000000)
     {
         string concatenatedIDs = getConcatenatedIDs(region, city, district);
-        cout << "concatenatedIDs" << concatenatedIDs << endl;
+       
         string CustomerIDstring = to_string(CustomerID);
         cout << "CustomerIDstring" << CustomerIDstring << endl;
         string CustomerID = concatenatedIDs + CustomerIDstring;
-     
+        cout<<"CustomerID "<<CustomerID<<endl;
         return stoll(CustomerID);
     }
     else

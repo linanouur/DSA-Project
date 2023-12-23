@@ -28,11 +28,9 @@ class Month {
 
     void setMonthInfo(int TotalSpent)
     {
-        cout<<"TADKHOL LLMONTH B : " <<TotalSpent<<endl;
-         cout<<"LORIGINAL TA3 LMONTH/ "<<TotalSpentAmount<<endl;
+      
         TotalSpentAmount = TotalSpentAmount+TotalSpent;
-        cout<<"HAWLIK KIFACH WALAT MONTHAMOUNT:"<<TotalSpentAmount<<endl;
-        cout<<"DAKHLAT B:" <<TotalSpent<<endl;
+       
     }
 
 };

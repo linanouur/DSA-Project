@@ -31,8 +31,6 @@
 
 using namespace std;
 
-
-
 int getRegionIDfromFile(string region)
 {
     ifstream file("RegionCityDistrict.csv");
@@ -195,28 +193,25 @@ int getCustomerID(long long int CustomerID)
     return stoi(customerID);
 }
 
-
-
 void insertNewCustomer(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);  //creating the Customer Node
-    long long int NewID = cus->ElectricityAccountId;  //new ID which is generated using the appropriate functions and called whithing the creation of the Customer Node
-    int R = getRegionId(NewID);  //getting the Id of region
-    int C = getCityId(NewID);  //getting the Id of city
-    int D = getDistrictId(NewID);  //getting the Id of district
-    Region *Rptr = Alg.getRegion(R);  //Access to region
-    City *Cptr = Rptr->Cities->getCityptr(C);  //Access to city
-    District Dis = Cptr->Districts->getDistrict(D);  //Access to district
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id); // creating the Customer Node
+    long long int NewID = cus->ElectricityAccountId;                                                    // new ID which is generated using the appropriate functions and called whithing the creation of the Customer Node
+    int R = getRegionId(NewID);                                                                         // getting the Id of region
+    int C = getCityId(NewID);                                                                           // getting the Id of city
+    int D = getDistrictId(NewID);                                                                       // getting the Id of district
+    Region *Rptr = Alg.getRegion(R);                                                                    // Access to region
+    City *Cptr = Rptr->Cities->getCityptr(C);                                                           // Access to city
+    District Dis = Cptr->Districts->getDistrict(D);                                                     // Access to district
     Customers *B = Cptr->Districts->getBST(D);
-    B->insertNewCustomerBST(cus);  // access to the appropriate BST That customer belongs to and insert the Customer to it
-    cout << "Customer Id: " << NewID << endl;  // displaying the Id to the customer to use it other times
+    B->insertNewCustomerBST(cus);             // access to the appropriate BST That customer belongs to and insert the Customer to it
+    cout << "Customer Id: " << NewID << endl; // displaying the Id to the customer to use it other times
     std::cout << "\t\t"
               << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
-    
 }
 
 void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
-{   //same function as the previous , but this is used when inserting our dataset chosen to avoid show CustomerIds each time when inserting the customers at the beginning of the program
+{ // same function as the previous , but this is used when inserting our dataset chosen to avoid show CustomerIds each time when inserting the customers at the beginning of the program
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
@@ -227,14 +222,13 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long i
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    
 }
 
 void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int Mconsumption, int Minjection)
 {
     bool exists = false;
-    Bill bill;  //create bill
-    bill.setBillInfo(Mconsumption, Minjection);  //set Bill info
+    Bill bill;                                  // create bill
+    bill.setBillInfo(Mconsumption, Minjection); // set Bill info
     int R = getRegionId(ID);
     int C = getCityId(ID);
     int D = getDistrictId(ID);
@@ -242,11 +236,11 @@ void setInfoOneMonth(htRegions &HReg, long long int ID, int month, int year, int
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
-    B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists); 
-    if (exists == true)  //if customer exist then passing the appropriate needed values to department to calculate its profit each time setting the bills of any customer belongs to,to avoid searching each time for the paiments of all customers
+    B->setInfoCustomerOneMonthBST(ID, month, year, bill, exists);
+    if (exists == true) // if customer exist then passing the appropriate needed values to department to calculate its profit each time setting the bills of any customer belongs to,to avoid searching each time for the paiments of all customers
     {
         int difference = 5 * Mconsumption - 3 * Minjection;
-        Cptr->setInfoDepartment(month, year, difference, Minjection); 
+        Cptr->setInfoDepartment(month, year, difference, Minjection);
     }
 }
 
@@ -309,16 +303,12 @@ void getOneMonthBillCity(htRegions &Alg, string RegionName, string CityName, int
 
 void getOneMonthBillDistrict(htRegions &Alg, string RegionName, string CityName, string DistrictName, int month, int year)
 {
-    cout << "Region: " << RegionName << endl;
-    cout << "CityName: " << CityName << endl;
-    cout << "DistrictName: " << DistrictName << endl;
-    cout << "1" << endl;
     int RegionID = getRegionIDfromFile(RegionName);
-    cout << "RegionID " << RegionID << endl;
+
     int CityID = getCityIDfromFile(CityName);
-    cout << "CityID " << CityID << endl;
+
     int DistrictID = getRegionIDfromFile(DistrictName);
-    cout << "DistrictID " << DistrictID << endl;
+
     Region *R = Alg.getRegion(RegionID);
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
@@ -387,7 +377,7 @@ void getOnePeriodBillDistrict(htRegions &Alg, string RegionName, string CityName
     City *C = R->Cities->getCityptr(CityID);
     District D = C->Districts->getDistrict(DistrictID);
     D.getPeriodBillinDistrict(monthStart, monthEnd, yearStart, yearEnd);
-} 
+}
 
 void readCustomersFile(htRegions &Alg)
 {
@@ -496,7 +486,5 @@ void SetCustomersFromFile(htRegions &Reg)
 
     int ages12[] = {1, 57, 33, 87, 87, 20, 13};
     insertNewCustomerTwo(Reg, "Moussa", "Cherchar", 5281571222, 7, ages12, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5281571222);
-  
-
 }
 #endif

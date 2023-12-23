@@ -1,21 +1,20 @@
 #ifndef CALENDAR_CPP
 #define CALENDAR_CPP
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 #include <string>
 #include <vector>
-#include"bills.cpp"
+#include "bills.cpp"
 
 using namespace std;
-
 
 class Months
 {
 public:
     Bill months[13];
     Months()
-    {
+    { // setting the months of the year
         const string monthNames[] = {
             "January", "February", "March", "April",
             "May", "June", "July", "August",
@@ -27,24 +26,23 @@ public:
         }
     }
 
+    // returning the exact address of any month
     Bill *getbill(int month)
     {
         return &months[month];
     }
 };
 
-
 class Year
-{ 
-    public: 
-     
-    Months *yearMonths;
+{
+public:
+    Months *yearMonths; // each year is linked to a hashtable of Bills(each one is concerning one month)
     int year;
     int YearlyTotal = 0;
     int YearlyCredit = 0;
     int payment = YearlyTotal - YearlyCredit;
 
-    Year() { }
+    Year() {}
     Year(int num)
     {
         year = num;
@@ -71,15 +69,13 @@ class Year
     }
 };
 
-
 class Years
-{ 
-       public:   
-   
-      Years() { }
-  
-     Year years[50];
-    int hash(int numYear)
+{
+public:
+    Year years[50];
+    Years() {}
+
+    int hash(int numYear)   //hashing the years in the hash table 
     {
         return numYear % 50;
     }
@@ -89,10 +85,10 @@ class Years
         years[hash(numYear)] = Year(numYear);
     }
 
-    Year * getYear(int year)
+    Year *getYear(int year)
     {
         return &years[hash(year)];
     }
-}; 
+};
 
 #endif

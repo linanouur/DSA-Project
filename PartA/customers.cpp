@@ -6,40 +6,35 @@
 #include <queue>
 using namespace std;
 
+//initializing static members of Customers class
 int Customers ::maxInjectorID = 0;
 int Customers ::maxAmountInjected = 0;
 string Customers ::regionWinner = "";
 string Customers ::cityWinner = "";
 string Customers ::districtWinner = "";
-static int CustomersNum = 0;
+
 
 void Customers::setInfoCustomerOneMonthBST(long long int ID, int month, int year, Bill &other, bool &doesExist)
 {
     Customer *cust = searchCustomer(ID);
-    if (cust != nullptr)
+    if (cust != nullptr)  //if customer exist 
     {
-        cust->settotalInjection(other.MonthInjectionAmount);
-        if (cust->totalInjection > getmaxAmoutInjected())
+        cust->settotalInjection(other.MonthInjectionAmount);  
+        if (cust->totalInjection > getmaxAmoutInjected())  //comparing between the injection of the Best injector of all BSTs as it's a static member, so the injection is larger than the injection of the best injector : changing the values of the injector to avoid searching on it each time and accessing to all customers
             setInfoNewInjector(ID, cust->totalInjection, cust->Region, cust->City, cust->District);
         Year *y = cust->Customeryears->getYear(year);
-        y->setYearlyTotal(other.MonthConsumptionAmount * 5);
+        y->setYearlyTotal(other.MonthConsumptionAmount * 5); //setting customer information
         y->setYearlyCredit(other.MonthInjectionAmount * 3);
         Bill *m = y->yearMonths->getbill(month);
         m->MonthConsumptionAmount= other.MonthConsumptionAmount;
         m->MonthInjectionAmount =other.MonthInjectionAmount;
-        doesExist = true;
+        doesExist = true;  //if customer exists in BST , this information is used by other functions that need to have an information about it
     }
     else
     {
         doesExist = false;
         cout << "Customer not found." << endl;
     }
-}
-
-int getPrize(Customers *BST)
-{
-    cout << "The winner ID: ";
-    return BST->Customers ::getmaxInjectorID();
 }
 
 void Customers::insertNewCustomerBST(Customer *ptr)
@@ -71,6 +66,7 @@ Customer *Customers::insert(Customer *root, Customer *node)
     }
     return nullptr;
 }
+
 
 Customer *Customers::searchCustomer(long long int ID, Customer *r)
 {
@@ -238,7 +234,7 @@ int Customers ::getmaxAmoutInjected()
     return Customers ::maxAmountInjected;
 }
 
-void Customers ::getOneMonthBillBST(long long int ID, int month, int year)
+void Customers ::getOneMonthBillBST(long long int ID, int month, int year)  //used to display bills for one month of customers that belong to the same district(Or BST)
 {
     cout << "Bill of " << month << "  /  " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
@@ -291,38 +287,12 @@ void Customers ::displayWinner()
     cout << "with an injection Amount : " << Customers ::maxAmountInjected << endl;
 }
 
-/*
-int main(){
-    Customers BST;
-    Customer N("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Adrar", 123);
-    Customer M("Mohamed", "Ali", 123456, 5, "Adrar", "Adrar", "Ouled Ahmed Timmi", 123);
-    Customer H( "Lina", "Slama", 123456, 5, "Adrar", "Adrar", "Ouled Ahmed Timmi", 150);
 
-    BST.insertNewCustomerBST(&N);
-    cout<<"Hello";
-    BST.insertNewCustomerBST(&M);
-    BST.insertNewCustomerBST(&H);
-    // if(BST ) cout<<"it's not null"<<endl;
-    // else cout<<" null"<<endl;
-    // BST.print();
-
-  Customer *cus = BST.searchCustomer(1010010123);
-  cout<<cus->FamilyName<<endl;
-  cout<<cus->City<<endl;
-  BST.print();
-//   Bill b;
-//   b.setBillInfo(100,50);
-// BST.setInfoCustomerOneMonthBST(1010010123,10,2024,b);
-// cout<<endl;
-// BST.getOneMonthBillBST(1010010123,10,2024);
-    // Customer *K=nullptr;
-    // if(K==nullptr) cout<<"not  found";
-    // K= BST.searchCustomer(1010010123);
-
-    //  if(K!=nullptr) cout<<"M";
-
-
-    return 0;
+int getPrize(Customers *BST)
+{
+    cout << "The winner ID: ";
+    return BST->Customers ::getmaxInjectorID();
 }
-*/
+
+
 #endif

@@ -31,7 +31,7 @@
 
 using namespace std;
 
-using namespace std;
+
 
 int getRegionIDfromFile(string region)
 {
@@ -66,6 +66,7 @@ int getRegionIDfromFile(string region)
 
     return -1;
 }
+
 int getCityIDfromFile(string city)
 {
     ifstream file("RegionCityDistrict.csv");
@@ -98,6 +99,7 @@ int getCityIDfromFile(string city)
 
     return -1;
 }
+
 int getDistrictIDfromFile(string district)
 {
     ifstream file("RegionCityDistrict.csv");
@@ -202,7 +204,6 @@ void writeinFile(int Id)
         outputFile << Id << endl;
 
         outputFile.close();
-        cout << "Ids have been written to newIds.csv successfully." << endl;
     }
     else
     {
@@ -212,20 +213,20 @@ void writeinFile(int Id)
 
 void insertNewCustomer(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
-    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
-    long long int NewID = cus->ElectricityAccountId;
-    int R = getRegionId(NewID);
-    int C = getCityId(NewID);
-    int D = getDistrictId(NewID);
-    Region *Rptr = Alg.getRegion(R);
-    City *Cptr = Rptr->Cities->getCityptr(C);
-    District Dis = Cptr->Districts->getDistrict(D);
+    Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);  //creating the Customer Node
+    long long int NewID = cus->ElectricityAccountId;  //new ID which is generated using the appropriate functions and called whithing the creation of the Customer Node
+    int R = getRegionId(NewID);  //getting the Id of region
+    int C = getCityId(NewID);  //getting the Id of city
+    int D = getDistrictId(NewID);  //getting the Id of district
+    Region *Rptr = Alg.getRegion(R);  //Access to region
+    City *Cptr = Rptr->Cities->getCityptr(C);  //Access to city
+    District Dis = Cptr->Districts->getDistrict(D);  //Access to district
     Customers *B = Cptr->Districts->getBST(D);
-    B->insertNewCustomerBST(cus);
-    cout << "Customer Id: " << NewID << endl;
+    B->insertNewCustomerBST(cus);  // access to the appropriate BST That customer belongs to and insert the Customer to it
+    cout << "Customer Id: " << NewID << endl;  // displaying the Id to the customer to use it other times
     std::cout << "\t\t"
               << "^" << setfill(' ') << setw(40) << "Custumer added successfully" << setw(19) << "^" << endl;
-    writeinFile(NewID);
+    writeinFile(NewID);  // registering its Id in the file (as a small database)
 }
 
 void insertNewCustomerTwo(htRegions Alg, string fname, string lname, long long int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
@@ -484,52 +485,6 @@ void FillHashTablesRCD(htRegions &Reg, DepartmentHeap &heap)
 
 void SetCustomersFromFile(htRegions &Reg)
 {
-
-    /*ifstream fileCus("Customer.csv");
-    if (fileCus.is_open())
-    {
-        int i=0;
-        string line;
-        while (getline(fileCus, line))
-        {
-            stringstream ss(line);
-            string fname, lname, reg, city, dist, bnum, fnum, fage, id;
-            int age;
-            long long int bankNum, ID;
-            int *ages;
-            int regID, cityID, distID;
-
-            getline(ss, fname, ',');
-            getline(ss, lname, ',');
-            getline(ss, reg, ',');
-            getline(ss, city, ',');
-            getline(ss, dist, ',');
-            getline(ss, bnum, ',');
-            bankNum = stoll(bnum);
-            getline(ss, fnum, ',');
-            int famNum = stoi(fnum);
-            ages = new int[famNum];
-            for (int i = 0; i < famNum; i++)
-            {
-                getline(ss, fage, ',');
-                age = stoi(fage);
-                ages[i] = age;
-            }
-            getline(ss, id, ',');
-            ID = stoll(id);
-            cout<<ID;
-            insertNewCustomerTwo(Reg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
-            i++;
-            cout<<i<<endl;
-        }
-
-        fileCus.close();
-    }
-    else
-    {
-        std::cout << "Unable to open file2." << endl;
-    }*/
-
     int ages1[] = {48};
     insertNewCustomerTwo(Reg, "Nouha", "Mouchaal", 8300820588, 1, ages1, "Adrar", "Adrar", "Adrar", 869798390);
     int ages2[] = {41};
@@ -552,8 +507,6 @@ void SetCustomersFromFile(htRegions &Reg)
 
     int ages10[] = {16, 31, 32, 60};
     insertNewCustomerTwo(Reg, "Amir", "Lassouioui", 6148822254, 4, ages10, "Adrar", "Adrar", "Bouda", 123407668);
-
-    
 
     int ages12[] = {1, 57, 33, 87, 87, 20, 13};
     insertNewCustomerTwo(Reg, "Moussa", "Cherchar", 5281571222, 7, ages12, "Souk_Ahras", "Haddada", "Ouled_Moumen", 5281571222);

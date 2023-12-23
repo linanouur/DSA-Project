@@ -213,7 +213,6 @@ void writeinFile(int Id)
 
 void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district, long long int id)
 {
-
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
     long long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
@@ -243,7 +242,7 @@ void insertNewCustomerTwo(htRegions Alg, string fname, string lname, int bankAcc
     District Dis = Cptr->Districts->getDistrict(D);
     Customers *B = Cptr->Districts->getBST(D);
     B->insertNewCustomerBST(cus);
-    cout << NewID << endl;
+   
     
 }
 

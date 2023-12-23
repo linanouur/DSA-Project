@@ -123,7 +123,7 @@ public:
     // Member functions for setting and getting budget and total amount paid
     void setBudget(double);
     double getBudget() const;
-    void setTotalAmountPaid(double);
+    void setTotalAmountPaid(int);
     double getTotalAmountPaid() const;
     void setInfo(int , int , int , int);
 };
@@ -149,7 +149,7 @@ public:
     // Public member functions for various operations
     void insertDepartment(const Department &department);
     void updateBudget();
-    void printHeap(const vector<int> &heap) const;
+    void printHeap(const vector<int> &heap ) const;
     void printBestDepartments();
     void printWorstDepartments();
     void getBest10() const;
@@ -157,17 +157,7 @@ public:
 }; 
 
 
-/*
-getBest10(int year){
-access to all deps : setTotalPaiment(year)
 
-}
-
-Department: setTotalPaiment(int year){
-    Year *y=getYear(int)
-    TotalAmount = y->paiment;
-}
-*/
 
 
 

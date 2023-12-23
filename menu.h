@@ -268,7 +268,7 @@ void menu::HomePage()
                          {
                               throw std::runtime_error("Input was not an integer.");
                          }
-                         if (fnum < 0)
+                         if (fnum < 0 || fnum > 20)
                          {
                               std::cout << "\t\t\t Invalid family members number entered!!\n\n";
                               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
@@ -280,7 +280,7 @@ void menu::HomePage()
                          for (int i = 0; i < fnum; i++)
                          {
                               std::cout << "\t\t"
-                                        << "^" << setfill(' ') << setw(width - 16) << "Age of member N" << i << ":" << setw(15) << "^" << endl;
+                                        << "^" << setfill(' ') << setw(width - 31) << "Age of member N" << i+1 << ":" << setw(29) << "^" << endl;
                               std::cout << "\t\t\t\t";
                               int r;
                               std::cin >> r;

@@ -70,8 +70,8 @@ namespace aarsoftx{
 				
 				
 				this->maxNum = getMaxValue(result);
-				
-				this->height = maxNum / this->count;
+
+                this->height = static_cast<float>(maxNum) / this->count;
 				
 				
 				
@@ -98,7 +98,7 @@ namespace aarsoftx{
 					
 					for (int w = 0; w < maxGap; w++) cout<<" ";
 					cout<<"| "<<r.name<<" : "<<r.value;
-					if (r.value == this->maxNum) cout<<" √ (Max)"<<endl;
+					if (r.value == this->maxNum) cout<<" -> Max"<<endl;
 					else cout<<endl;
 					
 				}
@@ -113,17 +113,17 @@ namespace aarsoftx{
 							int value = this->result[index].value;
 							
 							if (this->height - y <= (int)(value / this->count)){
-								cout<<"***"; //
+								cout<<"|"; //
 							}else{
-								cout<<"   ";
+								cout<<" ";
 							}
 						}else{
-							cout<<"   ";
+							cout<<" ";
 						}
 					}
 					cout<<endl;
 				}
-				for (int i = 0;i < x_width + 10; i++) cout<<"---";
+				for (int i = 0;i < x_width + 10; i++) cout<<"-";
 				cout<<endl;
 				for (int a = 0;a < 20; a++){
 					cout<<"  ";
@@ -135,14 +135,14 @@ namespace aarsoftx{
 							
 							if (a < (int)n.size()){
 								
-								cout<<" "<<n[a]<<" ";
+								cout<<""<<n[a]<<"";
 								
 							}else{
-								cout<<"   ";
+								cout<<" ";
 							}
 							
 						}else{
-							cout<<"   ";
+							cout<<" ";
 						}
 					}
 					cout<<endl;

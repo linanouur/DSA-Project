@@ -130,17 +130,20 @@ int getDistrictIDfromFile(string district)
 }
 
 int getRegionId( long long int CustomerID)
-{
-    string CustomerIDString = to_string(CustomerID);
+{ 
+     std ::string CustomerIDString = std ::to_string(CustomerID); 
+ 
     string regionID;
     if (CustomerIDString.length() == 15)
     {
 
-        regionID = CustomerIDString.substr(0, 1);
+        regionID = CustomerIDString.substr(0, 1); 
+     
     }
     else
     {
-        regionID = CustomerIDString.substr(0, 2);
+        regionID = CustomerIDString.substr(0, 2); 
+        
     }
     return stoi(regionID);
 }
@@ -193,13 +196,11 @@ int getCustomerID( long long  int CustomerID)
 void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long long int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
-    long int NewID = cus->ElectricityAccountId;
+    long long  int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
-    cout<<R<<endl;
+
     int C = getCityId(NewID);
-    cout<<C<<endl;
     int D = getDistrictId(NewID);
-    cout<<D<<endl;
     Region *Rptr = Alg.getRegion(R);
     City *Cptr = Rptr->Cities->getCityptr(C);
     District Dis = Cptr->Districts->getDistrict(D);

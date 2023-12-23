@@ -69,6 +69,7 @@ void Bill ::displayBill()
     cout << "Monthly Amount Injection: " << MonthInjectionAmount << " Killowatt Hours " << endl;
     cout << "Monthly Credit: " << MonthlyCredit << " " << endl;
     cout << " Total to Be Paid: " << getTotal() << " " << endl;
+    cout<<endl;
 }
 
 void Bill ::operator=(const Bill &other)

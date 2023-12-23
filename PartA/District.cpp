@@ -17,22 +17,20 @@ District::District() : DistrictID(0), DistrictName("")
 District::District(int id, const std::string &name) : DistrictID(id), DistrictName(name) {}
 void District::getOneMonthBillinDistrict(int month, int year)
 {   
-    bool existCus=false ;
-     BST.displayOneMonthBillsALLPub(month, year , existCus);
-    if (existCus==false) cout<<"No customers in district: "<<DistrictName<<endl;
-   
+     BST.displayOneMonthBillsALLPub(month, year );
+    
 }
 void District ::getPeriodBillinDistrict(int StartMonth, int StartYear, int EndMonth, int EnDYear)
 {
-    bool existCus=false ;
-    BST.displayOnePeriodBillsALLPub(StartMonth, StartYear, EndMonth, EnDYear,existCus);
-      if (existCus==false) cout<<"No customers in district: "<< DistrictName<<endl;
+   
+    BST.displayOnePeriodBillsALLPub(StartMonth, StartYear, EndMonth, EnDYear);
+    
 }
 void District ::getOneYearBillinDistrict(int year)
 {
-    bool existCus=false ;
-    BST.displayOneYearBillsALLPub(year,existCus);
-      if (existCus==false) cout<<"No customers in district: "<<DistrictName<<endl;
+   
+    BST.displayOneYearBillsALLPub(year);
+  
 }
 
 int htDistricts::hashFunctionDistrict(int key)

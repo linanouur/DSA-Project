@@ -3,7 +3,7 @@
 #include "userFunctions.cpp"
 
 using namespace std;
-/*
+
 int main()
 {
     // htRegions Algeria;
@@ -22,4 +22,3 @@ int main()
         std::cerr << "Unknown exception caught" << std::endl;
     }
 }
-*/

@@ -20,13 +20,13 @@ void Bill ::setMonth(std::string name, int num)
     numberMonth = num;
 }
 
-void Bill ::setBillInfo(int ConsumptionAmount, int InjectionAmount)
+void Bill ::setBillInfo(double ConsumptionAmount, double InjectionAmount)
 {
     MonthConsumptionAmount = ConsumptionAmount;
     MonthInjectionAmount = InjectionAmount;
 }
 
-int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
+double Bill ::CalculateBill(double ConsumptionAmount, double InjectionAmount)
 {
     if (InjectionAmount == 0) 
     {
@@ -35,7 +35,7 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
         return Total;  
     }
 
-    int difference = 5 * ConsumptionAmount - 3 * InjectionAmount;  
+    double difference = 5 * ConsumptionAmount - 3 * InjectionAmount;  
 
     if (difference > 0)  //This means that The amount to be paid is larger than the credit
     {
@@ -55,7 +55,7 @@ int Bill ::CalculateBill(int ConsumptionAmount, int InjectionAmount)
     }
 }
 
-int Bill::getTotal()
+double Bill::getTotal()
 {
     if (state == status::NotCalculatedYet)  //the 
         return CalculateBill(MonthConsumptionAmount, MonthInjectionAmount);
@@ -69,6 +69,7 @@ void Bill ::displayBill()
     cout << "Monthly Amount Injection: " << MonthInjectionAmount << " Killowatt Hours " << endl;
     cout << "Monthly Credit: " << MonthlyCredit << " " << endl;
     cout << " Total to Be Paid: " << getTotal() << " " << endl;
+    cout<<endl;
 }
 
 void Bill ::operator=(const Bill &other)

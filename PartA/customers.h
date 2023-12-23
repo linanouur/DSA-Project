@@ -38,8 +38,8 @@ public:
     static int getmaxInjectorID();
     static int getmaxAmoutInjected();
     static void displayWinner();
-    void displayOneMonthBillsALLPub(int, int, bool &);
-    void displayOneYearBillsALLPub(int, bool &);
-    void displayOnePeriodBillsALLPub(int, int, int, int, bool &);
+    void displayOneMonthBillsALLPub(int, int);
+    void displayOneYearBillsALLPub(int);
+    void displayOnePeriodBillsALLPub(int, int, int, int);
 };
 #endif

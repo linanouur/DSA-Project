@@ -123,8 +123,8 @@ void Customer ::getOneMonthBillCustomer(int month, int year)
     cout << "Customer: " << firstName << " " << FamilyName << " , Electricity Account ID: " << ElectricityAccountId << endl;  //printing some information about the customer
     Year *y = Customeryears->getYear(year);  //get the address of the year in the hashtable
     Bill *m = y->yearMonths->getbill(month); //get the address of the year in the hashtable
-    cout << m->monthName << endl;
-    cout << y->year << "  ";
+    cout << m->monthName <<" ";
+    cout << y->year <<endl;
     m->displayBill(); //calling the appropriate bill display function
 }
 

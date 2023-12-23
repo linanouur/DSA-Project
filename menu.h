@@ -397,7 +397,7 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 20) << "Enter the ID of the customer" << setw(19) << "^" << endl;
                          std::cout << "\t\t\t\t";
                          std::cin >> id_bill;
-                         if (id_bill > 99999999999 || id_bill < 0)
+                         if (id_bill >= 10000000000000000 || id_bill < 0)
                          {
                               std::cout << "\t\t\t Invalid ID entered!!\n\n";
                               std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
@@ -479,7 +479,7 @@ void menu::HomePage()
                               std::cout << "\t\t\t\t   ";
                               std::cin >> S_id;
                               if (S_id >= 10000000000000000|| S_id < 0)
-                              {
+                              {         
                                    std::cout << "\t\t\t Invalid ID entered!!\n\n";
                                    std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                    break;
@@ -620,18 +620,17 @@ void menu::HomePage()
                                    std::cout << "\t\t\t enter district" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin.ignore();
-                                   std::getline(std::cin, dist1);
+                                   std::getline(std::cin >> std::ws, dist1);
                                    std::cout << "\t\t\t enter city" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin.ignore();
-                                   std::getline(std::cin, ct1);
+                                   std::getline(std::cin >> std::ws, ct1);
+                                   
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin.ignore();
-                                   std::getline(std::cin, rg1);
+                                   std::getline(std::cin >> std::ws, rg1);
+                                   
 
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills of: \n"
@@ -740,13 +739,13 @@ void menu::HomePage()
                                    std::cout << "\t\t\t enter city" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin.ignore();
-                                   std::getline(std::cin, ct2);
+                                   std::getline(std::cin >> std::ws, ct2);
+                                 
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin.ignore();
-                                   std::getline(std::cin, rg2);
+                                   std::getline(std::cin >> std::ws, rg2);
+                                   
 
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills in: \n"
@@ -854,8 +853,8 @@ void menu::HomePage()
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin.ignore();
-                                   std::getline(std::cin, rg3);
+                                   std::getline(std::cin >> std::ws, rg3);
+                                   
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills in: \n"
                                              << endl;
@@ -1189,14 +1188,14 @@ void menu::HomePage()
                std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Top border
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 10) << "Welcome customer please enter your ID" << setw(9) << "^" << endl;
-               long int ID;
+               long long int ID;
                std::cout << "\t\t\t\t\t";
                std::cin >> ID;
                if (std::cin.fail())
                {
                     throw std::runtime_error("Input was not an integer.");
                }
-               else if (ID > 99999999999 || ID < 0)
+               else if (ID > 10000000000000000 || ID < 0)
                {
                     std::cout << "\t\t\t Invalid ID entered!!\n";
                     std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;

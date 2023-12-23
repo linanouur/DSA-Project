@@ -24,8 +24,9 @@ void Customers::setInfoCustomerOneMonthBST(long long int ID, int month, int year
         Year *y = cust->Customeryears->getYear(year);
         y->setYearlyTotal(other.MonthConsumptionAmount * 5);
         y->setYearlyCredit(other.MonthInjectionAmount * 3);
-        Bill &m = y->yearMonths->getbill(month);
-        m = other;
+        Bill *m = y->yearMonths->getbill(month);
+        m->MonthConsumptionAmount= other.MonthConsumptionAmount;
+        m->MonthInjectionAmount =other.MonthInjectionAmount;
         doesExist = true;
     }
     else
@@ -71,6 +72,7 @@ Customer *Customers::insert(Customer *root, Customer *node)
         cout << "Customer already exists";
         return nullptr;
     }
+    return nullptr;
 }
 
 Customer *Customers::searchCustomer(long long int ID, Customer *r)
@@ -89,6 +91,7 @@ Customer *Customers::searchCustomer(long long int ID, Customer *r)
     {
         return searchCustomer(ID, r->right);
     }
+    return nullptr;
 }
 
 Customer *Customers::searchCustomer(long long int ID)
@@ -240,11 +243,8 @@ int Customers ::getmaxAmoutInjected()
 
 void Customers ::getOneMonthBillBST(long long int ID, int month, int year)
 {
-    cout << "Phase 2" << endl;
-    cout << "Bill of " << month
-         << " / " << year << " : " << endl;
+    cout << "Bill of " << month << "  /  " << year << " : " << endl;
     Customer *cust = searchCustomer(ID);
-    cout << "Phase 3" << endl;
     if (cust != nullptr)
     {
         cust->getOneMonthBillCustomer(month, year);

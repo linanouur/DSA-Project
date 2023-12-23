@@ -27,9 +27,9 @@ public:
         }
     }
 
-    Bill &getbill(int month)
+    Bill *getbill(int month)
     {
-        return months[month];
+        return &months[month];
     }
 };
 

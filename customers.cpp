@@ -46,6 +46,7 @@ void Customers::insertNewCustomerBST(Customer *ptr)
     rootCus = insert(rootCus, ptr);
 }
 
+
 Customer *Customers::insert(Customer *root, Customer *node)
 {
     if (root == nullptr)

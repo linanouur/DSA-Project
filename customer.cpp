@@ -20,35 +20,31 @@ long int Customer ::getCustomerId()
 }
 
 Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, long  long int id)
-{
+{ 
+
     Ages = new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
-    cout << "Customer ID: " << generateCustomerID(region, city, district, id) << endl;
-    cout << "CC" << endl;
-    ElectricityAccountId = generateCustomerID(region, city, district, id);
+    
+    ElectricityAccountId = generateCustomerID(region, city, district, id); 
+    cout << ElectricityAccountId << endl;
     Customeryears = new Years();
     for (int i = 2023; i < 2023 + 50; i++)
     {
         Customeryears->insertYear(i);
     }
-    cout << "end of constructor<<endl";
 }
 
 void Customer::setInfo(string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district)
 {
-    cout << "debut setInfo" << endl;
     firstName = fname;
     FamilyName = lname;
     BankAccount = bankAccount;
     familyMembersNumber = numMemb;
-    cout << "9bl lages" << endl;
     for (int i = 0; i < numMemb; i++)
     {
-        cout << "dakhl lages" << endl;
         Ages[i] = ages[i];
         cout << Ages[i] << endl;
     }
-    cout << "kharj lages" << endl;
     Region = region;
     City = city;
     District = district;
@@ -86,9 +82,7 @@ vector<string> Customer ::getIDs(string region, string city, string district)
             IDSorNames[3] == city &&
             IDSorNames[5] == district)
         { 
-            cout<<"IDSorNames[0] "<<IDSorNames[0]<<endl; 
-            cout<<"IDSorNames[2] "<<IDSorNames[2]<<endl;
-            cout<<"IDSorNames[4] "<<IDSorNames[4]<<endl;
+        
             return vector<string>{IDSorNames[0], IDSorNames[2], IDSorNames[4]};
         }
     }
@@ -106,16 +100,16 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
     return concatenatedIDs;
 }
 long long  int Customer ::generateCustomerID(string region, string city, string district,long int CustomerID)
-{
+{ 
     if (CustomerID > 0 && CustomerID < 1000000000)
     {
         string concatenatedIDs = getConcatenatedIDs(region, city, district);
+      
+        string CustomerIDstring = to_string(CustomerID); 
        
-        string CustomerIDstring = to_string(CustomerID);
-        cout << "CustomerIDstring" << CustomerIDstring << endl;
-        string CustomerID = concatenatedIDs + CustomerIDstring;
-        cout<<"CustomerID "<<CustomerID<<endl;
-        return stoll(CustomerID);
+        string Customerid = concatenatedIDs + CustomerIDstring; 
+      
+        return stoll(Customerid);
     }
     else
     {

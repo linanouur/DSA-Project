@@ -128,7 +128,7 @@ void menu::HomePage()
      bool conn;
      const int width = 60;
      int n;
-     std::string password;
+     
      do
      {
           // Role selection section
@@ -166,7 +166,7 @@ void menu::HomePage()
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 10) << "Welcome admin please enter the password" << setw(9) << "^" << endl;
                std::cout << "\t\t\t\t";
-               std::cin >> password;
+               std::cin>>password;
                if (password == getSentenceFromCSV("password.csv"))
                {
                     conn = true;
@@ -217,7 +217,8 @@ void menu::HomePage()
 
                     std::string reg, city, dist, fname, lname;
                     int fnum, m_bill, y_bill, mconsumption, minjection;
-                    long long int  id_bill,id_num;
+                    long int  id_bill;
+                    long long id_num;
                     long int bnum;
                     int *ages;
                     switch (i)
@@ -231,24 +232,29 @@ void menu::HomePage()
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 30) << "Enter the region" << setw(29) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin >> reg;
+                         std::cin.ignore();
+                         std::getline(std::cin, reg);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 32) << "Enter the city" << setw(31) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin >> city;
+                         std::cin.ignore();
+                         std::getline(std::cin, city);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 28) << "Enter the district" << setw(27) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin >> dist;
+                         std::cin.ignore();
+                         std::getline(std::cin, dist);
 
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 31) << "Enter Firstname" << setw(30) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin >> fname;
+                         std::cin.ignore();
+                         std::getline(std::cin, fname);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 32) << "Enter Lastname" << setw(31) << "^" << endl;
                          std::cout << "\t\t\t\t";
-                         std::cin >> lname;
+                         std::cin.ignore();
+                         std::getline(std::cin, lname);
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 22) << "Enter Bankaccount number" << setw(21) << "^" << endl;
                          std::cout << "\t\t\t\t";
@@ -565,15 +571,18 @@ void menu::HomePage()
                                    std::cout << "\t\t\t enter district" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin >> dist1;
+                                   std::cin.ignore();
+                                   std::getline(std::cin, dist1);
                                    std::cout << "\t\t\t enter city" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin >> ct1;
+                                   std::cin.ignore();
+                                   std::getline(std::cin, ct1);
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin >> rg1;
+                                   std::cin.ignore();
+                                   std::getline(std::cin, rg1);
 
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills of: \n"
@@ -682,11 +691,13 @@ void menu::HomePage()
                                    std::cout << "\t\t\t enter city" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin >> ct2;
+                                   std::cin.ignore();
+                                   std::getline(std::cin, ct2);
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin >> rg2;
+                                   std::cin.ignore();
+                                   std::getline(std::cin, rg2);
 
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills in: \n"
@@ -794,7 +805,8 @@ void menu::HomePage()
                                    std::cout << "\t\t\t enter region" << endl;
 
                                    std::cout << "\t\t\t\t";
-                                   std::cin >> rg3;
+                                   std::cin.ignore();
+                                   std::getline(std::cin, rg3);
                                    std::cout << "\n\n";
                                    std::cout << "\t\t\t you want the bills in: \n"
                                              << endl;

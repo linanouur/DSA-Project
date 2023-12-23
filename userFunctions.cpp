@@ -193,7 +193,7 @@ int getCustomerID( long long  int CustomerID)
 void insertNewCustomer(htRegions Alg, string fname, string lname, int bankAccount, int numMemb, int *ages, string region, string city, string district,long long int id)
 {
     Customer *cus = new Customer(fname, lname, bankAccount, numMemb, ages, region, city, district, id);
-    long int NewID = cus->ElectricityAccountId;
+    long long int NewID = cus->ElectricityAccountId;
     int R = getRegionId(NewID);
     cout<<R<<endl;
     int C = getCityId(NewID);

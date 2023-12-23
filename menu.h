@@ -27,7 +27,7 @@ public:
 
 menu::menu()
 {
-  
+
      ifstream file("RegionCityDistrict.csv");
 
      if (file.is_open())
@@ -46,17 +46,69 @@ menu::menu()
                getline(ss, districtID, ',');
                getline(ss, districtName, ',');
                int RegionID, CityID, DistrictID;
-               RegionID = stoi(regionID); 
-               CityID = stoi(cityID); 
+               RegionID = stoi(regionID);
+               CityID = stoi(cityID);
                DistrictID = stoi(districtID);
                Alg.insertRegion(Region(RegionID, regionName));
                Alg.insertCity(RegionID, City(CityID, cityName), DHeap);
                Alg.insertDistrict(RegionID, CityID, District(DistrictID, districtName));
-              
           }
 
           file.close();
-         
+     }
+     else
+     {
+          std::cout << "Unable to open file." << endl;
+     }
+
+     std::cout << "Going to File 2" << endl;
+     ifstream fileCus("Customer.csv");
+     std::cout << "open File2";
+     if (fileCus.is_open())
+     {
+          cout<<"hey 1"<<endl;
+          string line;
+          while (getline(fileCus, line))
+          {
+               stringstream ss(line);
+               string fname, lname, reg, city, dist, bnum, fnum, fage, id;
+               int age;
+               long long int bankNum , ID;
+               int *ages;
+               int regID, cityID, distID;
+
+               getline(ss, fname, ',');
+               cout<<fname;
+               getline(ss, lname, ',');
+               cout<<lname;
+               getline(ss, reg, ',');
+               cout<<reg;
+               getline(ss, city, ',');
+               cout<<city;
+               getline(ss, dist, ',');
+               cout<<dist;
+               getline(ss, bnum, ',');
+               cout<<bnum;
+               bankNum = stoll(bnum);
+               cout<<"Ta7t stoi"<<endl;
+               getline(ss, fnum, ',');
+               int famNum = stoi(fnum);
+               cout<<famNum;
+               ages = new int[famNum];
+               for (int i = 0; i < famNum; i++)
+               {
+                    getline(ss, fage, ',');
+                    cout<<fage<<" ";
+                    age = stoi(fage);
+                    ages[i] = age;
+                    cout<<ages[i]<<endl;
+               }
+               getline(ss, id, ',');
+               ID = stoll(id);
+               insertNewCustomer(Alg, fname, lname, bankNum, famNum, ages, reg, city, dist, ID);
+          }
+
+          fileCus.close();
      }
      else
      {
@@ -128,7 +180,7 @@ void menu::HomePage()
      bool conn;
      const int width = 60;
      int n;
-     
+
      do
      {
           // Role selection section
@@ -166,7 +218,7 @@ void menu::HomePage()
                std::cout << "\t\t"
                          << "^" << setfill(' ') << setw(width - 10) << "Welcome admin please enter the password" << setw(9) << "^" << endl;
                std::cout << "\t\t\t\t";
-               std::cin>>password;
+               std::cin >> password;
                if (password == getSentenceFromCSV("password.csv"))
                {
                     conn = true;
@@ -217,7 +269,7 @@ void menu::HomePage()
 
                     std::string reg, city, dist, fname, lname;
                     int fnum, m_bill, y_bill, mconsumption, minjection;
-                    long int  id_bill;
+                    long int id_bill;
                     long long id_num;
                     long int bnum;
                     int *ages;
@@ -284,26 +336,26 @@ void menu::HomePage()
                               break;
                          }
 
-                         ages=new int[fnum];
+                         ages = new int[fnum];
 
                          for (int i = 0; i < fnum; i++)
                          {
                               std::cout << "\t\t"
-                                        << "^" << setfill(' ') << setw(width - 31) << "Age of member N" << i+1 << ":" << setw(29) << "^" << endl;
+                                        << "^" << setfill(' ') << setw(width - 31) << "Age of member N" << i + 1 << ":" << setw(29) << "^" << endl;
                               std::cout << "\t\t\t\t";
                               int r;
                               std::cin >> r;
-                              ages[i]=r;
+                              ages[i] = r;
                               if (std::cin.fail())
                               {
                                    throw std::runtime_error("Input was not an integer.");
                               }
-                              if (r > 200|| r< 0)
-                         {
-                              std::cout << "\t\t\t Invalid age entered!!\n\n";
-                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
-                              break;
-                         }
+                              if (r > 200 || r < 0)
+                              {
+                                   std::cout << "\t\t\t Invalid age entered!!\n\n";
+                                   std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
+                                   break;
+                              }
                          }
 
                          std::cout << "\t\t"
@@ -321,17 +373,18 @@ void menu::HomePage()
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
                          std::cout << "\t\t"
                                    << "^" << setfill(' ') << setw(width - 1) << "^" << endl; // Empty line
-                         
-                          try{
-                         cout << "\t\t\t\t";
-                         insertNewCustomer(Alg, fname, lname, bnum, fnum, ages, reg, city, dist, id_num);
-                          std::cout << endl;
-                          }catch (...)
-                            {
-                            // Catch-all handler for wrong input
-                            std::cerr << "\t\t\t region,city or district doesn't exist" << std::endl;
-                            }
-                         
+
+                         try
+                         {
+                              cout << "\t\t\t\t";
+                              insertNewCustomer(Alg, fname, lname, bnum, fnum, ages, reg, city, dist, id_num);
+                              std::cout << endl;
+                         }
+                         catch (...)
+                         {
+                              // Catch-all handler for wrong input
+                              std::cerr << "\t\t\t region,city or district doesn't exist" << std::endl;
+                         }
 
                          std::cout << endl;
                          std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl; // Bottom border
@@ -619,7 +672,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        getOneMonthBillDistrict(Alg, rg1,ct1, dist1, tm, ty);
+                                        getOneMonthBillDistrict(Alg, rg1, ct1, dist1, tm, ty);
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;
@@ -633,7 +686,7 @@ void menu::HomePage()
                                              break;
                                         }
 
-                                         getOneYearBillDistrict(Alg, rg1, ct1,dist1,ty2);
+                                        getOneYearBillDistrict(Alg, rg1, ct1, dist1, ty2);
                                         break;
 
                                    case 3:
@@ -679,7 +732,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                         getOnePeriodBillDistrict(Alg, rg1,ct1,dist1,sm, em, sy, ey);
+                                        getOnePeriodBillDistrict(Alg, rg1, ct1, dist1, sm, em, sy, ey);
                                         break;
 
                                    default:
@@ -734,7 +787,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        getOneMonthBillCity(Alg, rg2,ct2, tm, ty);
+                                        getOneMonthBillCity(Alg, rg2, ct2, tm, ty);
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;
@@ -748,7 +801,7 @@ void menu::HomePage()
                                              break;
                                         }
 
-                                         getOneYearBillCity(Alg, rg2, ct2,ty2);
+                                        getOneYearBillCity(Alg, rg2, ct2, ty2);
                                         break;
 
                                    case 3:
@@ -794,7 +847,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        getOnePeriodBillCity(Alg, rg2,ct2,sm, em, sy, ey);
+                                        getOnePeriodBillCity(Alg, rg2, ct2, sm, em, sy, ey);
                                         break;
                                    default:
                                         break;
@@ -842,7 +895,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                         getOneMonthBillRegion(Alg, rg3, tm, ty);
+                                        getOneMonthBillRegion(Alg, rg3, tm, ty);
                                         break;
                                    case 2:
                                         std::cout << "\t\t\t enter the year" << endl;
@@ -856,7 +909,7 @@ void menu::HomePage()
                                              break;
                                         }
 
-                                        getOneYearBillRegion(Alg, rg3,ty2);
+                                        getOneYearBillRegion(Alg, rg3, ty2);
                                         break;
 
                                    case 3:
@@ -902,7 +955,7 @@ void menu::HomePage()
                                              std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                                              break;
                                         }
-                                        getOnePeriodBillRegion(Alg, rg3,sm, em, sy, ey);
+                                        getOnePeriodBillRegion(Alg, rg3, sm, em, sy, ey);
                                         break;
                                    default:
                                         break;
@@ -1228,7 +1281,7 @@ void menu::HomePage()
 
                     std::cout << "\t\t"
                               << "^" << setfill(' ') << setw(width - 1) << "^" << endl;
-                    getOneYearBill(Alg,ID, cy2);
+                    getOneYearBill(Alg, ID, cy2);
                     std::cout << "\t\t" << setfill('^') << setw(width) << "" << endl;
                     std::cout << "\n\n";
                     break;

@@ -27,11 +27,11 @@ public:
     int id;
 
     Customer() {}
-    Customer(string, string, int, int, int* A , string, string, string,long int);
+    Customer(string, string, int, int, int* A , string, string, string,long  long int);
     void setInfo(string, string, int, int,int* A, string, string, string);
     vector<string> getIDs(string, string, string);
     string getConcatenatedIDs(string, string, string);
-    long int generateCustomerID(string, string, string, long int);
+    long long int generateCustomerID(string, string, string, long int);
     void settotalInjection(int);
     long int getCustomerId();
     void getOneMonthBillCustomer(int, int);

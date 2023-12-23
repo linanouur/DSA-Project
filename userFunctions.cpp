@@ -129,7 +129,7 @@ int getDistrictIDfromFile(string district)
     return -1;
 }
 
-int getRegionId( long int CustomerID)
+int getRegionId( long long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string regionID;
@@ -144,7 +144,7 @@ int getRegionId( long int CustomerID)
     }
     return stoi(regionID);
 }
-int getCityId( long int CustomerID)
+int getCityId( long long  int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string cityID;
@@ -158,7 +158,7 @@ int getCityId( long int CustomerID)
     }
     return stoi(cityID);
 }
-int getDistrictId( long int CustomerID)
+int getDistrictId( long long int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string districtID;
@@ -173,7 +173,7 @@ int getDistrictId( long int CustomerID)
 
     return stoi(districtID);
 }
-int getCustomerID( long int CustomerID)
+int getCustomerID( long long  int CustomerID)
 {
     string CustomerIDString = to_string(CustomerID);
     string customerID;

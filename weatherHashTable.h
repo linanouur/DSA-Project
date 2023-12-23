@@ -65,20 +65,20 @@ public:
         std::getline(file, line);
 
         while (std::getline(file, line)) {
-            std::stringstream ss(line);
-            std::string dateStr, maxTempStr, minTempStr, sunnyHoursStr, condition;
+            stringstream ss(line);
+            string dateStr, maxTempStr, minTempStr, sunnyHoursStr, condition;
             int date[3], day, month, year;
             double maxTemp, minTemp;
             int sunnyHours;
 
-            std::getline(ss, dateStr, ',');
-            std::getline(ss, maxTempStr, ',');
-            std::getline(ss, minTempStr, ',');
-            std::getline(ss, sunnyHoursStr, ',');
-            std::getline(ss, condition);
+            getline(ss, dateStr, ',');
+            getline(ss, maxTempStr, ',');
+            getline(ss, minTempStr, ',');
+            getline(ss, sunnyHoursStr, ',');
+            getline(ss, condition);
 
             // Parse date
-            std::istringstream dateSS(dateStr);
+            istringstream dateSS(dateStr);
             char delim;
             dateSS >> day >> delim >> month >> delim >> year;
 
@@ -88,9 +88,9 @@ public:
             date[2] = year;
 
             // Parse other data using istringstream
-            std::istringstream(maxTempStr) >> maxTemp;
-            std::istringstream(minTempStr) >> minTemp;
-            std::istringstream(sunnyHoursStr) >> sunnyHours;
+            istringstream(maxTempStr) >> maxTemp;
+            istringstream(minTempStr) >> minTemp;
+            istringstream(sunnyHoursStr) >> sunnyHours;
 
             // Create a weather object and insert it into the hash table
             weather w(date, maxTemp, minTemp, sunnyHours, condition);

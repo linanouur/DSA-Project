@@ -19,7 +19,7 @@ long int Customer ::getCustomerId()
     return ElectricityAccountId;
 }
 
-Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, long int id)
+Customer::Customer(string fname, string lname, int bankAccount, int numMemb,  int*ages, string region, string city, string district, long  long int id)
 {
     Ages = new int[numMemb];
     setInfo(fname, lname, bankAccount, numMemb, ages, region, city, district);
@@ -102,7 +102,7 @@ string Customer ::getConcatenatedIDs(string region, string city, string district
 
     return concatenatedIDs;
 }
-long int Customer ::generateCustomerID(string region, string city, string district,long int CustomerID)
+long long  int Customer ::generateCustomerID(string region, string city, string district,long int CustomerID)
 {
     if (CustomerID > 0 && CustomerID < 1000000000)
     {   
@@ -111,7 +111,7 @@ long int Customer ::generateCustomerID(string region, string city, string distri
        
         string CustomerID = concatenatedIDs + CustomerIDstring;
      
-        return stol(CustomerID);
+        return stoll(CustomerID);
     }
     else
     {
